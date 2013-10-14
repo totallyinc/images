@@ -1,6 +1,14 @@
 var medFiles;
 function invoke(){
-	navigator.device.capture.captureImage(captureSuccess,captureError,{limit:1});
+    try{
+    	navigator.device.capture.captureImage(captureSuccess,captureError,{limit:1});
+    }
+    catch(err){
+        var imageContainer = event.target.parentElement;
+        var imageElement = document.createElement("div");
+        imageElement.innerHTML = err;
+        imageContainer.appendChild(imageElement);
+    }
 }
 
 function captureSuccess(mediaFiles){
