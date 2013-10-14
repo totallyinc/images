@@ -14,14 +14,19 @@ function captureSuccess(mediaFiles){
         var img = mediaFiles[0];
     	medFiles.append(img);
     	var imageContainer = event.target.parentElement;
+        navigator.notification.alert("Message: " , null, "Got caller parent!");
     	var imageElement = document.createElement("img");
+        navigator.notification.alert("Message: " , null, "Created img tag!");
+        imageElement.style.visibility = "visible";
+        imageElement.style.display = "block";
         imageElement.src = "data:image/jpeg;base64," + img.fullPath;
+        navigator.notification.alert("Message: " , null, "Set img attributes!");
         navigator.notification.alert(imageElement.src);
     	imageContainer.appendChild(imageElement);
         navigator.notification.alert("Message: " , null, "Ending captureSuccess!");
     }
     catch(err){
-        navigator.notification.alert(err);
+        navigator.notification.alert("Error: "+err);
     }
 }
 
