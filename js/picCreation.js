@@ -4,14 +4,13 @@ function invoke(){
 }
 
 function captureSuccess(mediaFiles){
+
     var img = mediaFiles[0];
 	medFiles.append(img);
-	var body = document.getElementsByTagName('body')[0];
 	var imageContainer = event.target.parentElement;
-	//body.appendChild('<button onclick="uploadFile();">Upload Images</button>');
-
-	var imageElement = document.createElement("img");
-    imageElement.src = "data:image/jpeg;base64," + img.fullPath;
+	var imageElement = document.createElement("div");
+    //imageElement.src = "data:image/jpeg;base64," + img.fullPath;
+    imageElement.innerHTML = "Test";
 	imageContainer.appendChild(imageElement);
 }
 
