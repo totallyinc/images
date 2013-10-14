@@ -9,15 +9,20 @@ function invoke(){
 }
 
 function captureSuccess(mediaFiles){
-    navigator.notification.alert("Message: " , null, "Beginning captureSuccess!");
-    var img = mediaFiles[0];
-	medFiles.append(img);
-	var imageContainer = event.target.parentElement;
-	var imageElement = document.createElement("img");
-    imageElement.src = "data:image/jpeg;base64," + img.fullPath;
-    navigator.notification.alert(imageElement.src);
-	imageContainer.appendChild(imageElement);
-    navigator.notification.alert("Message: " , null, "Ending captureSuccess!");
+    try{
+        navigator.notification.alert("Message: " , null, "Beginning captureSuccess!");
+        var img = mediaFiles[0];
+    	medFiles.append(img);
+    	var imageContainer = event.target.parentElement;
+    	var imageElement = document.createElement("img");
+        imageElement.src = "data:image/jpeg;base64," + img.fullPath;
+        navigator.notification.alert(imageElement.src);
+    	imageContainer.appendChild(imageElement);
+        navigator.notification.alert("Message: " , null, "Ending captureSuccess!");
+    }
+    catch(err){
+        navigator.notification.aler(error);
+    }
 }
 
 function captureError(error){
