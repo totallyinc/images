@@ -4,22 +4,20 @@ function invoke(){
     	navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
     }
     catch(err){
-        var imageContainer = event.target.parentElement;
-        var imageElement = document.createElement("div");
-        imageElement.innerHTML = err;
-        imageContainer.appendChild(imageElement);
+        navigator.notification.alert("An error occurred during capture: " + err, null, "Uh oh!");
     }
 }
 
 function captureSuccess(mediaFiles){
-
+    navigator.notification.alert("Message: " , null, "Beginning captureSuccess!");
     var img = mediaFiles[0];
 	medFiles.append(img);
 	var imageContainer = event.target.parentElement;
 	var imageElement = document.createElement("img");
     imageElement.src = "data:image/jpeg;base64," + img.fullPath;
-    //imageElement.innerHTML = "Test";
+    navigator.notification.alert(imageElement.src);
 	imageContainer.appendChild(imageElement);
+    navigator.notification.alert("Message: " , null, "Ending captureSuccess!");
 }
 
 function captureError(error){
