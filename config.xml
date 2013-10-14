@@ -14,8 +14,8 @@
         Jay Hu
     </author>
 	
-	<preference name="permissions" value="none"/>
-	<!-- to enable individual permissions use the following examples -->
+	<!--<preference name="permissions" value="none"/>
+	<!-- to enable individual permissions use the following examples
     <feature name="http://api.phonegap.com/1.0/camera"/>
     <feature name="http://api.phonegap.com/1.0/media"/>
     <feature name="http://api.phonegap.com/1.0/network"/>
