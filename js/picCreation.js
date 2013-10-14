@@ -16,9 +16,9 @@ function captureSuccess(mediaFiles){
     var img = mediaFiles[0];
 	medFiles.append(img);
 	var imageContainer = event.target.parentElement;
-	var imageElement = document.createElement("div");
-    //imageElement.src = "data:image/jpeg;base64," + img.fullPath;
-    imageElement.innerHTML = "Test";
+	var imageElement = document.createElement("img");
+    imageElement.src = "data:image/jpeg;base64," + img.fullPath;
+    //imageElement.innerHTML = "Test";
 	imageContainer.appendChild(imageElement);
 }
 
