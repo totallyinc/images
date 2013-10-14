@@ -21,7 +21,7 @@ function captureSuccess(mediaFiles){
         navigator.notification.alert("Message: " , null, "Ending captureSuccess!");
     }
     catch(err){
-        navigator.notification.alert(error);
+        navigator.notification.alert(err);
     }
 }
 
