@@ -1,7 +1,7 @@
 var medFiles;
 function invoke(){
     try{
-    	navigator.device.capture.captureImage(captureSuccess,captureError,{limit:1});
+    	navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
     }
     catch(err){
         var imageContainer = event.target.parentElement;
