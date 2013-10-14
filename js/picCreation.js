@@ -1,4 +1,4 @@
-var medFiles;
+var medFiles=[];
 function invoke(){
     try{
     	navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
@@ -12,7 +12,7 @@ function captureSuccess(mediaFiles){
     try{
         navigator.notification.alert("Message: " , null, "Beginning captureSuccess!");
         var img = mediaFiles[0];
-    	medFiles.append(img);
+    	medFiles.push(img);
     	var imageContainer = event.target.parentElement;
         navigator.notification.alert("Message: " , null, "Got caller parent!");
     	var imageElement = document.createElement("img");
