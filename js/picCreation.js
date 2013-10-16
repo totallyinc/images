@@ -1,55 +1,61 @@
-var medFiles=[];
-function invoke(){
-    try{
-    	navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
-    }
-    catch(err){
+var medFiles = [];
+function invoke(num) {
+    try {
+        navigator.device.capture.captureImage(captureSuccess(num), captureError, {limit: 1});
+    } catch (err) {
         navigator.notification.alert("An error occurred during capture: " + err, null, "Uh oh!");
     }
 }
 
-function captureSuccess(mediaFiles){
-    try{
-        navigator.notification.alert("Message: " , null, "Beginning captureSuccess!");
+function captureSuccess(mediaFiles) {
+    try {
         var img = mediaFiles[0];
-    	medFiles.push(img);
-    	var imageContainer = event.target.parentElement;
-        navigator.notification.alert("Message: " , null, "Got caller parent!");
-    	var imageElement = document.createElement("img");
-        navigator.notification.alert("Message: " , null, "Created img tag!");
+    	medFiles[num] = img;
+        //navigator.notification.alert("Pushed image to list");
+    	var imageContainer = document.getElementById('imageContainer');
+        var imageElement = document.createElement("img");
         imageElement.style.visibility = "visible";
         imageElement.style.display = "block";
-        imageElement.src = "data:image/jpeg;base64," + img.fullPath;
-        navigator.notification.alert("Message: " , null, "Set img attributes!");
-        navigator.notification.alert(imageElement.src);
-    	imageContainer.appendChild(imageElement);
-        navigator.notification.alert("Message: " , null, "Ending captureSuccess!");
-    }
-    catch(err){
-        navigator.notification.alert("Error: "+err);
+        imageElement.style.width = "500px";
+        imageElement.src = img.fullPath;
+        imageContainer.appendChild(imageElement);
+        var upload = document.getElementById('upload');
+        if (upload.innerHTML === "" || upload.innerHTML ===   undefined) {
+           // navigator.notification.alert('in add button block');
+            upload.innerHTML = '<button onclick="uploadFiles()">Upload pictures</button>';
+        }
+    } catch (err) {
+        navigator.notification.alert("Error: " + err);
     }
 }
 
-function captureError(error){
+function captureError(error) {
 	var msg = "An error occurred during capture: " + error.code;
 	navigator.notification.alert(msg, null, "Uh oh!");
 }
 
-function uploadFile() {
-    var ft = new FileTransfer(),
-    path = medFile.fullPath,
-    name = medFile.name;
+function uploadFiles() {
+    try {
+        var ft = new FileTransfer();
+        for (var index in medFiles){
+            path = medFiles[index].fullPath;
+            name = medFiles[index].name;
 
-    ft.upload(path,
-        "http://my.domain.com/upload.php",
-        function(result) {
-            console.log('Upload success: ' + result.responseCode);
-            console.log(result.bytesSent + ' bytes sent');
+            ft.upload(path,
+                "http://cms.Sols.co/api/create_order",
+                function(result) {
+                    navigator.notification.alert('Upload success: ' + result.responseCode);
+                    navigator.notification.alert('bytes sent: ' + result.bytesSent);
+                    navigator.notification.alert('actual size: ' + medFiles[index].size);
 
-        },
-        function(error) {
-            console.log('Error uploading file ' + path + ': ' + error.code);
-        },
-        { fileName: name }
-    ); 
+                },
+                function(error) {
+                    navigator.notification.alert('Error uploading file ' + path + ': ' + error.code);
+                },
+                { fileName: name }
+            );
+        } 
+    } catch(err){
+        navigator.notification.alert("Exception: " + err);
+    }
 }
