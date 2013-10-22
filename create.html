@@ -8,14 +8,17 @@
 </head>
 <body>
 	<h1>Taking your pictures</h1>
-	<div>Shoe Size<input type="text"></input>
-	<div>Image1<button onclick="invoke(0);">Capture Image</button></div><br>
-	<div>Image2<button onclick="invoke(1);">Capture Image</button></div><br>
-	<div>Image3<button onclick="invoke(2);">Capture Image</button></div><br>
-	<div>Image4<button onclick="invoke(3);">Capture Image</button></div><br>
-	<div>Image5<button onclick="invoke(4);">Capture Image</button></div><br>
-	<div>Image6<button onclick="invoke(5);">Capture Image</button></div><br>
+	<div>Shoe Size<input type="text"></input></div>
+	<div id="buttonsContainer">
+		<div>Image1<button>Capture Image</button><br></div>
+		<div>Image2<button>Capture Image</button><br></div>
+		<div>Image3<button>Capture Image</button><br></div>
+		<div>Image4<button>Capture Image</button><br></div>
+		<div>Image5<button>Capture Image</button><br></div>
+		<div>Image6<button>Capture Image</button><br></div>
+	</div>
 	<script type="text/javascript" src="phonegap.js"></script>
+	<script type="text/javascript" src="js/zepto.min.js"></script>
 	<script src="js/picCreation.js"></script>
 	<div id="imageContainer"></div>
 	<div id="upload"></div>
