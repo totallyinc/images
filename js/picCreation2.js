@@ -38,7 +38,7 @@ $(document).ready(function(){
       name = img.name;
       //navigator.notification.alert(window['localStorage'].id);
       ft.upload(path,
-        "http://cms.Sols.co/api/create_order?order_id="+window['localStorage'].id,
+        "http://cms.Sols.co/api/create_order?order_id="+window['localStorage'].id+"&name="+originalCaller.attr("name"),
         function(result) {
           navigator.notification.alert('Response message: '+result.response);
           navigator.notification.alert('Upload success: ' + result.responseCode);
