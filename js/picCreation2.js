@@ -15,7 +15,7 @@ $(document).ready(function(){
     try {
       img = mediaFiles[0];
       uploadFiles();
-      var imageElement = originalCaller;
+      var imageElement = $(this);
       //imageElement.css('visibility',"visible");
      // imageElement.css("display","block");
       //imageElement.css("width","75px");
