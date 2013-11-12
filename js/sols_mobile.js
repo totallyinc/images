@@ -557,26 +557,26 @@ function form_login_submit() {
         var postData = $(this).serialize();
         alert("Serialized data");
         try{
-        $.ajax({
-            dataType:'jsonp',
-            data:postData,
-            url:'http://qa.sols.co/reseller/api_login?format=jsonp',
-            success:function (data) {
-                console.log(data);
-                alert(data);
-                if (data.login) {
-                    user_login(data);
-                    $.mobile.changePage('#page-home', { transition:"none"});
+            $.ajax({
+                dataType:'jsonp',
+                data:postData,
+                url:'http://qa.sols.co/reseller/api_login?format=jsonp',
+                success:function (data) {
+                    console.log(data);
+                    alert(data);
+                    if (data.login) {
+                        user_login(data);
+                        $.mobile.changePage('#page-home', { transition:"none"});
+                    }
+                    else {
+                        alert_login_fail();
+                    }
+                },
+                error:function () {
+                    console.log(data);
+                    alert('There was an unexpected error when you try to login.');
                 }
-                else {
-                    alert_login_fail();
-                }
-            },
-            error:function () {
-                console.log(data);
-                alert('There was an unexpected error when you try to login.');
-            }
-        });
+            });
         }
         catch(err){
             alert("Error"+err);
