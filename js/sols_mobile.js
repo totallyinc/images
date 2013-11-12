@@ -555,6 +555,7 @@ function form_login_submit() {
 
 
     $('#form_login').submit(function () {
+        alert("Logging in");
         var postData = $(this).serialize();
         $.ajax({
             dataType:'jsonp',
@@ -562,6 +563,7 @@ function form_login_submit() {
             url:'http://qa.sols.co/reseller/api_login?format=jsonp',
             success:function (data) {
                 console.log(data);
+                alert(data);
                 if (data.login) {
                     user_login(data);
                     $.mobile.changePage('#page-home', { transition:"none"});
