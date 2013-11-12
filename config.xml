@@ -8,6 +8,9 @@
         PhoneGap Team
     </author>
     <feature name="http://api.phonegap.com/1.0/device" />
+    <gap:platform name="android" />
+    <gap:platform name="ios" />
+    <gap:platform name="winphone" />
     <preference name="permissions" value="none" />
 
     <!-- to enable individual permissions use the following examples -->
