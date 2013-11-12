@@ -552,35 +552,29 @@ function form_patient_note() {
  */
 function form_login_submit() {
 //$.mobile.changePage( '#page-home', { transition: "none"}  ); return true;
+
+
     $('#form_login').submit(function () {
-        alert("Logging in");
         var postData = $(this).serialize();
-        alert("Serialized data");
-        try{
-            $.ajax({
-                dataType:'jsonp',
-                data:postData,
-                url:'http://qa.sols.co/reseller/api_login?format=jsonp',
-                success:function (data) {
-                    console.log(data);
-                    alert(data);
-                    if (data.login) {
-                        user_login(data);
-                        $.mobile.changePage('#page-home', { transition:"none"});
-                    }
-                    else {
-                        alert_login_fail();
-                    }
-                },
-                error:function () {
-                    console.log(data);
-                    alert('There was an unexpected error when you try to login.');
+        $.ajax({
+            dataType:'jsonp',
+            data:postData,
+            url:'http://qa.sols.co/reseller/api_login?format=jsonp',
+            success:function (data) {
+                console.log(data);
+                if (data.login) {
+                    user_login(data);
+                    $.mobile.changePage('#page-home', { transition:"none"});
                 }
-            });
-        }
-        catch(err){
-            alert("Error"+err);
-        }
+                else {
+                    alert_login_fail();
+                }
+            },
+            error:function () {
+                console.log(data);
+                alert('There was an unexpected error when you try to login.');
+            }
+        });
         return false;
     });
 }
