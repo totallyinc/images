@@ -7,903 +7,1409 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-  <link href="css/codiqa.ext.css" rel="stylesheet">
-  <link href="css/jqm-neue.css" rel="stylesheet">
+  <link href="css/codiqa.ext.min.css" rel="stylesheet">
+  <link href="css/jquery.mobile.theme-1.3.1.min.css" rel="stylesheet">
+  <link href="css/jquery-mobile.css" rel="stylesheet">
+  <link href="css/jquery.mobile.structure-1.3.1.min.css" rel="stylesheet">
+  <link href="https://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_js/sols_mobile_app.css" rel="stylesheet">
 
-  <script src="js/jquery-1.9.1.js"></script>
-  <script src="js/jquery.mobile-1.3.1.js"></script>
-  <script src="js/codiqa.ext.js"></script>
-  <script src="js/sols_mobile.js"></script>
+  <script src="js/jquery-1.9.1.min.js"></script>
+  <script src="js/jquery.mobile-1.3.1.min.js"></script>
+  <script src="js/codiqa.ext.min.js"></script>
+  <script src="https://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_js/sols_mobile_app.js"></script>
+  <script src="cordova.js"></script>
 </head>
 <body>
-    <div data-role="page" data-control-title="Home" id="home">
-      <div data-role="content">
-          <div data-role="fieldcontain" data-controltype="searchinput">
-              <input name="" id="searchinput1" placeholder="" value="" type="search">
+  <div data-role="page" data-control-title="Index" id="page-login">
+      <div data-role="content" style="padding: 0px">
+          <div data-controltype="textblock">
+              <p>
+                  <br>
+              </p>
+              <p>
+                  <br>
+              </p>
           </div>
-          <a href="#support" data-controltype="image">
-              <div style="display: inline">
-                  <img style="width: 128px; height: 128px" src="img/customer-support.png">
-              </div>
-          </a>
-          <a href="#add-new-patient" data-controltype="image">
-              <div style="display: inline">
-                  <img style="width: 128px; height: 128px" src="img/add-user.png">
-              </div>
-          </a>
-          <a href="#report" data-controltype="image">
-              <div style="display: inline">
-                  <img style="width: 128px; height: 128px" src="img/chart.png">
-              </div>
-          </a>
-          <a href="#picup" data-controltype="image">
-              <div style="display: inline">
-                  <img style="width: 128px; height: 128px" src="img/pickup.png">
-              </div>
-          </a>
-      </div>
-      <div data-role="tabbar" data-iconpos="top" data-theme="a">
-          <ul>
-              <li>
-                  <a href="#home" data-transition="none" data-theme="" data-icon="home">
-                      Home
-                  </a>
-              </li>
-              <li>
-                  <a href="#add-new-patient" data-transition="none" data-theme="" data-icon="plus">
-                      Add
-                  </a>
-              </li>
-              <li>
-                  <a href="#report" data-transition="none" data-theme="" data-icon="grid">
-                      Report
-                  </a>
-              </li>
-              <li>
-                  <a href="#picup" data-transition="none" data-theme="" data-icon="info">
-                      PickUp
-                  </a>
-              </li>
-          </ul>
-      </div>
-  </div>
-  <div data-role="page" data-control-title="Index" id="page15">
-      <div data-role="content">
-          <div style="" data-controltype="image">
+          <div style=" text-align:center" data-controltype="image">
               <img style="width: 266px; height: 80px" src="img/logo_word.png">
           </div>
-          <div data-role="fieldcontain" data-controltype="textinput">
-              <label for="textinput19">
-                  Email
-              </label>
-              <input name="" id="textinput19" placeholder="" value="" type="text">
+          <div data-controltype="textblock">
+              <p>
+                  <br>
+              </p>
           </div>
-          <div data-role="fieldcontain" data-controltype="textinput">
-              <label for="textinput20">
-                  Password
-              </label>
-              <input name="" id="textinput20" placeholder="" value="" type="text">
+          <form class="form" id="form_login" action="" method="POST">
+              <div data-role="fieldcontain" data-controltype="textinput">
+                  <input name="user[username]" id="textinput19" placeholder="Username" value=""
+                  type="text">
+              </div>
+              <div data-role="fieldcontain" data-controltype="textinput">
+                  <input name="user[password]" id="textinput20" placeholder="Password" value=""
+                  type="password">
+              </div>
+              <input id="submit_login" data-theme="d" value="Sign In" type="submit">
+          </form>
+      </div>
+      <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
+          <ul>
+              <li>
+                  <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-add-new-patient" data-transition="none" data-theme="" data-icon="plus">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-pickup" data-transition="none" data-theme="" data-icon="info">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-report" data-transition="none" data-theme="" data-icon="grid">
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+  <div data-role="page" data-control-title="Home" id="page-home">
+      <div data-role="content" style="padding: 0px">
+          <div data-controltype="textblock">
           </div>
-          <input type="submit" data-theme="a" value="SIGN IN">
-          <div>
-              <a href="" data-transition="pop">
-                  Forgot
-              </a>
+          <div class="search-sec" data-role="fieldcontain" data-controltype="searchinput">
+              <input name="" id="searchinput11" placeholder="search" value="" type="search">
           </div>
-          <a data-role="button" href="#home">
-              fake login
+          <div data-controltype="textblock">
+              <p>
+              </p>
+              <p>
+                  <br>
+              </p>
+          </div>
+          <div data-controltype="htmlblock">
+              <div class="container" style="height: 150px;">
+                  <div style=" text-align: center; float: left; width:50%;">
+                      <a href="#page-add-new-patient" data-transition="none">
+                          <img src="img/add-user.png"
+                          width="85">
+                      </a>
+                      <p style="margin: 0;">
+                          Add New
+                          <br>
+                          Patient
+                      </p>
+                  </div>
+                  <div style=" text-align: center; float: left; width:50%;">
+                      <a href="#page-pickup" data-transition="none">
+                          <img src="img/pickup.png"
+                          width="85">
+                      </a>
+                      <p style="margin: 0;">
+                          Pick Up
+                          <br>
+                          Ready
+                      </p>
+                  </div>
+              </div>
+          </div>
+          <div data-controltype="htmlblock">
+              <div class="container" style="height: 150px;">
+                  <div style=" text-align: center; float: left; width:50%;">
+                      <a id="link-patients" href="#page-patients" data-transition="none">
+                          <img src="img/customer-support.png"
+                          width="85">
+                      </a>
+                      <p style="margin: 0;">
+                          Patients
+                      </p>
+                  </div>
+                  <div style=" text-align: center; float: left; width:50%;">
+                      <a href="#page-report" data-transition="none">
+                          <img src="img/chart.png"
+                          width="85">
+                      </a>
+                      <p style="margin: 0;">
+                          Report
+                      </p>
+                  </div>
+              </div>
+          </div>
+          <div data-controltype="htmlblock">
+              <div class="bg-banner">
+                  <div class="container">
+                      <div style="float: left; width: 75px;">
+                          <img src="img/email.png"
+                          width="32">
+                      </div>
+                      <div>
+                          Call: 123-456-7890
+                      </div>
+                      <div style="clear:both;">
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div data-controltype="htmlblock">
+              <div class="bg-banner">
+                  <div class="container">
+                      <div style="float: left; width: 75px;">
+                          <img src="img/email.png"
+                          width="32">
+                      </div>
+                      <div>
+                          Call: 123-456-7890
+                      </div>
+                      <div style="clear:both;">
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <a id="btn-logout" data-role="button" href="#page-login">
+              Log out (testing only)
           </a>
       </div>
-      <div data-role="tabbar" data-iconpos="top" data-theme="a">
+      <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
           <ul>
               <li>
-                  <a href="#home" data-transition="none" data-theme="" data-icon="home">
-                      Home
+                  <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
                   </a>
               </li>
               <li>
-                  <a href="#add-new-patient" data-transition="none" data-theme="" data-icon="plus">
-                      Add
+                  <a href="#page-add-new-patient" data-transition="none" data-theme="" data-icon="plus">
                   </a>
               </li>
               <li>
-                  <a href="#report" data-transition="none" data-theme="" data-icon="grid">
-                      Report
+                  <a href="#page-pickup" data-transition="none" data-theme="" data-icon="info">
                   </a>
               </li>
               <li>
-                  <a href="#picup" data-transition="none" data-theme="" data-icon="info">
-                      PickUp
+                  <a href="#page-report" data-transition="none" data-theme="" data-icon="grid">
                   </a>
               </li>
           </ul>
       </div>
   </div>
-  <div data-role="page" data-control-title="Report" id="report">
-      <div data-role="content">
-          <div data-role="fieldcontain" data-controltype="searchinput">
-              <input name="" id="searchinput2" placeholder="" value="" type="search">
-          </div>
-          <div data-controltype="textblock">
-              <p>
-                  <b>
-                      10/30 $80 QTY:1 Jenso. K
-                  </b>
-              </p>
-              <p>
-                  <b>
-                      10/21 $95 QTY:1 Jennifer. H
-                  </b>
-              </p>
-              <p>
-                  <b>
-                      10/12 $70 QTY:1 Jorge. R
-                  </b>
-              </p>
-          </div>
+  <div data-role="page" data-control-title="Add New Patient - basic information"
+  id="page-add-new-patient">
+      <div data-theme="d" data-role="header">
+          <a data-role="button" data-rel="back" data-transition="none" href="#page-add-new-patient"
+          data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
+              Back
+          </a>
+          <h3>
+              Step 1 of 6
+          </h3>
       </div>
-      <div data-role="tabbar" data-iconpos="top" data-theme="a">
-          <ul>
-              <li>
-                  <a href="#home" data-transition="none" data-theme="" data-icon="home">
-                      Home
-                  </a>
-              </li>
-              <li>
-                  <a href="#add-new-patient" data-transition="none" data-theme="" data-icon="plus">
-                      Add
-                  </a>
-              </li>
-              <li>
-                  <a href="#report" data-transition="none" data-theme="" data-icon="grid">
-                      Report
-                  </a>
-              </li>
-              <li>
-                  <a href="#picup" data-transition="none" data-theme="" data-icon="info">
-                      PickUp
-                  </a>
-              </li>
-          </ul>
-      </div>
-  </div>
-  <div data-role="page" data-control-title="Support" id="support">
-      <div data-role="content">
-          <div data-role="fieldcontain" data-controltype="searchinput">
-              <input name="" id="searchinput3" placeholder="" value="" type="search">
-          </div>
-          <div data-controltype="textblock">
-              <p>
-                  Need Help?
-              </p>
-          </div>
-          <hr style="height:1px; background-color:#ccc; border:0; margin-top:12px; margin-bottom:12px;">
+      <div data-role="content" style="padding: 0px">
           <div data-controltype="htmlblock">
-              <div style="height: 80px;">
-                  <div style="float: left; width: 75px;">
-                      <img width="64" src="img/customer-support.png">
-                  </div>
-                  <div>
-                      Call: 123-456-7890
-                  </div>
+              <br>
+              <p class="container">
+                  Add New Patient
+              </p>
+              <div class="container section-header">
+                  ABOUT
               </div>
           </div>
-          <div data-controltype="htmlblock">
-              <div style="height: 80px;">
-                  <div style="float: left; width: 75px;">
-                      <img width="64" src="img/email.png">
-                  </div>
-                  <div>
-                      Call: 123-456-7890
-                  </div>
-              </div>
-          </div>
-          <div data-controltype="htmlblock">
-              <div style="height: 80px;">
-                  <div style="text-align: center;">
-                      Give us feedback on our app
-                  </div>
-              </div>
-          </div>
-          <img id="scan" src="img/scanner.jpeg">
-      </div>
-      <div data-role="tabbar" data-iconpos="top" data-theme="a">
-          <ul>
-              <li>
-                  <a href="#home" data-transition="none" data-theme="" data-icon="home">
-                      Home
-                  </a>
-              </li>
-              <li>
-                  <a href="#add-new-patient" data-transition="none" data-theme="" data-icon="plus">
-                      Add
-                  </a>
-              </li>
-              <li>
-                  <a href="#report" data-transition="none" data-theme="" data-icon="grid">
-                      Report
-                  </a>
-              </li>
-              <li>
-                  <a href="#picup" data-transition="none" data-theme="" data-icon="info">
-                      PickUp
-                  </a>
-              </li>
-          </ul>
-      </div>
-  </div>
-  <div data-role="page" data-control-title="Pickup" id="picup">
-      <div data-role="content">
-          <div data-role="fieldcontain" data-controltype="searchinput">
-              <input name="" id="searchinput9" placeholder="" value="" type="search">
-          </div>
-          <ul data-role="listview" data-divider-theme="a" data-inset="true">
-              <li data-theme="c">
-                  <a href="#page16" data-transition="slide">
-                      Jennie . D
-                      <span class="ui-li-count">
-                          46
-                      </span>
-                  </a>
-              </li>
-              <li data-theme="c">
-                  <a href="#page16" data-transition="slide">
-                      Jenso . J
-                      <span class="ui-li-count">
-                          25
-                      </span>
-                  </a>
-              </li>
-          </ul>
-      </div>
-      <div data-role="tabbar" data-iconpos="top" data-theme="a">
-          <ul>
-              <li>
-                  <a href="#home" data-transition="none" data-theme="" data-icon="home">
-                      Home
-                  </a>
-              </li>
-              <li>
-                  <a href="#add-new-patient" data-transition="none" data-theme="" data-icon="plus">
-                      Add
-                  </a>
-              </li>
-              <li>
-                  <a href="#report" data-transition="none" data-theme="" data-icon="grid">
-                      Report
-                  </a>
-              </li>
-              <li>
-                  <a href="#picup" data-transition="none" data-theme="" data-icon="info">
-                      PickUp
-                  </a>
-              </li>
-          </ul>
-      </div>
-  </div>
-  <div data-role="page" data-control-title="Search" id="search">
-      <div data-role="content">
-          <div data-role="fieldcontain" data-controltype="searchinput">
-              <input name="" id="searchinput10" placeholder="" value="" type="search">
-          </div>
-          <div data-controltype="htmlblock">
-              <table style="text-align: center; width: 100%; border-collapse:collapse;"
-              border="1">
-                  <tbody>
-                      <tr>
-                          <td colspan="2">
-                              Sort by
-                          </td>
-                      </tr>
-                      <tr>
-                          <td style="width: 50%">
-                              Most Recent
-                          </td>
-                          <td style="width: 50%">
-                              Age
-                          </td>
-                      </tr>
-                      <tr>
-                          <td style="width: 50%">
-                              Name A &gt; Z
-                          </td>
-                          <td style="width: 50%">
-                              Name Z &gt; A
-                          </td>
-                      </tr>
-                      <tr>
-                          <td colspan="2">
-                              Filter by
-                          </td>
-                      </tr>
-                      <tr>
-                          <td style="width: 50%">
-                              Male
-                          </td>
-                          <td style="width: 50%">
-                              Female
-                          </td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div>
-          <ul data-role="listview" data-divider-theme="a" data-inset="true">
-              <li data-theme="c">
-                  <a href="#home" data-transition="slide">
-                      Jennie . D
-                      <span class="ui-li-count">
-                          46
-                      </span>
-                  </a>
-              </li>
-              <li data-theme="c">
-                  <a href="#home" data-transition="slide">
-                      Jenso . J
-                      <span class="ui-li-count">
-                          25
-                      </span>
-                  </a>
-              </li>
-          </ul>
-      </div>
-      <div data-role="tabbar" data-iconpos="top" data-theme="a">
-          <ul>
-              <li>
-                  <a href="#home" data-transition="none" data-theme="" data-icon="home">
-                      Home
-                  </a>
-              </li>
-              <li>
-                  <a href="#add-new-patient" data-transition="none" data-theme="" data-icon="plus">
-                      Add
-                  </a>
-              </li>
-              <li>
-                  <a href="#report" data-transition="none" data-theme="" data-icon="grid">
-                      Report
-                  </a>
-              </li>
-              <li>
-                  <a href="#picup" data-transition="none" data-theme="" data-icon="info">
-                      PickUp
-                  </a>
-              </li>
-          </ul>
-      </div>
-  </div>
-  <div data-role="page" data-control-title="Add New Patient - Account" id="add-new-patient">
-      <div data-role="content">
-          <form action="#foot-image" >
+          <form class="form" id="form_patient_basic" action="" method="POST">
               <div data-role="fieldcontain" data-controltype="textinput">
-                  <label for="textinput1">
-                      First Name
-                  </label>
-                  <input name="" id="firstname" placeholder="" value="" type="text">
+                  <input name="user[first_name]" id="textinput1" placeholder="First Name"
+                  value="" type="text">
               </div>
               <div data-role="fieldcontain" data-controltype="textinput">
-                  <label for="textinput3">
-                      Last Name
-                  </label>
-                  <input name="" id="lastname" placeholder="" value="" type="text">
+                  <input name="user[last_name]" id="textinput3" placeholder="Last Name"
+                  value="" type="text">
               </div>
               <div data-role="fieldcontain" data-controltype="textinput">
-                  <label for="textinput4">
-                      E-mail
-                  </label>
-                  <input name="" id="email" placeholder="" value="" type="text">
+                  <input name="user[email]" id="textinput4" placeholder="Email" value=""
+                  type="text">
               </div>
               <div data-role="fieldcontain" data-controltype="dateinput">
                   <label for="dateinput2">
-                      DOB
+                      DOB *
                   </label>
-                  <input name="" id="dob" placeholder="" value="" type="date">
+                  <input name="user[dob]" id="dateinput2" placeholder="" value="" type="date">
               </div>
               <div data-role="fieldcontain" data-controltype="radiobuttons">
                   <fieldset data-role="controlgroup" data-type="horizontal">
                       <legend>
-                          Gender
+                          Gender *
                       </legend>
-                      <input id="radio1" name="" value="female" data-theme="c" type="radio">
+                      <input id="radio1" name="user[gener_id]" value="1" data-theme="c" type="radio">
                       <label for="radio1">
                           Female
                       </label>
-                      <input id="radio2" name="" value="radio2" data-theme="c" type="radio">
+                      <input id="radio2" name="user[gener_id]" value="2" data-theme="c" type="radio">
                       <label for="radio2">
                           Male
                       </label>
                   </fieldset>
               </div>
-              <input class="create-patient" type="submit" data-theme="a" data-icon="plus" data-iconpos="top"
-              value="Create New Patient">
-              <!--<a data-role="button" href="#patient-info-2">-->
-              <a data-role="button" href="#foot-image">
-                  fake submit
-              </a>
+              <div data-role="fieldcontain" data-controltype="textinput">
+                  <input name="user[ss_num_last_four]" id="textinput11" placeholder="Last 4 Digits of SS# *"
+                  value="" type="text">
+              </div>
+              <input data-theme="d" value="Create Patient" type="submit">
           </form>
       </div>
-      <div data-role="tabbar" data-iconpos="top" data-theme="a">
+      <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
           <ul>
               <li>
-                  <a href="#home" data-transition="none" data-theme="" data-icon="home">
-                      Home
+                  <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
                   </a>
               </li>
               <li>
-                  <a href="#add-new-patient" data-transition="none" data-theme="" data-icon="plus">
-                      Add
+                  <a href="#page-add-new-patient" data-transition="none" data-theme="" data-icon="plus">
                   </a>
               </li>
               <li>
-                  <a href="#report" data-transition="none" data-theme="" data-icon="grid">
-                      Report
+                  <a href="#page-pickup" data-transition="none" data-theme="" data-icon="info">
                   </a>
               </li>
               <li>
-                  <a href="#picup" data-transition="none" data-theme="" data-icon="info">
-                      PickUp
+                  <a href="#page-report" data-transition="none" data-theme="" data-icon="grid">
                   </a>
               </li>
           </ul>
       </div>
   </div>
-  <div data-role="page" data-control-title="Patient - info 2" id="patient-info-2">
-      <div data-role="content">
-          <div data-role="fieldcontain" data-controltype="searchinput">
-              <input name="" id="searchinput5" placeholder="" value="" type="search">
-          </div>
-          <div data-role="fieldcontain" data-controltype="textinput">
-              <label for="textinput6">
-                  Weight (lb)
-              </label>
-              <input name="" id="textinput6" placeholder="" value="" type="text">
-          </div>
-          <div data-role="fieldcontain" data-controltype="textinput">
-              <label for="textinput7">
-                  Height
-              </label>
-              <input name="" id="textinput7" placeholder="" value="" type="text">
-          </div>
-          <div data-role="fieldcontain" data-controltype="selectmenu">
-              <label for="selectmenu2">
-                  Choose:
-              </label>
-              <select id="selectmenu2" name="">
-                  <option value="5">
-                      5
-                  </option>
-                  <option value="6">
-                      6
-                  </option>
-                  <option value="7">
-                      7
-                  </option>
-                  <option value="8">
-                      8
-                  </option>
-                  <option value="9">
-                      9
-                  </option>
-                  <option value="10">
-                      10
-                  </option>
-                  <option value="value">
-                      Option
-                  </option>
-              </select>
-          </div>
-          <div data-role="fieldcontain" data-controltype="selectmenu">
-              <label for="selectmenu3">
-                  Ethnicity
-              </label>
-              <select id="selectmenu3" name="">
-                  <option value="option1">
-                      Option 1
-                  </option>
-              </select>
-          </div>
-          <div data-role="fieldcontain" data-controltype="textinput">
-              <label for="textinput9">
-                  Arch Degree
-              </label>
-              <input name="" id="textinput9" placeholder="" value="" type="text">
-          </div>
-          <input type="submit" data-theme="a" value="Submit">
-          <a data-role="button" href="#patient-info-3">
-              fake submit
+  <div data-role="page" data-control-title="Patient Form - about" id="page-patient-form-about">
+      <div data-theme="d" data-role="header">
+          <a data-role="button" data-rel="back" data-transition="none" href="#page-patient-form-about"
+          data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
+              Back
           </a>
+          <h3>
+              Step 2 of 6
+          </h3>
       </div>
-      <div data-role="tabbar" data-iconpos="top" data-theme="a">
-          <ul>
-              <li>
-                  <a href="#home" data-transition="none" data-theme="" data-icon="home">
-                      Home
-                  </a>
-              </li>
-              <li>
-                  <a href="#add-new-patient" data-transition="none" data-theme="" data-icon="plus">
-                      Add
-                  </a>
-              </li>
-              <li>
-                  <a href="#report" data-transition="none" data-theme="" data-icon="grid">
-                      Report
-                  </a>
-              </li>
-              <li>
-                  <a href="#picup" data-transition="none" data-theme="" data-icon="info">
-                      PickUp
-                  </a>
-              </li>
-          </ul>
-      </div>
-  </div>
-  <div data-role="page" data-control-title="Patient - info 3" id="patient-info-3">
-      <div data-role="content">
-          <div data-role="fieldcontain" data-controltype="searchinput">
-              <input name="" id="searchinput6" placeholder="" value="" type="search">
-          </div>
-          <div data-role="fieldcontain" data-controltype="radiobuttons">
-              <fieldset data-role="controlgroup" data-type="horizontal">
-                  <legend>
-                      Activity Level
-                  </legend>
-                  <input id="radio3" name="" value="low" type="radio">
-                  <label for="radio3">
-                      Low
-                  </label>
-                  <input id="radio4" name="" value="med" type="radio">
-                  <label for="radio4">
-                      Med
-                  </label>
-                  <input id="radio5" name="" value="high" type="radio">
-                  <label for="radio5">
-                      High
-                  </label>
-              </fieldset>
-          </div>
-          <div data-role="fieldcontain" data-controltype="textinput">
-              <label for="textinput12">
-                  Foot Length (cm)
-              </label>
-              <input name="" id="textinput12" placeholder="" value="" type="text">
-          </div>
-          <div data-role="fieldcontain" data-controltype="textinput">
-              <label for="textinput13">
-                  Arch Length (cm)
-              </label>
-              <input name="" id="textinput13" placeholder="" value="" type="text">
-          </div>
-          <div data-role="fieldcontain" data-controltype="textinput">
-              <label for="textinput14">
-                  Toe Length (cm)
-              </label>
-              <input name="" id="textinput14" placeholder="" value="" type="text">
-          </div>
-          <div data-role="fieldcontain" data-controltype="textinput">
-              <label for="textinput15">
-                  Arch Height (cm)
-              </label>
-              <input name="" id="textinput15" placeholder="" value="" type="text">
-          </div>
-          <input type="submit" data-theme="a" value="Submit">
-          <a data-role="button" href="#patient-info-4">
-              fake submit
-          </a>
-      </div>
-      <div data-role="tabbar" data-iconpos="top" data-theme="a">
-          <ul>
-              <li>
-                  <a href="#home" data-transition="none" data-theme="" data-icon="home">
-                      Home
-                  </a>
-              </li>
-              <li>
-                  <a href="#add-new-patient" data-transition="none" data-theme="" data-icon="plus">
-                      Add
-                  </a>
-              </li>
-              <li>
-                  <a href="#report" data-transition="none" data-theme="" data-icon="grid">
-                      Report
-                  </a>
-              </li>
-              <li>
-                  <a href="#picup" data-transition="none" data-theme="" data-icon="info">
-                      PickUp
-                  </a>
-              </li>
-          </ul>
-      </div>
-  </div>
-  <div data-role="page" data-control-title="Patient - info 4" id="patient-info-4">
-      <div data-role="content">
-          <div data-role="fieldcontain" data-controltype="searchinput">
-              <input name="" id="searchinput7" placeholder="" value="" type="search">
-          </div>
-          <div data-role="fieldcontain" data-controltype="textinput">
-              <label for="textinput16">
-                  Ball Width (cm)
-              </label>
-              <input name="" id="textinput16" placeholder="" value="" type="text">
-          </div>
-          <div data-role="fieldcontain" data-controltype="textinput">
-              <label for="textinput17">
-                  Arch Width (cm)
-              </label>
-              <input name="" id="textinput17" placeholder="" value="" type="text">
-          </div>
-          <div data-role="fieldcontain" data-controltype="textinput">
-              <label for="textinput18">
-                  Heel Width (cm)
-              </label>
-              <input name="" id="textinput18" placeholder="" value="" type="text">
-          </div>
-          <div data-role="fieldcontain" data-controltype="textarea">
-              <label for="textarea2">
-                  Note
-              </label>
-              <textarea name="" id="textarea2" placeholder=""></textarea>
-          </div>
-          <input type="submit" data-theme="a" value="Submit">
-          <a data-role="button" href="#foot-image">
-              fake submit
-          </a>
-      </div>
-      <div data-role="tabbar" data-iconpos="top" data-theme="a">
-          <ul>
-              <li>
-                  <a href="#home" data-transition="none" data-theme="" data-icon="home">
-                      Home
-                  </a>
-              </li>
-              <li>
-                  <a href="#add-new-patient" data-transition="none" data-theme="" data-icon="plus">
-                      Add
-                  </a>
-              </li>
-              <li>
-                  <a href="#report" data-transition="none" data-theme="" data-icon="grid">
-                      Report
-                  </a>
-              </li>
-              <li>
-                  <a href="#picup" data-transition="none" data-theme="" data-icon="info">
-                      PickUp
-                  </a>
-              </li>
-          </ul>
-      </div>
-  </div>
-  <div data-role="page" data-control-title="Foot Images" id="foot-image">
-      <div id="foot-pics" data-role="content">
-          <div data-controltype="textblock">
-              <p>
-                  Tap icon to take pictures
-              </p>
-          </div>
-          <div data-controltype="textblock">
-              <p style="text-align: center;">
-                  <b>
-                      RIGHT
-                      <span id="_mce_caret" data-mce-bogus="1" style="">
-                          <span style="font-size: medium;" data-mce-bogus="1">
-                              ﻿
-                          </span>
-                      </span>
-                  </b>
-              </p>
-          </div>
+      <div data-role="content" style="padding: 0px">
           <div data-controltype="htmlblock">
-              <div style="height: 120px;">
-                  <div style=" text-align: center; float: left; width:30%;">
-                      <img name="rf" width="75" src="img/foot.jpg">
-                      <p style="margin: 0;">
-                          Front
-                      </p>
-                  </div>
-                  <div style=" text-align: center; float: left; width:30%;">
-                      <img name="rb" width="75" src="img/foot.jpg">
-                      <p style="margin: 0;">
-                          Back
-                      </p>
-                  </div>
-                  <div style=" text-align: center; float: left; width:30%;">
-                      <img name="rs" width="75" src="img/foot.jpg">
-                      <p style="margin: 0;">
-                          Side
-                      </p>
-                  </div>
-              </div>
-          </div>
-          <div data-controltype="textblock">
-              <p style="text-align: center;" data-mce-style="text-align: center;">
-                  <span id="_mce_caret" data-mce-bogus="true">
-                      ﻿
-                  </span>
-                  <strong>
-                      LEFT
-                  </strong>
+              <br>
+              <p class="container">
+                  Add New Patient
               </p>
-          </div>
-          <div data-controltype="htmlblock">
-              <div style="height: 120px;">
-                  <div style=" text-align: center; float: left; width:30%;">
-                      <img name="lf" width="75" src="img/foot.jpg">
-                      <p style="margin: 0;">
-                          Front
-                      </p>
-                  </div>
-                  <div style=" text-align: center; float: left; width:30%;">
-                      <img name="lb" width="75" src="img/foot.jpg">
-                      <p style="margin: 0;">
-                          Back
-                      </p>
-                  </div>
-                  <div style=" text-align: center; float: left; width:30%;">
-                      <img name="ls" width="75" src="img/foot.jpg">
-                      <p style="margin: 0;">
-                          Side
-                      </p>
-                  </div>
-              </div>
-          </div>
-          <input type="submit" data-theme="a" value="Submit">
-          <a data-role="button" href="#foot-image">
-              fake submit
-          </a>
-      </div>
-      <div data-role="tabbar" data-iconpos="top" data-theme="a">
-          <ul>
-              <li>
-                  <a href="#home" data-transition="none" data-theme="" data-icon="home">
-                      Home
-                  </a>
-              </li>
-              <li>
-                  <a href="#add-new-patient" data-transition="none" data-theme="" data-icon="plus">
-                      Add
-                  </a>
-              </li>
-              <li>
-                  <a href="#report" data-transition="none" data-theme="" data-icon="grid">
-                      Report
-                  </a>
-              </li>
-              <li>
-                  <a href="#picup" data-transition="none" data-theme="" data-icon="info">
-                      PickUp
-                  </a>
-              </li>
-          </ul>
-      </div>
-  </div>
-  <div data-role="page" data-control-title="Order Confirm" id="order-confirm">
-      <div data-role="content">
-          <div data-role="fieldcontain" data-controltype="searchinput">
-              <input name="" id="searchinput8" placeholder="" value="" type="search">
-          </div>
-          <h2>
-              Jenso Kuwasaki 42
-          </h2>
-          <div>
-              <a href="#patient-info-2" data-transition="fade">
-                  Edit
-              </a>
-          </div>
-          <div data-controltype="htmlblock">
-              <div>
-                  Email:
-                  <br>
-                  Jenso@gmail.com
+              <div class="region-header center target_patient_name">
+                  &nbsp;
               </div>
               <br>
-              <div>
-                  <div style="width: 50%; float: left;">
-                      <div>
-                          Weight:
-                          <br>
-                          170lb
-                      </div>
-                      <br>
-                      <div>
-                          Shoe Size:
-                          <br>
-                          10
-                      </div>
-                      <br>
-                      <div>
-                          Activity:
-                          <br>
-                          High
-                      </div>
-                      <br>
-                      <div>
-                          Foot Length:
-                          <br>
-                          27.5cm
-                      </div>
-                      <br>
-                  </div>
-                  <div style="width: 50%; float: left;">
-                      <div>
-                          Height:
-                          <br>
-                          6" 2'
-                      </div>
-                      <br>
-                      <div>
-                          Ethnicity:
-                          <br>
-                          Asian
-                      </div>
-                      <br>
-                      <div>
-                          Arch Degree:
-                          <br>
-                          35.5
-                      </div>
-                      <br>
-                      <div>
-                          Arch Height:
-                          <br>
-                          15.2 cm
-                      </div>
-                      <br>
-                  </div>
-                  <div style="clear:both;">
-                  </div>
+              <div class="container section-header">
+                  ABOUT
               </div>
           </div>
-          <form action="">
+          <form class="form" id="form_patient_about" action="" method="POST">
               <div data-role="fieldcontain" data-controltype="selectmenu">
-                  <label for="selectmenu6">
-                      QTY
+                  <label for="selectmenu4">
+                      Ethnicity
                   </label>
-                  <select id="selectmenu6" name="">
+                  <select id="selectmenu4" name="user[ref_ethnicity_id]">
+                      <option value="">
+                          Select one
+                      </option>
+                      <option value="1">
+                          Option 1
+                      </option>
                       <option value="2">
+                          Option 2
+                      </option>
+                  </select>
+              </div>
+              <div data-role="fieldcontain" data-controltype="textinput">
+                  <label for="textinput21">
+                      Height (in.)
+                  </label>
+                  <input name="customer_info[height]" id="textinput21" placeholder="in."
+                  value="" type="text">
+              </div>
+              <div data-role="fieldcontain" data-controltype="textinput">
+                  <label for="textinput23">
+                      Weight (in.)
+                  </label>
+                  <input name="customer_info[weight]" id="textinput23" placeholder="in."
+                  value="" type="text">
+              </div>
+              <div data-role="fieldcontain" data-controltype="selectmenu">
+                  <label for="selectmenu5">
+                      Shoe Size
+                  </label>
+                  <select id="selectmenu5" name="customer_info[shoe_size_raw_left]">
+                      <option value="">
+                          Left
+                      </option>
+                      <option value="5">
+                          5
+                      </option>
+                      <option value="6">
+                          6
+                      </option>
+                  </select>
+              </div>
+              <div data-role="fieldcontain" data-controltype="selectmenu">
+                  <select id="selectmenu7" name="customer_info[shoe_size_raw_right]">
+                      <option value="">
+                          Right
+                      </option>
+                      <option value="5">
+                          5
+                      </option>
+                      <option value="6">
+                          6
+                      </option>
+                  </select>
+              </div>
+              <div data-role="fieldcontain" data-controltype="radiobuttons">
+                  <fieldset data-role="controlgroup" data-type="horizontal">
+                      <legend>
+                          Activity Level
+                      </legend>
+                      <input id="radio14" name="customer_info[ref_activity_level_id]" value="1"
+                      data-theme="c" type="radio">
+                      <label for="radio14">
+                          Low
+                      </label>
+                      <input id="radio15" name="customer_info[ref_activity_level_id]" value="2"
+                      data-theme="c" type="radio">
+                      <label for="radio15">
+                          Med
+                      </label>
+                      <input id="radio16" name="customer_info[ref_activity_level_id]" value="3"
+                      type="radio">
+                      <label for="radio16">
+                          High
+                      </label>
+                  </fieldset>
+              </div>
+              <input data-theme="d" value="Save &amp; Continue" type="submit">
+          </form>
+      </div>
+      <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
+          <ul>
+              <li>
+                  <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-add-new-patient" data-transition="none" data-theme="" data-icon="plus">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-pickup" data-transition="none" data-theme="" data-icon="info">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-report" data-transition="none" data-theme="" data-icon="grid">
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+  <div data-role="page" data-control-title="Patient Form - foot measurements"
+  id="page-patient-form-foot-measurements">
+      <div data-theme="d" data-role="header">
+          <a data-role="button" data-rel="back" data-transition="none" href="#page-patient-form-foot-measurements"
+          data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
+              Back
+          </a>
+          <h3>
+              Step 3 of 6
+          </h3>
+      </div>
+      <div data-role="content" style="padding: 0px">
+          <div data-controltype="htmlblock">
+              <br>
+              <p class="container">
+                  Add New Patient
+              </p>
+              <div class="region-header center target_patient_name">
+                  &nbsp;
+              </div>
+              <br>
+              <div class="container section-header">
+                  ABOUT
+              </div>
+          </div>
+          <form class="form" id="form_patient_measurements" action="" method="POST">
+              <div data-role="fieldcontain" data-controltype="selectmenu">
+                  <label for="selectmenu8">
+                      Foot Length
+                  </label>
+                  <select id="selectmenu8" name="customer_info[foot_length_left]">
+                      <option value="">
+                          Left
+                      </option>
+                      <option value="1">
                           1
                       </option>
                       <option value="2">
                           2
                       </option>
-                      <option value="3">
-                          3
+                  </select>
+              </div>
+              <div data-role="fieldcontain" data-controltype="selectmenu">
+                  <select id="selectmenu11" name="customer_info[foot_length_right]">
+                      <option value="">
+                          Right
+                      </option>
+                      <option value="1">
+                          1
+                      </option>
+                      <option value="2">
+                          2
                       </option>
                   </select>
               </div>
-              <input type="submit" data-theme="a" value="Submit ORDER">
-              <a data-role="button" data-transition="pop" href="#page11">
-                  fake submit
-              </a>
+              <div data-role="fieldcontain" data-controltype="selectmenu">
+                  <label for="selectmenu9">
+                      Arch Length
+                  </label>
+                  <select id="selectmenu9" name="customer_info[arch_length_left]">
+                      <option value="">
+                          Left
+                      </option>
+                      <option value="1">
+                          1
+                      </option>
+                      <option value="2">
+                          2
+                      </option>
+                  </select>
+              </div>
+              <div data-role="fieldcontain" data-controltype="selectmenu">
+                  <select id="selectmenu10" name="customer_info[arch_length_right]">
+                      <option value="option1">
+                          Right
+                      </option>
+                      <option value="1">
+                          1
+                      </option>
+                      <option value="2">
+                          2
+                      </option>
+                  </select>
+              </div>
+              <div data-role="fieldcontain" data-controltype="selectmenu">
+                  <label for="selectmenu12">
+                      Toe Length
+                  </label>
+                  <select id="selectmenu12" name="customer_info[toe_length_left]">
+                      <option value="">
+                          Left
+                      </option>
+                      <option value="1">
+                          1
+                      </option>
+                      <option value="2">
+                          2
+                      </option>
+                  </select>
+              </div>
+              <div data-role="fieldcontain" data-controltype="selectmenu">
+                  <select id="selectmenu13" name="customer_info[toe_length_right]">
+                      <option value="">
+                          Right
+                      </option>
+                      <option value="1">
+                          1
+                      </option>
+                  </select>
+              </div>
+              <div data-role="fieldcontain" data-controltype="selectmenu">
+                  <label for="selectmenu14">
+                      Arch Height
+                  </label>
+                  <select id="selectmenu14" name="customer_info[arch_height_left]">
+                      <option value="">
+                          Left
+                      </option>
+                      <option value="1">
+                          1
+                      </option>
+                      <option value="2">
+                          2
+                      </option>
+                  </select>
+              </div>
+              <div data-role="fieldcontain" data-controltype="selectmenu">
+                  <select id="selectmenu15" name="customer_info[arch_height_right]">
+                      <option value="">
+                          Right
+                      </option>
+                      <option value="1">
+                          1
+                      </option>
+                      <option value="2">
+                          2
+                      </option>
+                  </select>
+              </div>
+              <div data-role="fieldcontain" data-controltype="selectmenu">
+                  <label for="selectmenu16">
+                      Ball Width
+                  </label>
+                  <select id="selectmenu16" name="customer_info[ball_width_left]">
+                      <option value="">
+                          Left
+                      </option>
+                      <option value="1">
+                          1
+                      </option>
+                  </select>
+              </div>
+              <div data-role="fieldcontain" data-controltype="selectmenu">
+                  <select id="selectmenu17" name="customer_info[ball_width_right]">
+                      <option value="">
+                          Right
+                      </option>
+                      <option value="1">
+                          1
+                      </option>
+                  </select>
+              </div>
+              <div data-role="fieldcontain" data-controltype="selectmenu">
+                  <label for="selectmenu18">
+                      Arch Width
+                  </label>
+                  <select id="selectmenu18" name="customer_info[arch_width_left]">
+                      <option value="">
+                          Left
+                      </option>
+                      <option value="1">
+                          1
+                      </option>
+                  </select>
+              </div>
+              <div data-role="fieldcontain" data-controltype="selectmenu">
+                  <select id="selectmenu19" name="customer_info[arch_width_right]">
+                      <option value="">
+                          Right
+                      </option>
+                      <option value="1">
+                          1
+                      </option>
+                  </select>
+              </div>
+              <div data-role="fieldcontain" data-controltype="selectmenu">
+                  <label for="selectmenu20">
+                      Heel Width
+                  </label>
+                  <select id="selectmenu20" name="customer_info[heel_width_left]">
+                      <option value="">
+                          Left
+                      </option>
+                      <option value="1">
+                          1
+                      </option>
+                  </select>
+              </div>
+              <div data-role="fieldcontain" data-controltype="selectmenu">
+                  <select id="selectmenu21" name="customer_info[heel_width_right]">
+                      <option value="">
+                          Right
+                      </option>
+                      <option value="1">
+                          1
+                      </option>
+                  </select>
+              </div>
+              <div data-role="fieldcontain" data-controltype="textinput">
+                  <label for="textinput26">
+                      Prescription Arch Degree
+                  </label>
+                  <input name="customer_info[prescription_arch_degree]" id="textinput26"
+                  placeholder="" value="" type="text">
+              </div>
+              <input data-theme="d" value="Save &amp; Continue" type="submit">
           </form>
       </div>
-      <div data-role="tabbar" data-iconpos="top" data-theme="a">
+      <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
           <ul>
               <li>
-                  <a href="#home" data-transition="none" data-theme="" data-icon="home">
-                      Home
+                  <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
                   </a>
               </li>
               <li>
-                  <a href="#add-new-patient" data-transition="none" data-theme="" data-icon="plus">
-                      Add
+                  <a href="#page-add-new-patient" data-transition="none" data-theme="" data-icon="plus">
                   </a>
               </li>
               <li>
-                  <a href="#report" data-transition="none" data-theme="" data-icon="grid">
-                      Report
+                  <a href="#page-pickup" data-transition="none" data-theme="" data-icon="info">
                   </a>
               </li>
               <li>
-                  <a href="#picup" data-transition="none" data-theme="" data-icon="info">
-                      PickUp
+                  <a href="#page-report" data-transition="none" data-theme="" data-icon="grid">
                   </a>
               </li>
           </ul>
       </div>
   </div>
-  <div data-role="page" data-control-title="Thank You" id="page11">
-      <div data-role="content">
+  <div data-role="page" data-control-title="Patient Form - note" id="page-patient-form-note">
+      <div data-theme="d" data-role="header">
+          <a data-role="button" data-rel="back" data-transition="none" href="#page-patient-form-note"
+          data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
+              Back
+          </a>
+          <h3>
+              Step 4 of 6
+          </h3>
+      </div>
+      <div data-role="content" style="padding: 0px">
+          <div data-controltype="htmlblock">
+              <br>
+              <p class="container">
+                  Add New Patient
+              </p>
+              <div class="region-header center target_patient_name">
+                  &nbsp;
+              </div>
+              <br>
+              <div class="container section-header">
+                  ABOUT
+              </div>
+          </div>
+          <form class="form" id="form_patient_note" action="" method="POST">
+              <div data-role="fieldcontain" data-controltype="textarea">
+                  <textarea name="customer_info[prescription_note]" id="patient-note" placeholder="Exmaple: Recent fracture in left metarsal. Please reduce size of metatarsal pad."></textarea>
+              </div>
+              <input data-theme="d" value="Save &amp; Scan Feet" type="submit">
+          </form>
+      </div>
+      <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
+          <ul>
+              <li>
+                  <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-add-new-patient" data-transition="none" data-theme="" data-icon="plus">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-pickup" data-transition="none" data-theme="" data-icon="info">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-report" data-transition="none" data-theme="" data-icon="grid">
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+  <div data-role="page" data-control-title="Patient Form - scan foot" id="page-patient-form-scan-foot">
+      <div data-theme="d" data-role="header">
+          <a data-role="button" data-rel="back" data-transition="none" href="#page-patient-form-scan-foot"
+          data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
+              Back
+          </a>
+          <h3>
+              Step 5 of 6
+          </h3>
+      </div>
+      <div data-role="content" style="padding: 0px">
+          <div data-controltype="htmlblock">
+              <br>
+              <p class="container">
+                  Add New Patient
+              </p>
+              <div class="region-header center target_patient_name">
+                  &nbsp;
+              </div>
+              <br>
+              <p class="container" style="font-size: 12px;">
+                  Tap boxes to take photos. All siz photos are required to submit order.
+              </p>
+              <div class="container section-header">
+                  LEFT FOOT
+              </div>
+              <br>
+          </div>
+          <div data-controltype="htmlblock">
+              <div class="camera_image_container  container" style="height: 120px;">
+                  <div style=" text-align: center; float: left; width:30%;">
+                      <img class="camera_image" id="l1" src="img/foot.jpg"
+                      width="75">
+                      <p style="margin: 0;">
+                          Front
+                      </p>
+                  </div>
+                  <div style=" text-align: center; float: left; width:30%;">
+                      <img class="camera_image" id="l2" src="img/foot.jpg"
+                      width="75">
+                      <p style="margin: 0;">
+                          Back
+                      </p>
+                  </div>
+                  <div style=" text-align: center; float: left; width:30%;">
+                      <img class="camera_image" id="l3" src="img/foot.jpg"
+                      width="75">
+                      <p style="margin: 0;">
+                          Side
+                      </p>
+                  </div>
+              </div>
+          </div>
+          <div data-controltype="htmlblock">
+              <div class="container section-header">
+                  RIGHT FOOT
+              </div>
+              <br>
+          </div>
+          <div data-controltype="htmlblock">
+              <div class="camera_image_container container" style="height: 120px;">
+                  <div style=" text-align: center; float: left; width:30%;">
+                      <img class="camera_image" id="r1" src="img/foot.jpg"
+                      width="75">
+                      <p style="margin: 0;">
+                          Front
+                      </p>
+                  </div>
+                  <div style=" text-align: center; float: left; width:30%;">
+                      <img class="camera_image" id="r2" src="img/foot.jpg"
+                      width="75">
+                      <p style="margin: 0;">
+                          Back
+                      </p>
+                  </div>
+                  <div style=" text-align: center; float: left; width:30%;">
+                      <img class="camera_image" id="r3" src="img/foot.jpg"
+                      width="75">
+                      <p style="margin: 0;">
+                          Side
+                      </p>
+                  </div>
+              </div>
+          </div>
+          <a class="container" id="btn-goto-patient-info-review" data-role="button"
+          data-theme="d" href="#page-patient-info-review">
+              Save &amp; Continue
+          </a>
+      </div>
+      <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
+          <ul>
+              <li>
+                  <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-add-new-patient" data-transition="none" data-theme="" data-icon="plus">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-pickup" data-transition="none" data-theme="" data-icon="info">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-report" data-transition="none" data-theme="" data-icon="grid">
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+  <div data-role="page" data-control-title="Patient Info Review" id="page-patient-info-review">
+      <div data-theme="d" data-role="header">
+          <a data-role="button" data-rel="back" data-transition="none" href="#page-patient-info-review"
+          data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
+              Back
+          </a>
+          <h3>
+              Step 6 of 6
+          </h3>
+      </div>
+      <div data-role="content" style="padding: 0px">
+          <div data-controltype="htmlblock">
+              <br>
+              <p class="container">
+                  Add New Patient
+              </p>
+              <div class="region-header center target_patient_name">
+                  &nbsp;
+              </div>
+              <br>
+              <p class="container" style="font-size: 12px;">
+                  Review the summary below to make sure all information is correct.
+              </p>
+              <br>
+          </div>
+          <div data-controltype="htmlblock">
+              <div class="container">
+                  <a href="#" style="float: right">
+                      Edit
+                  </a>
+                  <div class="section-header">
+                      BASIC INFORMATION
+                  </div>
+              </div>
+              <div class="patient-info container">
+                  <div>
+                      First Name:
+                      <span class="patient-info-first_name">
+                      </span>
+                  </div>
+                  <div>
+                      Last Name:
+                      <span class="patient-info-last_name">
+                      </span>
+                  </div>
+                  <div>
+                      E-mail:
+                      <span class="patient-info-email">
+                      </span>
+                  </div>
+                  <div>
+                      DOB:
+                      <span class="patient-info-dob">
+                      </span>
+                  </div>
+                  <div>
+                      Gender:
+                      <span class="patient-info-ref_gender_id">
+                      </span>
+                  </div>
+                  <div>
+                      Last 4 Digits of SS#:
+                      <span class="patient-info-ss_num_last_four">
+                      </span>
+                  </div>
+              </div>
+              <br>
+              <div class="container">
+                  <a href="#" style="float: right">
+                      Edit
+                  </a>
+                  <div class="section-header">
+                      ABOUT
+                  </div>
+              </div>
+              <div class="patient-info container">
+                  <div>
+                      Ethnicity:
+                      <span class="patient-info-ref_ethnicity_id">
+                      </span>
+                  </div>
+                  <div>
+                      Height:
+                      <span class="patient-info-height">
+                      </span>
+                  </div>
+                  <div>
+                      Weight:
+                      <span class="patient-info-weight">
+                      </span>
+                  </div>
+                  <div>
+                      Shoe Size:
+                      <span class="patient-info-shoe_size_raw_left">
+                      </span>
+                  </div>
+                  <div>
+                      Activity Level:
+                      <span class="patient-info-ref_activity_level_id">
+                      </span>
+                  </div>
+              </div>
+              <br>
+              <div class="container">
+                  <a href="#" style="float: right">
+                      Edit
+                  </a>
+                  <div class="section-header">
+                      FOOT MEASUREMENTS
+                  </div>
+              </div>
+              <div class="patient-info container">
+                  <div>
+                      Foot Length:
+                      <span class="patient-info-foot_length_left">
+                      </span>
+                  </div>
+                  <div>
+                      Arch Length:
+                      <span class="patient-info-arch_length_left">
+                      </span>
+                  </div>
+                  <div>
+                      Toe Length:
+                      <span class="patient-info-toe_length_left">
+                      </span>
+                  </div>
+                  <div>
+                      Arch Height:
+                      <span class="patient-info-arch_height_left">
+                      </span>
+                  </div>
+                  <div>
+                      Ball Width:
+                      <span class="patient-info-ball_width_left">
+                      </span>
+                  </div>
+              </div>
+              <br>
+              <div class="patient-info container">
+                  <a href="#" style="float: right">
+                      Edit
+                  </a>
+                  <div class="section-header">
+                      NOTES
+                  </div>
+              </div>
+              <div class="patient-info container">
+                  Recent fracture in ....
+              </div>
+              <br>
+          </div>
+          <div data-controltype="htmlblock">
+              <div class="container">
+                  <a href="#page-patient-form-scan-foot" style="float: right">
+                      Edit
+                  </a>
+                  <div class="section-header">
+                      LEFT
+                  </div>
+              </div>
+              <br>
+              <div class="container" style="height: 120px;">
+                  <div style=" text-align: center; float: left; width:30%;">
+                      <img src="http://www.blochworld.com/images/product/medium/1861.jpg" width="75">
+                      <p style="margin: 0;">
+                          Front
+                      </p>
+                  </div>
+                  <div style=" text-align: center; float: left; width:30%;">
+                      <img src="http://www.blochworld.com/images/product/medium/1861.jpg" width="75">
+                      <p style="margin: 0;">
+                          Back
+                      </p>
+                  </div>
+                  <div style=" text-align: center; float: left; width:30%;">
+                      <img src="http://www.blochworld.com/images/product/medium/1861.jpg" width="75">
+                      <p style="margin: 0;">
+                          Side
+                      </p>
+                  </div>
+              </div>
+              <div class="container">
+                  <a href="#page-patient-form-scan-foot" style="float: right">
+                      Edit
+                  </a>
+                  <div class="section-header">
+                      RIGHT
+                  </div>
+              </div>
+              <br>
+              <div class="container" style="height: 120px;">
+                  <div style=" text-align: center; float: left; width:30%;">
+                      <img src="http://www.blochworld.com/images/product/medium/1861.jpg" width="75">
+                      <p style="margin: 0;">
+                          Front
+                      </p>
+                  </div>
+                  <div style=" text-align: center; float: left; width:30%;">
+                      <img src="http://www.blochworld.com/images/product/medium/1861.jpg" width="75">
+                      <p style="margin: 0;">
+                          Back
+                      </p>
+                  </div>
+                  <div style=" text-align: center; float: left; width:30%;">
+                      <img src="http://www.blochworld.com/images/product/medium/1861.jpg" width="75">
+                      <p style="margin: 0;">
+                          Side
+                      </p>
+                  </div>
+              </div>
+          </div>
+          <form class="form form_submit_order_class" id="form_submit_order" action=""
+          method="POST">
+              <div data-role="fieldcontain" data-controltype="textinput">
+                  <label for="textinput28">
+                      QUANTITY
+                  </label>
+                  <input name="order_item[qty]" id="textinput28" placeholder="" value="1"
+                  type="text">
+              </div>
+              <input data-theme="d" value="Submit Order" type="submit">
+          </form>
+      </div>
+      <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
+          <ul>
+              <li>
+                  <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-add-new-patient" data-transition="none" data-theme="" data-icon="plus">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-pickup" data-transition="none" data-theme="" data-icon="info">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-report" data-transition="none" data-theme="" data-icon="grid">
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+  <div data-role="page" data-control-title="Report" id="page-report">
+      <div data-theme="d" data-role="header">
+          <a data-role="button" data-rel="back" data-transition="none" href="#page-report"
+          data-icon="arrow-l" data-iconpos="left">
+              Back
+          </a>
+          <h3>
+          </h3>
+      </div>
+      <div data-role="content" style="padding: 0px">
+          <div data-controltype="htmlblock">
+              <br>
+              <br>
+              <div class="container center b">
+                  Reports
+              </div>
+              <br>
+              <hr>
+              <div class="container">
+                  <div class="float-right">
+                      2
+                  </div>
+                  <div>
+                      SOLS READY
+                      <br>
+                      FOR PICKUP
+                  </div>
+              </div>
+              <hr>
+              <div class="container">
+                  <div class="float-right">
+                      10
+                  </div>
+                  <div>
+                      IN PRODUCTION
+                  </div>
+              </div>
+              <hr>
+              <div class="container">
+                  <div class="float-right">
+                      20
+                  </div>
+                  <div>
+                      TOTAL SOLD
+                  </div>
+              </div>
+              <hr>
+              <br>
+              <br>
+              <div class="container">
+                  <div class="center b">
+                      Monthly Sales
+                  </div>
+                  <br>
+                  <div class="monthly-sale-report-item">
+                      <span>
+                          12
+                      </span>
+                      <div>
+                          October
+                      </div>
+                  </div>
+                  <div class="monthly-sale-report-item">
+                      <span>
+                          12
+                      </span>
+                      <div>
+                          October
+                      </div>
+                  </div>
+              </div>
+              <br>
+              <br>
+              <div class="container center b">
+                  Export All Data
+              </div>
+          </div>
+          <form class="form" action="">
+              <input data-theme="d" value="Email Detailed Report" type="submit">
+          </form>
+      </div>
+      <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
+          <ul>
+              <li>
+                  <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-add-new-patient" data-transition="none" data-theme="" data-icon="plus">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-pickup" data-transition="none" data-theme="" data-icon="info">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-report" data-transition="none" data-theme="" data-icon="grid">
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+  <div data-role="page" data-control-title="Search" id="page-search">
+      <div data-role="content" style="padding: 0px">
+          <div class="search-sec" data-role="fieldcontain" data-controltype="searchinput">
+              <input name="" id="searchinput10" placeholder="Search" value="" type="search">
+          </div>
+          <div data-controltype="textblock">
+          </div>
+          <div data-controltype="htmlblock">
+              <div class="container">
+                  <br>
+                  <div class="search-result">
+                      <div>
+                          Last, First
+                      </div>
+                      <div>
+                          Last, First
+                      </div>
+                      <div>
+                          Last, First
+                      </div>
+                  </div>
+              </div>
+              <br>
+          </div>
+          <a class="container" data-role="button" data-theme="d" href="#page-search">
+              View All
+          </a>
+      </div>
+      <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
+          <ul>
+              <li>
+                  <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-add-new-patient" data-transition="none" data-theme="" data-icon="plus">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-pickup" data-transition="none" data-theme="" data-icon="info">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-report" data-transition="none" data-theme="" data-icon="grid">
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+  <div data-role="page" data-control-title="patients" id="page-patients">
+      <div data-role="content" style="padding: 0px">
+          <div class="search-sec" data-role="fieldcontain" data-controltype="searchinput">
+              <input name="" id="searchinput3" placeholder="Search" value="" type="search">
+          </div>
+          <div data-controltype="htmlblock">
+              <div class="container">
+                  <br>
+                  <div id="patients_list" class="search-result">
+                  </div>
+              </div>
+              <br>
+          </div>
+      </div>
+      <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
+          <ul>
+              <li>
+                  <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-add-new-patient" data-transition="none" data-theme="" data-icon="plus">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-pickup" data-transition="none" data-theme="" data-icon="info">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-report" data-transition="none" data-theme="" data-icon="grid">
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+  <div data-role="page" data-control-title="Profile" id="page-profile">
+      <div data-theme="d" data-role="header">
+          <a data-role="button" data-rel="back" data-transition="none" data-theme="d"
+          href="#page-profile" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
+              Back
+          </a>
+          <h3>
+          </h3>
+      </div>
+      <div data-role="content" style="padding: 0px">
+          <div data-controltype="htmlblock">
+              <br>
+              <p class="container">
+                  Last, First
+              </p>
+              <div id="open-order" class="container">
+                  <div class=" section-header">
+                      OPEN ORDERS
+                  </div>
+                  <div>
+                      <p>
+                          1 Open Order
+                      </p>
+                      <p>
+                          order No. xx--xxxx
+                      </p>
+                  </div>
+              </div>
+          </div>
+          <a class="container" data-role="button" data-transition="none" data-theme="d"
+          href="#page-profile">
+              Track Shpment
+          </a>
+          <div data-controltype="htmlblock">
+              <br>
+              <div class=" container section-header">
+                  PATIENT PROFILE
+              </div>
+          </div>
+          <a class="container" data-role="button" data-transition="none" data-theme="d"
+          href="#page-patient-info-review">
+              Place Reorder
+          </a>
+          <a class="container" data-role="button" data-transition="none" data-theme="d"
+          href="#page-profile" data-icon="arrow-d" data-iconpos="right">
+              Order History
+          </a>
+          <div data-controltype="htmlblock">
+              <div class="container">
+                  Edit HTML here...
+              </div>
+          </div>
+          <a class="container" data-role="button" data-transition="none" data-theme="d"
+          href="#page-patient-info-review">
+              Patient Info
+          </a>
+      </div>
+      <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
+          <ul>
+              <li>
+                  <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-add-new-patient" data-transition="none" data-theme="" data-icon="plus">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-pickup" data-transition="none" data-theme="" data-icon="info">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-report" data-transition="none" data-theme="" data-icon="grid">
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+  <div data-role="page" data-control-title="Pick Up Ready" id="page-pickup">
+      <div data-theme="d" data-role="header">
+          <a data-role="button" data-rel="back" data-transition="none" data-theme="d"
+          href="#page-pickup" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
+              Button
+          </a>
+          <h3>
+          </h3>
+      </div>
+      <div data-role="content" style="padding: 0px">
+          <div data-controltype="htmlblock">
+              <br>
+              <p class="container">
+                  Pick Up Ready
+              </p>
+              <p class="container" style="font-size: 12px;">
+                  Select one to complete a pick up.
+              </p>
+          </div>
+          <div data-controltype="htmlblock">
+              <div id="pickup-list">
+              </div>
+          </div>
+          <a class="container" id="btn-pick-up" data-role="button" href="#page-pickup">
+              Pick Up
+          </a>
+      </div>
+      <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
+          <ul>
+              <li>
+                  <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-add-new-patient" data-transition="none" data-theme="" data-icon="plus">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-pickup" data-transition="none" data-theme="" data-icon="info">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-report" data-transition="none" data-theme="" data-icon="grid">
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+  <div data-role="page" data-control-title="Pick Up Ready - review" id="page-pickup-review">
+      <div data-theme="d" data-role="header">
+          <a data-role="button" data-rel="back" data-transition="none" data-theme="d"
+          href="#page-pickup" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
+              Button
+          </a>
+          <h3>
+          </h3>
+      </div>
+      <div data-role="content" style="padding: 0px">
+          <div data-controltype="htmlblock">
+              <br>
+              <p class="container">
+                  Pick Up Ready
+              </p>
+              <div class="region-header center target_patient_name">
+                  &nbsp;
+              </div>
+          </div>
+          <a class="container btn-review_fits" data-role="button" data-theme="d"
+          href="#page-pickup-review">
+              Orthopedic Fits
+          </a>
+          <a class="container btn-review_remake_needed" data-role="button" data-theme="d"
+          href="#page-pickup-review">
+              Remake Needed
+          </a>
+      </div>
+      <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
+          <ul>
+              <li>
+                  <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-add-new-patient" data-transition="none" data-theme="" data-icon="plus">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-pickup" data-transition="none" data-theme="" data-icon="info">
+                  </a>
+              </li>
+              <li>
+                  <a href="#page-report" data-transition="none" data-theme="" data-icon="grid">
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+  <div data-role="page" data-control-title="Thank You" id="page-thank-you">
+      <div data-role="content" style="padding: 0px">
           <div data-controltype="htmlblock">
               <div style="text-align: center;">
                   <div>
@@ -918,322 +1424,168 @@
               </div>
           </div>
       </div>
-      <div data-role="tabbar" data-iconpos="top" data-theme="a">
+      <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
           <ul>
               <li>
-                  <a href="#home" data-transition="none" data-theme="" data-icon="home">
-                      Home
+                  <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
                   </a>
               </li>
               <li>
-                  <a href="#add-new-patient" data-transition="none" data-theme="" data-icon="plus">
-                      Add
+                  <a href="#page-add-new-patient" data-transition="none" data-theme="" data-icon="plus">
                   </a>
               </li>
               <li>
-                  <a href="#report" data-transition="none" data-theme="" data-icon="grid">
-                      Report
+                  <a href="#page-pickup" data-transition="none" data-theme="" data-icon="info">
                   </a>
               </li>
               <li>
-                  <a href="#picup" data-transition="none" data-theme="" data-icon="info">
-                      PickUp
+                  <a href="#page-report" data-transition="none" data-theme="" data-icon="grid">
                   </a>
               </li>
           </ul>
       </div>
   </div>
-  <div data-role="page" data-control-title="Profile" id="page16">
-      <div data-role="content">
-          <div data-role="fieldcontain" data-controltype="searchinput">
-              <input name="" id="searchinput13" placeholder="" value="" type="search">
-          </div>
-          <ul data-role="listview" data-divider-theme="b" data-inset="true">
-              <li data-theme="c">
-                  Jenni Kuwasaki
-                  <span class="ui-li-count">
-                      42
-                  </span>
-              </li>
-          </ul>
-          <div data-controltype="htmlblock">
-              <table width="100%" style="background-color: #ccc;">
-                  <tbody>
-                      <tr>
-                          <td width="50%">
-                              Shipped
-                          </td>
-                          <td width="50%">
-                              Track
-                          </td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div>
-          <a href="#profile-info" data-controltype="image">
-              <div style="display: inline">
-                  <img style="width: 128px; height: 128px" src="img/info.png">
-              </div>
+  <div data-role="page" data-control-title="Remake" id="page-remake">
+      <div data-theme="d" data-role="header">
+          <a data-role="button" data-rel="back" data-transition="none" data-theme="d"
+          href="#page-remake" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
+              Button
           </a>
-          <a href="#order-confirm" data-controltype="image">
-              <div style="display: inline">
-                  <img style="width: 128px; height: 128px" src="img/add.png">
-              </div>
-          </a>
-          <div style="display: inline" data-controltype="image">
-              <img style="width: 128px; height: 128px" src="img/settings.png">
-          </div>
-          <a href="#page18" data-controltype="image">
-              <div style="display: inline">
-                  <img style="width: 128px; height: 128px" src="img/star_grey.png">
-              </div>
-          </a>
-          <div style="display: inline" data-controltype="image">
-              <img style="width: 128px; height: 128px" src="img/contact.png">
-          </div>
+          <h3>
+              Step 1 of 3
+          </h3>
       </div>
-      <div data-role="tabbar" data-iconpos="top" data-theme="a">
-          <ul>
-              <li>
-                  <a href="#home" data-transition="none" data-theme="" data-icon="home">
-                      Home
-                  </a>
-              </li>
-              <li>
-                  <a href="#add-new-patient" data-transition="none" data-theme="" data-icon="plus">
-                      Add
-                  </a>
-              </li>
-              <li>
-                  <a href="#report" data-transition="none" data-theme="" data-icon="grid">
-                      Report
-                  </a>
-              </li>
-              <li>
-                  <a href="#picup" data-transition="none" data-theme="" data-icon="info">
-                      PickUp
-                  </a>
-              </li>
-          </ul>
-      </div>
-  </div>
-  <div data-role="page" data-control-title="Profile Info" id="profile-info">
-      <div data-role="content">
-          <div data-role="fieldcontain" data-controltype="searchinput">
-              <input name="" id="searchinput14" placeholder="" value="" type="search">
-          </div>
-          <ul data-role="listview" data-divider-theme="b" data-inset="true">
-              <li data-theme="c">
-                  Jenso Kuwasaki
-                  <span class="ui-li-count">
-                      42
-                  </span>
-              </li>
-          </ul>
-          <div>
-              <a href="#patient-info-2" data-transition="fade">
-                  Edit
-              </a>
-          </div>
+      <div data-role="content" style="padding: 0px">
           <div data-controltype="htmlblock">
-              <div>
-                  Email:
-                  <br>
-                  Jenso@gmail.com
-              </div>
               <br>
-              <div>
-                  <div style="width: 50%; float: left;">
-                      <div>
-                          Weight:
-                          <br>
-                          170lb
-                      </div>
-                      <br>
-                      <div>
-                          Shoe Size:
-                          <br>
-                          10
-                      </div>
-                      <br>
-                      <div>
-                          Activity:
-                          <br>
-                          High
-                      </div>
-                      <br>
-                      <div>
-                          Foot Length:
-                          <br>
-                          27.5cm
-                      </div>
-                      <br>
-                  </div>
-                  <div style="width: 50%; float: left;">
-                      <div>
-                          Height:
-                          <br>
-                          6" 2'
-                      </div>
-                      <br>
-                      <div>
-                          Ethnicity:
-                          <br>
-                          Asian
-                      </div>
-                      <br>
-                      <div>
-                          Arch Degree:
-                          <br>
-                          35.5
-                      </div>
-                      <br>
-                      <div>
-                          Arch Height:
-                          <br>
-                          15.2 cm
-                      </div>
-                      <br>
-                  </div>
-                  <div style="clear:both;">
-                  </div>
-              </div>
-          </div>
-          <h5>
-              Note
-          </h5>
-          <div data-controltype="textblock">
-              <p>
-                  <span style="font-size: small;">
-                      Enter all the message here...&nbsp;
-                  </span>
+              <p class="container">
+                  Remake Order
               </p>
-          </div>
-          <h5>
-              Right Foot
-          </h5>
-          <div data-controltype="htmlblock">
-              <div style="height: 120px;">
-                  <div style=" text-align: center; float: left; width:30%;">
-                      <img width="75" src="http://www.blochworld.com/images/product/medium/1861.jpg">
-                      <p style="margin: 0;">
-                          Front
-                      </p>
-                  </div>
-                  <div style=" text-align: center; float: left; width:30%;">
-                      <img width="75" src="http://www.blochworld.com/images/product/medium/1861.jpg">
-                      <p style="margin: 0;">
-                          Back
-                      </p>
-                  </div>
-                  <div style=" text-align: center; float: left; width:30%;">
-                      <img width="75" src="http://www.blochworld.com/images/product/medium/1861.jpg">
-                      <p style="margin: 0;">
-                          Side
-                      </p>
-                  </div>
+              <div class="region-header center">
+                  Last, First
               </div>
           </div>
-          <h5>
-              Left Foot
-          </h5>
           <div data-controltype="htmlblock">
-              <div style="height: 120px;">
-                  <div style=" text-align: center; float: left; width:30%;">
-                      <img width="75" src="http://www.blochworld.com/images/product/medium/1861.jpg">
-                      <p style="margin: 0;">
-                          Front
-                      </p>
-                  </div>
-                  <div style=" text-align: center; float: left; width:30%;">
-                      <img width="75" src="http://www.blochworld.com/images/product/medium/1861.jpg">
-                      <p style="margin: 0;">
-                          Back
-                      </p>
-                  </div>
-                  <div style=" text-align: center; float: left; width:30%;">
-                      <img width="75" src="http://www.blochworld.com/images/product/medium/1861.jpg">
-                      <p style="margin: 0;">
-                          Side
-                      </p>
-                  </div>
+              <div class="container memo">
+                  <p>
+                      Warning: If remake requires arch degree adjustment, additional charges
+                      will apply.
+                  </p>
               </div>
           </div>
-          <form action="">
-              <input type="submit" data-theme="a" value="Order New">
-              <a data-role="button" data-transition="pop" href="#page11">
-                  Remake
-              </a>
-          </form>
+          <a class="container" data-role="button" data-theme="d" href="#page-remake">
+              Remake Left Only
+          </a>
+          <a class="container" data-role="button" data-theme="d" href="#page-remake">
+              Remake Right Only
+          </a>
+          <a class="container" data-role="button" data-theme="d" href="#page-remake">
+              Remake Both
+          </a>
       </div>
-      <div data-role="tabbar" data-iconpos="top" data-theme="a">
+      <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
           <ul>
               <li>
-                  <a href="#home" data-transition="none" data-theme="" data-icon="home">
-                      Home
+                  <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
                   </a>
               </li>
               <li>
-                  <a href="#add-new-patient" data-transition="none" data-theme="" data-icon="plus">
-                      Add
+                  <a href="#page-add-new-patient" data-transition="none" data-theme="" data-icon="plus">
                   </a>
               </li>
               <li>
-                  <a href="#report" data-transition="none" data-theme="" data-icon="grid">
-                      Report
+                  <a href="#page-pickup" data-transition="none" data-theme="" data-icon="info">
                   </a>
               </li>
               <li>
-                  <a href="#picup" data-transition="none" data-theme="" data-icon="info">
-                      PickUp
+                  <a href="#page-report" data-transition="none" data-theme="" data-icon="grid">
                   </a>
               </li>
           </ul>
       </div>
   </div>
-  <div data-role="page" data-control-title="Rate" id="page18">
-      <div data-role="content">
-          <div data-role="fieldcontain" data-controltype="searchinput">
-              <input name="" id="searchinput15" placeholder="" value="" type="search">
-          </div>
-          <ul data-role="listview" data-divider-theme="b" data-inset="true">
-              <li data-theme="c">
-                  Jenni Kuwasaki
-                  <span class="ui-li-count">
-                      42
+  <div data-role="page" data-control-title="Remake - order left" id="page-remake-order">
+      <div data-theme="d" data-role="header">
+          <a data-role="button" data-rel="back" data-transition="none" data-theme="d"
+          href="#page-remake" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
+              Button
+          </a>
+          <h3>
+              Step 2 of 3
+          </h3>
+      </div>
+      <div data-role="content" style="padding: 0px">
+          <div data-controltype="htmlblock">
+              <br>
+              <p class="container">
+                  Remake Order
+                  <br>
+                  <span>
+                      Left Foot
                   </span>
-              </li>
-          </ul>
-          <div data-controltype="textblock">
-              <p style="text-align: center;" data-mce-style="text-align: center;">
-                  Rate your satisfaction﻿
               </p>
+              <div class="region-header center">
+                  Last, First
+              </div>
           </div>
-          <div style="display: inline" data-controltype="image">
-              <img style="width: 36px; height: 36px" src="img/rating_star.png">
+          <div data-controltype="htmlblock">
+              <br>
+              <div class="container">
+                  <div class="section-header">
+                      ARCH ADJUST
+                  </div>
+                  <div class="memo">
+                      <p>
+                          Warning: If remake requires arch degree adjustment, additional charges
+                          will apply.
+                      </p>
+                  </div>
+              </div>
           </div>
-          <div style="display: inline" data-controltype="image">
-              <img style="width: 36px; height: 36px" src="img/rating_star.png">
+          <div class="container center" data-role="fieldcontain" data-controltype="toggleswitch">
+              <label for="toggleswitch2">
+                  Change arch degree?
+              </label>
+              <select name="toggleswitch2" id="toggleswitch2" data-theme="" data-role="slider">
+                  <option value="off">
+                      No
+                  </option>
+                  <option value="on">
+                      Yes
+                  </option>
+              </select>
           </div>
-          <div style="display: inline" data-controltype="image">
-              <img style="width: 36px; height: 36px" src="img/rating_star.png">
+          <div data-controltype="htmlblock">
+              <div class="container section-header">
+                  FIT
+              </div>
           </div>
-          <div style="display: inline" data-controltype="image">
-              <img style="width: 36px; height: 36px" src="img/rating_star.png">
+          <div class="container" data-role="fieldcontain" data-controltype="textinput">
+              <label for="textinput12">
+                  Heel Width (in.)
+              </label>
+              <input name="" id="textinput12" placeholder="" value="" type="text">
           </div>
-          <div style="display: inline" data-controltype="image">
-              <img style="width: 36px; height: 36px" src="img/rating_star.png">
+          <div class="container" data-role="fieldcontain" data-controltype="textinput">
+              <label for="textinput13">
+                  Arch Width (in.)
+              </label>
+              <input name="" id="textinput13" placeholder="" value="" type="text">
           </div>
-          <div data-controltype="textblock">
-              <p style="text-align: center;">
-                  <b>
-                      It's amazing!
-                  </b>
-              </p>
+          <div class="container" data-role="fieldcontain" data-controltype="textinput">
+              <label for="textinput14">
+                  Arch Placement (in)
+              </label>
+              <input name="" id="textinput14" placeholder="" value="" type="text">
           </div>
-          <div data-role="fieldcontain" data-controltype="toggleswitch">
+          <div data-controltype="htmlblock">
+              <div class="container section-header">
+                  TREATMENT ZONES
+              </div>
+          </div>
+          <div class="container center" data-role="fieldcontain" data-controltype="toggleswitch">
               <label for="toggleswitch1">
-                  Remake
+                  Does heel treatment zone depress fully?
               </label>
               <select name="toggleswitch1" id="toggleswitch1" data-theme="" data-role="slider">
                   <option value="off">
@@ -1244,264 +1596,229 @@
                   </option>
               </select>
           </div>
-          <input type="submit" data-theme="a" value="Submit">
-          <a data-role="button" href="#page16">
-              fake submit - 5 stars
-          </a>
-          <a data-role="button" href="#page20">
-              fake submit - 4 starts or less
-          </a>
-      </div>
-      <div data-role="tabbar" data-iconpos="top" data-theme="a">
-          <ul>
-              <li>
-                  <a href="#home" data-transition="none" data-theme="" data-icon="home">
-                      Home
-                  </a>
-              </li>
-              <li>
-                  <a href="#add-new-patient" data-transition="none" data-theme="" data-icon="plus">
-                      Add
-                  </a>
-              </li>
-              <li>
-                  <a href="#report" data-transition="none" data-theme="" data-icon="grid">
-                      Report
-                  </a>
-              </li>
-              <li>
-                  <a href="#picup" data-transition="none" data-theme="" data-icon="info">
-                      PickUp
-                  </a>
-              </li>
-          </ul>
-      </div>
-  </div>
-  <div data-role="page" data-control-title="Rate - problem" id="page20">
-      <div data-role="content">
-          <div data-role="fieldcontain" data-controltype="searchinput">
-              <input name="" id="searchinput17" placeholder="" value="" type="search">
+          <div class="container center" data-role="fieldcontain" data-controltype="toggleswitch">
+              <label for="toggleswitch3">
+                  Is ball of foot in met zone?
+              </label>
+              <select name="toggleswitch3" id="toggleswitch3" data-theme="" data-role="slider">
+                  <option value="off">
+                      No
+                  </option>
+                  <option value="on">
+                      Yes
+                  </option>
+              </select>
           </div>
-          <ul data-role="listview" data-divider-theme="b" data-inset="true">
-              <li data-theme="c">
-                  Jenni
-                  <span class="ui-li-count">
-                      42
-                  </span>
-              </li>
-          </ul>
-          <div data-controltype="textblock">
-              <p style="text-align: center;" data-mce-style="text-align: center;">
-                  <b>
-                      Identify problem area
-                  </b>
-              </p>
+          <div data-controltype="htmlblock">
+              <div class="container section-header">
+                  NOTES
+              </div>
           </div>
-          <form action="">
-              <div data-role="fieldcontain" data-controltype="radiobuttons">
-                  <fieldset data-role="controlgroup" data-type="horizontal">
-                      <legend>
-                          Heel
-                      </legend>
-                      <input id="radio7" name="" value="radio1" type="radio">
-                      <label for="radio7">
-                          Narrow
-                      </label>
-                      <input id="radio12" name="" value="radio12" type="radio">
-                      <label for="radio12">
-                          Wide
-                      </label>
-                  </fieldset>
-              </div>
-              <div data-role="fieldcontain" data-controltype="radiobuttons">
-                  <fieldset data-role="controlgroup" data-type="horizontal">
-                      <legend>
-                          Arch
-                      </legend>
-                      <input id="radio8" name="" value="radio1" type="radio">
-                      <label for="radio8">
-                          High
-                      </label>
-                      <input id="radio13" name="" value="radio13" type="radio">
-                      <label for="radio13">
-                          Low
-                      </label>
-                  </fieldset>
-              </div>
-              <div id="checkboxes1" data-role="fieldcontain" data-controltype="checkboxes">
-                  <fieldset data-role="controlgroup" data-type="horizontal">
-                      <legend>
-                          Ball
-                      </legend>
-                      <input id="checkbox1" name="" type="checkbox">
-                      <label for="checkbox1">
-                          Uncomfortable
-                      </label>
-                  </fieldset>
-              </div>
-              <div data-role="fieldcontain" data-controltype="radiobuttons">
-                  <fieldset data-role="controlgroup" data-type="horizontal">
-                      <legend>
-                          Size
-                      </legend>
-                      <input id="radio10" name="" value="radio1" type="radio">
-                      <label for="radio10">
-                          Too Small
-                      </label>
-                      <input id="radio11" name="" value="radio11" type="radio">
-                      <label for="radio11">
-                          Too Big
-                      </label>
-                  </fieldset>
-              </div>
-              <input type="submit" data-theme="a" value="SUBMIT">
-              <a data-role="button" href="#page16">
-                  fake submit w/o remake
-              </a>
-              <a data-role="button" href="#page19">
-                  fake submit w REMAKE
-              </a>
-          </form>
-      </div>
-      <div data-role="tabbar" data-iconpos="top" data-theme="a">
-          <ul>
-              <li>
-                  <a href="#home" data-transition="none" data-theme="" data-icon="home">
-                      Home
-                  </a>
-              </li>
-              <li>
-                  <a href="#add-new-patient" data-transition="none" data-theme="" data-icon="plus">
-                      Add
-                  </a>
-              </li>
-              <li>
-                  <a href="#report" data-transition="none" data-theme="" data-icon="grid">
-                      Report
-                  </a>
-              </li>
-              <li>
-                  <a href="#picup" data-transition="none" data-theme="" data-icon="info">
-                      PickUp
-                  </a>
-              </li>
-          </ul>
-      </div>
-  </div>
-  <div data-role="page" data-control-title="Remake" id="page19">
-      <div data-role="content">
-          <div data-role="fieldcontain" data-controltype="searchinput">
-              <input name="" id="searchinput16" placeholder="" value="" type="search">
+          <div class="container" data-role="fieldcontain" data-controltype="textarea">
+              <textarea name="" id="textarea3" placeholder=""></textarea>
           </div>
-          <ul data-role="listview" data-divider-theme="b" data-inset="true">
-              <li data-theme="c">
-                  Jenso Kuwasaki
-                  <span class="ui-li-count">
-                      42
-                  </span>
-              </li>
-          </ul>
-          <form action="">
-              <div data-role="fieldcontain" data-controltype="textinput">
-                  <label for="textinput22">
-                      Change Arch Degree
-                  </label>
-                  <input name="" id="textinput22" placeholder="" value="" type="text">
-              </div>
-              <div data-role="fieldcontain" data-controltype="textarea">
-                  <label for="textarea3">
-                      Detailed Note
-                  </label>
-                  <textarea name="" id="textarea3" placeholder=""></textarea>
-              </div>
-              <div data-controltype="textblock">
+          <div data-controltype="htmlblock">
+              <div class="container">
                   <p>
-                      10/5 ... old note
-                      <span id="_mce_caret" data-mce-bogus="true">
-                          ﻿
-                      </span>
+                      10/3/13: notes from history of this order.
+                  </p>
+                  <p>
+                      10/1/13: more notes from history of this order.
                   </p>
               </div>
-              <div data-controltype="textblock">
-                  <p>
-                      10/1 ... old note
-                  </p>
-              </div>
-          </form>
-          <input type="submit" data-theme="a" value="REQUEST REMAKE">
+          </div>
       </div>
-      <div data-role="tabbar" data-iconpos="top" data-theme="a">
+      <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
           <ul>
               <li>
-                  <a href="#home" data-transition="none" data-theme="" data-icon="home">
-                      Home
+                  <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
                   </a>
               </li>
               <li>
-                  <a href="#add-new-patient" data-transition="none" data-theme="" data-icon="plus">
-                      Add
+                  <a href="#page-add-new-patient" data-transition="none" data-theme="" data-icon="plus">
                   </a>
               </li>
               <li>
-                  <a href="#report" data-transition="none" data-theme="" data-icon="grid">
-                      Report
+                  <a href="#page-pickup" data-transition="none" data-theme="" data-icon="info">
                   </a>
               </li>
               <li>
-                  <a href="#picup" data-transition="none" data-theme="" data-icon="info">
-                      PickUp
+                  <a href="#page-report" data-transition="none" data-theme="" data-icon="grid">
                   </a>
               </li>
           </ul>
       </div>
   </div>
-  <div data-role="page" data-control-title="test" id="page21">
-      <div data-role="content">
-          <a data-role="button" href="#page21">
+  <div data-role="page" data-control-title="Remake - order comfirm" id="page-remake-order-comfirm">
+      <div data-theme="d" data-role="header">
+          <a data-role="button" data-rel="back" data-transition="none" data-theme="d"
+          href="#page-remake" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
               Button
           </a>
-          <div data-controltype="htmlblock">
-              <p>
-                  Edit HTML here...
-              </p>
-          </div>
-          <ul data-role="listview" data-divider-theme="b" data-inset="true">
-              <li data-theme="c">
-                  <a href="" data-transition="slide">
-                      Button
-                  </a>
-              </li>
-          </ul>
+          <h3>
+              Step 2 of 3
+          </h3>
       </div>
-      <div data-role="tabbar" data-iconpos="top" data-theme="a">
+      <div data-role="content" style="padding: 0px">
+          <div data-controltype="htmlblock">
+              <br>
+              <p class="container">
+                  Remake Order - Confirm
+              </p>
+              <div class="region-header center">
+                  Last, First
+              </div>
+          </div>
+          <div data-controltype="htmlblock">
+              <div>
+                  <div>
+                      Left Foot
+                  </div>
+                  <p class="container memo">
+                      Review the summary below to make sure all information is correct.
+                  </p>
+                  <div class="container">
+                      <a href="#" style="float: right">
+                          Edit
+                      </a>
+                      <div class="section-header">
+                          ARCH ADJUST
+                      </div>
+                      <p>
+                          Change arch degree?
+                      </p>
+                  </div>
+                  <div class="container">
+                      <a href="#" style="float: right">
+                          Edit
+                      </a>
+                      <div class="section-header">
+                          FIT
+                      </div>
+                      <p>
+                          Heel Width
+                      </p>
+                      <p>
+                          Arch Width
+                      </p>
+                      <p>
+                          Arch Placement
+                      </p>
+                  </div>
+                  <div class="container">
+                      <a href="#" style="float: right">
+                          Edit
+                      </a>
+                      <div class="section-header">
+                          TREATMENT ZONES
+                      </div>
+                      <p>
+                          Heel treatment zone depress?
+                      </p>
+                      <p>
+                          Ball of foot in met zone?
+                      </p>
+                  </div>
+                  <div class="container">
+                      <a href="#" style="float: right">
+                          Edit
+                      </a>
+                      <div class="section-header">
+                          NOTES
+                      </div>
+                      <p>
+                          Recent fracture in left ...
+                      </p>
+                  </div>
+              </div>
+          </div>
+          <div data-controltype="htmlblock">
+              <div>
+                  <div>
+                      Right Foot
+                  </div>
+                  <p class="container memo">
+                      Review the summary below to make sure all information is correct.
+                  </p>
+                  <div class="container">
+                      <a href="#" style="float: right">
+                          Edit
+                      </a>
+                      <div class="section-header">
+                          ARCH ADJUST
+                      </div>
+                      <p>
+                          Change arch degree?
+                      </p>
+                  </div>
+                  <div class="container">
+                      <a href="#" style="float: right">
+                          Edit
+                      </a>
+                      <div class="section-header">
+                          FIT
+                      </div>
+                      <p>
+                          Heel Width
+                      </p>
+                      <p>
+                          Arch Width
+                      </p>
+                      <p>
+                          Arch Placement
+                      </p>
+                  </div>
+                  <div class="container">
+                      <a href="#" style="float: right">
+                          Edit
+                      </a>
+                      <div class="section-header">
+                          TREATMENT ZONES
+                      </div>
+                      <p>
+                          Heel treatment zone depress?
+                      </p>
+                      <p>
+                          Ball of foot in met zone?
+                      </p>
+                  </div>
+                  <div class="container">
+                      <a href="#" style="float: right">
+                          Edit
+                      </a>
+                      <div class="section-header">
+                          NOTES
+                      </div>
+                      <p>
+                          Recent fracture in left ...
+                      </p>
+                  </div>
+              </div>
+          </div>
+          <a class="container" data-role="button" data-theme="d" href="#page-remake-order-comfirm">
+              Submit &amp; Remake
+          </a>
+      </div>
+      <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
           <ul>
               <li>
-                  <a href="#home" data-transition="none" data-theme="" data-icon="home">
-                      Home
+                  <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
                   </a>
               </li>
               <li>
-                  <a href="#add-new-patient" data-transition="none" data-theme="" data-icon="plus">
-                      Add
+                  <a href="#page-add-new-patient" data-transition="none" data-theme="" data-icon="plus">
                   </a>
               </li>
               <li>
-                  <a href="#report" data-transition="none" data-theme="" data-icon="grid">
-                      Report
+                  <a href="#page-pickup" data-transition="none" data-theme="" data-icon="info">
                   </a>
               </li>
               <li>
-                  <a href="#picup" data-transition="none" data-theme="" data-icon="info">
-                      PickUp
+                  <a href="#page-report" data-transition="none" data-theme="" data-icon="grid">
                   </a>
               </li>
           </ul>
       </div>
   </div>
-  <script src="phonegap.js"></script>
-  <script src="js/scan.js"></script>
-  <script src="js/patientSubmit2.js"></script>
-  <script src="js/picCreation2.js"></script>
-  <script src="js/barcodescanner.js"></script>
 </body>
 </html>
