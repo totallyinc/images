@@ -15,8 +15,8 @@ $(document).ready(function(){
     $('.camera_image').click(function(e){
         // use camera and take picture.
         try {
-            alert('call camera');
-            //alert('navigator.notification: ' + navigator.notification);
+
+            alert('navigator.notification: ' + navigator.notification);
             //navigator.notification.alert(num);
             originalCaller = $(this);
             navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
@@ -43,7 +43,7 @@ function captureError(error) {
 }
 
 function uploadFiles() {
-    var url = "http://qa.sols.co/reseller/api_update_patient_foot_images?format=jsonp&image_id="+originalCaller.attr('id')+'&'+patient_api_data()+'&'+user_api_data();
+    var url = "http://www.sols.local/reseller/api_update_patient_foot_images?format=jsonp&image_id="+originalCaller.attr('id')+'&'+patient_api_data()+'&'+user_api_data();
     try {
         var ft = new FileTransfer();
         path = img.fullPath;
@@ -147,7 +147,7 @@ function btn_triggers() {
         $.ajax({
             dataType:'jsonp',
             data:user_api_data()+'&review=fits&order_id='+$('.patient-pickup.active').attr('data-pickup-order-id'),
-            url:'http://qa.sols.co/reseller/api_get_pickup_review?format=jsonp',
+            url:'http://www.sols.local/reseller/api_get_pickup_review?format=jsonp',
             success:function (data) {
                 console.log(data);
                 if (data.connected) {
@@ -170,7 +170,7 @@ function btn_triggers() {
         $.ajax({
             dataType:'jsonp',
             data:user_api_data()+'&review=remake_needed&order_id='+$('.patient-pickup.active').attr('data-pickup-order-id'),
-            url:'http://qa.sols.co/reseller/api_get_pickup_review?format=jsonp',
+            url:'http://www.sols.local/reseller/api_get_pickup_review?format=jsonp',
             success:function (data) {
                 console.log(data);
                 if (data.connected) {
@@ -258,7 +258,7 @@ function on_page_change() {
 function check_images_for_order() {
     $('.camera_image').click(function(){
         // send file to server with given patient_id (patient_get_user_id()) and image location id (this.id);  ;
-        //var url = "http://qa.sols.co/reseller/api_update_patient_foot_images?format=jsonp&image_id="+this.id+'&'+patient_api_data()+'&'+user_api_data();
+        //var url = "http://www.sols.local/reseller/api_update_patient_foot_images?format=jsonp&image_id="+this.id+'&'+patient_api_data()+'&'+user_api_data();
         //alert(url);
     });
 }
@@ -268,7 +268,7 @@ function get_patient_info_for_roder(patient_user_id) {
     $.ajax({
         dataType:'jsonp',
         data: 'patient_user_id='+patient_user_id+'&'+user_api_data(),
-        url:'http://qa.sols.co/reseller/api_get_patient_info_for_order?format=jsonp',
+        url:'http://www.sols.local/reseller/api_get_patient_info_for_order?format=jsonp',
         success:function (data) {
             if (data.connected) {
                 console.log(data['patient']);
@@ -328,7 +328,7 @@ function update_pickup_list(params) {
     $.ajax({
         dataType:'jsonp',
         data:user_api_data(),
-        url:'http://qa.sols.co/reseller/api_get_pickup?format=jsonp',
+        url:'http://www.sols.local/reseller/api_get_pickup?format=jsonp',
         success:function (data) {
             if (data.connected) {
                 $('#pickup-list').html('');
@@ -367,7 +367,7 @@ function update_patients_list(params) {
     $.ajax({
         dataType:'jsonp',
         data:user_api_data(),
-        url:'http://qa.sols.co/reseller/api_get_patients?format=jsonp',
+        url:'http://www.sols.local/reseller/api_get_patients?format=jsonp',
         success:function (data) {
             if (data.connected) {
                 var patients = data.patients
@@ -404,7 +404,7 @@ function form_submit_order() {
         $.ajax({
             dataType:'jsonp',
             data:postData,
-            url:'http://qa.sols.co/reseller/api_form_submit_order?format=jsonp',
+            url:'http://www.sols.local/reseller/api_form_submit_order?format=jsonp',
             success:function (data) {
                 if (data.connected) {
                     console.log(data);
@@ -433,7 +433,7 @@ function form_patient_basic() {
         $.ajax({
             dataType:'jsonp',
             data:postData + '&' + user_api_data(),
-            url:'http://qa.sols.co/reseller/api_patient_form_basic?format=jsonp',
+            url:'http://www.sols.local/reseller/api_patient_form_basic?format=jsonp',
             success:function (data) {
                 console.log(data);
                 if (data.connected) {
@@ -468,7 +468,7 @@ function form_patient_about() {
         $.ajax({
             dataType:'jsonp',
             data:postData + '&patient_user_id=' + patient_get_user_id() + '&' + user_api_data(),
-            url:'http://qa.sols.co/reseller/api_patient_form_about?format=jsonp',
+            url:'http://www.sols.local/reseller/api_patient_form_about?format=jsonp',
             success:function (data) {
                 console.log(data);
                 if (data.connected) {
@@ -497,7 +497,7 @@ function form_patient_measurements() {
         $.ajax({
             dataType:'jsonp',
             data:postData + '&patient_user_id=' + patient_get_user_id() + '&' + user_api_data(),
-            url:'http://qa.sols.co/reseller/api_patient_form_measurements?format=jsonp',
+            url:'http://www.sols.local/reseller/api_patient_form_measurements?format=jsonp',
             success:function (data) {
                 console.log(data);
                 if (data.connected) {
@@ -526,7 +526,7 @@ function form_patient_note() {
         $.ajax({
             dataType:'jsonp',
             data:postData + '&patient_user_id=' + patient_get_user_id() + '&' + user_api_data(),
-            url:'http://qa.sols.co/reseller/api_patient_form_note?format=jsonp',
+            url:'http://www.sols.local/reseller/api_patient_form_note?format=jsonp',
             success:function (data) {
                 console.log(data);
                 if (data.connected) {
@@ -559,7 +559,7 @@ function form_login_submit() {
         $.ajax({
             dataType:'jsonp',
             data:postData,
-            url:'http://qa.sols.co/reseller/api_login?format=jsonp',
+            url:'http://www.sols.local/reseller/api_login?format=jsonp',
             success:function (data) {
                 console.log(data);
                 if (data.login) {
@@ -615,7 +615,7 @@ function patient_show_target_patient_name() {
     $.ajax({
         dataType:'jsonp',
         data:'patient_user_id=' + patient_get_user_id() + '&' + user_api_data(),
-        url:'http://qa.sols.co/reseller/api_get_patient_info?format=jsonp',
+        url:'http://www.sols.local/reseller/api_get_patient_info?format=jsonp',
         success:function (data) {
             console.log(data);
             if (data.connected) {
