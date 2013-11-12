@@ -552,12 +552,11 @@ function form_patient_note() {
  */
 function form_login_submit() {
 //$.mobile.changePage( '#page-home', { transition: "none"}  ); return true;
-    try{
-
     $('#form_login').submit(function () {
         alert("Logging in");
         var postData = $(this).serialize();
         alert("Serialized data");
+        try{
         $.ajax({
             dataType:'jsonp',
             data:postData,
@@ -578,12 +577,12 @@ function form_login_submit() {
                 alert('There was an unexpected error when you try to login.');
             }
         });
+        }
+        catch(err){
+            alert("Error"+err);
+        }
         return false;
     });
-}
-catch(err){
-    alert(err);
-}
 }
 
 
