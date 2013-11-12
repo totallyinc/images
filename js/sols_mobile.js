@@ -552,11 +552,12 @@ function form_patient_note() {
  */
 function form_login_submit() {
 //$.mobile.changePage( '#page-home', { transition: "none"}  ); return true;
-
+    try{
 
     $('#form_login').submit(function () {
         alert("Logging in");
         var postData = $(this).serialize();
+        alert("Serialized data");
         $.ajax({
             dataType:'jsonp',
             data:postData,
@@ -579,6 +580,10 @@ function form_login_submit() {
         });
         return false;
     });
+}
+catch(err){
+    alert(err);
+}
 }
 
 
