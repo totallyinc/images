@@ -3,12 +3,14 @@
 <head>
   <meta charset="utf-8">
   <title>sols_mobile</title>
-  <meta name="viewport" content="height=device-height, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
   <link href="css/codiqa.ext.min.css" rel="stylesheet">
-  <link href="css/jqm-neue.css" rel="stylesheet">
+  <link href="css/jquery.mobile.theme-1.3.1.min.css" rel="stylesheet">
+  <link href="css/jquery-mobile.css" rel="stylesheet">
+  <link href="css/jquery.mobile.structure-1.3.1.min.css" rel="stylesheet">
   <link href="css/sols_mobile.css" rel="stylesheet">
 
   <script src="js/jquery-1.9.1.min.js"></script>
@@ -16,7 +18,6 @@
   <script src="js/codiqa.ext.min.js"></script>
   <script src="cordova.js"></script>
   <script src="js/sols_mobile.js"></script>
-
 </head>
 <body>
   <div data-role="page" data-control-title="Index" id="page-login">
@@ -48,7 +49,6 @@
               </div>
               <input id="submit_login" data-theme="d" value="Sign In" type="submit">
           </form>
-          <a href="#page-patient-form-scan-foot">add pic</a>
       </div>
       <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
           <ul>
@@ -836,24 +836,36 @@
                       BASIC INFORMATION
                   </div>
               </div>
-              <div class="container">
+              <div class="patient-info container">
                   <div>
                       First Name:
+                      <span class="patient-info-first_name">
+                      </span>
                   </div>
                   <div>
                       Last Name:
+                      <span class="patient-info-last_name">
+                      </span>
                   </div>
                   <div>
                       E-mail:
+                      <span class="patient-info-email">
+                      </span>
                   </div>
                   <div>
                       DOB:
+                      <span class="patient-info-dob">
+                      </span>
                   </div>
                   <div>
                       Gender:
+                      <span class="patient-info-ref_gender_id">
+                      </span>
                   </div>
                   <div>
                       Last 4 Digits of SS#:
+                      <span class="patient-info-ss_num_last_four">
+                      </span>
                   </div>
               </div>
               <br>
@@ -865,21 +877,31 @@
                       ABOUT
                   </div>
               </div>
-              <div class="container">
+              <div class="patient-info container">
                   <div>
                       Ethnicity:
+                      <span class="patient-info-ref_ethnicity_id">
+                      </span>
                   </div>
                   <div>
                       Height:
+                      <span class="patient-info-height">
+                      </span>
                   </div>
                   <div>
                       Weight:
+                      <span class="patient-info-weight">
+                      </span>
                   </div>
                   <div>
                       Shoe Size:
+                      <span class="patient-info-shoe_size_raw_left">
+                      </span>
                   </div>
                   <div>
                       Activity Level:
+                      <span class="patient-info-ref_activity_level_id">
+                      </span>
                   </div>
               </div>
               <br>
@@ -891,25 +913,35 @@
                       FOOT MEASUREMENTS
                   </div>
               </div>
-              <div class="container">
+              <div class="patient-info container">
                   <div>
                       Foot Length:
+                      <span class="patient-info-foot_length_left">
+                      </span>
                   </div>
                   <div>
                       Arch Length:
+                      <span class="patient-info-arch_length_left">
+                      </span>
                   </div>
                   <div>
                       Toe Length:
+                      <span class="patient-info-toe_length_left">
+                      </span>
                   </div>
                   <div>
                       Arch Height:
+                      <span class="patient-info-arch_height_left">
+                      </span>
                   </div>
                   <div>
                       Ball Width:
+                      <span class="patient-info-ball_width_left">
+                      </span>
                   </div>
               </div>
               <br>
-              <div class="container">
+              <div class="patient-info container">
                   <a href="#" style="float: right">
                       Edit
                   </a>
@@ -917,7 +949,7 @@
                       NOTES
                   </div>
               </div>
-              <div class="container">
+              <div class="patient-info container">
                   Recent fracture in ....
               </div>
               <br>
@@ -1254,14 +1286,9 @@
               </div>
           </div>
           <a class="container" data-role="button" data-transition="none" data-theme="d"
-          href="#page-profile" data-icon="arrow-d" data-iconpos="right">
+          href="#page-patient-info-review">
               Patient Info
           </a>
-          <div class="container" data-controltype="htmlblock">
-              <div class="container">
-                  Edit HTML here...
-              </div>
-          </div>
       </div>
       <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
           <ul>
@@ -1303,29 +1330,13 @@
                   Select one to complete a pick up.
               </p>
           </div>
-          <form class="form" action="">
-              <div data-role="fieldcontain" data-controltype="radiobuttons">
-                  <fieldset data-role="controlgroup" data-type="vertical">
-                      <input id="radio17" name="" value="radio1" type="radio">
-                      <label for="radio17">
-                          Last, First
-                      </label>
-                      <input id="radio18" name="" value="radio18" type="radio">
-                      <label for="radio18">
-                          Last, First
-                      </label>
-                      <input id="radio19" name="" value="radio19" type="radio">
-                      <label for="radio19">
-                          Last, First
-                      </label>
-                      <input id="radio20" name="" value="radio20" type="radio">
-                      <label for="radio20">
-                          Last, First
-                      </label>
-                  </fieldset>
+          <div data-controltype="htmlblock">
+              <div id="pickup-list">
               </div>
-              <input data-theme="d" value="Pick Up" type="submit">
-          </form>
+          </div>
+          <a class="container" id="btn-pick-up" data-role="button" href="#page-pickup">
+              Pick Up
+          </a>
       </div>
       <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
           <ul>
@@ -1363,14 +1374,16 @@
               <p class="container">
                   Pick Up Ready
               </p>
-              <div class="region-header center">
-                  Last, First
+              <div class="region-header center target_patient_name">
+                  &nbsp;
               </div>
           </div>
-          <form class="form" action="">
-              <input data-theme="d" value="Orthopedic Fits" type="submit">
-          </form>
-          <a class="container" data-role="button" data-theme="d" href="#page-pickup-review">
+          <a class="container btn-review_fits" data-role="button" data-theme="d"
+          href="#page-pickup-review">
+              Orthopedic Fits
+          </a>
+          <a class="container btn-review_remake_needed" data-role="button" data-theme="d"
+          href="#page-pickup-review">
               Remake Needed
           </a>
       </div>

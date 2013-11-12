@@ -20,7 +20,7 @@ body {
 }
 
 .ui-footer a {
-    background: #000;
+    background: #f9d612;
 }
 
 .ui-body-c, .ui-overlay-c {
@@ -46,12 +46,28 @@ label.ui-input-text {
 
 
 
-.ui-btn-up-a {
-    background-color: #443E7C;
+/* footer */
+.footer_buttons {
+    background: #f9d612;
+}
+ .ui-btn-up-a {
+    background-color: #f9d612;
+    border: none;
 }
 .ui-btn-up-a.ui-btn-active {
-    background-color: #888;
+    background-color: pink;
 }
+.footer_buttons .ui-btn-hover-a {
+    border: none;
+    background-color: pink;
+}
+.ui-bar-a {
+    border: none;
+}
+.ui-btn-active {
+    border: none;
+}
+
 
 
 .ui-submit {
@@ -59,12 +75,12 @@ label.ui-input-text {
 }
 
 .ui-btn-up-d, .ui-btn-hover {
-    background: #443E7C;
-    border: 1px solid #443E7C;
+    background: #f9d612;
+    border: 1px solid #f9d612;
 }
 
 .bg-purple {
-    background-color: #443E7C;
+    background-color: #f9d612;
 }
 
 .bg-banner {
@@ -73,15 +89,17 @@ label.ui-input-text {
 
 .search-sec {
     margin: 0;
-    background-color: #fff;
     padding: 5px 15px;
 }
 .search-sec .ui-body-c, .ui-overlay-c {
-    border: 0;
-    background-color: #fff;
+    /* border: 0; */
 }
 .search-sec .ui-shadow-inset {
     box-shadow: 0 0 0;
+}
+
+.ui-input-search {
+    background-color: #fff;
 }
 
 .region-header {
@@ -140,14 +158,15 @@ label.ui-input-text {
 }
 
 
+
+
 .ui-header .ui-title, .ui-footer .ui-title {
     font-weight: normal;
 }
 
 .ui-header {
-    border-color: #443E7C;
-    background: #443E7C;
-    color: #000;
+    background: none;
+    border: none;
 }
 
 .ui-br { /* bar under input section */
@@ -156,12 +175,25 @@ label.ui-input-text {
 
 
 .ui-btn-up-c.ui-btn-active, .ui-btn-hover-c {
-    background:#443E7C;
+    background:#f9d612;
 }
 .ui-btn-up-c.ui-btn-active .ui-btn-text, .ui-btn-hover-c .ui-btn-text {
     color: #fff;
 }
 
 .footer_buttons {
-//  display: none;
+    display: none;
+}
+
+.patient-info span {
+    color: red;
+}
+
+.patient-pickup {
+    margin: 20px;
+    padding: 20px;
+    background: #fff;
+}
+.patient-pickup.active {
+    background: pink;
 }

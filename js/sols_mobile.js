@@ -1,16 +1,12 @@
-
-$(function () {
-    form_login_submit(); // init form login
-    form_patient_basic(); // init form create patient.
-    form_patient_about(); // init form for patient about.
-    form_patient_measurements();// init form patient measurement.
-    form_patient_note(); // init form patient note.
-    form_submit_order(); // init form submit order.
-    on_page_change(); // action that will trigger after page is changed.
-    btn_triggers(); // init for all btn on the app.
-
-
-});
+/***
+ * Problem: when click image, camera doesn't show up. Missing plug-in????
+ * Also, navigator.notification == undefined.
+ * I believe something has to do with the navigator and device.capture
+ *
+ *
+ * Note: I have moved var outside of the document.ready.
+ * Also, i have moved the functions outside of the document.ready
+ */
 
 var originalCaller = null;
 var img = null;
@@ -19,8 +15,8 @@ $(document).ready(function(){
     $('.camera_image').click(function(e){
         // use camera and take picture.
         try {
-            alert(navigator);
-//            alert('navigator.notification: ' + navigator.notification);
+            alert('call camera');
+            //alert('navigator.notification: ' + navigator.notification);
             //navigator.notification.alert(num);
             originalCaller = $(this);
             navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
@@ -81,6 +77,28 @@ function uploadFiles() {
 
 
 
+//var ref_gender = { 1: 'Female', 2: 'Male' };
+//var ref_ethnicity = { 1: 'Asian', 2: 'African American' };
+//var ref_activity_level = { 1: 'low', 2: 'med', 3: 'high' };
+
+//var data_pickup_order_id = 0;
+
+$(function () {
+    form_login_submit(); // init form login
+    form_patient_basic(); // init form create patient.
+    form_patient_about(); // init form for patient about.
+    form_patient_measurements();// init form patient measurement.
+    form_patient_note(); // init form patient note.
+    form_submit_order(); // init form submit order.
+    on_page_change(); // action that will trigger after page is changed.
+    btn_triggers(); // init for all btn on the app.
+});
+
+
+
+
+
+
 /** redirect **/
 function redirect(page_id) {
     $.mobile.changePage('#'+page_id, { transition:"none"});
@@ -118,6 +136,58 @@ function btn_triggers() {
         // reset add new patient form
         reset_form_value('form_patient_basic');
     });
+
+    $('#btn-pick-up').click(function(){
+        $.mobile.changePage('#page-pickup-review', { transition:"none"});
+        return false;
+    });
+
+    $('.btn-review_fits').click(function(){
+        $('.patient-pickup.active').attr('data-pickup-order-id');
+        $.ajax({
+            dataType:'jsonp',
+            data:user_api_data()+'&review=fits&order_id='+$('.patient-pickup.active').attr('data-pickup-order-id'),
+            url:'http://qa.sols.co/reseller/api_get_pickup_review?format=jsonp',
+            success:function (data) {
+                console.log(data);
+                if (data.connected) {
+                    alert('I am glad it fits.');
+                    $.mobile.changePage('#page-home', { transition:"none"});
+                }
+                else {
+                    alert('fail to connect');
+                }
+            },
+            error:function () {
+                console.log(data);
+                alert('There was an unexpected error.');
+            }
+        });
+    });
+
+    $('.btn-review_remake_needed').click(function(){
+        $('.patient-pickup.active').attr('data-pickup-order-id');
+        $.ajax({
+            dataType:'jsonp',
+            data:user_api_data()+'&review=remake_needed&order_id='+$('.patient-pickup.active').attr('data-pickup-order-id'),
+            url:'http://qa.sols.co/reseller/api_get_pickup_review?format=jsonp',
+            success:function (data) {
+                console.log(data);
+                if (data.connected) {
+                    alert('Sorry to hear that, we will contact you for the remake.');
+                    $.mobile.changePage('#page-home', { transition:"none"});
+                }
+                else {
+                    alert('fail to connect');
+                }
+            },
+            error:function () {
+                console.log(data);
+                alert('There was an unexpected error.');
+            }
+        });
+    });
+
 }
 
 // on page change.
@@ -137,6 +207,8 @@ function on_page_change() {
             switch (current_page) {
 
                 case 'page-home':
+                    var user_data = user_info();
+                    $('#btn-logout').html('Logout (ID: '+user_data.user_id+')');
 
                     break;
 
@@ -169,6 +241,15 @@ function on_page_change() {
                     get_patient_info_for_roder(patient_get_user_id());
                     break;
 
+                case 'page-pickup':
+                    update_pickup_list('');
+                    break;
+
+                case 'page-pickup-review':
+                    patient_show_target_patient_name();
+                    page_pickup_review();
+                    break;
+
             }
         }
     });
@@ -182,9 +263,29 @@ function check_images_for_order() {
     });
 }
 
-
 function get_patient_info_for_roder(patient_user_id) {
     //TODO: get user info and populate it.
+    $.ajax({
+        dataType:'jsonp',
+        data: 'patient_user_id='+patient_user_id+'&'+user_api_data(),
+        url:'http://qa.sols.co/reseller/api_get_patient_info_for_order?format=jsonp',
+        success:function (data) {
+            if (data.connected) {
+                console.log(data['patient']);
+                var patient_info = data['patient'];
+                for (var i in patient_info) {
+                    $('.patient-info-'+i).html(patient_info[i]);
+                }
+            }
+            else {
+                alert('fail to connect');
+            }
+        },
+        error:function () {
+            console.log(data);
+            alert('There was an unexpected error.');
+        }
+    });
 
 }
 
@@ -203,6 +304,59 @@ function populate_form_values(form_name) {
     }
 }
 
+/**
+ * page pickup review
+ */
+function page_pickup_review() {
+    if($('.patient-pickup.active').attr('data-pickup-order-id')) {
+        console.log( 'pickup order id: ' + $('.patient-pickup.active').attr('data-pickup-order-id'));
+    } else {
+        //$.mobile.changePage('#page-pickup', { transition:"none"});
+        return false;
+    }
+
+}
+
+
+/**
+ * page pick up
+ */
+function update_pickup_list(params) {
+    $('#btn-pick-up').hide();
+    $('#pickup-list').html('loading...');
+
+    $.ajax({
+        dataType:'jsonp',
+        data:user_api_data(),
+        url:'http://qa.sols.co/reseller/api_get_pickup?format=jsonp',
+        success:function (data) {
+            if (data.connected) {
+                $('#pickup-list').html('');
+
+                var pickups = data.pickup_order;
+                for (var i in pickups) {
+                    html = '<div class="patient-pickup" data-patient-user-id="'+pickups[i].patient_user_id+'" data-pickup-order-id="'+pickups[i].order_id+'">' + pickups[i].patient_last_name + ', ' + pickups[i].patient_first_name + ' - <span> order id: '+pickups[i].order_id+'</span></div>';
+                    $('#pickup-list').append(html);
+                }
+                $('.patient-pickup').click(function(){
+                    $('.patient-pickup').removeClass('active');
+                    $(this).addClass('active');
+                    var patient_user_id = $(this).attr('data-patient-user-id');
+                    patient_set_user_id(patient_user_id);
+                    $('#btn-pick-up').show();
+                });
+
+            }
+            else {
+                alert('fail to connect');
+            }
+        },
+        error:function () {
+            console.log(data);
+            alert('There was an unexpected error.');
+        }
+    });
+}
 
 /**
  * patients page;
@@ -252,12 +406,10 @@ function form_submit_order() {
             data:postData,
             url:'http://qa.sols.co/reseller/api_form_submit_order?format=jsonp',
             success:function (data) {
-                console.log(data);
                 if (data.connected) {
                     console.log(data);
-
-                    $.mobile.changePage('#page-patient-form-about', { transition:"none"});
-
+                    alert('Thank for your order.');
+                    $.mobile.changePage('#page-home', { transition:"none"});
                 }
                 else {
                     alert('fail to connect');
@@ -489,7 +641,6 @@ function patient_get_user_id() {
     return window.localStorage.getItem('patient_user_id');
 }
 function patient_api_data() {
-    return 'patient_user_id=2';
     return 'patient_user_id='+patient_get_user_id();
 }
 function goto_patient_page(patient_user_id) {
