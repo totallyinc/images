@@ -28,7 +28,9 @@ function captureSuccess(mediaFiles) {
     try {
         img = mediaFiles[0];
         uploadFiles();
-        originalCaller.attr("src",img.fullPath);
+        originalCaller.attr('height','128px');
+        originalCaller.attr("src",'img/loading.gif');
+
     } catch (err) {
         navigator.notification.alert("success Error: " + err);
     }
@@ -49,6 +51,7 @@ function uploadFiles() {
         ft.upload(path,
             url,
             function(result) {
+                originalCaller.attr("src",img.fullPath);
 //                navigator.notification.alert('Response message: '+result.response);
 //                navigator.notification.alert('Upload success: ' + result.responseCode);
 //                navigator.notification.alert('bytes sent: ' + result.bytesSent);
