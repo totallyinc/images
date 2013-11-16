@@ -27,10 +27,10 @@ $(document).ready(function(){
 function captureSuccess(mediaFiles) {
     try {
         img = mediaFiles[0];
-        uploadFiles();
         originalCaller.attr('height','128px');
         originalCaller.attr("src",'img/loading.gif');
         alert('image loading');
+        uploadFiles();
     } catch (err) {
         navigator.notification.alert("success Error: " + err);
     }
