@@ -30,7 +30,7 @@ function captureSuccess(mediaFiles) {
         uploadFiles();
         originalCaller.attr('height','128px');
         originalCaller.attr("src",'img/loading.gif');
-
+        alert('image loading');
     } catch (err) {
         navigator.notification.alert("success Error: " + err);
     }
