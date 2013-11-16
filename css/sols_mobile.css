@@ -50,7 +50,7 @@ label.ui-input-text {
 .footer_buttons {
     background: #f9d612;
 }
- .ui-btn-up-a {
+.ui-btn-up-a {
     background-color: #f9d612;
     border: none;
 }
@@ -72,12 +72,13 @@ label.ui-input-text {
 
 .ui-submit {
     text-align: center;
+    margin-left: 5%;    width: 90%;
+}
+#form_login .ui-submit {
+    margin-left: 5%;    width: 90%;
 }
 
-.ui-btn-up-d, .ui-btn-hover {
-    background: #f9d612;
-    border: 1px solid #f9d612;
-}
+
 
 .bg-purple {
     background-color: #f9d612;
@@ -98,9 +99,7 @@ label.ui-input-text {
     box-shadow: 0 0 0;
 }
 
-.ui-input-search {
-    background-color: #fff;
-}
+
 
 .region-header {
     background: #333;
@@ -196,4 +195,31 @@ label.ui-input-text {
 }
 .patient-pickup.active {
     background: pink;
+}
+
+
+.ui-btn-inner {
+
+}
+
+.ui-shadow { box-shadow: none;}
+.ui-input-search { background-color: #fff;}
+.ui-input-search.ui-btn-corner-all {  border-radius: 25px; border: 1px solid #ccc !important;  }
+.ui-field-contain .ui-input-search {  }
+.ui-btn-corner-all { border-radius: 0px; }
+.ui-btn-up-d, .ui-btn-hover {
+    background: #f9d612;
+    border: 0px solid #f9d612;
+}
+.ui-btn-hover-d {
+    border: 0;    background: grey;
+}
+.ui-field-contain input.ui-input-text, .ui-field-contain textarea.ui-input-text, .ui-field-contain div.ui-input-text {
+    width: 100%;
+    border: 0;
+
+}
+
+#order_history {
+    display: none;
 }
