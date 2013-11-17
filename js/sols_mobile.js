@@ -51,7 +51,7 @@ function uploadFiles() {
         ft.upload(path,
             url,
             function(result) {
-                originalCaller.attr("src",img.fullPath);
+                originalCaller.attr("src",path);
 //                navigator.notification.alert('Response message: '+result.response);
 //                navigator.notification.alert('Upload success: ' + result.responseCode);
 //                navigator.notification.alert('bytes sent: ' + result.bytesSent);
