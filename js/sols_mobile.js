@@ -27,7 +27,6 @@ $(document).ready(function(){
 function captureSuccess(mediaFiles) {
     try {
         img = mediaFiles[0];
-        originalCaller.css('height','128px');
         originalCaller.attr("src",'img/loading.gif');
         // navigator.notification.alert('image uploading');
         uploadFiles();
