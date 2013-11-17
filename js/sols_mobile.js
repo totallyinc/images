@@ -27,9 +27,9 @@ $(document).ready(function(){
 function captureSuccess(mediaFiles) {
     try {
         img = mediaFiles[0];
-        originalCaller.attr('height','128px');
+        originalCaller.css('height','128px');
         originalCaller.attr("src",'img/loading.gif');
-        navigator.notification.alert('image uploading');
+        // navigator.notification.alert('image uploading');
         uploadFiles();
     } catch (err) {
         navigator.notification.alert("success Error: " + err);
@@ -52,10 +52,10 @@ function uploadFiles() {
             url,
             function(result) {
                 originalCaller.attr("src",path);
-                navigator.notification.alert('Response message: '+result.response);
-                navigator.notification.alert('Upload success: ' + result.responseCode);
-                navigator.notification.alert('bytes sent: ' + result.bytesSent);
-                navigator.notification.alert('actual size: ' + medFiles[index].size);
+                // navigator.notification.alert('Response message: '+result.response);
+                // navigator.notification.alert('Upload success: ' + result.responseCode);
+                // navigator.notification.alert('bytes sent: ' + result.bytesSent);
+                // navigator.notification.alert('actual size: ' + medFiles[index].size);
             },
             function(error) {
                 navigator.notification.alert('Error uploading file ' + path + ': ' + error);
