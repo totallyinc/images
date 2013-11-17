@@ -57,7 +57,8 @@ function uploadFiles() {
                 // navigator.notification.alert('actual size: ' + medFiles[index].size);
             },
             function(error) {
-                navigator.notification.alert('Error uploading file ' + path + ': ' + error);
+                originalCaller.attr('src','img/broken-link-image.jpg');
+                navigator.notification.alert('Error uploading image, please try again');
             },
             {
                 fileKey : originalCaller.attr('id'),
