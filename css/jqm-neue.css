@@ -2050,7 +2050,7 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 	left: 0;
 	right: 0;
 	width: 100%;
-	position: fixed!important;
+	position: fixed;
 	z-index: 1000;
 }
 .ui-header-fixed {
