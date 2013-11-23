@@ -1,5 +1,6 @@
 var originalCaller = null;
 var img = null;
+alert(window.localStorage.getItem("user"));
 $(document).ready(function(){
     // Now safe to use the PhoneGap API
     $('.camera_image').click(function(e){
