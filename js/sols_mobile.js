@@ -1,25 +1,16 @@
-/***
- * Problem: when click image, camera doesn't show up. Missing plug-in????
- * Also, navigator.notification == undefined.
- * I believe something has to do with the navigator and device.capture
- *
- *
- * Note: I have moved var outside of the document.ready.
- * Also, i have moved the functions outside of the document.ready
- */
-
 var originalCaller = null;
 var img = null;
 $(document).ready(function(){
     // Now safe to use the PhoneGap API
     $('.camera_image').click(function(e){
-        // use camera and take picture.
         try {
             originalCaller = $(this);
             navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
             window.localStorage.setItem('id',$(this).attr('id'));
-        } catch (err) {
-            navigator.notification.alert("An error occurred during capture: " + err, null, "Uh oh!");
+        }
+        catch (err) {
+            //navigator.notification.alert("An error occurred during capture: " + err, null, "Uh oh!");
+            alert("An error occurred during capture: " + err + "\nMake sure your mobile device is supported.", null, "Uh oh!");
         }
     });
 });
@@ -28,11 +19,9 @@ function captureSuccess(mediaFiles) {
     try {
         img = mediaFiles[0];
         originalCaller.attr("src",'img/loading.gif');
-        // navigator.notification.alert('image uploading');
         uploadFiles();
-    } catch (err) {
-        navigator.notification.alert("success Error: " + err);
     }
+    catch (err) { navigator.notification.alert("success Error: " + err); }
 }
 
 function captureError(error) {
@@ -51,26 +40,17 @@ function uploadFiles() {
             url,
             function(result) {
                 originalCaller.attr("src",path);
-                // navigator.notification.alert('Response message: '+result.response);
-                // navigator.notification.alert('Upload success: ' + result.responseCode);
-                // navigator.notification.alert('bytes sent: ' + result.bytesSent);
-                // navigator.notification.alert('actual size: ' + medFiles[index].size);
             },
             function(error) {
                 originalCaller.attr('src','img/broken-link-image.jpg');
                 navigator.notification.alert('Error uploading image, please try again');
             },
-            {
-                fileKey : originalCaller.attr('id'),
-                params:{
-                    'shoe_size':'1'
-                }
+            {   fileKey : originalCaller.attr('id'),
+                params:{ 'shoe_size':'1' }
             }
         );
-    } catch(err){
-        navigator.notification.alert("Exception: " + err);
     }
-    //alert('finishing upload');
+    catch(err){  navigator.notification.alert("Exception: " + err);  }
 }
 
 
@@ -79,38 +59,69 @@ function uploadFiles() {
 
 
 
+$(document).bind('pageinit', function () {
+    $('input,select').keypress(function(event) { return event.keyCode != 13; });
+});
 
 
-//var ref_gender = { 1: 'Female', 2: 'Male' };
+
+var translate = {
+    ref_gender: function(key){
+        var ref = { 1: 'Female', 2: 'Male' };
+        if(key in ref)
+            return ref[key];
+        else
+            return 'N/A';
+    },
+    ref_order_item_status: function(key){
+        var ref = { 6: 'Picked Up'  };
+        if(key in ref)
+            return ref[key];
+        else
+            return 'N/A';
+    }
+}
 //var ref_ethnicity = { 1: 'Asian', 2: 'African American' };
 //var ref_activity_level = { 1: 'low', 2: 'med', 3: 'high' };
 
 //var data_pickup_order_id = 0;
 
+var foot_images = {
+    'l1':'https://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/photo_icon_left_bottom.png',
+    'l2':'https://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/photo_icon_left_side.png',
+    'l3':'https://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/photo_icon_left_back.png',
+    'r1':'https://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/photo_icon_right_bottom.png',
+    'r2':'https://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/photo_icon_right_side.png',
+    'r3':'https://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/photo_icon_right_back.png'
+};
 
 
-
+var api_url = 'http://qa.sols.co';
 var forms = {
     form_login_submit : function(msg){
         $('#form_login').submit(function () {
+
+            //            if($("#form_login input[name='user[username]']").val().length < 1 || $("#form_login input[name='user[password]']").val().length < 1) {
+            //              alert("Please enter your uesrname and password!");
+            //              return false;
+            //            }
+
             var postData = $(this).serialize();
             $.ajax({
                 dataType:'jsonp',
                 data:postData,
-                url:'http://qa.sols.co/api/api_login?format=jsonp',
+                url:api_url+'/api/api_login?format=jsonp',
                 success:function (data) {
-                    console.log(data);
                     if (data.login) {
                         reseller.login(data);
                         //user_login(data);
                         actions.redirect('page-home');
                     }
                     else {
-                        solerts.login_fail();
+                        sols_alerts.login_fail();
                     }
                 },
                 error:function () {
-                    console.log(data);
                     alert('There was an unexpected error when you try to login.');
                 }
             });
@@ -120,11 +131,20 @@ var forms = {
 
     form_patient_basic: function() {
         $('#form_patient_basic').submit(function () {
+
+            //            var block = $("#form_login input[name='user[last_name]']").val().length < 1;
+            //            block = block || $("#form_login input[name='user[first_name]']").val().length < 1;
+            //            if($("#form_login input[name='user[email]").val()); // check email
+            //            if(block) {
+            //                alert("Please enter your uesrname and password!");
+            //                return false;
+            //            }
+
             var postData = $(this).serialize();
             $.ajax({
                 dataType:'jsonp',
                 data:postData + '&' + reseller.api_data(),
-                url:'http://qa.sols.co/api/api_patient_form_basic?format=jsonp',
+                url:api_url+'/api/api_patient_form_basic?format=jsonp',
                 success:function (data) {
                     console.log(data);
                     if (data.connected) {
@@ -155,7 +175,7 @@ var forms = {
             $.ajax({
                 dataType:'jsonp',
                 data:postData + '&patient_user_id=' + patient.get_user_id() + '&' + reseller.api_data(),
-                url:'http://qa.sols.co/api/api_patient_form_about?format=jsonp',
+                url:api_url+'/api/api_patient_form_about?format=jsonp',
                 success:function (data) {
                     console.log(data);
                     if (data.connected) {
@@ -180,7 +200,7 @@ var forms = {
             $.ajax({
                 dataType:'jsonp',
                 data:postData + '&patient_user_id=' + patient.get_user_id() + '&' + reseller.api_data(),
-                url:'http://qa.sols.co/api/api_patient_form_measurements?format=jsonp',
+                url:api_url+'/api/api_patient_form_measurements?format=jsonp',
                 success:function (data) {
                     console.log(data);
                     if (data.connected) {
@@ -205,7 +225,7 @@ var forms = {
             $.ajax({
                 dataType:'jsonp',
                 data:postData + '&patient_user_id=' + patient.get_user_id() + '&' + reseller.api_data(),
-                url:'http://qa.sols.co/api/api_patient_form_note?format=jsonp',
+                url:api_url+'/api/api_patient_form_note?format=jsonp',
                 success:function (data) {
                     console.log(data);
                     if (data.connected) {
@@ -233,7 +253,7 @@ var forms = {
             $.ajax({
                 dataType:'jsonp',
                 data:postData,
-                url:'http://qa.sols.co/api/api_form_submit_order?format=jsonp',
+                url:api_url+'/api/api_form_submit_order?format=jsonp',
                 success:function (data) {
                     if (data.connected) {
                         console.log(data);
@@ -257,28 +277,45 @@ var forms = {
 var pages = {
     page_home: function() {
         var user_data = reseller.info();
-        $('#btn-logout').html('Logout (ID: '+user_data.user_id+')');
-    },
+        $('#btn-logout').html('LOGOUT: '+user_data.username);
 
-    page_add_new_patient: function() {
-        populate_form_values('page_add_new_patient');
-    },
+        // two ajax call to get patient count and order count
+        $.ajax({
+            dataType:'jsonp',
+            data:reseller.api_data(),
+            url:api_url+'/api/api_get_patients?format=jsonp',
+            success:function (data) {
+                if (data.connected) {
+                    if(data.patients.length) {
+                        $('.patient-count').html(data.patients.length);
+                    } else {
+                        $('.patient-count').html(0);
+                    }
 
-    update_patients_list: function($params) {
-        $('#patients_list').html('Loading');
+                }
+                else {
+                    alert('fail to connect');
+                }
+            },
+            error:function () {
+                console.log(data);
+                alert('There was an unexpected error.');
+            }
+        });
+
 
         $.ajax({
             dataType:'jsonp',
             data:reseller.api_data(),
-            url:'http://qa.sols.co/api/api_get_patients?format=jsonp',
+            url:api_url+'/api/api_get_pickup?format=jsonp',
             success:function (data) {
                 if (data.connected) {
-                    var patients = data.patients
-                    $('#patients_list').html('');
-                    for (var i in patients) {
-                        console.log(patients[i]);
-                        var row = '<div onclick="patient.goto_patient_page('+patients[i].user_id+');">' + patients[i].last_name + ', ' + patients[i].first_name + '</div>';
-                        $('#patients_list').append(row);
+                    $('#pickup-list').html('');
+                    var pickups = data.pickup_order;
+                    if(data.pickup_order.length) {
+                        $('.pick-up-count').html(data.pickup_order.length);
+                    } else {
+                        $('.pick-up-count').html(0);
                     }
                 }
                 else {
@@ -290,6 +327,51 @@ var pages = {
                 alert('There was an unexpected error.');
             }
         });
+
+
+    },
+
+    page_add_new_patient: function() {
+        populate_form_values('page_add_new_patient');
+    },
+
+    update_patients_list: function($params) {
+        $('#patients_list').html('Loading');
+        $.ajax({
+            dataType:'jsonp',
+            data:reseller.api_data(),
+            url:api_url+'/api/api_get_patients?format=jsonp',
+            success:function (data) {
+                if (data.connected) {
+                    var patients = data.patients
+                    $('#patients_list').html('');
+                    var first_letter = '';
+                    for (var i in patients) {
+
+                        if(first_letter != patients[i].last_name.substr(0,1)) {
+                            first_letter = patients[i].last_name.substr(0,1);
+                            var row = '<div class="patient_list_abbr">'+patients[i].last_name.substr(0,1)+'</div>';
+                            $('#patients_list').append(row);
+                        }
+                        var row = '<div class="patient_row light-grey" onclick="patient.goto_patient_page('+patients[i].user_id+');"><span class="next_arrow"></span>' + patients[i].last_name + ', ' + patients[i].first_name + '</div>';
+                        $('#patients_list').append(row);
+
+                    }
+                }
+                else {
+                    alert('fail to connect');
+                }
+            },
+            error:function () {
+                console.log(data);
+                alert('There was an unexpected error.');
+            }
+        });
+
+        $('#searchinput3').keyup(function(){
+            actions.filter();
+        });
+
     },
 
     page_patient_form_about: function() {
@@ -308,6 +390,7 @@ var pages = {
     },
 
     page_patient_form_scan_foot: function() {
+        patient.update_foot_images();
     },
 
     page_patient_info_review: function () {
@@ -316,14 +399,18 @@ var pages = {
         $.ajax({
             dataType:'jsonp',
             data: 'patient_user_id='+patient.get_user_id()+'&'+reseller.api_data(),
-            url:'http://qa.sols.co/api/api_get_patient_info_for_order?format=jsonp',
+            url:api_url+'/api/api_get_patient_info_for_order?format=jsonp',
             success:function (data) {
                 if (data.connected) {
                     console.log(data['patient']);
                     var patient_info = data['patient'];
+
+                    patient_info['ref_gender_id'] = translate.ref_gender(patient_info['ref_gender_id']);
                     for (var i in patient_info) {
                         $('.patient-info-'+i).html(patient_info[i]);
                     }
+
+                    patient.update_foot_images();
                 }
                 else {
                     alert('fail to connect');
@@ -343,7 +430,7 @@ var pages = {
         $.ajax({
             dataType:'jsonp',
             data:reseller.api_data(),
-            url:'http://qa.sols.co/api/api_get_pickup?format=jsonp',
+            url:api_url+'/api/api_get_pickup?format=jsonp',
             success:function (data) {
                 if (data.connected) {
                     $('#pickup-list').html('');
@@ -360,8 +447,8 @@ var pages = {
                             $('.patient-pickup').removeClass('active');
                             $(this).addClass('active');
                             var patient_user_id = $(this).attr('data-patient-user-id');
-                            patient.set_user_id(patient_user_id);
                             $('#btn-pick-up').show();
+                            patient.set_user_id(patient_user_id);
                         });
 
                     }
@@ -391,22 +478,26 @@ var pages = {
 
     page_profile: function () {
         patient.show_target_patient_name();
+        $('#open-order').hide();
 
-        console.log('get open order');
         // get patient open order
         $.ajax({
             dataType:'jsonp',
             data: patient.api_data()+'&'+reseller.api_data(),
-            url:'http://qa.sols.co/api/api_get_patient_open_order?format=jsonp',
+            url:api_url+'/api/api_get_patient_open_order?format=jsonp',
             success:function (data) {
                 if (data.connected) {
                     if(data['open_orders'].length) {
-                        $('#open-order').html(data['open_orders'].length + ' open order');
-                        $('#btn_patient_shipment_tracking').html('Order ID: ' + data['open_orders'][0]['order_id']);
-                        $('#btn_patient_shipment_tracking').show();
+                        $('#open-order').show();
+                        var html = '';
+                        var open_orders = data['open_orders'];
+                        for(var i in open_orders) {
+                            html +='Order No. '+open_orders[i]['order_id']+'<br />';
+                            html +='Status: '+ translate.ref_order_item_status(open_orders[i]['ref_order_item_status_id'])+'<br />';
+                        }
+                        $('#open-orders-status').html(html);
                     } else {
-                        $('#open-order').html('There is no open order.');
-                        $('#btn_patient_shipment_tracking').hide();
+                        $('#open-order').hide();
                     }
                 }
                 else {
@@ -423,16 +514,18 @@ var pages = {
         $.ajax({
             dataType:'jsonp',
             data: patient.api_data()+'&'+reseller.api_data(),
-            url:'http://qa.sols.co/api/api_get_patient_order_history?format=jsonp',
+            url:api_url+'/api/api_get_patient_order_history?format=jsonp',
             success:function (data) {
                 if (data.connected) {
                     if(data['order_history'].length) {
                         var order_history = data['order_history'];
+                        console.log(order_history);
                         var html = '';
                         for(var i in order_history) {
                             html += '<div style="border: 1px solid #ccc; margin: 3px;">';
-                            html += 'order id: ' + order_history[i].order_id+'<br />';
-                            html += 'qty: '+order_history[i].qty;
+                            html += '<span style="font-weight: bold;">' + convert_date(order_history[i].created)+'</span><br />';
+                            html += 'Order No. ' + order_history[i].order_id+'<br />';
+                            html += 'Status: ' + translate.ref_order_item_status(order_history[i].ref_order_item_status_id)+'<br />';
                             html += '</div>';
                         }
 
@@ -469,7 +562,7 @@ var buttons = {
         $.ajax({
             dataType:'jsonp',
             data:reseller.api_data()+'&review=fits&order_id='+$('.patient-pickup.active').attr('data-pickup-order-id'),
-            url:'http://qa.sols.co/api/api_get_pickup_review?format=jsonp',
+            url:api_url+'/api/api_get_pickup_review?format=jsonp',
             success:function (data) {
                 console.log(data);
                 if (data.connected) {
@@ -492,7 +585,7 @@ var buttons = {
         $.ajax({
             dataType:'jsonp',
             data:reseller.api_data()+'&review=remake_needed&order_id='+$('.patient-pickup.active').attr('data-pickup-order-id'),
-            url:'http://qa.sols.co/api/api_get_pickup_review?format=jsonp',
+            url:api_url+'/api/api_get_pickup_review?format=jsonp',
             success:function (data) {
                 console.log(data);
                 if (data.connected) {
@@ -514,20 +607,31 @@ var buttons = {
 
 var actions = {
     redirect: function(page_id){ $.mobile.changePage('#'+page_id, { transition:"none"}); },
-    hide_footer_menu: function() { $('.footer_buttons').hide(); },
-    show_footer_menu: function() { $('.footer_buttons').show(); },
+    hide_footer_menu: function() {  $('.footer_buttons').hide(); },
+    show_footer_menu: function() {  $('.footer_buttons').show(); },
 
     reset_form_value: function(form_id) { /* reset add new patient form */
+        actions.update_submit_btn_label('.btn_create_patient', "CREATE PATIENT");
         $(':input','#'+form_id).not(':button, :submit, :reset, :hidden').val('').removeAttr('checked').removeAttr('selected');
-        actions.update_submit_btn_label('.btn_create_patient', "Create Patient");
     },
 
     update_submit_btn_label: function(selector, new_label) {
         $(selector).prev('span').find('span.ui-btn-text').text(new_label);
+    },
+
+    filter: function() {
+        var str = $('#searchinput3').val();
+        if(str.length<1) {
+            $( "#patients_list div" ).show();
+        } else {
+            $( "#patients_list div" ).hide();
+            $( "#patients_list div:contains('"+str+"')" ).show();
+        }
     }
+
 }
 
-var solerts = {
+var sols_alerts = {
     login_fail: function(){ alert("User login failed"); }
 }
 
@@ -554,10 +658,53 @@ var reseller = {
     }
 }
 
+function image_error(class_id) {
+    $('.foot-'+class_id).each(function(){
+        $(this).attr('src', foot_images[class_id]);
+    });
+}
+
+function convert_date(msyql_data) {
+    var dateParts = msyql_data.split(/[ -]+/);
+    var jsDate = dateParts[1] +'/'+ dateParts[2] +'/'+ dateParts[0].substr(0,2);
+    return  jsDate;
+}
+
 /* Patient */
 var patient = {
+    update_foot_images: function() {
+        // update images
+        var patient_user_id = this.get_user_id();
+        if(patient_user_id) {
+            $.ajax({
+                dataType:'jsonp',
+                data: this.api_data() + '&' + reseller.api_data(),
+                url:api_url+'/api/api_get_patient_foot_images?format=jsonp',
+                success:function (data) {
+                    if (data.connected) {
+                        for (var i in data.images) {
+                            $('.foot-'+i).attr('src', 'http://qa.sols.co'+data.images[i]);
+
+                        }
+                    }
+                    else {
+                        alert('fail to connect');
+                    }
+                },
+                error:function () {
+                    alert('There was an unexpected error when you try to login.');
+                }
+            });
+        }
+
+    },
     set_user_id: function (patient_user_id) {
+        $('.db-data').html('');
+
         window.localStorage.setItem('patient_user_id', patient_user_id);
+        if(patient_user_id) {
+            patient.update_foot_images();
+        }
     },
     get_user_id: function () {
         return window.localStorage.getItem('patient_user_id');
@@ -578,12 +725,9 @@ var patient = {
         $.ajax({
             dataType:'jsonp',
             data:'patient_user_id=' + this.get_user_id() + '&' + reseller.api_data(),
-            url:'http://qa.sols.co/api/api_get_patient_info?format=jsonp',
+            url:api_url+'/api/api_get_patient_info?format=jsonp',
             success:function (data) {
-                console.log(data);
                 if (data.connected) {
-                    console.log(data.patient.first_name);
-                    console.log(data.patient.last_name);
                     var fullname = data.patient.last_name + ', ' + data.patient.first_name;
                     $('.target_patient_name').html(fullname);
                 }
@@ -592,7 +736,6 @@ var patient = {
                 }
             },
             error:function () {
-                console.log(data);
                 alert('There was an unexpected error when you try to login.');
             }
         });
@@ -602,6 +745,9 @@ var patient = {
 
 //starter
 $(function () {
+    $('input').attr("required", "required");
+    $('select').attr("required", "required");
+
     forms.form_login_submit(); // init form login
     forms.form_patient_basic(); // init form create patient.
     forms.form_patient_about(); // init form for patient about.
@@ -610,8 +756,6 @@ $(function () {
     forms.form_submit_order(); // init form submit order.
     on_page_change(); // action that will trigger after page is changed.
     btn_triggers(); // init for all btn on the app.
-
-
 
 });
 
@@ -632,11 +776,6 @@ function btn_triggers() {
     $('.btn-review_fits').click(function() { buttons.review_fits(); });
 
     $('.btn-review_remake_needed').click(function() {  buttons.review_remake_needed(); });
-
-    $('#btn_patient_shipment_tracking').click(function(){
-        alert('shipment tracking');
-        return false;
-    });
 
     $('.btn-goto-add-new-patient').click(function(){
         actions.reset_form_value('form_patient_basic');
@@ -659,13 +798,13 @@ function btn_triggers() {
 
 // on page change.
 function on_page_change() {
+
     /* pageshow */
     $('html').on("pagechange", function (e) {
         console.log('pagechange: ' + $.mobile.activePage.attr("id"));
         var current_page = $.mobile.activePage.attr("id");
         if (current_page != 'page-login') { // if on login page, hide the footer. if user logged in, forward to home page.
             actions.show_footer_menu();
-            console.log('user is login: ' + reseller.is_login());
             if (reseller.is_login() === false) {
                 actions.hide_footer_menu();
                 actions.redirect('page-login');
@@ -689,7 +828,7 @@ function on_page_change() {
                 case 'page-profile':                        pages.page_profile();                           break;
 
                 default:
-                    alert(current_page);
+                    console(current_page + ' : which has not page action yet.');
                     break;
 
             }
@@ -707,15 +846,16 @@ function populate_form_values(form_name) {
                 $.ajax({
                     dataType:'jsonp',
                     data:patient.api_data() + '&' + reseller.api_data(),
-                    url:'http://qa.sols.co/api/api_get_patient_info?format=jsonp',
+                    url:api_url+'/api/api_get_patient_info?format=jsonp',
                     success:function (data) {
                         if (data.connected) {
-                            console.log(data);
                             $('input[name="user[first_name]"]').val(data.patient['first_name']);
                             $('input[name="user[last_name]"]').val(data.patient['last_name']);
                             $('input[name="user[email]"]').val(data.patient['email']);
-
-                            actions.update_submit_btn_label('.btn_create_patient', "Update Patient Info");
+                            $('input[name="user[dob]"]').val(data.patient['dob']);
+                            $('input[name="user[ss_num_last_four]"]').val(data.patient['ss_num_last_four']);
+                            $('select[name="user[ref_gender_id]"]').val(data.patient['ref_gender_id']).selectmenu("refresh", true);
+                            actions.update_submit_btn_label('.btn_create_patient', "UPDATE PATIENT INFO");
 
                         }
                         else {
@@ -723,11 +863,11 @@ function populate_form_values(form_name) {
                         }
                     },
                     error:function () {
-                        console.log(data);
                         alert('There was an unexpected error when you try to login.');
                     }
                 });
             } else {
+                actions.reset_form_value('form_patient_basic');
                 $('.btn_create_patient').val('Create Patient');
             }
             break;
@@ -738,10 +878,9 @@ function populate_form_values(form_name) {
                 $.ajax({
                     dataType:'jsonp',
                     data:patient.api_data() + '&' + reseller.api_data(),
-                    url:'http://qa.sols.co/api/api_get_patient_info_for_order?format=jsonp',
+                    url:api_url+'/api/api_get_patient_info_for_order?format=jsonp',
                     success:function (data) {
                         if (data.connected) {
-                            console.log(data);
                             $('input[name="customer_info[height]"]').val(data.patient['height']);
                             $('input[name="customer_info[weight]"]').val(data.patient['weight']);
                             $('select[name="user[ref_ethnicity_id]"]').val(data.patient['ref_ethnicity_id']).selectmenu("refresh", true);
@@ -756,7 +895,6 @@ function populate_form_values(form_name) {
                         }
                     },
                     error:function () {
-                        console.log(data);
                         alert('There was an unexpected error when you try to login.');
                     }
                 });
@@ -769,10 +907,9 @@ function populate_form_values(form_name) {
                 $.ajax({
                     dataType:'jsonp',
                     data:patient.api_data() + '&' + reseller.api_data(),
-                    url:'http://qa.sols.co/api/api_get_patient_info_for_order?format=jsonp',
+                    url:api_url+'/api/api_get_patient_info_for_order?format=jsonp',
                     success:function (data) {
                         if (data.connected) {
-                            console.log(data);
                             $('#form_patient_measurements input[type="text"]').each(function(){
                                 var field_name = $(this).attr('name');
                                 if( field_name.substring(0, field_name.lastIndexOf("[")) == 'customer_info' ) {
@@ -786,7 +923,6 @@ function populate_form_values(form_name) {
                         }
                     },
                     error:function () {
-                        console.log(data);
                         alert('There was an unexpected error when you try to login.');
                     }
                 });
@@ -799,10 +935,9 @@ function populate_form_values(form_name) {
                 $.ajax({
                     dataType:'jsonp',
                     data:patient.api_data() + '&' + reseller.api_data(),
-                    url:'http://qa.sols.co/api/api_get_patient_info_for_order?format=jsonp',
+                    url:api_url+'/api/api_get_patient_info_for_order?format=jsonp',
                     success:function (data) {
                         if (data.connected) {
-                            console.log(data);
                             $('textarea[name="customer_info[prescription_note]"]').val(data.patient['prescription_note']);
                         }
                         else {
@@ -810,7 +945,6 @@ function populate_form_values(form_name) {
                         }
                     },
                     error:function () {
-                        console.log(data);
                         alert('There was an unexpected error when you try to login.');
                     }
                 });
@@ -822,6 +956,12 @@ function populate_form_values(form_name) {
 
 
 
+function update_tab_menu() {
+    $('.footer_buttons ul li.ui-block-a a').html('hi there');
+    $('.footer_buttons ul li.ui-block-a a').html('hi there');
+    $('.footer_buttons ul li.ui-block-a a').html('hi there');
+    $('.footer_buttons ul li.ui-block-a a').html('hi there');
+}
 
 
 /*
