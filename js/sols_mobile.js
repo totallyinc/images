@@ -1,25 +1,66 @@
-var originalCaller = null;
+// var originalCaller = null;
+var originalCaller = [];
+var loadIndex = 0;
 var img = null;
 alert(window.localStorage.getItem("user"));
 $(document).ready(function(){
-    // Now safe to use the PhoneGap API
-    $('.camera_image').click(function(e){
+  // Now safe to use the PhoneGap API
+  $('.camera_image').click(function(e){
+    function captureSuccess(mediaFiles) {
+      function uploadFiles() {
+                // var url = "http://qa.sols.co/api/api_update_patient_foot_images?format=jsonp&image_id="+originalCaller.attr('id')+'&'+patient.api_data()+'&'+reseller.api_data();
+        var url = "http://qa.sols.co/api/api_update_patient_foot_images?format=jsonp&image_id="+$(this).attr('id')+'&'+patient.api_data()+'&'+reseller.api_data();
         try {
-            originalCaller = $(this);
-            navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
-            window.localStorage.setItem('id',$(this).attr('id'));
+          var ft = new FileTransfer();
+          path = img.fullPath;
+          name = img.name;
+                    //navigator.notification.alert(window['localStorage'].id);
+          ft.upload(path,
+            url,
+            function(result) {
+              //originalCaller.attr("src",path);
+              $(this).attr("src",path);
+            },
+            function(error) {
+                            // originalCaller.attr('src','img/broken-link-image.jpg');
+              $(this).attr("src","img/broken-link-image.jpg");
+              navigator.notification.alert('Error uploading image, please try again');
+            },
+            {   fileKey : originalCaller.attr('id'),
+                params:{ 'shoe_size':'1' }
+            });
         }
-        catch (err) {
-            alert("An error occurred during capture: " + err + "\nMake sure your mobile device is supported.", null, "Uh oh!");
+        catch(err){  
+          navigator.notification.alert("Exception: " + err);  
         }
-    });
+      }
+      try {
+        img = mediaFiles[0];
+                //originalCaller.attr("src",'img/loading.gif');
+        $(this).attr("src", "img/loading.gif");
+        uploadFiles();
+      }
+      catch (err) { 
+        navigator.notification.alert("success Error: " + err); 
+      }
+    }
+    try{
+            // originalCaller = $(this);
+      // originalCaller.push($(this));
+      navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
+      window.localStorage.setItem('id',$(this).attr('id'));
+    }
+    catch (err) {
+      alert("An error occurred during capture: " + err + "\nMake sure your mobile device is supported.", null, "Uh oh!");
+    }
+  });
 });
 
 function captureSuccess(mediaFiles) {
     try {
         img = mediaFiles[0];
         //originalCaller.attr("src",'img/loading.gif');
-        $(this).attr("src","img/loading.gif");
+        originalCaller[loadIndex].attr("src", "img/loading.gif");
         uploadFiles();
     }
     catch (err) { navigator.notification.alert("success Error: " + err); }
@@ -28,33 +69,6 @@ function captureSuccess(mediaFiles) {
 function captureError(error) {
     var msg = "An error occurred during capture: " + error;
     navigator.notification.alert(msg, null, "Uh oh!");
-}
-
-function uploadFiles() {
-    // var url = "http://qa.sols.co/api/api_update_patient_foot_images?format=jsonp&image_id="+originalCaller.attr('id')+'&'+patient.api_data()+'&'+reseller.api_data();
-    var url = "http://qa.sols.co/api/api_update_patient_foot_images?format=jsonp&image_id="+$(this).attr('id')+'&'+patient.api_data()+'&'+reseller.api_data();
-    try {
-        var ft = new FileTransfer();
-        path = img.fullPath;
-        name = img.name;
-        //navigator.notification.alert(window['localStorage'].id);
-        ft.upload(path,
-            url,
-            function(result) {
-                //originalCaller.attr("src",path);
-                $(this.attr).attr("src",path);
-            },
-            function(error) {
-                // originalCaller.attr('src','img/broken-link-image.jpg');
-                $(this).attr('src','img/broken-link-image.jpg');
-                navigator.notification.alert('Error uploading image, please try again');
-            },
-            {   fileKey : originalCaller.attr('id'),
-                params:{ 'shoe_size':'1' }
-            }
-        );
-    }
-    catch(err){  navigator.notification.alert("Exception: " + err);  }
 }
 
 
