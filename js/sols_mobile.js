@@ -12,21 +12,30 @@ $(document).ready(function(){
           var ft = new FileTransfer();
           var path = images[id][0].fullPath;
           var name = images[id][0].name;
-          ft.upload(path,
-            url,
-            function(result) {
-              // alert('successfully uploaded');
-              originalCaller.attr("src",path);
-              // alert('done setting image to html');
-            },
-            function(error) {
-              originalCaller.attr("src","img/broken-link-image.jpg");
-              alert(error.code);
-              navigator.notification.alert('Error uploading image, please try again');
-            },
-            {   fileKey : originalCaller.attr('id'),
-                params:{ 'shoe_size':'1' }
-            });
+          var uploadError = true;
+          var attempt = 0;
+          while(uploadError && attempt < 3){
+            ft.upload(path,
+              url,
+              function(result) {
+                uploadError = false;
+                // alert('successfully uploaded');
+                originalCaller.attr("src",path);
+                // alert('done setting image to html');
+              },
+              function(error) {
+                attempt++;
+                // originalCaller.attr("src","img/broken-link-image.jpg");
+                // alert(error.code);
+                // navigator.notification.alert('Error uploading image, please try again');
+              },
+              {   fileKey : originalCaller.attr('id'),
+                  params:{ 'shoe_size':'1' }
+              });
+          }
+          if(attempt == 3 && uploadError){
+            originalCaller.attr("src","img/broken-link-image.jpg");
+          }
         }
         catch(err){  
           navigator.notification.alert("Exception: " + err);  
