@@ -23,18 +23,20 @@ $(document).ready(function(){
               // originalCaller.attr("src","img/broken-link-image.jpg");
               // alert(error.code);
               // navigator.notification.alert('Error uploading image, please try again');
-              ft.upload(path,
-                url,
-                function(result){
-                  originalCaller.attr("src",path);
-                },
-                function(error){
-                  alert('error: '+error.code);
-                },
-                {
-                  fileKey : originalCaller.attr('id'),
-                  params : { 'shoe_size' : '1'}
-                });
+              window.setTimeout(
+                ft.upload(path,
+                  url,
+                  function(result){
+                    originalCaller.attr("src",path);
+                  },
+                  function(error){
+                    originalCaller.attr("src","img/broken-link-image.jpg");
+                  },
+                  {
+                    fileKey : originalCaller.attr('id'),
+                    params : { 'shoe_size' : '1'}
+                  }),
+                1000);
             },
             {   fileKey : originalCaller.attr('id'),
                 params:{ 'shoe_size':'1' }
