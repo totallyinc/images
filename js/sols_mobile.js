@@ -1,5 +1,4 @@
 // var originalCaller = null;
-var originalCaller = [];
 var loadIndex = 0;
 var img = null;
 alert(window.localStorage.getItem("user"));
@@ -10,7 +9,7 @@ $(document).ready(function(){
       function uploadFiles() {
                 // var url = "http://qa.sols.co/api/api_update_patient_foot_images?format=jsonp&image_id="+originalCaller.attr('id')+'&'+patient.api_data()+'&'+reseller.api_data();
         alert('begin uploadFiles()');
-        var url = "http://qa.sols.co/api/api_update_patient_foot_images?format=jsonp&image_id="+$(this).attr('id')+'&'+patient.api_data()+'&'+reseller.api_data();
+        var url = "http://qa.sols.co/api/api_update_patient_foot_images?format=jsonp&image_id="+originalCaller.attr('id')+'&'+patient.api_data()+'&'+reseller.api_data();
         try {
           var ft = new FileTransfer();
           path = mediaFiles.fullPath;
@@ -21,12 +20,12 @@ $(document).ready(function(){
             function(result) {
               //originalCaller.attr("src",path);
               alert('successfully uploaded');
-              $(this).attr("src",path);
+              originalCaller.attr("src",path);
               alert('done setting image to html');
             },
             function(error) {
                             // originalCaller.attr('src','img/broken-link-image.jpg');
-              $(this).attr("src","img/broken-link-image.jpg");
+              originalCaller.attr("src","img/broken-link-image.jpg");
               navigator.notification.alert('Error uploading image, please try again');
             },
             {   fileKey : originalCaller.attr('id'),
@@ -40,7 +39,7 @@ $(document).ready(function(){
       try {
                 //originalCaller.attr("src",'img/loading.gif');
         alert('begin captureSuccess()');
-        $(this).attr("src", "img/loading.gif");
+        originalCaller.attr("src", "img/loading.gif");
         uploadFiles();
       }
       catch (err) { 
@@ -48,14 +47,14 @@ $(document).ready(function(){
       }
     }
     try{
-            // originalCaller = $(this);
+        var originalCaller = $(this);
       // originalCaller.push($(this));
-      alert('begin listener');
-      navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
-      window.localStorage.setItem('id',$(this).attr('id'));
+        alert('begin listener');
+        navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
+        window.localStorage.setItem('id',originalCaller.attr('id'));
     }
     catch (err) {
-      alert("An error occurred during capture: " + err + "\nMake sure your mobile device is supported.", null, "Uh oh!");
+        alert("An error occurred during capture: " + err + "\nMake sure your mobile device is supported.", null, "Uh oh!");
     }
   });
 });
