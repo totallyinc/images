@@ -12,8 +12,8 @@ $(document).ready(function(){
         var url = "http://qa.sols.co/api/api_update_patient_foot_images?format=jsonp&image_id="+originalCaller.attr('id')+'&'+patient.api_data()+'&'+reseller.api_data();
         try {
           var ft = new FileTransfer();
-          path = mediaFiles.fullPath;
-          name = mediaFiles.name;
+          path = mediaFiles[0].fullPath;
+          name = mediaFiles[0].name;
                     //navigator.notification.alert(window['localStorage'].id);
           ft.upload(path,
             url,
