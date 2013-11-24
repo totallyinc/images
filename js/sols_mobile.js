@@ -9,8 +9,8 @@ $(document).ready(function(){
         // alert('begin uploadFiles()');
         var url = "http://qa.sols.co/api/api_update_patient_foot_images?format=jsonp&image_id="+originalCaller.attr('id')+'&'+patient.api_data()+'&'+reseller.api_data();
         var ft = new FileTransfer();
-        var path = mediaFiles[0].fullPath;
-        var name = mediaFiles[0].name;
+        var path = images[id][0].fullPath;
+        var name = images[id][0].name;
         ft.upload(path,
           url,
           function(result) {
