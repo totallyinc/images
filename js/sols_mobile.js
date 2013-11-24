@@ -1,30 +1,23 @@
-// var originalCaller = null;
-var loadIndex = 0;
-var img = null;
 alert(window.localStorage.getItem("user"));
 $(document).ready(function(){
   // Now safe to use the PhoneGap API
   $('.camera_image').click(function(e){
     function captureSuccess(mediaFiles) {
       function uploadFiles() {
-                // var url = "http://qa.sols.co/api/api_update_patient_foot_images?format=jsonp&image_id="+originalCaller.attr('id')+'&'+patient.api_data()+'&'+reseller.api_data();
-        alert('begin uploadFiles()');
+        // alert('begin uploadFiles()');
         var url = "http://qa.sols.co/api/api_update_patient_foot_images?format=jsonp&image_id="+originalCaller.attr('id')+'&'+patient.api_data()+'&'+reseller.api_data();
         try {
           var ft = new FileTransfer();
           path = mediaFiles[0].fullPath;
           name = mediaFiles[0].name;
-                    //navigator.notification.alert(window['localStorage'].id);
           ft.upload(path,
             url,
             function(result) {
-              //originalCaller.attr("src",path);
-              alert('successfully uploaded');
+              // alert('successfully uploaded');
               originalCaller.attr("src",path);
-              alert('done setting image to html');
+              // alert('done setting image to html');
             },
             function(error) {
-                            // originalCaller.attr('src','img/broken-link-image.jpg');
               originalCaller.attr("src","img/broken-link-image.jpg");
               navigator.notification.alert('Error uploading image, please try again');
             },
@@ -37,8 +30,7 @@ $(document).ready(function(){
         }
       }
       try {
-                //originalCaller.attr("src",'img/loading.gif');
-        alert('begin captureSuccess()');
+        // alert('begin captureSuccess()');
         originalCaller.attr("src", "img/loading.gif");
         uploadFiles();
       }
@@ -48,8 +40,7 @@ $(document).ready(function(){
     }
     try{
         var originalCaller = $(this);
-      // originalCaller.push($(this));
-        alert('begin listener');
+        // alert('begin listener');
         navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
         window.localStorage.setItem('id',originalCaller.attr('id'));
     }
