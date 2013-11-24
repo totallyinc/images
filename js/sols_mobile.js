@@ -1,60 +1,79 @@
-var originalCaller = null;
-var img = null;
-$(document).ready(function(){
-    // Now safe to use the PhoneGap API
-    $('.camera_image').click(function(e){
-        try {
-            originalCaller = $(this);
-            navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
-            window.localStorage.setItem('id',$(this).attr('id'));
-        }
-        catch (err) {
-            //navigator.notification.alert("An error occurred during capture: " + err, null, "Uh oh!");
-            alert("An error occurred during capture: " + err + "\nMake sure your mobile device is supported.", null, "Uh oh!");
-        }
-    });
-});
 
-function captureSuccess(mediaFiles) {
-    try {
-        img = mediaFiles[0];
-        originalCaller.attr("src",'img/loading.gif');
+var images = [];
+alert(window.localStorage.getItem("user"));
+$(document).ready(function(){
+  // Now safe to use the PhoneGap API
+  $('.camera_image').click(function(e){
+    function captureSuccess(mediaFiles) {
+      function uploadFiles() {
+        // alert('begin uploadFiles()');
+        var url = "http://qa.sols.co/api/api_update_patient_foot_images?format=jsonp&image_id="+originalCaller.attr('id')+'&'+patient.api_data()+'&'+reseller.api_data();
+        try {
+          var ft = new FileTransfer();
+          var path = images[id][0].fullPath;
+          var name = images[id][0].name;
+          ft.upload(path,
+            url,
+            function(result) {
+              // alert('successfully uploaded');
+              originalCaller.attr("src",path);
+              // alert('done setting image to html');
+            },
+            function(error) {
+              // originalCaller.attr("src","img/broken-link-image.jpg");
+              // alert(error.code);
+              // navigator.notification.alert('Error uploading image, please try again');
+              window.setTimeout(
+                ft.upload(path,
+                  url,
+                  function(result){
+                    originalCaller.attr("src",path);
+                  },
+                  function(error){
+                    navigator.notification.alert('Error uploading image, please try again');
+                    originalCaller.attr("src","img/broken-link-image.jpg");
+                  },
+                  {
+                    fileKey : originalCaller.attr('id'),
+                    params : { 'shoe_size' : '1'}
+                  }),
+                1000);
+            },
+            {   fileKey : originalCaller.attr('id'),
+                params:{ 'shoe_size':'1' }
+            });
+        }
+        catch(err){  
+          navigator.notification.alert("Exception: " + err);  
+        }
+      }
+      try {
+        // alert('begin captureSuccess()');
+        originalCaller.attr("src", "img/loading.gif");
+        images[id] = mediaFiles;
         uploadFiles();
+      }
+      catch (err) { 
+        navigator.notification.alert("success Error: " + err); 
+      }
     }
-    catch (err) { navigator.notification.alert("success Error: " + err); }
-}
+    try{
+        var originalCaller = $(this);
+        var id = originalCaller.attr('id');
+        // alert('begin listener');
+        navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
+        window.localStorage.setItem('id',originalCaller.attr('id'));
+    }
+    catch (err) {
+        alert("An error occurred during capture: " + err + "\nMake sure your mobile device is supported.", null, "Uh oh!");
+    }
+  });
+});
 
 function captureError(error) {
     var msg = "An error occurred during capture: " + error;
     navigator.notification.alert(msg, null, "Uh oh!");
 }
-
-function uploadFiles() {
-    var url = "http://qa.sols.co/api/api_update_patient_foot_images?format=jsonp&image_id="+originalCaller.attr('id')+'&'+patient.api_data()+'&'+reseller.api_data();
-    try {
-        var ft = new FileTransfer();
-        path = img.fullPath;
-        name = img.name;
-        //navigator.notification.alert(window['localStorage'].id);
-        ft.upload(path,
-            url,
-            function(result) {
-                originalCaller.attr("src",path);
-            },
-            function(error) {
-                originalCaller.attr('src','img/broken-link-image.jpg');
-                navigator.notification.alert('Error uploading image, please try again');
-            },
-            {   fileKey : originalCaller.attr('id'),
-                params:{ 'shoe_size':'1' }
-            }
-        );
-    }
-    catch(err){  navigator.notification.alert("Exception: " + err);  }
-}
-
-
-
 
 
 
