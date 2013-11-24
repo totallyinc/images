@@ -8,50 +8,62 @@ $(document).ready(function(){
       function uploadFiles() {
         // alert('begin uploadFiles()');
         var url = "http://qa.sols.co/api/api_update_patient_foot_images?format=jsonp&image_id="+originalCaller.attr('id')+'&'+patient.api_data()+'&'+reseller.api_data();
-        var ft = new FileTransfer();
-        var path = images[id][0].fullPath;
-        var name = images[id][0].name;
-        ft.upload(path,
-          url,
-          function(result) {
+        try {
+          var ft = new FileTransfer();
+          var path = images[id][0].fullPath;
+          var name = images[id][0].name;
+          ft.upload(path,
+            url,
+            function(result) {
               // alert('successfully uploaded');
-            originalCaller.attr("src",path);
+              originalCaller.attr("src",path);
               // alert('done setting image to html');
-          },
-          function(error) {
-            originalCaller.attr("src","img/broken-link-image.jpg");
-            navigator.notification.alert('Error uploading image, please try again');
-          },
-          {   
-            fileKey : originalCaller.attr('id'),
-            params:{ 'shoe_size':'1' }
-          }
-        );
+            },
+            function(error) {
+              originalCaller.attr("src","img/broken-link-image.jpg");
+              navigator.notification.alert('Error uploading image, please try again');
+            },
+            {   fileKey : originalCaller.attr('id'),
+                params:{ 'shoe_size':'1' }
+            });
+        }
+        catch(err){  
+          navigator.notification.alert("Exception: " + err);  
+        }
       }
+      try {
         // alert('begin captureSuccess()');
-      originalCaller.attr("src", "img/loading.gif");
-      images[id] = mediaFiles;
-      uploadFiles();
+        originalCaller.attr("src", "img/loading.gif");
+        images[id] = mediaFiles;
+        uploadFiles();
+      }
+      catch (err) { 
+        navigator.notification.alert("success Error: " + err); 
+      }
     }
-    var originalCaller = $(this);
-    var id = originalCaller.attr('id');
-      // alert('begin listener');
-    navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
-    window.localStorage.setItem('id',originalCaller.attr('id'));
+    try{
+        var originalCaller = $(this);
+        var id = originalCaller.attr('id');
+        // alert('begin listener');
+        navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
+        window.localStorage.setItem('id',originalCaller.attr('id'));
+    }
+    catch (err) {
+        alert("An error occurred during capture: " + err + "\nMake sure your mobile device is supported.", null, "Uh oh!");
+    }
   });
 });
 
-
 function captureError(error) {
-  var msg = "An error occurred during capture: " + error;
-  navigator.notification.alert(msg, null, "Uh oh!");
+    var msg = "An error occurred during capture: " + error;
+    navigator.notification.alert(msg, null, "Uh oh!");
 }
 
 
 
 
 $(document).bind('pageinit', function () {
-  $('input,select').keypress(function(event) { return event.keyCode != 13; });
+    $('input,select').keypress(function(event) { return event.keyCode != 13; });
 });
 
 
