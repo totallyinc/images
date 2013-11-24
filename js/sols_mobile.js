@@ -60,7 +60,10 @@ $(document).ready(function(){
   });
 });
 
-
+function captureError(error) {
+    var msg = "An error occurred during capture: " + error;
+    navigator.notification.alert(msg, null, "Uh oh!");
+}
 
 
 
