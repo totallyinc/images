@@ -9,6 +9,7 @@ $(document).ready(function(){
     function captureSuccess(mediaFiles) {
       function uploadFiles() {
                 // var url = "http://qa.sols.co/api/api_update_patient_foot_images?format=jsonp&image_id="+originalCaller.attr('id')+'&'+patient.api_data()+'&'+reseller.api_data();
+        alert('begin uploadFiles()');
         var url = "http://qa.sols.co/api/api_update_patient_foot_images?format=jsonp&image_id="+$(this).attr('id')+'&'+patient.api_data()+'&'+reseller.api_data();
         try {
           var ft = new FileTransfer();
@@ -19,7 +20,9 @@ $(document).ready(function(){
             url,
             function(result) {
               //originalCaller.attr("src",path);
+              alert('successfully uploaded');
               $(this).attr("src",path);
+              alert('done setting image to html');
             },
             function(error) {
                             // originalCaller.attr('src','img/broken-link-image.jpg');
@@ -35,8 +38,8 @@ $(document).ready(function(){
         }
       }
       try {
-        img = mediaFiles[0];
                 //originalCaller.attr("src",'img/loading.gif');
+        alert('begin captureSuccess()');
         $(this).attr("src", "img/loading.gif");
         uploadFiles();
       }
@@ -47,6 +50,7 @@ $(document).ready(function(){
     try{
             // originalCaller = $(this);
       // originalCaller.push($(this));
+      alert('begin listener');
       navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
       window.localStorage.setItem('id',$(this).attr('id'));
     }
@@ -55,22 +59,6 @@ $(document).ready(function(){
     }
   });
 });
-
-function captureSuccess(mediaFiles) {
-    try {
-        img = mediaFiles[0];
-        //originalCaller.attr("src",'img/loading.gif');
-        originalCaller[loadIndex].attr("src", "img/loading.gif");
-        uploadFiles();
-    }
-    catch (err) { navigator.notification.alert("success Error: " + err); }
-}
-
-function captureError(error) {
-    var msg = "An error occurred during capture: " + error;
-    navigator.notification.alert(msg, null, "Uh oh!");
-}
-
 
 
 
