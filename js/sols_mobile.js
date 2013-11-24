@@ -1,3 +1,5 @@
+
+var images = [];
 alert(window.localStorage.getItem("user"));
 $(document).ready(function(){
   // Now safe to use the PhoneGap API
@@ -8,8 +10,8 @@ $(document).ready(function(){
         var url = "http://qa.sols.co/api/api_update_patient_foot_images?format=jsonp&image_id="+originalCaller.attr('id')+'&'+patient.api_data()+'&'+reseller.api_data();
         try {
           var ft = new FileTransfer();
-          path = mediaFiles[0].fullPath;
-          name = mediaFiles[0].name;
+          var path = images[id][0].fullPath;
+          var name = images[id][0].name;
           ft.upload(path,
             url,
             function(result) {
@@ -32,6 +34,7 @@ $(document).ready(function(){
       try {
         // alert('begin captureSuccess()');
         originalCaller.attr("src", "img/loading.gif");
+        images[id] = mediaFiles;
         uploadFiles();
       }
       catch (err) { 
@@ -40,6 +43,7 @@ $(document).ready(function(){
     }
     try{
         var originalCaller = $(this);
+        var id = originalCaller.attr('id');
         // alert('begin listener');
         navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
         window.localStorage.setItem('id',originalCaller.attr('id'));
