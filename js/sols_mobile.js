@@ -10,11 +10,17 @@ $(document).ready(function(){
         var url = "http://qa.sols.co/api/api_update_patient_foot_images?format=jsonp&image_id="+originalCaller.attr('id')+'&'+patient.api_data()+'&'+reseller.api_data();
         try {
           var ft = new FileTransfer();
+          var p = document.createElement('p');
+          originalCaller.parent().appendChild(p);
+          ft.onprogress = function(progressEvent) {
+            p.innerHTML = progressEvent.loaded;
+          }
           var path = images[id][0].fullPath;
           var name = images[id][0].name;
           ft.upload(path,
             url,
             function(result) {
+              originalCaller.parent().splice(originalCaller.parent().length-1);
               // alert('successfully uploaded');
               originalCaller.attr("src",path);
               // alert('done setting image to html');
@@ -27,9 +33,11 @@ $(document).ready(function(){
                 ft.upload(path,
                   url,
                   function(result){
+                    originalCaller.parent().splice(originalCaller.parent().length-1);
                     originalCaller.attr("src",path);
                   },
                   function(error){
+                    navigator.notification.alert('Error uploading image, please try again');
                     originalCaller.attr("src","img/broken-link-image.jpg");
                   },
                   {
