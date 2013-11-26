@@ -12,9 +12,16 @@ $(document).ready(function(){
           var ft = new FileTransfer();
           var path = images[id][0].fullPath;
           var name = images[id][0].name;
+          var p = document.createElement('p');
+          originalCaller.parent().appendChild(p);
+          ft.onprogress = function(progressEvent) {
+            var load = progressEvent.loaded;
+            originalCaller.parent().children()[originalCaller.parent().children().length-1].innerHTML = load;
+          }
           ft.upload(path,
             url,
             function(result) {
+              originalCaller.parent().children()[originalCaller.parent().children().length-1].style.display = 'none';
               // alert('successfully uploaded');
               originalCaller.attr("src",path);
               // alert('done setting image to html');
