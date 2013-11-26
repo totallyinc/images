@@ -12,16 +12,7 @@ $(document).ready(function(){
           var path = images[id][0].fullPath;
           var name = images[id][0].name;
           var p = document.createElement('p');
-          p.attr('class') = 'percentages';
-          var contains = false;
-          for(var obj in originalCaller).parent().children()) {
-            if(obj.className == 'percentages') {
-              contains = true;
-            }
-          }
-          if(!contains)
-            originalCaller.parent().append(p);
-          
+          originalCaller.parent().append(p);
           var percent = originalCaller.parent().children()[originalCaller.parent().children().length-1];
           percent.style.position = 'relative';
           percent.style.top = '-90px';
