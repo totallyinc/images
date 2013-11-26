@@ -17,7 +17,7 @@ $(document).ready(function(){
           percent.style.position = 'relative';
           percent.style.top = '-90px';
           ft.onprogress = function(progressEvent) {
-            var load = Math.round(progressEvent.loaded*100 / progressEvent.total);
+            var load = Math.round(100*(progressEvent.loaded / progressEvent.total));
             percent.innerHTML = load;
           }
           ft.upload(path,
