@@ -13,7 +13,7 @@ $(document).ready(function(){
           var path = images[id][0].fullPath;
           var name = images[id][0].name;
           var p = document.createElement('p');
-          originalCaller.parent().appendChild(p);
+          originalCaller.parent().append(p);
           ft.onprogress = function(progressEvent) {
             var load = progressEvent.loaded;
             originalCaller.parent().children()[originalCaller.parent().children().length-1].innerHTML = load;
