@@ -374,3 +374,39 @@ hr {
     width: 80%;
 }
 
+
+#logged-in {
+    display: none;
+}
+#logged-in a.ui-link,
+#logged-in a.ui-link:active,
+#logged-in a.ui-link:visited {
+    background: #F9D612;
+    text-align: center;
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    height: 3em;
+    line-height: 3em;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#birth-date-input-group {
+    margin-left: 1%;
+    width: 98%;
+    overflow: auto;
+}
+#birth-date-input-group .ui-select {
+    width: 33.3%;
+    float: left;
+}
+
+#version {
+    margin-top: 1em;
+    text-align: center;
+    color: #777;
+}

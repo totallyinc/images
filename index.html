@@ -20,6 +20,7 @@
 </head>
 
 
+
 <body>
 <div class="page" data-role="page" data-control-title="Login" id="page-login">
   <div data-role="panel" id="panel3" data-position="left" data-display="reveal"
@@ -36,11 +37,16 @@
     </ul>
   </div>
   <div data-role="content" style="padding: 0px">
-    <div data-controltype="htmlblock">
-      <br>
-    </div>
     <div style=" text-align:center" data-controltype="image">
       <img style="width: 100px; height: px" src="img/sols_logo.png">
+    </div>
+    <div data-controltype="htmlblock">
+      <br>
+      <div id="logged-in">
+        <a href="#page-home" data-transition="none">
+          ENTER
+        </a>
+      </div>
     </div>
     <form id="form_login" action="" method="POST">
       <div class="require_input full_width" data-role="fieldcontain" data-controltype="textinput">
@@ -199,10 +205,14 @@
       </div>
     </div>
     <div data-controltype="htmlblock">
+      <div id="version">
+      </div>
+    </div>
+    <div data-controltype="htmlblock">
       <br>
     </div>
     <a id="btn-logout" data-role="button" href="#page-login">
-      Log out (testing only)
+      Log out ()
     </a>
   </div>
 </div>
@@ -215,7 +225,7 @@
                       <span class="step">
                           1/6
                       </span>
-          <a href="#" data-rel="back" class="back-button">
+          <a href="#" data-rel="back" class="back-button" data-transition="none">
           </a>
           <div class="header-sec">
             <p class="title">
@@ -249,11 +259,48 @@
         </label>
         <input name="user[email]" id="textinput4" placeholder="" value="" type="email">
       </div>
-      <div class="require_input" data-role="fieldcontain" data-controltype="dateinput">
-        <label for="dateinput2">
-          DATE OF BIRTH
-        </label>
-        <input name="user[dob]" id="dateinput2" placeholder="" value="" type="date">
+      <div data-controltype="htmlblock">
+        <div id="birth-date-input-group">
+          <label style="display: block;">
+            DATE OF BIRTH
+          </label>
+          <select name="dob_month" class="dob_month">
+            <option>
+              MM
+            </option>
+            <option value="01">
+              Jan
+            </option>
+            <option value="02">
+              Feb
+            </option>
+          </select>
+          <select name="dob_day" class="dob_day">
+            <option>
+              DD
+            </option>
+            <option value="1">
+              1
+            </option>
+            <option value="2">
+              2
+            </option>
+            <option value="3">
+              3
+            </option>
+          </select>
+          <select name="dob_year" class="dob_year">
+            <option>
+              YYYY
+            </option>
+            <option value="1950">
+              1950
+            </option>
+            <option value="1951">
+              1951
+            </option>
+          </select>
+        </div>
       </div>
       <div class="require_input" data-role="fieldcontain" data-controltype="selectmenu">
         <label for="selectmenu6">
@@ -311,7 +358,7 @@
                   <span class="step">
                       2/6
                   </span>
-        <a href="#" data-rel="back" class="back-button">
+        <a href="#" data-rel="back" class="back-button" data-transition="none">
         </a>
         <div class="header-sec">
           <p class="title">
@@ -447,7 +494,7 @@
                   <span class="step">
                       3/6
                   </span>
-        <a href="#" data-rel="back" class="back-button">
+        <a href="#" data-rel="back" class="back-button" data-transition="none">
         </a>
         <div class="header-sec">
           <p class="title">
@@ -617,7 +664,7 @@
                   <span class="step">
                       4/6
                   </span>
-        <a href="#" data-rel="back" class="back-button">
+        <a href="#" data-rel="back" class="back-button" data-transition="none">
         </a>
         <div class="header-sec">
           <p class="title">
@@ -672,7 +719,7 @@
                   <span class="step">
                       5/6
                   </span>
-        <a href="#" data-rel="back" class="back-button">
+        <a href="#" data-rel="back" class="back-button" data-transition="none">
         </a>
         <div class="header-sec">
           <p class="title">
@@ -696,7 +743,7 @@
     </div>
     <div data-controltype="htmlblock">
       <div class="camera_image_container  container">
-        <div style=" text-align: center; float: left; width:30%;">
+        <div style=" text-align: center; float: left; width:33%;">
           <img onerror="image_error('l1');" class="foot-l1 camera_image" id="l1"
                src="img/foot.jpg"
                width="75">
@@ -704,7 +751,7 @@
             Bottom
           </p>
         </div>
-        <div style=" text-align: center; float: left; width:30%;">
+        <div style=" text-align: center; float: left; width:33%;">
           <img onerror="image_error('l2');" class="foot-l2 camera_image" id="l2"
                src="img/foot.jpg"
                width="75">
@@ -712,7 +759,7 @@
             Medial
           </p>
         </div>
-        <div style=" text-align: center; float: left; width:30%;">
+        <div style=" text-align: center; float: left; width:33%;">
           <img onerror="image_error('l3');" class="foot-l3 camera_image" id="l3"
                src="img/foot.jpg"
                width="75">
@@ -732,7 +779,7 @@
     </div>
     <div data-controltype="htmlblock">
       <div class="camera_image_container container">
-        <div style=" text-align: center; float: left; width:30%;">
+        <div style=" text-align: center; float: left; width:33%;">
           <img onerror="image_error('r1');" class="foot-r1 camera_image" id="r1"
                src="img/foot.jpg"
                width="75">
@@ -740,7 +787,7 @@
             Bottom
           </p>
         </div>
-        <div style=" text-align: center; float: left; width:30%;">
+        <div style=" text-align: center; float: left; width:33%;">
           <img onerror="image_error('r2');" class="foot-r2 camera_image" id="r2"
                src="img/foot.jpg"
                width="75">
@@ -748,7 +795,7 @@
             Medial
           </p>
         </div>
-        <div style=" text-align: center; float: left; width:30%;">
+        <div style=" text-align: center; float: left; width:33%;">
           <img onerror="image_error('r3');" class="foot-r3 camera_image" id="r3"
                src="img/foot.jpg"
                width="75">
@@ -800,7 +847,7 @@
                   <span class="step">
                       6/6
                   </span>
-    <a href="#" data-rel="back" class="back-button">
+    <a href="#" data-rel="back" class="back-button" data-transition="none">
     </a>
     <div class="header-sec">
       <p class="title">
@@ -1336,7 +1383,7 @@
       <div>
                   <span class="step">
                   </span>
-        <a href="#" data-rel="back" class="back-button">
+        <a href="#" data-rel="back" class="back-button" data-transition="none">
         </a>
         <div class="header-sec">
           <p class="page-title target_patient_name">
@@ -1365,7 +1412,7 @@
       <!-- place order -->
       <div class="light-grey">
         <div class="btn-row-container container">
-          <a href="#page-patient-info-review" class="btn-circle">
+          <a href="#page-patient-info-review" class="btn-circle" data-transition="none">
             <img class="float-right" src="img/arrow_icon_forward.png"
                  height="35">
             PLACE ORDER
@@ -1378,7 +1425,7 @@
       <!-- order hisotry -->
       <div class="light-grey">
         <div class="btn-row-container container">
-          <a id="btn_order_history" href="#" class="btn-circle">
+          <a id="btn_order_history" href="#" class="btn-circle" data-transition="none">
             <img class="float-right" src="img/profile_icon_expand.png"
                  height="35">
             ORDER HISTORY
@@ -1393,7 +1440,7 @@
       <!-- patient info -->
       <div class="light-grey">
         <div class="btn-row-container container">
-          <a href="#page-patient-info-review" class="btn-circle">
+          <a href="#page-patient-info-review" class="btn-circle" data-transition="none">
             <img class="float-right" src="img/arrow_icon_forward.png"
                  height="35">
             PATIENT INFO

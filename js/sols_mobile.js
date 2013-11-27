@@ -1,82 +1,89 @@
+function debug(msg) {
+    //console.log(msg);
+}
 
 var images = [];
 $(document).ready(function(){
-  // Now safe to use the PhoneGap API
-  $('.camera_image').click(function(e){
-    function captureSuccess(mediaFiles) {
-      function uploadFiles() {
-        // alert('begin uploadFiles()');
-        var url = "http://qa.sols.co/api/api_update_patient_foot_images?format=jsonp&image_id="+originalCaller.attr('id')+'&'+patient.api_data()+'&'+reseller.api_data();
-        try {
-          var ft = new FileTransfer();
-          var path = images[id][0].fullPath;
-          var name = images[id][0].name;
-          var p = document.createElement('p');
-          originalCaller.parent().append(p);
-          var percent = originalCaller.parent().children()[originalCaller.parent().children().length-1];
-          percent.style.position = 'relative';
-          percent.style.top = '-90px';
-          ft.onprogress = function(progressEvent) {
-            var load = Math.round(100*(progressEvent.loaded / progressEvent.total));
-            percent.innerHTML = load;
-          }
-          ft.upload(path,
-            url,
-            function(result) {
-              percent.style.display = 'none';
-              // alert('successfully uploaded');
-              originalCaller.attr("src",path);
-              // alert('done setting image to html');
-            },
-            function(error) {
-              // originalCaller.attr("src","img/broken-link-image.jpg");
-              // alert(error.code);
-              // navigator.notification.alert('Error uploading image, please try again');
-              window.setTimeout(
-                ft.upload(path,
-                  url,
-                  function(result){
-                    originalCaller.attr("src",path);
-                  },
-                  function(error){
-                    navigator.notification.alert('Error uploading image, please try again');
-                    originalCaller.attr("src","img/broken-link-image.jpg");
-                  },
-                  {
-                    fileKey : originalCaller.attr('id'),
-                    params : { 'shoe_size' : '1'}
-                  }),
-                1000);
-            },
-            {   fileKey : originalCaller.attr('id'),
-                params:{ 'shoe_size':'1' }
-            });
+
+    /*
+     // redirect login user to page-home instead of page-login
+     if (typeof $.mobile.activePage  != 'undefined') {
+     var current_page = $.mobile.activePage.attr("id");
+     if(current_page == 'page-login' && reseller.is_login()) {
+     pages.page_home();
+     actions.redirect('page-home');
+     }
+     } else {
+     debug('mobile active page is undefined.');
+     }
+     */
+
+    // Now safe to use the PhoneGap API
+    $('.camera_image').click(function(e){
+        function captureSuccess(mediaFiles) {
+            function uploadFiles() {
+                // alert('begin uploadFiles()');
+                var url = "http://qa.sols.co/api/api_update_patient_foot_images?format=jsonp&image_id="+originalCaller.attr('id')+'&'+patient.api_data()+'&'+reseller.api_data();
+                try {
+                    var ft = new FileTransfer();
+                    var path = images[id][0].fullPath;
+                    var name = images[id][0].name;
+                    ft.upload(path,
+                        url,
+                        function(result) {
+                            // alert('successfully uploaded');
+                            originalCaller.attr("src",path);
+                            // alert('done setting image to html');
+                        },
+                        function(error) {
+                            // originalCaller.attr("src","img/broken-link-image.jpg");
+                            // alert(error.code);
+                            // navigator.notification.alert('Error uploading image, please try again');
+                            window.setTimeout(
+                                ft.upload(path,
+                                    url,
+                                    function(result){
+                                        originalCaller.attr("src",path);
+                                    },
+                                    function(error){
+                                        navigator.notification.alert('Error uploading image, please try again');
+                                        originalCaller.attr("src","img/broken-link-image.jpg");
+                                    },
+                                    {
+                                        fileKey : originalCaller.attr('id'),
+                                        params : { 'shoe_size' : '1'}
+                                    }),
+                                1000);
+                        },
+                        {   fileKey : originalCaller.attr('id'),
+                            params:{ 'shoe_size':'1' }
+                        });
+                }
+                catch(err){
+                    navigator.notification.alert("Exception: " + err);
+                }
+            }
+            try {
+                // alert('begin captureSuccess()');
+                originalCaller.attr("src", "img/loading.gif");
+                images[id] = mediaFiles;
+                uploadFiles();
+            }
+            catch (err) {
+                navigator.notification.alert("success Error: " + err);
+            }
         }
-        catch(err){  
-          navigator.notification.alert("Exception: " + err);  
+        try{
+            var originalCaller = $(this);
+            var id = originalCaller.attr('id');
+            // alert('begin listener');
+            navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
+            window.localStorage.setItem('id',originalCaller.attr('id'));
         }
-      }
-      try {
-        // alert('begin captureSuccess()');
-        originalCaller.attr("src", "img/loading.gif");
-        images[id] = mediaFiles;
-        uploadFiles();
-      }
-      catch (err) { 
-        navigator.notification.alert("success Error: " + err); 
-      }
-    }
-    try{
-        var originalCaller = $(this);
-        var id = originalCaller.attr('id');
-        // alert('begin listener');
-        navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
-        window.localStorage.setItem('id',originalCaller.attr('id'));
-    }
-    catch (err) {
-        alert("An error occurred during capture: " + err + "\nMake sure your mobile device is supported.", null, "Uh oh!");
-    }
-  });
+        catch (err) {
+            alert("An error occurred during capture: " + err + "\nMake sure your mobile device is supported.", null, "Uh oh!");
+        }
+    });
 });
 
 function captureError(error) {
@@ -88,7 +95,20 @@ function captureError(error) {
 
 
 $(document).bind('pageinit', function () {
-    $('input,select').keypress(function(event) { return event.keyCode != 13; });
+    $('input,select').keypress(function(event) {
+        if(event.keyCode == 13) {
+            $('html, body').animate({
+                scrollTop:      $(this).offset().top
+            }, 1000);
+
+            $(this).blur();
+            $(this).parent().parent().next().children().children('.ui-input-text').focus();
+            event.preventDefault();
+//            $(this).parent().parent().next().children('.ui-field-contain .ui-input-text .ui-input-text').hide();
+        }
+        return event.keyCode != 13
+
+    });
 });
 
 
@@ -143,6 +163,7 @@ var forms = {
                     if (data.login) {
                         reseller.login(data);
                         //user_login(data);
+                        actions.hide_login_form();
                         actions.redirect('page-home');
                     }
                     else {
@@ -160,13 +181,15 @@ var forms = {
     form_patient_basic: function() {
         $('#form_patient_basic').submit(function () {
 
-            //            var block = $("#form_login input[name='user[last_name]']").val().length < 1;
-            //            block = block || $("#form_login input[name='user[first_name]']").val().length < 1;
-            //            if($("#form_login input[name='user[email]").val()); // check email
-            //            if(block) {
-            //                alert("Please enter your uesrname and password!");
-            //                return false;
-            //            }
+            if($("#form_patient_basic input[name='user[last_name]']").val().length < 1) {
+                alert("Please enter patient's first name!");
+                return false;
+            }
+            if($("#form_patient_basic select[name='dob_month']").val().length < 1) {
+                alert("Month is required!");
+                return false;
+            }
+
 
             var postData = $(this).serialize();
             $.ajax({
@@ -174,7 +197,7 @@ var forms = {
                 data:postData + '&' + reseller.api_data(),
                 url:api_url+'/api/api_patient_form_basic?format=jsonp',
                 success:function (data) {
-                    console.log(data);
+                    debug(data);
                     if (data.connected) {
                         if (data.new_customer_id) { // new customer id created.
                             var patient_user_id = data.new_customer_id;
@@ -189,7 +212,7 @@ var forms = {
                     }
                 },
                 error:function () {
-                    console.log(data);
+                    debug(data);
                     alert('There was an unexpected error when you try to login.');
                 }
             });
@@ -205,7 +228,7 @@ var forms = {
                 data:postData + '&patient_user_id=' + patient.get_user_id() + '&' + reseller.api_data(),
                 url:api_url+'/api/api_patient_form_about?format=jsonp',
                 success:function (data) {
-                    console.log(data);
+                    debug(data);
                     if (data.connected) {
                         actions.redirect('page-patient-form-foot-measurements');
                     }
@@ -214,7 +237,7 @@ var forms = {
                     }
                 },
                 error:function () {
-                    console.log(data);
+                    debug(data);
                     alert('There was an unexpected error when you try to login.');
                 }
             });
@@ -230,7 +253,7 @@ var forms = {
                 data:postData + '&patient_user_id=' + patient.get_user_id() + '&' + reseller.api_data(),
                 url:api_url+'/api/api_patient_form_measurements?format=jsonp',
                 success:function (data) {
-                    console.log(data);
+                    debug(data);
                     if (data.connected) {
                         actions.redirect('page-patient-form-note');
                     }
@@ -239,7 +262,7 @@ var forms = {
                     }
                 },
                 error:function () {
-                    console.log(data);
+                    debug(data);
                     alert('There was an unexpected error when you try to login.');
                 }
             });
@@ -255,7 +278,7 @@ var forms = {
                 data:postData + '&patient_user_id=' + patient.get_user_id() + '&' + reseller.api_data(),
                 url:api_url+'/api/api_patient_form_note?format=jsonp',
                 success:function (data) {
-                    console.log(data);
+                    debug(data);
                     if (data.connected) {
                         actions.redirect('page-patient-form-scan-foot');
                     }
@@ -264,7 +287,7 @@ var forms = {
                     }
                 },
                 error:function () {
-                    console.log(data);
+                    debug(data);
                     alert('There was an unexpected error when you try to login.');
                 }
             });
@@ -284,7 +307,7 @@ var forms = {
                 url:api_url+'/api/api_form_submit_order?format=jsonp',
                 success:function (data) {
                     if (data.connected) {
-                        console.log(data);
+                        debug(data);
                         alert('Thank for your order.');
                         actions.redirect('page-home');
                     }
@@ -293,7 +316,7 @@ var forms = {
                     }
                 },
                 error:function () {
-                    console.log(data);
+                    debug(data);
                     alert('There was an unexpected error when you try to login.');
                 }
             });
@@ -305,56 +328,61 @@ var forms = {
 var pages = {
     page_home: function() {
         var user_data = reseller.info();
-        $('#btn-logout').html('LOGOUT: '+user_data.username);
+        if(user_data != null) {
+            $('#btn-logout').html('LOGOUT: '+user_data.username);
 
-        // two ajax call to get patient count and order count
-        $.ajax({
-            dataType:'jsonp',
-            data:reseller.api_data(),
-            url:api_url+'/api/api_get_patients?format=jsonp',
-            success:function (data) {
-                if (data.connected) {
-                    if(data.patients.length) {
-                        $('.patient-count').html(data.patients.length);
-                    } else {
-                        $('.patient-count').html(0);
+
+            // two ajax call to get patient count and order count
+            $.ajax({
+                dataType:'jsonp',
+                data:reseller.api_data(),
+                url:api_url+'/api/api_get_patients?format=jsonp',
+                success:function (data) {
+                    if (data.connected) {
+                        if(data.patients.length) {
+                            $('.patient-count').html(data.patients.length);
+                        } else {
+                            $('.patient-count').html(0);
+                        }
+
                     }
-
-                }
-                else {
-                    alert('fail to connect');
-                }
-            },
-            error:function () {
-                console.log(data);
-                alert('There was an unexpected error.');
-            }
-        });
-
-
-        $.ajax({
-            dataType:'jsonp',
-            data:reseller.api_data(),
-            url:api_url+'/api/api_get_pickup?format=jsonp',
-            success:function (data) {
-                if (data.connected) {
-                    $('#pickup-list').html('');
-                    var pickups = data.pickup_order;
-                    if(data.pickup_order.length) {
-                        $('.pick-up-count').html(data.pickup_order.length);
-                    } else {
-                        $('.pick-up-count').html(0);
+                    else {
+                        alert('fail to connect');
                     }
+                },
+                error:function () {
+                    debug(data);
+                    alert('There was an unexpected error.');
                 }
-                else {
-                    alert('fail to connect');
+            });
+
+            $.ajax({
+                dataType:'jsonp',
+                data:reseller.api_data(),
+                url:api_url+'/api/api_get_pickup?format=jsonp',
+                success:function (data) {
+                    if (data.connected) {
+                        $('#pickup-list').html('');
+                        var pickups = data.pickup_order;
+                        if(data.pickup_order.length) {
+                            $('.pick-up-count').html(data.pickup_order.length);
+                        } else {
+                            $('.pick-up-count').html(0);
+                        }
+                    }
+                    else {
+                        alert('fail to connect');
+                    }
+                },
+                error:function () {
+                    debug(data);
+                    alert('There was an unexpected error.');
                 }
-            },
-            error:function () {
-                console.log(data);
-                alert('There was an unexpected error.');
-            }
-        });
+            });
+
+
+
+        }
 
 
     },
@@ -391,7 +419,7 @@ var pages = {
                 }
             },
             error:function () {
-                console.log(data);
+                debug(data);
                 alert('There was an unexpected error.');
             }
         });
@@ -430,7 +458,7 @@ var pages = {
             url:api_url+'/api/api_get_patient_info_for_order?format=jsonp',
             success:function (data) {
                 if (data.connected) {
-                    console.log(data['patient']);
+                    debug(data['patient']);
                     var patient_info = data['patient'];
 
                     patient_info['ref_gender_id'] = translate.ref_gender(patient_info['ref_gender_id']);
@@ -445,7 +473,7 @@ var pages = {
                 }
             },
             error:function () {
-                console.log(data);
+                debug(data);
                 alert('There was an unexpected error.');
             }
         });
@@ -487,7 +515,7 @@ var pages = {
                 }
             },
             error:function () {
-                console.log(data);
+                debug(data);
                 alert('There was an unexpected error.');
             }
         });
@@ -497,7 +525,7 @@ var pages = {
         patient.show_target_patient_name();
 
         if($('.patient-pickup.active').attr('data-pickup-order-id')) {
-            console.log( 'pickup order id: ' + $('.patient-pickup.active').attr('data-pickup-order-id'));
+            debug( 'pickup order id: ' + $('.patient-pickup.active').attr('data-pickup-order-id'));
         } else {
             actions.redirect('page-pickup');
             return false;
@@ -533,7 +561,7 @@ var pages = {
                 }
             },
             error:function () {
-                console.log(data);
+                debug(data);
                 alert('There was an unexpected error.');
             }
         });
@@ -547,7 +575,7 @@ var pages = {
                 if (data.connected) {
                     if(data['order_history'].length) {
                         var order_history = data['order_history'];
-                        console.log(order_history);
+                        debug(order_history);
                         var html = '';
                         for(var i in order_history) {
                             html += '<div style="border: 1px solid #ccc; margin: 3px;">';
@@ -567,7 +595,7 @@ var pages = {
                 }
             },
             error:function () {
-                console.log(data);
+                debug(data);
                 alert('There was an unexpected error.');
             }
         });
@@ -583,6 +611,7 @@ var buttons = {
         window.localStorage.clear();
         actions.redirect('page-login');
         actions.hide_footer_menu();
+        actions.show_login_form();
     },
 
     review_fits: function() {
@@ -592,7 +621,7 @@ var buttons = {
             data:reseller.api_data()+'&review=fits&order_id='+$('.patient-pickup.active').attr('data-pickup-order-id'),
             url:api_url+'/api/api_get_pickup_review?format=jsonp',
             success:function (data) {
-                console.log(data);
+                debug(data);
                 if (data.connected) {
                     alert('I am glad it fits.');
                     actions.redirect('page-home');
@@ -602,7 +631,7 @@ var buttons = {
                 }
             },
             error:function () {
-                console.log(data);
+                debug(data);
                 alert('There was an unexpected error.');
             }
         });
@@ -615,7 +644,7 @@ var buttons = {
             data:reseller.api_data()+'&review=remake_needed&order_id='+$('.patient-pickup.active').attr('data-pickup-order-id'),
             url:api_url+'/api/api_get_pickup_review?format=jsonp',
             success:function (data) {
-                console.log(data);
+                debug(data);
                 if (data.connected) {
                     alert('Sorry to hear that, we will contact you for the remake.');
                     actions.redirect('page-home');
@@ -625,7 +654,7 @@ var buttons = {
                 }
             },
             error:function () {
-                console.log(data);
+                debug(data);
                 alert('There was an unexpected error.');
             }
         });
@@ -641,6 +670,11 @@ var actions = {
     reset_form_value: function(form_id) { /* reset add new patient form */
         actions.update_submit_btn_label('.btn_create_patient', "CREATE PATIENT");
         $(':input','#'+form_id).not(':button, :submit, :reset, :hidden').val('').removeAttr('checked').removeAttr('selected');
+        $('#'+form_id+' div.ui-select span.ui-btn-inner span.ui-btn-text').html('--');
+
+        $('#birth-date-input-group div.ui-select:eq(0) span.ui-btn-text').html('MM');
+        $('#birth-date-input-group div.ui-select:eq(1) span.ui-btn-text').html('DD');
+        $('#birth-date-input-group div.ui-select:eq(2) span.ui-btn-text').html('YYYY');
     },
 
     update_submit_btn_label: function(selector, new_label) {
@@ -655,6 +689,16 @@ var actions = {
             $( "#patients_list div" ).hide();
             $( "#patients_list div:contains('"+str+"')" ).show();
         }
+    },
+
+    show_login_form: function() {
+        $('#logged-in').hide();
+        $('#form_login').show();
+    },
+
+    hide_login_form: function() {
+        $('#form_login').hide();
+        $('#logged-in').show();
     }
 
 }
@@ -682,9 +726,18 @@ var reseller = {
     },
     api_data: function(){
         var userApiData = this.info();
+        userApiData.api_type = config.api_type;
+        userApiData.api_version = config.api_version;
         return $.param(userApiData, true);
     }
 }
+
+/* CONFIG */
+var config = {
+    'api_type': 'mvp',
+    'api_version' : '0.9.1'
+}
+
 
 function image_error(class_id) {
     $('.foot-'+class_id).each(function(){
@@ -773,8 +826,8 @@ var patient = {
 
 //starter
 $(function () {
-    $('input').attr("required", "required");
-    $('select').attr("required", "required");
+    //$('input').attr("required", "required");
+    //$('select').attr("required", "required");
 
     forms.form_login_submit(); // init form login
     forms.form_patient_basic(); // init form create patient.
@@ -782,8 +835,11 @@ $(function () {
     forms.form_patient_measurements();// init form patient measurement.
     forms.form_patient_note(); // init form patient note.
     forms.form_submit_order(); // init form submit order.
+
     on_page_change(); // action that will trigger after page is changed.
     btn_triggers(); // init for all btn on the app.
+
+    $('#version').html('v: '+config.api_version);
 
 });
 
@@ -829,7 +885,7 @@ function on_page_change() {
 
     /* pageshow */
     $('html').on("pagechange", function (e) {
-        console.log('pagechange: ' + $.mobile.activePage.attr("id"));
+        debug('pagechange: ' + $.mobile.activePage.attr("id"));
         var current_page = $.mobile.activePage.attr("id");
         if (current_page != 'page-login') { // if on login page, hide the footer. if user logged in, forward to home page.
             actions.show_footer_menu();
@@ -837,7 +893,6 @@ function on_page_change() {
                 actions.hide_footer_menu();
                 actions.redirect('page-login');
             }
-
             switch (current_page) {
                 case 'page-home':                           pages.page_home();                              break;
 
@@ -856,7 +911,7 @@ function on_page_change() {
                 case 'page-profile':                        pages.page_profile();                           break;
 
                 default:
-                    console(current_page + ' : which has not page action yet.');
+                    debug(current_page + ' : which has not page action yet.');
                     break;
 
             }
@@ -996,10 +1051,5 @@ function update_tab_menu() {
  shoe size: 5, 5.5, 6, ... 14 (for both left and right) US shoe size
  L/R foot size (inches): text input (4,2 decimal format) 00.00
  everything with inches use decimal 4,2
-
  "degree decimal"
-
-
-
-
  */
