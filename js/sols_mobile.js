@@ -66,8 +66,7 @@ $(document).ready(function(){
             var id = originalCaller.attr('id');
             // alert('begin listener');
             navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
-            window.localStorage.setItem('id',originalCaller.attr('id'));
-            alert(entry);
+            alert(window.requestFileSystem);
         }
         catch (err) {
             alert("An error occurred during capture: " + err + "\nMake sure your mobile device is supported.", null, "Uh oh!");
