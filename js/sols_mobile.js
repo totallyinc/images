@@ -136,13 +136,14 @@ var forms = {
             //              alert("Please enter your uesrname and password!");
             //              return false;
             //            }
-
+            alert('in form_login');
             var postData = $(this).serialize();
             $.ajax({
                 dataType:'jsonp',
                 data:postData,
                 url:config.api_url+'/api/api_login?format=jsonp',
                 success:function (data) {
+                    alert('form_login success');
                     if (data.login) {
                         reseller.login(data);
                         //user_login(data);
