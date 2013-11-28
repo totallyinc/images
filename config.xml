@@ -10,6 +10,7 @@
     <gap:platform name="android" />
     <gap:platform name="ios" />
     <gap:platform name="winphone" />
+    <gap:plugin name="com.phonegap.plugins.barcodescanner" />
     <feature name="http://api.phonegap.com/1.0/device" />
     <!-- If you do not want any permissions to be added to your app, add the
     following tag to your config.xml; you will still have the INTERNET
@@ -17,14 +18,10 @@
     <preference name="permissions" value="none"/>
 
     <!-- to enable individual permissions use the following examples -->
-    <feature name="http://api.phonegap.com/1.0/battery"/>
     <feature name="http://api.phonegap.com/1.0/camera"/>
-    <feature name="http://api.phonegap.com/1.0/contacts"/>
     <feature name="http://api.phonegap.com/1.0/file"/>
-    <feature name="http://api.phonegap.com/1.0/geolocation"/>
     <feature name="http://api.phonegap.com/1.0/media"/>
     <feature name="http://api.phonegap.com/1.0/network"/>
-    <feature name="http://api.phonegap.com/1.0/notification"/>
     
     <preference name="orientation" value="portrait" />
     <preference name="target-device" value="universal" />
