@@ -67,12 +67,18 @@ $(document).ready(function(){
             // alert('begin listener');
             navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
             window.localStorage.setItem('id',originalCaller.attr('id'));
+            alert(entry);
         }
         catch (err) {
             alert("An error occurred during capture: " + err + "\nMake sure your mobile device is supported.", null, "Uh oh!");
         }
     });
 });
+var fileManagement = {
+    deleteFile : function() {
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
+    }
+}
 function captureError(error) {
     var msg = "An error occurred during capture: " + error;
     navigator.notification.alert(msg, null, "Uh oh!");
@@ -138,34 +144,25 @@ var forms = {
             //            }
 
             var postData = $(this).serialize();
-            try{
-                alert('start'); 
-                $.ajax({
-                    dataType:'jsonp',
-                    data:postData,
-                    url:config.api_url+'/api/api_login?format=jsonp',
-                    success:function (data) {
-                        alert('wtf');
-                        if (data.login) {
-                            reseller.login(data);
-                            //user_login(data);
-                            actions.hide_login_form();
-                            actions.redirect('page-home');
-                        }
-                        else {
-                            alert('wtf failed');
-                            sols_alerts.login_fail();
-                        }
-                    },
-                    error:function () {
-                        alert('There was an unexpected error when you try to login.');
+            $.ajax({
+                dataType:'jsonp',
+                data:postData,
+                url:config.api_url+'/api/api_login?format=jsonp',
+                success:function (data) {
+                    if (data.login) {
+                        reseller.login(data);
+                        //user_login(data);
+                        actions.hide_login_form();
+                        actions.redirect('page-home');
                     }
-                });
-                alert('finish');
-            }
-            catch(err){
-                alert(err);
-            }
+                    else {
+                        sols_alerts.login_fail();
+                    }
+                },
+                error:function () {
+                    alert('There was an unexpected error when you try to login.');
+                }
+            });
             return false;
         });
     },
