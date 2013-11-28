@@ -64,9 +64,10 @@ $(document).ready(function(){
             var originalCaller = $(this);
             var id = originalCaller.attr('id');
             // alert('begin listener');
-            // fileManagement.read();
-            // var user_data = fileManagement.data;
-            // alert(user_data);
+            fileManagement.read();
+            alert('finish reading');
+            var user_data = fileManagement.data;
+            alert(user_data);
             navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
         }
         catch (err) {
@@ -121,8 +122,9 @@ var fileManagement = {
                                 "user.txt", 
                                 {create: true}, 
                                 function(fileEntry) {
-                                    fileManagement.file = fileEntry.file(
-                                        function() {
+                                    fileEntry.file(
+                                        function(fileSrc) {
+                                            fileManagement.file = fileSrc;
                                             alert('obtaining file success');
                                         },
                                         fileManagement.fail
