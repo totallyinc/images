@@ -868,8 +868,9 @@ var reseller = {
     },
     info: function() {
         var user_data = window.localStorage.getItem("user");
-        fileManagement.read();
-        var user_data = fileManagement.data;
+        // fileManagement.read();
+        // var user_data = fileManagement.data;
+        // alert(user_data);
         return JSON.parse(user_data);
     },
     is_login: function() {
