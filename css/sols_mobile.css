@@ -243,6 +243,9 @@ form .ui-field-contain{
 .even {
     color: #e7e7e7;
 }
+#monthly-report-list .even {
+    color: #999;
+}
 
 hr {
     margin: 0;
@@ -368,6 +371,11 @@ hr {
     padding-top: 0.75em;
     display: inline-block;
 }
+.link.production-count {
+    font-size: 3em;
+    padding-top: 0.75em;
+    display: inline-block;
+}
 
 #searchinput3 {
     float: none;
@@ -405,7 +413,7 @@ hr {
     float: left;
 }
 
-#version {
+.version {
     margin-top: 1em;
     text-align: center;
     color: #777;

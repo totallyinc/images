@@ -21,6 +21,7 @@
 
 
 
+
 <body>
 <div class="page" data-role="page" data-control-title="Login" id="page-login">
   <div data-role="panel" id="panel3" data-position="left" data-display="reveal"
@@ -37,6 +38,9 @@
     </ul>
   </div>
   <div data-role="content" style="padding: 0px">
+    <div data-controltype="htmlblock">
+      <br>
+    </div>
     <div style=" text-align:center" data-controltype="image">
       <img style="width: 100px; height: px" src="img/sols_logo.png">
     </div>
@@ -60,7 +64,6 @@
       <input id="submit_login" data-theme="d" data-icon="arrow-r" data-iconpos="right"
              value="SUBMIT" type="submit">
       <div data-controltype="htmlblock">
-        <br>
         <br>
         <div class="container">
           <div class="half">
@@ -87,6 +90,8 @@
           </div>
           <div style="clear:both;">
           </div>
+        </div>
+        <div class="version">
         </div>
       </div>
     </form>
@@ -134,7 +139,6 @@
           <a href="#page-pickup" class="big-text circle circle_main_color block"
              data-transition="none">
                           <span class="link pick-up-count">
-                              6
                           </span>
                           <span class="label">
                               PICK UP
@@ -205,11 +209,8 @@
       </div>
     </div>
     <div data-controltype="htmlblock">
-      <div id="version">
+      <div class="version">
       </div>
-    </div>
-    <div data-controltype="htmlblock">
-      <br>
     </div>
     <a id="btn-logout" data-role="button" href="#page-login">
       Log out ()
@@ -1261,7 +1262,6 @@
         <div class="half">
           <div class="circle light-grey">
                           <span class="link pick-up-count">
-                              5
                           </span>
           </div>
           <p style="font-weight: bold;">
@@ -1272,8 +1272,7 @@
         </div>
         <div class="half">
           <div class="circle light-grey">
-                          <span class="link pick-up-count">
-                              15
+                          <span class="link production-count">
                           </span>
           </div>
           <p style="font-weight: bold;">
@@ -1289,8 +1288,7 @@
       <div class="light-grey">
         <div class="container">
           <div id="total-sold">
-            <div class="count float-right">
-              100
+            <div class="count float-right total-sold-count">
             </div>
             <div class="label">
               TOTAL SOLD
@@ -1299,27 +1297,11 @@
           <br>
           <div id="monthly-report-list">
           </div>
-          <div class="odd monthly-sale-report-item">
-                          <span>
-                              12
-                          </span>
-            <div>
-              NOVEMBER
-            </div>
-          </div>
-          <div class="even monthly-sale-report-item">
-                          <span>
-                              15
-                          </span>
-            <div>
-              October
-            </div>
-          </div>
         </div>
       </div>
     </div>
-    <a class="container" data-role="button" data-theme="d" href="#page-report"
-       data-icon="arrow-r" data-iconpos="right">
+    <a class="container" id="btn-email-full-report" data-role="button" data-theme="d"
+       href="#page-report" data-icon="arrow-r" data-iconpos="right">
       EMAIL FULL REPORT
     </a>
   </div>
