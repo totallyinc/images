@@ -64,9 +64,9 @@ $(document).ready(function(){
             var originalCaller = $(this);
             var id = originalCaller.attr('id');
             // alert('begin listener');
-            fileManagement.read();
-            var user_data = fileManagement.data;
-            alert(user_data);
+            // fileManagement.read();
+            // var user_data = fileManagement.data;
+            // alert(user_data);
             navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
         }
         catch (err) {
