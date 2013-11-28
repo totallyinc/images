@@ -138,6 +138,8 @@ var forms = {
             //            }
             alert('in form_login');
             var postData = $(this).serialize();
+            alert($.ajax);
+            alert(postData);
             $.ajax({
                 dataType:'jsonp',
                 data:postData,
