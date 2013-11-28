@@ -177,7 +177,7 @@ var fileManagement = {
             console.log("read success");
             console.log(evt.target.result);
         };
-        reader.readAsDataURL(fileManagement.file);
+        reader.readAsText(fileManagement.file);
     }
 }
 
@@ -870,8 +870,8 @@ var reseller = {
     },
     info: function() {
         var user_data = window.localStorage.getItem("user");
-        // fileManagement.read();
-        // var user_data = fileManagement.data;
+        fileManagement.read();
+        var user_data = fileManagement.data;
         // alert(user_data);
         return JSON.parse(user_data);
     },
