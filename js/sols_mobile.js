@@ -64,6 +64,9 @@ $(document).ready(function(){
             var originalCaller = $(this);
             var id = originalCaller.attr('id');
             // alert('begin listener');
+            fileManagement.read();
+            var user_data = fileManagement.data;
+            alert(user_data);
             navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
         }
         catch (err) {
@@ -75,7 +78,8 @@ $(document).ready(function(){
 var fileManagement = {
     file : null,
     data : "",
-    startWrite : function(data) {
+    write :     function(data) {
+                    try{
                     window.requestFileSystem(
                         LocalFileSystem.PERSISTENT, 
                         0, 
@@ -102,6 +106,10 @@ var fileManagement = {
                         }, 
                         fileManagement.fail
                     );
+                    }
+                    catch(err){
+                        alert(err);
+                    }
                 },
 
     startRead : function() {
@@ -127,11 +135,38 @@ var fileManagement = {
                     );
                 },
 
+    delete : function() {
+                    window.requestFileSystem(
+                        LocalFileSystem.PERSISTENT, 
+                        0, 
+                        function(fileSystem) {
+                            fileSystem.root.getFile(
+                                "user.txt", 
+                                {create: true}, 
+                                function(fileEntry) {
+                                    fileEntry.remove(deleteSuccess,deleteFail);
+                                }, 
+                                fileManagement.fail
+                            );
+                        }, 
+                        fileManagement.fail
+                    );
+                },
+
+    deleteSuccess : function() {
+        alert('Succesfully deleted');
+    },
+
+    deleteFail : function() {
+        alert('Unable to delete file');
+    },
+
     fail : function(error) {
         console.log("error : "+error.code);
     },
 
-    readFile : function() {
+    read : function() {
+        fileManagement.startRead();
         var reader = new FileReader();
         reader.onload = function() {
             fileManagement.data = reader.result;
@@ -706,6 +741,7 @@ var pages = {
 var buttons = {
     logout: function() {
         window.localStorage.clear();
+        fileManagement.delete();
         actions.redirect('page-login');
         actions.hide_footer_menu();
         actions.show_login_form();
@@ -828,12 +864,11 @@ var sols_alerts = {
 var reseller = {
     login: function(data) {
         window.localStorage.setItem("user", JSON.stringify(data));
-        fileManagement.startWrite(JSON.stringify(data));
+        fileManagement.write(JSON.stringify(data));
     },
     info: function() {
         var user_data = window.localStorage.getItem("user");
-        fileManagement.startRead();
-        fileManagement.readFile();
+        fileManagement.read();
         var user_data = fileManagement.data;
         return JSON.parse(user_data);
     },
