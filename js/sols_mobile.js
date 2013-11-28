@@ -8,76 +8,102 @@ var images = [];
 $(document).ready(function(){
     // Now safe to use the PhoneGap API
     $('.camera_image').click(function(e){
-        function captureSuccess(mediaFiles) {
-            function uploadFiles() {
-                // alert('begin uploadFiles()');
-                var url = config.api_url+"/api/api_update_patient_foot_images?format=jsonp&image_id="+originalCaller.attr('id')+'&'+patient.api_data()+'&'+reseller.api_data();
-                try {
-                    var ft = new FileTransfer();
-                    var path = images[id][0].fullPath;
-                    var name = images[id][0].name;
-                    ft.upload(path,
-                        url,
-                        function(result) {
-                            // alert('successfully uploaded');
-                            originalCaller.attr("src",path);
-                            // alert('done setting image to html');
-                        },
-                        function(error) {
-                            // originalCaller.attr("src","img/broken-link-image.jpg");
-                            // alert(error.code);
-                            // navigator.notification.alert('Error uploading image, please try again');
-                            window.setTimeout(
-                                ft.upload(path,
-                                    url,
-                                    function(result){
-                                        originalCaller.attr("src",path);
-                                    },
-                                    function(error){
-                                        navigator.notification.alert('Error uploading image, please try again');
-                                        originalCaller.attr("src","img/broken-link-image.jpg");
-                                    },
-                                    {
-                                        fileKey : originalCaller.attr('id'),
-                                        params : { 'shoe_size' : '1'}
-                                    }),
-                                1000);
-                        },
-                        {   fileKey : originalCaller.attr('id'),
-                            params:{ 'shoe_size':'1' }
-                        });
-                }
-                catch(err){
-                    navigator.notification.alert("Exception: " + err);
-                }
-            }
-            try {
-                // alert('begin captureSuccess()');
-                originalCaller.attr("src", "img/loading.gif");
-                images[id] = mediaFiles;
-                uploadFiles();
-            }
-            catch (err) {
-                navigator.notification.alert("success Error: " + err);
-            }
-        }
         try{
             var originalCaller = $(this);
             var id = originalCaller.attr('id');
             // alert('begin listener');
             navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
-            alert(window.requestFileSystem);
         }
         catch (err) {
             alert("An error occurred during capture: " + err + "\nMake sure your mobile device is supported.", null, "Uh oh!");
         }
     });
 });
-var fileManagement = {
-    deleteFile : function() {
-        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
+
+function captureSuccess(mediaFiles) {
+    try {
+        // alert('begin captureSuccess()');
+        originalCaller.attr("src", "img/loading.gif");
+        images[id] = mediaFiles;
+        uploadFiles();
+    }
+    catch (err) {
+        navigator.notification.alert("success Error: " + err);
     }
 }
+
+function uploadFiles() {
+    // alert('begin uploadFiles()');
+    var url = config.api_url+"/api/api_update_patient_foot_images?format=jsonp&image_id="+originalCaller.attr('id')+'&'+patient.api_data()+'&'+reseller.api_data();
+    try {
+        var ft = new FileTransfer();
+        var path = images[id][0].fullPath;
+        var name = images[id][0].name;
+        ft.upload(path,
+            url,
+            function(result) {
+                // alert('successfully uploaded');
+                originalCaller.attr("src",path);
+                // alert('done setting image to html');
+            },
+            function(error) {
+                // originalCaller.attr("src","img/broken-link-image.jpg");
+                // alert(error.code);
+                // navigator.notification.alert('Error uploading image, please try again');
+                window.setTimeout(
+                    ft.upload(path,
+                    url,
+                    function(result){
+                        originalCaller.attr("src",path);
+                    },
+                    function(error){
+                        navigator.notification.alert('Error uploading image, please try again');
+                        originalCaller.attr("src","img/broken-link-image.jpg");
+                    },
+                    {
+                        fileKey : originalCaller.attr('id'),
+                        params : { 'shoe_size' : '1'}
+                    }),
+                    1000);
+            },
+            {   fileKey : originalCaller.attr('id'),
+                params:{ 'shoe_size':'1' }
+            }
+        );
+    }
+    catch(err){
+        navigator.notification.alert("Exception: " + err);
+    }
+}
+
+var fileManagement = {
+    startWrite : function() {
+                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, fileManagement.gotFS, fail);
+                },
+
+    gotFS : function(fileSystem) {
+                fileSystem.root.getFile("user.txt", {create: true}, gotFileEntry, fail);
+            },
+
+    fail : function(error) {
+                console.log("error : "+error.code);
+            },
+
+    gotFileEntry : function(fileEntry) {
+                fileEntry.createWriter(gotFileWriter, fail);
+            },
+
+    gotFileWriter : function(writer) {
+                writer.onwrite = function(evt) {
+                    console.log("write success");
+                };
+
+                writer.write("some sample text");
+                writer.abort();
+                // contents of file now 'some different text'
+            }
+}
+
 function captureError(error) {
     var msg = "An error occurred during capture: " + error;
     navigator.notification.alert(msg, null, "Uh oh!");
