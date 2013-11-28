@@ -65,9 +65,6 @@ $(document).ready(function(){
             var originalCaller = $(this);
             var id = originalCaller.attr('id');
             // alert('begin listener');
-            alert(navigator);
-            alert(navigator.device);
-            alert(navigator.device.capture);
             navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
             window.localStorage.setItem('id',originalCaller.attr('id'));
         }
@@ -139,6 +136,7 @@ var forms = {
             //              alert("Please enter your uesrname and password!");
             //              return false;
             //            }
+
             var postData = $(this).serialize();
             $.ajax({
                 dataType:'jsonp',
