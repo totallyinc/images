@@ -170,6 +170,7 @@ var fileManagement = {
         fileManagement.startRead();
         var reader = new FileReader();
         reader.onload = function() {
+            alert('file read');
             fileManagement.data = reader.result;
         }
         reader.onloadend = function(evt) {
