@@ -138,25 +138,34 @@ var forms = {
             //            }
 
             var postData = $(this).serialize();
-            $.ajax({
-                dataType:'jsonp',
-                data:postData,
-                url:config.api_url+'/api/api_login?format=jsonp',
-                success:function (data) {
-                    if (data.login) {
-                        reseller.login(data);
-                        //user_login(data);
-                        actions.hide_login_form();
-                        actions.redirect('page-home');
+            try{
+                alert('start'); 
+                $.ajax({
+                    dataType:'jsonp',
+                    data:postData,
+                    url:config.api_url+'/api/api_login?format=jsonp',
+                    success:function (data) {
+                        alert('wtf');
+                        if (data.login) {
+                            reseller.login(data);
+                            //user_login(data);
+                            actions.hide_login_form();
+                            actions.redirect('page-home');
+                        }
+                        else {
+                            alert('wtf failed');
+                            sols_alerts.login_fail();
+                        }
+                    },
+                    error:function () {
+                        alert('There was an unexpected error when you try to login.');
                     }
-                    else {
-                        sols_alerts.login_fail();
-                    }
-                },
-                error:function () {
-                    alert('There was an unexpected error when you try to login.');
-                }
-            });
+                });
+                alert('finish');
+            }
+            catch(err){
+                alert(err);
+            }
             return false;
         });
     },
