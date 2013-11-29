@@ -751,6 +751,7 @@ var buttons = {
     logout: function() {
         window.localStorage.clear();
         fileManagement.delete();
+        reseller.data = null;
         actions.redirect('page-login');
         actions.hide_footer_menu();
         actions.show_login_form();
@@ -871,20 +872,19 @@ var sols_alerts = {
 
 /* RESELLER */
 var reseller = {
-    data : "",
+    data : null,
     login: function(data) {
         window.localStorage.setItem("user", JSON.stringify(data));
         fileManagement.write(JSON.stringify(data));
     },
     info: function() {
         // var user_data = window.localStorage.getItem("user");
-        fileManagement.read();
-        if(reseller.data === "") {
-            var user_data = fileManagement.data;
-            reseller.data = user_data;
+        if(reseller.data === null) {
+            fileManagement.read();
+            reseller.data = fileManagement.data;
         }
-        alert(data);
-        return JSON.parse(data);
+        alert(reseller.data);
+        return JSON.parse(reseller.data);
     },
     is_login: function() {
         var u = this.info();
