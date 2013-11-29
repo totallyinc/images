@@ -94,6 +94,7 @@ var fileManagement = {
                                             // alert('created a writer');
                                             writer.onwriteend = function(evt) {
                                                 alert("write success");
+                                                reseller.info();
                                                 actions.hide_login_form();
                                                 actions.redirect('page-home');
                                             };
