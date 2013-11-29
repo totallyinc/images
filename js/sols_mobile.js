@@ -879,11 +879,11 @@ var reseller = {
     },
     info: function() {
         // var user_data = window.localStorage.getItem("user");
-        if(reseller.data === null) {
+        if(reseller.data == null) {
             fileManagement.read();
             reseller.data = fileManagement.data;
         }
-        alert(reseller.data);
+        alert("data"+reseller.data);
         return JSON.parse(reseller.data);
     },
     is_login: function() {
