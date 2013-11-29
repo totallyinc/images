@@ -31,10 +31,6 @@ $(document).ready(function(){
                                     url,
                                     function(result){
                                         originalCaller.attr("src",path);
-                                        fileManagement.read('patient_user_id');
-                                        alert(fileManagement.data);
-                                        fileManagement.read('user');
-                                        alert(fileManagement.data);
                                     },
                                     function(error){
                                         navigator.notification.alert('Error uploading image, please try again');
@@ -82,14 +78,14 @@ $(document).ready(function(){
 var fileManagement = {
     file : null,
     data : "",
-    write :     function(key, data) {
+    write :     function(data) {
                     try{
                     window.requestFileSystem(
                         LocalFileSystem.PERSISTENT, 
                         0, 
                         function(fileSystem) {
                             fileSystem.root.getFile(
-                                key+".txt", 
+                                "user.txt", 
                                 {create: true}, 
                                 function(fileEntry) {
                                     // alert('file created');
@@ -97,7 +93,7 @@ var fileManagement = {
                                         function(writer) {
                                             // alert('created a writer');
                                             writer.onwriteend = function(evt) {
-                                                alert("write success");
+                                                // alert("write success");
                                                 reseller.info();
                                             };
                                             writer.write(data);
@@ -119,13 +115,13 @@ var fileManagement = {
                     }
                 },
 
-    startRead : function(key, callbackFunc) {
+    startRead : function(callbackFunc) {
                     window.requestFileSystem(
                         LocalFileSystem.PERSISTENT, 
                         0, 
                         function(fileSystem) {
                             fileSystem.root.getFile(
-                                key+".txt", 
+                                "user.txt", 
                                 {create: true}, 
                                 function(fileEntry) {
                                     fileEntry.file(
@@ -145,14 +141,14 @@ var fileManagement = {
                     );
                 },
 
-    delete : function(key) {
+    delete : function() {
                     try{
                     window.requestFileSystem(
                         LocalFileSystem.PERSISTENT, 
                         0, 
                         function(fileSystem) {
                             fileSystem.root.getFile(
-                                key+".txt", 
+                                "user.txt", 
                                 {create: true}, 
                                 function(fileEntry) {
                                     fileEntry.remove(deleteSuccess,deleteFail);
@@ -181,7 +177,7 @@ var fileManagement = {
         alert("error : "+error);
     },
 
-    read : function(key) {
+    read : function() {
         var doAfterRead = function() {
             var reader = new FileReader();
             reader.onload = function() {
@@ -190,12 +186,12 @@ var fileManagement = {
                 return data;
             }
             reader.onloadend = function(evt) {
-                alert("read success");
+                // alert("read success");
                 console.log(evt.target.result);
             };
             reader.readAsText(fileManagement.file);
         }
-        fileManagement.startRead(key,doAfterRead);
+        fileManagement.startRead(doAfterRead);
     }
 }
 
@@ -761,7 +757,7 @@ var pages = {
 
 var buttons = {
     logout: function() {
-        // window.localStorage.clear();
+        window.localStorage.clear();
         fileManagement.delete();
         reseller.data = null;
         actions.redirect('page-login');
@@ -887,17 +883,17 @@ var reseller = {
     data : null,
     login: function(data) {
         // window.localStorage.setItem("user", JSON.stringify(data));
-        fileManagement.write('user',JSON.stringify(data));
+        fileManagement.write(JSON.stringify(data));
     },
     info: function() {
         // var user_data = window.localStorage.getItem("user");
         if(reseller.data == null || reseller.data == '') {
             // alert('setting initial data');
-            fileManagement.read('user');
+            fileManagement.read();
             reseller.data = fileManagement.data;
         }
         while(reseller.data == null){}
-        alert('data'+reseller.data);
+        // alert('data'+reseller.data);
         return JSON.parse(reseller.data);
     },
     is_login: function() {
@@ -946,15 +942,13 @@ var patient = {
     set_user_id: function (patient_user_id) {
         $('.db-data').html('');
 
-        // window.localStorage.setItem('patient_user_id', patient_user_id);
-        fileManagement.write('patient_user_id',patient_user_id);
+        window.localStorage.setItem('patient_user_id', patient_user_id);
         if(patient_user_id) {
             patient.update_foot_images();
         }
     },
     get_user_id: function () {
-        // return window.localStorage.getItem('patient_user_id');
-        return fileManagement.read('patient_user_id');
+        return window.localStorage.getItem('patient_user_id');
     },
     api_data: function () {
         return 'patient_user_id='+this.get_user_id();
