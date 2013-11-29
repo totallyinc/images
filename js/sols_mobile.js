@@ -124,7 +124,6 @@ var fileManagement = {
                                     fileEntry.file(
                                         function(fileSrc) {
                                             fileManagement.file = fileSrc;
-                                            alert('obtaining file success');
                                         },
                                         fileManagement.fail
                                     );
@@ -170,7 +169,6 @@ var fileManagement = {
         fileManagement.startRead();
         var reader = new FileReader();
         reader.onload = function() {
-            alert('file read');
             fileManagement.data = reader.result;
         }
         reader.onloadend = function(evt) {
