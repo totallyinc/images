@@ -94,6 +94,7 @@ var fileManagement = {
                                             alert('created a writer');
                                             writer.onwriteend = function(evt) {
                                                 alert("write success");
+                                                actions.redirect('page-home');
                                             };
                                             writer.write(data);
                                             writer.abort();
