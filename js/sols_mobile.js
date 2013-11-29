@@ -128,6 +128,7 @@ var fileManagement = {
                                 function(fileEntry) {
                                     fileEntry.file(
                                         function(fileSrc) {
+                                            alert('accessing file');
                                             fileManagement.file = fileSrc;
                                         },
                                         fileManagement.fail
