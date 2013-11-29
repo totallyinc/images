@@ -174,7 +174,7 @@ var fileManagement = {
     },
 
     fail : function(error) {
-        console.log("error : "+error.code);
+        alert("error : "+error);
     },
 
     read : function() {
