@@ -91,13 +91,14 @@ var fileManagement = {
                                     alert('file created');
                                     fileEntry.createWriter(
                                         function(writer) {
+                                            alert('created a writer');
                                             writer.onwrite = function(evt) {
                                                 alert("write success");
                                             };
-
                                             writer.write(data);
-                                                writer.abort();
-                                                // contents of file now 'some different text'
+                                            writer.abort();
+                                            alert('exiting writer');
+                                            // contents of file now 'some different text'
                                         }, 
                                         fileManagement.fail
                                     );
