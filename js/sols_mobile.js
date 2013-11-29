@@ -93,7 +93,7 @@ var fileManagement = {
                                         function(writer) {
                                             // alert('created a writer');
                                             writer.onwriteend = function(evt) {
-                                                alert("write success");
+                                                // alert("write success");
                                                 reseller.info();
                                             };
                                             writer.write(data);
@@ -126,10 +126,10 @@ var fileManagement = {
                                 function(fileEntry) {
                                     fileEntry.file(
                                         function(fileSrc) {
-                                            alert('accessing file');
+                                            // alert('accessing file');
                                             fileManagement.file = fileSrc;
                                             callbackFunc();
-                                            alert('finish accessing file');
+                                            // alert('finish accessing file');
                                         },
                                         fileManagement.fail
                                     );
@@ -152,7 +152,7 @@ var fileManagement = {
                                 {create: true}, 
                                 function(fileEntry) {
                                     fileEntry.remove(deleteSuccess,deleteFail);
-                                    alert('file removed');
+                                    // alert('file removed');
                                 }, 
                                 fileManagement.fail
                             );
@@ -182,11 +182,11 @@ var fileManagement = {
             var reader = new FileReader();
             reader.onload = function() {
                 fileManagement.data = reader.result;
-                alert("Read data"+fileManagement.data);
+                // alert("Read data"+fileManagement.data);
                 return data;
             }
             reader.onloadend = function(evt) {
-                alert("read success");
+                // alert("read success");
                 console.log(evt.target.result);
             };
             reader.readAsText(fileManagement.file);
@@ -887,12 +887,12 @@ var reseller = {
     info: function() {
         // var user_data = window.localStorage.getItem("user");
         if(reseller.data == null || reseller.data == '') {
-            alert('setting initial data');
+            // alert('setting initial data');
             fileManagement.read();
             reseller.data = fileManagement.data;
         }
         while(reseller.data == null){}
-        alert('data'+reseller.data);
+        // alert('data'+reseller.data);
         return JSON.parse(reseller.data);
     },
     is_login: function() {
