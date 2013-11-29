@@ -91,7 +91,7 @@ var fileManagement = {
                                     fileEntry.createWriter(
                                         function(writer) {
                                             writer.onwrite = function(evt) {
-                                                console.log("write success");
+                                                alert("write success");
                                             };
 
                                             writer.write(data);
