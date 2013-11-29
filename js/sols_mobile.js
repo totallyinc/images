@@ -891,7 +891,7 @@ var reseller = {
             fileManagement.read();
             reseller.data = fileManagement.data;
         }
-        while(data == null){}
+        while(reseller.data == null){}
         alert('data'+reseller.data);
         return JSON.parse(reseller.data);
     },
