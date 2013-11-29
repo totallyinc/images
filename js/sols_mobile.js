@@ -891,8 +891,10 @@ var reseller = {
         // var user_data = window.localStorage.getItem("user");
         if(reseller.data == null || reseller.data == '') {
             alert('setting initial data');
-            reseller.data = fileManagement.read();
+            fileManagement.read();
+            reseller.data = fileManagement.data;
         }
+        while(data == null){}
         alert('data'+reseller.data);
         return JSON.parse(reseller.data);
     },
