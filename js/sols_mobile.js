@@ -95,6 +95,7 @@ var fileManagement = {
                                             writer.onwriteend = function(evt) {
                                                 alert("write success");
                                                 reseller.info();
+                                                alert('changing page');
                                                 actions.hide_login_form();
                                                 actions.redirect('page-home');
                                             };
@@ -185,6 +186,7 @@ var fileManagement = {
             reader.onload = function() {
                 fileManagement.data = reader.result;
                 alert("Read data"+fileManagement.data);
+                return data;
             }
             reader.onloadend = function(evt) {
                 alert("read success");
@@ -889,8 +891,7 @@ var reseller = {
         // var user_data = window.localStorage.getItem("user");
         if(reseller.data == null || reseller.data == '') {
             alert('setting initial data');
-            fileManagement.read();
-            reseller.data = fileManagement.data;
+            reseller.data = fileManagement.read();
         }
         alert('data'+reseller.data);
         return JSON.parse(reseller.data);
