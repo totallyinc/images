@@ -92,9 +92,8 @@ var fileManagement = {
                                     fileEntry.createWriter(
                                         function(writer) {
                                             alert('created a writer');
-                                            writer.onwrite = function(evt) {
+                                            writer.onwriteend = function(evt) {
                                                 alert("write success");
-                                                actions.redirect('page-home');
                                             };
                                             writer.write(data);
                                             writer.abort();
