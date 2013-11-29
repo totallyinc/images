@@ -88,14 +88,17 @@ var fileManagement = {
                                 "user.txt", 
                                 {create: true}, 
                                 function(fileEntry) {
+                                    alert('file created');
                                     fileEntry.createWriter(
+                                        alert('writer created');
                                         function(writer) {
                                             writer.onwrite = function(evt) {
                                                 alert("write success");
                                             };
 
                                             writer.write(data);
-                                                writer.abort();
+                                            writer.abort();
+                                            alert('exit writer');
                                                 // contents of file now 'some different text'
                                         }, 
                                         fileManagement.fail
