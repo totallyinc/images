@@ -94,6 +94,7 @@ var fileManagement = {
                                             alert('created a writer');
                                             writer.onwriteend = function(evt) {
                                                 alert("write success");
+                                                actions.hide_login_form();
                                                 actions.redirect('page-home');
                                             };
                                             writer.write(data);
@@ -261,8 +262,8 @@ var forms = {
                     if (data.login) {
                         reseller.login(data);
                         //user_login(data);
-                        actions.hide_login_form();
-                        actions.redirect('page-home');
+                        // actions.hide_login_form();
+                        // actions.redirect('page-home');
                     }
                     else {
                         sols_alerts.login_fail();
@@ -880,10 +881,11 @@ var reseller = {
     info: function() {
         // var user_data = window.localStorage.getItem("user");
         if(reseller.data == null) {
+            alert('setting initial data');
             fileManagement.read();
             reseller.data = fileManagement.data;
         }
-        alert("data"+reseller.data);
+        alert('data'+reseller.data);
         return JSON.parse(reseller.data);
     },
     is_login: function() {
