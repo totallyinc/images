@@ -88,10 +88,10 @@ var fileManagement = {
                                 "user.txt", 
                                 {create: true}, 
                                 function(fileEntry) {
-                                    alert('file created');
+                                    // alert('file created');
                                     fileEntry.createWriter(
                                         function(writer) {
-                                            alert('created a writer');
+                                            // alert('created a writer');
                                             writer.onwriteend = function(evt) {
                                                 alert("write success");
                                                 actions.hide_login_form();
@@ -99,7 +99,7 @@ var fileManagement = {
                                             };
                                             writer.write(data);
                                             writer.abort();
-                                            alert('exiting writer');
+                                            // alert('exiting writer');
                                             // contents of file now 'some different text'
                                         }, 
                                         fileManagement.fail
@@ -149,8 +149,8 @@ var fileManagement = {
                                 "user.txt", 
                                 {create: true}, 
                                 function(fileEntry) {
-                                    alert('file removed');
                                     fileEntry.remove(deleteSuccess,deleteFail);
+                                    alert('file removed');
                                 }, 
                                 fileManagement.fail
                             );
