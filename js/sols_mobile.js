@@ -180,9 +180,10 @@ var fileManagement = {
         var reader = new FileReader();
         reader.onload = function() {
             fileManagement.data = reader.result;
+            alert(fileManagement);
         }
         reader.onloadend = function(evt) {
-            console.log("read success");
+            alert("read success");
             console.log(evt.target.result);
         };
         reader.readAsText(fileManagement.file);
