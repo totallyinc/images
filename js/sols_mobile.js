@@ -757,7 +757,7 @@ var pages = {
 
 var buttons = {
     logout: function() {
-        window.localStorage.clear();
+        // window.localStorage.clear();
         fileManagement.delete();
         reseller.data = null;
         actions.redirect('page-login');
@@ -942,13 +942,15 @@ var patient = {
     set_user_id: function (patient_user_id) {
         $('.db-data').html('');
 
-        window.localStorage.setItem('patient_user_id', patient_user_id);
+        // window.localStorage.setItem('patient_user_id', patient_user_id);
+        fileManagement.write('patient_user_id',patient_user_id);
         if(patient_user_id) {
             patient.update_foot_images();
         }
     },
     get_user_id: function () {
-        return window.localStorage.getItem('patient_user_id');
+        // return window.localStorage.getItem('patient_user_id');
+        return fileManagement.read('patient_user_id');
     },
     api_data: function () {
         return 'patient_user_id='+this.get_user_id();
