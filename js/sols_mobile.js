@@ -117,7 +117,7 @@ var fileManagement = {
                     }
                 },
 
-    startRead : function() {
+    startRead : function(callbackFunc) {
                     window.requestFileSystem(
                         LocalFileSystem.PERSISTENT, 
                         0, 
@@ -130,6 +130,8 @@ var fileManagement = {
                                         function(fileSrc) {
                                             alert('accessing file');
                                             fileManagement.file = fileSrc;
+                                            callbackFunc();
+                                            alert('finish accessing file');
                                         },
                                         fileManagement.fail
                                     );
@@ -178,17 +180,19 @@ var fileManagement = {
     },
 
     read : function() {
-        fileManagement.startRead();
-        var reader = new FileReader();
-        reader.onload = function() {
-            fileManagement.data = reader.result;
-            alert("Read data"+fileManagement.data);
+        var doAfterRead = function() {
+            var reader = new FileReader();
+            reader.onload = function() {
+                fileManagement.data = reader.result;
+                alert("Read data"+fileManagement.data);
+            }
+            reader.onloadend = function(evt) {
+                alert("read success");
+                console.log(evt.target.result);
+            };
+            reader.readAsText(fileManagement.file);
         }
-        reader.onloadend = function(evt) {
-            alert("read success");
-            console.log(evt.target.result);
-        };
-        reader.readAsText(fileManagement.file);
+        fileManagement.startRead(doAfterRead);
     }
 }
 
