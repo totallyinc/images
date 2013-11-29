@@ -88,17 +88,15 @@ var fileManagement = {
                                 "user.txt", 
                                 {create: true}, 
                                 function(fileEntry) {
-                                    alert('file created');
                                     fileEntry.createWriter(
                                         function(writer) {
-                                            alert('created a writer');
                                             writer.onwrite = function(evt) {
                                                 alert("write success");
                                             };
+
                                             writer.write(data);
-                                            writer.abort();
-                                            alert('exiting writer');
-                                            // contents of file now 'some different text'
+                                                writer.abort();
+                                                // contents of file now 'some different text'
                                         }, 
                                         fileManagement.fail
                                     );
@@ -147,7 +145,6 @@ var fileManagement = {
                                 "user.txt", 
                                 {create: true}, 
                                 function(fileEntry) {
-                                    alert('file removed');
                                     fileEntry.remove(deleteSuccess,deleteFail);
                                 }, 
                                 fileManagement.fail
@@ -870,7 +867,6 @@ var sols_alerts = {
 
 /* RESELLER */
 var reseller = {
-    var data = "",
     login: function(data) {
         window.localStorage.setItem("user", JSON.stringify(data));
         fileManagement.write(JSON.stringify(data));
@@ -878,12 +874,9 @@ var reseller = {
     info: function() {
         // var user_data = window.localStorage.getItem("user");
         fileManagement.read();
-        if(reseller.data === "") {
-            var user_data = fileManagement.data;
-            reseller.data = user_data
-        }
-        alert(data);
-        return JSON.parse(data);
+        var user_data = fileManagement.data;
+        alert(user_data);
+        return JSON.parse(user_data);
     },
     is_login: function() {
         var u = this.info();
