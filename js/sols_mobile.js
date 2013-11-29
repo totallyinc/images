@@ -90,16 +90,15 @@ var fileManagement = {
                                 function(fileEntry) {
                                     alert('file created');
                                     fileEntry.createWriter(
-                                        alert('writer created');
                                         function(writer) {
+                                            alert('created a writer');
                                             writer.onwrite = function(evt) {
                                                 alert("write success");
                                             };
-
                                             writer.write(data);
                                             writer.abort();
-                                            alert('exit writer');
-                                                // contents of file now 'some different text'
+                                            alert('exiting writer');
+                                            // contents of file now 'some different text'
                                         }, 
                                         fileManagement.fail
                                     );
@@ -871,6 +870,7 @@ var sols_alerts = {
 
 /* RESELLER */
 var reseller = {
+    var data = "",
     login: function(data) {
         window.localStorage.setItem("user", JSON.stringify(data));
         fileManagement.write(JSON.stringify(data));
@@ -878,9 +878,12 @@ var reseller = {
     info: function() {
         // var user_data = window.localStorage.getItem("user");
         fileManagement.read();
-        var user_data = fileManagement.data;
-        alert(user_data);
-        return JSON.parse(user_data);
+        if(reseller.data === "") {
+            var user_data = fileManagement.data;
+            reseller.data = user_data
+        }
+        alert(data);
+        return JSON.parse(data);
     },
     is_login: function() {
         var u = this.info();
