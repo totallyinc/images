@@ -180,7 +180,7 @@ var fileManagement = {
         var reader = new FileReader();
         reader.onload = function() {
             fileManagement.data = reader.result;
-            alert(fileManagement);
+            alert("Read data"+fileManagement.data);
         }
         reader.onloadend = function(evt) {
             alert("read success");
@@ -881,7 +881,7 @@ var reseller = {
     },
     info: function() {
         // var user_data = window.localStorage.getItem("user");
-        if(reseller.data == null) {
+        if(reseller.data == null || reseller.data == '') {
             alert('setting initial data');
             fileManagement.read();
             reseller.data = fileManagement.data;
