@@ -268,6 +268,7 @@ var forms = {
                     if (data.login) {
                         reseller.login(data);
                         //user_login(data);
+                        while(reseller.data == null){}
                         actions.hide_login_form();
                         actions.redirect('page-home');
                     }
