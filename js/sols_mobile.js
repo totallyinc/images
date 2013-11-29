@@ -92,6 +92,8 @@ var fileManagement = {
                                         function(writer) {
                                             writer.onwrite = function(evt) {
                                                 alert("write success");
+                                                actions.hide_login_form();
+                                                actions.redirect('page-home');
                                             };
 
                                             writer.write(data);
@@ -136,6 +138,7 @@ var fileManagement = {
                 },
 
     delete : function() {
+                    try{
                     window.requestFileSystem(
                         LocalFileSystem.PERSISTENT, 
                         0, 
@@ -151,6 +154,10 @@ var fileManagement = {
                         }, 
                         fileManagement.fail
                     );
+                    }
+                    catch(err){
+                        alert(err);
+                    }
                 },
 
     deleteSuccess : function() {
@@ -252,8 +259,6 @@ var forms = {
                     if (data.login) {
                         reseller.login(data);
                         //user_login(data);
-                        actions.hide_login_form();
-                        actions.redirect('page-home');
                     }
                     else {
                         sols_alerts.login_fail();
