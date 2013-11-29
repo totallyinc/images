@@ -95,9 +95,6 @@ var fileManagement = {
                                             writer.onwriteend = function(evt) {
                                                 alert("write success");
                                                 reseller.info();
-                                                alert('changing page');
-                                                actions.hide_login_form();
-                                                actions.redirect('page-home');
                                             };
                                             writer.write(data);
                                             writer.abort();
@@ -271,8 +268,8 @@ var forms = {
                     if (data.login) {
                         reseller.login(data);
                         //user_login(data);
-                        // actions.hide_login_form();
-                        // actions.redirect('page-home');
+                        actions.hide_login_form();
+                        actions.redirect('page-home');
                     }
                     else {
                         sols_alerts.login_fail();
