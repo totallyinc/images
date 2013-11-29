@@ -145,6 +145,7 @@ var fileManagement = {
                                 "user.txt", 
                                 {create: true}, 
                                 function(fileEntry) {
+                                    alert('file removed');
                                     fileEntry.remove(deleteSuccess,deleteFail);
                                 }, 
                                 fileManagement.fail
