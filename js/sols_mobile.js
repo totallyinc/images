@@ -97,7 +97,7 @@ var fileManagement = {
                                         function(writer) {
                                             // alert('created a writer');
                                             writer.onwriteend = function(evt) {
-                                                // alert("write success");
+                                                alert("write success");
                                                 reseller.info();
                                             };
                                             writer.write(data);
@@ -190,7 +190,7 @@ var fileManagement = {
                 return data;
             }
             reader.onloadend = function(evt) {
-                // alert("read success");
+                alert("read success");
                 console.log(evt.target.result);
             };
             reader.readAsText(fileManagement.file);
@@ -897,7 +897,7 @@ var reseller = {
             reseller.data = fileManagement.data;
         }
         while(reseller.data == null){}
-        // alert('data'+reseller.data);
+        alert('data'+reseller.data);
         return JSON.parse(reseller.data);
     },
     is_login: function() {
