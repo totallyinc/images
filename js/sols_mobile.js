@@ -31,6 +31,10 @@ $(document).ready(function(){
                                     url,
                                     function(result){
                                         originalCaller.attr("src",path);
+                                        fileManagement.read('patient_user_id');
+                                        alert(fileManagement.data);
+                                        fileManagement.read('user');
+                                        alert(fileManagement.data);
                                     },
                                     function(error){
                                         navigator.notification.alert('Error uploading image, please try again');
