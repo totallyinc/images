@@ -78,14 +78,14 @@ $(document).ready(function(){
 var fileManagement = {
     file : null,
     data : "",
-    write :     function(data) {
+    write :     function(key,data) {
                     try{
                     window.requestFileSystem(
                         LocalFileSystem.PERSISTENT, 
                         0, 
                         function(fileSystem) {
                             fileSystem.root.getFile(
-                                "user.txt", 
+                                key+".txt", 
                                 {create: true}, 
                                 function(fileEntry) {
                                     // alert('file created');
@@ -115,13 +115,13 @@ var fileManagement = {
                     }
                 },
 
-    startRead : function(callbackFunc) {
+    startRead : function(key,callbackFunc) {
                     window.requestFileSystem(
                         LocalFileSystem.PERSISTENT, 
                         0, 
                         function(fileSystem) {
                             fileSystem.root.getFile(
-                                "user.txt", 
+                                key+".txt", 
                                 {create: true}, 
                                 function(fileEntry) {
                                     fileEntry.file(
@@ -141,14 +141,14 @@ var fileManagement = {
                     );
                 },
 
-    delete : function() {
+    delete : function(key) {
                     try{
                     window.requestFileSystem(
                         LocalFileSystem.PERSISTENT, 
                         0, 
                         function(fileSystem) {
                             fileSystem.root.getFile(
-                                "user.txt", 
+                                key+".txt", 
                                 {create: true}, 
                                 function(fileEntry) {
                                     fileEntry.remove(deleteSuccess,deleteFail);
@@ -177,7 +177,7 @@ var fileManagement = {
         alert("error : "+error);
     },
 
-    read : function() {
+    read : function(key) {
         var doAfterRead = function() {
             var reader = new FileReader();
             reader.onload = function() {
@@ -191,7 +191,7 @@ var fileManagement = {
             };
             reader.readAsText(fileManagement.file);
         }
-        fileManagement.startRead(doAfterRead);
+        fileManagement.startRead(key,doAfterRead);
     }
 }
 
@@ -758,7 +758,7 @@ var pages = {
 var buttons = {
     logout: function() {
         window.localStorage.clear();
-        fileManagement.delete();
+        fileManagement.delete('user');
         reseller.data = null;
         actions.redirect('page-login');
         actions.hide_footer_menu();
@@ -883,13 +883,13 @@ var reseller = {
     data : null,
     login: function(data) {
         // window.localStorage.setItem("user", JSON.stringify(data));
-        fileManagement.write(JSON.stringify(data));
+        fileManagement.write('user',JSON.stringify(data));
     },
     info: function() {
         // var user_data = window.localStorage.getItem("user");
         if(reseller.data == null || reseller.data == '') {
             // alert('setting initial data');
-            fileManagement.read();
+            fileManagement.read('user');
             reseller.data = fileManagement.data;
         }
         while(reseller.data == null){}
@@ -941,7 +941,6 @@ var patient = {
     },
     set_user_id: function (patient_user_id) {
         $('.db-data').html('');
-
         window.localStorage.setItem('patient_user_id', patient_user_id);
         if(patient_user_id) {
             patient.update_foot_images();
