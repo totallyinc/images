@@ -4,9 +4,11 @@ function debug(msg) {
 alert('hello');
 test();
 function test() {
+    fileManagement.write('user','abc');
     fileManagement.read('user');
     var user_data = fileManagement.data;
     alert(user_data);
+    fileManagement.write('patient_user_id','patient id');
     fileManagement.read('patient_user_id');
     var patient_data = fileManagement.data;
     alert(patient_data);
