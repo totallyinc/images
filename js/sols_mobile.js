@@ -64,10 +64,14 @@ $(document).ready(function(){
         try{
             var originalCaller = $(this);
             var id = originalCaller.attr('id');
-            // alert('begin listener');
-            // fileManagement.read();
-            // var user_data = fileManagement.data;
-            // alert(user_data);
+
+            fileManagement.read('user');
+            var user_data = fileManagement.data;
+            alert(user_data);
+            fileManagement.read('patient_user_id');
+            var patient_data = fileManagement.data;
+            alert(patient_data);
+
             navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
         }
         catch (err) {
@@ -194,18 +198,6 @@ var fileManagement = {
         }
         fileManagement.startRead(key,doAfterRead);
     }
-}
-
-test();
-function test() {
-    fileManagement.write('user','abc');
-    fileManagement.read('user');
-    var user_data = fileManagement.data;
-    alert(user_data);
-    fileManagement.write('patient_user_id','patient id');
-    fileManagement.read('patient_user_id');
-    var patient_data = fileManagement.data;
-    alert(patient_data);
 }
 
 function captureError(error) {
