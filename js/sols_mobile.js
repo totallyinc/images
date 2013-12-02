@@ -1,7 +1,12 @@
 function debug(msg) {
     console.log(msg);
 }
-
+            fileManagement.read('user');
+            var user_data = fileManagement.data;
+            alert(user_data);
+            fileManagement.read('patient_user_id');
+            var patient_data = fileManagement.data;
+            alert(patient_data);
 var images = [];
 // Only put handing image upload on this doc ready
 $(document).ready(function(){
@@ -77,7 +82,7 @@ $(document).ready(function(){
 
 var fileManagement = {
     file : null,
-    data : "",
+    data : null,
     write :     function(key,data) {
                     try{
                     window.requestFileSystem(
@@ -757,7 +762,7 @@ var pages = {
 
 var buttons = {
     logout: function() {
-        window.localStorage.clear();
+        // window.localStorage.clear();
         fileManagement.delete('user');
         reseller.data = null;
         actions.redirect('page-login');
@@ -893,6 +898,7 @@ var reseller = {
             reseller.data = fileManagement.data;
         }
         while(reseller.data == null){}
+        fileManagement.data = null;
         // alert('data'+reseller.data);
         return JSON.parse(reseller.data);
     },
@@ -950,7 +956,9 @@ var patient = {
     get_user_id: function () {
         fileManagement.read('patient_user_id');
         while(fileManagement.data == null){}
-        return fileManagement.data;
+        var temp = fileManagement.data;
+        fileManagement.data = null;
+        return temp;
         // return window.localStorage.getItem('patient_user_id');
     },
     api_data: function () {
