@@ -2,17 +2,7 @@ function debug(msg) {
     console.log(msg);
 }
 alert('hello');
-test();
-function test() {
-    fileManagement.write('user','abc');
-    fileManagement.read('user');
-    var user_data = fileManagement.data;
-    alert(user_data);
-    fileManagement.write('patient_user_id','patient id');
-    fileManagement.read('patient_user_id');
-    var patient_data = fileManagement.data;
-    alert(patient_data);
-}
+
 var images = [];
 // Only put handing image upload on this doc ready
 $(document).ready(function(){
@@ -204,6 +194,18 @@ var fileManagement = {
         }
         fileManagement.startRead(key,doAfterRead);
     }
+}
+
+test();
+function test() {
+    fileManagement.write('user','abc');
+    fileManagement.read('user');
+    var user_data = fileManagement.data;
+    alert(user_data);
+    fileManagement.write('patient_user_id','patient id');
+    fileManagement.read('patient_user_id');
+    var patient_data = fileManagement.data;
+    alert(patient_data);
 }
 
 function captureError(error) {
