@@ -1,12 +1,12 @@
 function debug(msg) {
     console.log(msg);
 }
-            fileManagement.read('user');
-            var user_data = fileManagement.data;
-            alert(user_data);
-            fileManagement.read('patient_user_id');
-            var patient_data = fileManagement.data;
-            alert(patient_data);
+            // fileManagement.read('user');
+            // var user_data = fileManagement.data;
+            // alert(user_data);
+            // fileManagement.read('patient_user_id');
+            // var patient_data = fileManagement.data;
+            // alert(patient_data);
 var images = [];
 // Only put handing image upload on this doc ready
 $(document).ready(function(){
