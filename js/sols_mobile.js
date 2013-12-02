@@ -82,7 +82,7 @@ $(document).ready(function(){
 
 var fileManagement = {
     file : null,
-    data : null,
+    data : "",
     write :     function(key,data) {
                     try{
                     window.requestFileSystem(
@@ -898,7 +898,6 @@ var reseller = {
             reseller.data = fileManagement.data;
         }
         while(reseller.data == null){}
-        fileManagement.data = null;
         // alert('data'+reseller.data);
         return JSON.parse(reseller.data);
     },
@@ -956,9 +955,7 @@ var patient = {
     get_user_id: function () {
         fileManagement.read('patient_user_id');
         while(fileManagement.data == null){}
-        var temp = fileManagement.data;
-        fileManagement.data = null;
-        return temp;
+        return fileManagement.data;
         // return window.localStorage.getItem('patient_user_id');
     },
     api_data: function () {
