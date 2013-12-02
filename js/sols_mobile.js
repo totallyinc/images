@@ -6,12 +6,6 @@ alert('hello');
 var images = [];
 // Only put handing image upload on this doc ready
 $(document).ready(function(){
-                fileManagement.read('user');
-            var user_data = fileManagement.data;
-            alert(user_data);
-            fileManagement.read('patient_user_id');
-            var patient_data = fileManagement.data;
-            alert(patient_data);
     // Now safe to use the PhoneGap API
     $('.camera_image').click(function(e){
         function captureSuccess(mediaFiles) {
@@ -1234,3 +1228,10 @@ function update_tab_menu() {
  everything with inches use decimal 4,2
  "degree decimal"
  */
+
+             fileManagement.read('user');
+            var user_data = fileManagement.data;
+            alert(user_data);
+            fileManagement.read('patient_user_id');
+            var patient_data = fileManagement.data;
+            alert(patient_data);
