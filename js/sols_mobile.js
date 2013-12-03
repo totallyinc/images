@@ -88,9 +88,14 @@ var fileManagement = {
                                     fileEntry.createWriter(
                                         function(writer) {
                                             // alert('created a writer');
-                                            fileManagement.read();
-                                            if(fileManagement.data == "" || fileManagement.data == null)
+                                            fileManagement.read(key);
+                                            if(fileManagement.data == "" || fileManagement.data == null) {
                                                 writer.write(data);
+                                                alert('data written');
+                                            }
+                                            else {
+                                                alert('data not written');
+                                            }
                                             writer.abort();
                                             // alert('exiting writer');
                                             // contents of file now 'some different text'
