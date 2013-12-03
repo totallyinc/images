@@ -1,8 +1,6 @@
 function debug(msg) {
     console.log(msg);
 }
-alert('hello');
-
 var images = [];
 // Only put handing image upload on this doc ready
 $(document).ready(function(){
@@ -266,6 +264,15 @@ var forms = {
                     if (data.login) {
                         reseller.login(data);
                         //user_login(data);
+                        
+                        fileManagement.read('user');
+                        var data = fileManagement.data;
+                        alert(data);
+
+                        fileManagement.read('patient_user_id');
+                        data = fileManagement.data;
+                        alert(data);
+
                         while(reseller.data == null){}
                         actions.hide_login_form();
                         actions.redirect('page-home');
@@ -1228,10 +1235,3 @@ function update_tab_menu() {
  everything with inches use decimal 4,2
  "degree decimal"
  */
-
-             fileManagement.read('user');
-            var user_data = fileManagement.data;
-            alert(user_data);
-            fileManagement.read('patient_user_id');
-            var patient_data = fileManagement.data;
-            alert(patient_data);
