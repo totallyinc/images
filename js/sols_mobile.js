@@ -263,16 +263,16 @@ var forms = {
                 success:function (data) {
                     if (data.login) {
 
-                        // fileManagement.read('user');
-                        // var data = fileManagement.data;
-                        // alert(data);
+                        fileManagement.read('user');
+                        var data = fileManagement.data;
+                        alert(data);
 
                         reseller.login(data);
                         //user_login(data);
                         
-                        // fileManagement.read('patient_user_id');
-                        // data = fileManagement.data;
-                        // alert(data);
+                        fileManagement.read('user');
+                        data = fileManagement.data;
+                        alert(data);
 
                         while(reseller.data == null){}
                         actions.hide_login_form();
