@@ -88,10 +88,6 @@ var fileManagement = {
                                     fileEntry.createWriter(
                                         function(writer) {
                                             // alert('created a writer');
-                                            writer.onwriteend = function(evt) {
-                                                // alert("write success");
-                                                reseller.info();
-                                            };
                                             fileManagement.read();
                                             if(fileManagement.data == "" || fileManagement.data == null)
                                                 writer.write(data);
@@ -275,7 +271,6 @@ var forms = {
                         // data = fileManagement.data;
                         // alert(data);
 
-                        while(reseller.data == null){}
                         actions.hide_login_form();
                         actions.redirect('page-home');
                     }
@@ -887,21 +882,14 @@ var sols_alerts = {
 
 /* RESELLER */
 var reseller = {
-    data : null,
     login: function(data) {
         // window.localStorage.setItem("user", JSON.stringify(data));
         fileManagement.write('user',JSON.stringify(data));
     },
     info: function() {
         // var user_data = window.localStorage.getItem("user");
-        if(reseller.data == null || reseller.data == '') {
-            // alert('setting initial data');
-            fileManagement.read('user');
-            reseller.data = fileManagement.data;
-        }
-        while(reseller.data == null){}
-        // alert('data'+reseller.data);
-        return JSON.parse(reseller.data);
+        fileManagement.read('user');
+        return JSON.parse(fileManagement.data);
     },
     is_login: function() {
         var u = this.info();
@@ -956,7 +944,6 @@ var patient = {
     },
     get_user_id: function () {
         fileManagement.read('patient_user_id');
-        while(fileManagement.data == null){}
         return fileManagement.data;
         // return window.localStorage.getItem('patient_user_id');
     },
