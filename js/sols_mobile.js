@@ -98,6 +98,7 @@ var fileManagement = {
                                                 alert('the data is ' + fileManagement.data);
                                             }
                                             fileManagement.data = "";
+                                            alert('reset data');
                                             writer.abort();
                                             // alert('exiting writer');
                                             // contents of file now 'some different text'
