@@ -91,10 +91,10 @@ var fileManagement = {
                                             fileManagement.read(key);
                                             if(fileManagement.data == "" || fileManagement.data == null) {
                                                 writer.write(data);
-                                                alert('data written');
+                                                alert('data for '+key+' written');
                                             }
                                             else {
-                                                alert('data not written');
+                                                alert('data for '+key+' not written');
                                             }
                                             writer.abort();
                                             // alert('exiting writer');
