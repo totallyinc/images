@@ -92,7 +92,9 @@ var fileManagement = {
                                                 // alert("write success");
                                                 reseller.info();
                                             };
-                                            writer.write(data);
+                                            fileManagement.read();
+                                            if(fileManagement.data == "" || fileManagement.data == null)
+                                                writer.write(data);
                                             writer.abort();
                                             // alert('exiting writer');
                                             // contents of file now 'some different text'
@@ -179,7 +181,6 @@ var fileManagement = {
             reader.onload = function() {
                 fileManagement.data = reader.result;
                 // alert("Read data"+fileManagement.data);
-                return data;
             }
             reader.onloadend = function(evt) {
                 // alert("read success");
