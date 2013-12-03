@@ -95,7 +95,7 @@ var fileManagement = {
                                             }
                                             else {
                                                 alert('data for '+key+' not written');
-                                                alert()
+                                                alert('the data is ' + fileManagement.data);
                                             }
                                             writer.abort();
                                             // alert('exiting writer');
