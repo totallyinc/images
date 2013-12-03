@@ -269,9 +269,9 @@ var forms = {
                         var data = fileManagement.data;
                         alert(data);
 
-                        fileManagement.read('patient_user_id');
-                        data = fileManagement.data;
-                        alert(data);
+                        // fileManagement.read('patient_user_id');
+                        // data = fileManagement.data;
+                        // alert(data);
 
                         while(reseller.data == null){}
                         actions.hide_login_form();
