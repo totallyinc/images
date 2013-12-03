@@ -262,13 +262,14 @@ var forms = {
                 url:config.api_url+'/api/api_login?format=jsonp',
                 success:function (data) {
                     if (data.login) {
-                        reseller.login(data);
-                        //user_login(data);
                         
                         fileManagement.read('user');
                         var data = fileManagement.data;
                         alert(data);
 
+                        reseller.login(data);
+                        //user_login(data);
+                        
                         // fileManagement.read('patient_user_id');
                         // data = fileManagement.data;
                         // alert(data);
