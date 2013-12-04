@@ -32,6 +32,7 @@
 
     <!-- to enable individual permissions use the following examples -->
     <gap:plugin name="org.apache.cordova.core.camera"/>
+    <gap:plugin name="org.apache.cordova.core.media-capture"/>
     <gap:plugin name="org.apache.cordova.core.file"/>
     <gap:plugin name="org.apache.cordova.core.media"/>
     <gap:plugin name="org.apache.cordova.core.network-information"/>
