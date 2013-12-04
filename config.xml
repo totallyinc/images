@@ -15,6 +15,7 @@
     <!-- If you do not want any permissions to be added to your app, add the
     following tag to your config.xml; you will still have the INTERNET
     permission on your app, which PhoneGap requires. -->
+    <preference name="phonegap-version" value="3.1.0" />
     <preference name="permissions" value="none"/>
 
     <!-- to enable individual permissions use the following examples -->
