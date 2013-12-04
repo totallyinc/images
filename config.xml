@@ -10,7 +10,6 @@
     <gap:platform name="android" />
     <gap:platform name="ios" />
     <gap:platform name="winphone" />
-    <gap:plugin name="com.phonegap.plugins.barcodescanner" />
     
     <preference name="phonegap-version" value="3.1.0" />
     <preference name="orientation" value="portrait" />
@@ -33,10 +32,11 @@
     <preference name="permissions" value="none"/>
 
     <!-- to enable individual permissions use the following examples -->
-    <feature name="http://api.phonegap.com/1.0/camera"/>
-    <feature name="http://api.phonegap.com/1.0/file"/>
-    <feature name="http://api.phonegap.com/1.0/media"/>
-    <feature name="http://api.phonegap.com/1.0/network"/>
+    <gap:plugin name="http://api.phonegap.com/1.0/camera"/>
+    <gap:plugin name="http://api.phonegap.com/1.0/file"/>
+    <gap:plugin name="http://api.phonegap.com/1.0/media"/>
+    <gap:plugin name="http://api.phonegap.com/1.0/network"/>
+    <gap:plugin name="com.phonegap.plugins.barcodescanner" />
 
     <icon src="icon.png" />
     <icon gap:density="ldpi" gap:platform="android" src="res/icon/android/icon-36-ldpi.png" />
