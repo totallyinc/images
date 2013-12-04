@@ -279,7 +279,7 @@ var forms = {
                         // alert(data);
 
                         actions.hide_login_form();
-                        actions.redirect('page-home');
+                        window.setTimeout(actions.redirect('page-home')1000);
                     }
                     else {
                         sols_alerts.login_fail();
