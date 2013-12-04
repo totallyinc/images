@@ -63,7 +63,7 @@ $(document).ready(function(){
             var originalCaller = $(this);
             var id = originalCaller.attr('id');
 
-            navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
+            navigator.device.capture.captureImage(captureSuccess, captureError);
         }
         catch (err) {
             alert("An error occurred during capture: " + err + "\nMake sure your mobile device is supported.", null, "Uh oh!");
@@ -71,7 +71,7 @@ $(document).ready(function(){
     });
 });
 
-/*var fileManagement = {
+var fileManagement = {
     file : null,
     data : "",
     write :     function(key,data) {
@@ -194,7 +194,7 @@ $(document).ready(function(){
         }
         fileManagement.startRead(key,doAfterRead);
     }
-}*/
+}
 
 function captureError(error) {
     var msg = "An error occurred during capture: " + error;
@@ -767,8 +767,8 @@ var pages = {
 
 var buttons = {
     logout: function() {
-        window.localStorage.clear();
-        // fileManagement.delete('user');
+        // window.localStorage.clear();
+        fileManagement.delete('user');
         reseller.data = null;
         actions.redirect('page-login');
         actions.hide_footer_menu();
@@ -891,13 +891,14 @@ var sols_alerts = {
 /* RESELLER */
 var reseller = {
     login: function(data) {
-        window.localStorage.setItem("user", JSON.stringify(data));
-        // fileManagement.write('user',JSON.stringify(data));
+        // window.localStorage.setItem("user", JSON.stringify(data));
+        fileManagement.write('user',JSON.stringify(data));
     },
     info: function() {
-        var user_data = window.localStorage.getItem("user");
-        // fileManagement.read('user');
-        return JSON.parse(user_data);
+        // var user_data = window.localStorage.getItem("user");
+        fileManagement.read('user');
+        // return JSON.parse(user_data);
+        return JSON.parse(fileManagement.data);
     },
     is_login: function() {
         var u = this.info();
@@ -944,16 +945,16 @@ var patient = {
     },
     set_user_id: function (patient_user_id) {
         $('.db-data').html('');
-        // fileManagement.write('patient_user_id',patient_user_id);
-        window.localStorage.setItem('patient_user_id', patient_user_id);
+        fileManagement.write('patient_user_id',patient_user_id);
+        // window.localStorage.setItem('patient_user_id', patient_user_id);
         if(patient_user_id) {
             patient.update_foot_images();
         }
     },
     get_user_id: function () {
-        // fileManagement.read('patient_user_id');
-        // return fileManagement.data;
-        return window.localStorage.getItem('patient_user_id');
+        fileManagement.read('patient_user_id');
+        return fileManagement.data;
+        // return window.localStorage.getItem('patient_user_id');
     },
     api_data: function () {
         return 'patient_user_id='+this.get_user_id();
