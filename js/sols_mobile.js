@@ -98,7 +98,7 @@ var fileManagement = {
                                                 alert('the data is ' + fileManagement.data);
                                             }
                                             fileManagement.data = "";
-                                            alert('reset data');
+                                            alert("data"+fileManagement.data);
                                             writer.abort();
                                             // alert('exiting writer');
                                             // contents of file now 'some different text'
@@ -259,15 +259,12 @@ var forms = {
             //              alert("Please enter your uesrname and password!");
             //              return false;
             //            }
-            alert('hello');
-            alert($.ajax);
             var postData = $(this).serialize();
             $.ajax({
                 dataType:'jsonp',
                 data:postData,
                 url:config.api_url+'/api/api_login?format=jsonp',
                 success:function (data) {
-                    alert('success');
                     if (data.login) {
 
                         // fileManagement.read('user');
