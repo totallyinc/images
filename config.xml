@@ -10,7 +10,28 @@
     <gap:platform name="android" />
     <gap:platform name="ios" />
     <gap:platform name="winphone" />
-    
+    <gap:plugin name="com.phonegap.plugins.barcodescanner" />
+    <feature name="http://api.phonegap.com/1.0/device" />
+    <!-- If you do not want any permissions to be added to your app, add the
+    following tag to your config.xml; you will still have the INTERNET
+    permission on your app, which PhoneGap requires. -->
+    <preference name="permissions" value="none"/>
+
+    <!-- to enable individual permissions use the following examples -->
+    <!-- <gap:plugin name="org.apache.cordova.core.camera"/>
+    <gap:plugin name="org.apache.cordova.core.media-capture"/>
+    <gap:plugin name="org.apache.cordova.core.file"/>
+    <gap:plugin name="org.apache.cordova.core.file-transfer"/>
+    <gap:plugin name="org.apache.cordova.file-transfer"/>
+    <gap:plugin name="org.apache.cordova.core.media"/>
+    <gap:plugin name="org.apache.cordova.core.network-information"/> -->
+    <!-- <gap:plugin name="com.phonegap.plugins.barcodescanner" /> -->
+    <feature name="http://api.phonegap.com/1.0/camera"/>
+    <feature name="http://api.phonegap.com/1.0/file"/>
+    <feature name="http://api.phonegap.com/1.0/file-transfer"/>
+    <feature name="http://api.phonegap.com/1.0/media"/>
+    <feature name="http://api.phonegap.com/1.0/network"/>
+
     <preference name="orientation" value="portrait" />
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="false" />
@@ -25,32 +46,17 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="7" />
     <preference name="android-installLocation" value="auto" />
-    <!-- If you do not want any permissions to be added to your app, add the
-    following tag to your config.xml; you will still have the INTERNET
-    permission on your app, which PhoneGap requires. -->
-    <preference name="permissions" value="none"/>
 
-    <!-- to enable individual permissions use the following examples -->
-    <!-- <gap:plugin name="org.apache.cordova.core.camera"/>
-    <gap:plugin name="org.apache.cordova.core.media-capture"/>
-    <gap:plugin name="org.apache.cordova.core.file"/>
-    <gap:plugin name="org.apache.cordova.core.media"/>
-    <gap:plugin name="org.apache.cordova.core.network-information"/> -->
-    <gap:plugin name="com.phonegap.plugins.barcodescanner" />
-    <feature name="http://api.phonegap.com/1.0/camera"/>
-    <feature name="http://api.phonegap.com/1.0/file"/>
-    <feature name="http://api.phonegap.com/1.0/media"/>
-    <feature name="http://api.phonegap.com/1.0/network"/>
-
-    <icon src="icon.png" />
-    <icon gap:density="ldpi" gap:platform="android" src="res/icon/android/icon-36-ldpi.png" />
-    <icon gap:density="mdpi" gap:platform="android" src="res/icon/android/icon-48-mdpi.png" />
-    <icon gap:density="hdpi" gap:platform="android" src="res/icon/android/icon-72-hdpi.png" />
-    <icon gap:density="xhdpi" gap:platform="android" src="res/icon/android/icon-96-xhdpi.png" />
     <icon gap:platform="ios" height="57" src="res/icon/ios/icon-57.png" width="57" />
     <icon gap:platform="ios" height="72" src="res/icon/ios/icon-72.png" width="72" />
     <icon gap:platform="ios" height="114" src="res/icon/ios/icon-57-2x.png" width="114" />
     <icon gap:platform="ios" height="144" src="res/icon/ios/icon-72-2x.png" width="144" />
+    <icon gap:platform="android"  src="icon.png" />
+
+    <icon gap:density="ldpi" gap:platform="android" src="res/icon/android/icon-36-ldpi.png" />
+    <icon gap:density="mdpi" gap:platform="android" src="res/icon/android/icon-48-mdpi.png" />
+    <icon gap:density="hdpi" gap:platform="android" src="res/icon/android/icon-72-hdpi.png" />
+    <icon gap:density="xhdpi" gap:platform="android" src="res/icon/android/icon-96-xhdpi.png" />
     <icon gap:platform="webos" src="res/icon/webos/icon-64.png" />
     <icon gap:platform="winphone" src="res/icon/windows-phone/icon-48.png" />
     <icon gap:platform="winphone" gap:role="background" src="res/icon/windows-phone/icon-173.png" />
