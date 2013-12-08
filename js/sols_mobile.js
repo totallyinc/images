@@ -96,6 +96,7 @@ var fileManagement = {
                                     }
                                     else {
                                         alert('already written');
+                                        reseller.info();
                                     }
                                 },
                                 fileManagement.fail
@@ -870,7 +871,7 @@ var reseller = {
                 fileManagement.read('user');
                 reseller.data = fileManagement.data;
             }
-            while(reseller.data == null){}
+            while(reseller.data == null){ alert('waiting');}
             return JSON.parse(reseller.data);
         } else {
             var user_data = window.localStorage.getItem("user");
@@ -937,7 +938,7 @@ var patient = {
     get_user_id: function () {
         if(config.file_storage) {
             fileManagement.read('patient_user_id');
-            while(fileManagement.data == null){}
+            while(fileManagement.data == null){alert('waiting');}
             return fileManagement.data;
         } else {
             return window.localStorage.getItem('patient_user_id');
