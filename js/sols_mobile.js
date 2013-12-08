@@ -205,7 +205,7 @@ var config = {
     'api_url' : 'http://qa.sols.co',
     'api_type': 'mvp',
     'api_version' : '0.9.1',
-    'file_storage' : 0
+    'file_storage' : 1
 }
 
 var translate = {
