@@ -85,12 +85,18 @@ var fileManagement = {
                         function(fileEntry) {
                             fileEntry.createWriter(
                                 function(writer) {
-                                    writer.onwriteend = function(evt) {
-                                        alert('done write!');
-                                        reseller.info();
-                                    };
-                                    writer.write(data);
-                                    writer.abort();
+                                    fileManagement.read();
+                                    if(data == "" || data == null) {
+                                        writer.onwriteend = function(evt) {
+                                            alert('done write!');
+                                            reseller.info();
+                                        };
+                                        writer.write(data);
+                                        writer.abort();
+                                    }
+                                    else {
+                                        alert('already written');
+                                    }
                                 },
                                 fileManagement.fail
                             );
