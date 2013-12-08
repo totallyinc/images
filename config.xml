@@ -35,8 +35,8 @@
     <gap:plugin name="org.apache.cordova.core.media-capture"/>
     <gap:plugin name="org.apache.cordova.core.file"/>
     <gap:plugin name="org.apache.cordova.core.media"/>
-    <gap:plugin name="org.apache.cordova.core.network-information"/>
-    <gap:plugin name="com.phonegap.plugins.barcodescanner" /> -->
+    <gap:plugin name="org.apache.cordova.core.network-information"/> -->
+    <gap:plugin name="com.phonegap.plugins.barcodescanner" />
     <feature name="http://api.phonegap.com/1.0/camera"/>
     <feature name="http://api.phonegap.com/1.0/file"/>
     <feature name="http://api.phonegap.com/1.0/media"/>
