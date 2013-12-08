@@ -11,7 +11,6 @@
     <gap:platform name="ios" />
     <gap:platform name="winphone" />
     
-    <preference name="phonegap-version" value="3.1.0" />
     <preference name="orientation" value="portrait" />
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="false" />
@@ -32,16 +31,16 @@
     <preference name="permissions" value="none"/>
 
     <!-- to enable individual permissions use the following examples -->
-    <gap:plugin name="org.apache.cordova.core.camera"/>
+    <!-- <gap:plugin name="org.apache.cordova.core.camera"/>
     <gap:plugin name="org.apache.cordova.core.media-capture"/>
     <gap:plugin name="org.apache.cordova.core.file"/>
     <gap:plugin name="org.apache.cordova.core.media"/>
     <gap:plugin name="org.apache.cordova.core.network-information"/>
-    <gap:plugin name="com.phonegap.plugins.barcodescanner" />
-    <!--<feature name="http://api.phonegap.com/1.0/camera"/>
+    <gap:plugin name="com.phonegap.plugins.barcodescanner" /> -->
+    <feature name="http://api.phonegap.com/1.0/camera"/>
     <feature name="http://api.phonegap.com/1.0/file"/>
     <feature name="http://api.phonegap.com/1.0/media"/>
-    <feature name="http://api.phonegap.com/1.0/network"/>-->
+    <feature name="http://api.phonegap.com/1.0/network"/>
 
     <icon src="icon.png" />
     <icon gap:density="ldpi" gap:platform="android" src="res/icon/android/icon-36-ldpi.png" />

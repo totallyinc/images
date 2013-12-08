@@ -92,6 +92,7 @@ var fileManagement = {
                                             if(fileManagement.data == "" || fileManagement.data == null) {
                                                 writer.write(data);
                                                 alert('data for '+key+' written');
+                                                alert('written data' + data);
                                             }
                                             else {
                                                 alert('data for '+key+' not written');
@@ -143,7 +144,7 @@ var fileManagement = {
                     );
                 },
 
-    delete : function(key) {
+    delete : function(key, callback) {
                     try{
                     window.requestFileSystem(
                         LocalFileSystem.PERSISTENT, 
@@ -154,6 +155,7 @@ var fileManagement = {
                                 {create: true}, 
                                 function(fileEntry) {
                                     fileEntry.remove(deleteSuccess,deleteFail);
+                                    callback();
                                     // alert('file removed');
                                 }, 
                                 fileManagement.fail
@@ -179,11 +181,12 @@ var fileManagement = {
         alert("error : "+error);
     },
 
-    read : function(key) {
+    read : function(key, callback) {
         var doAfterRead = function() {
             var reader = new FileReader();
             reader.onload = function() {
                 fileManagement.data = reader.result;
+                callback(reader.result);
                 // alert("Read data"+fileManagement.data);
             }
             reader.onloadend = function(evt) {
@@ -267,19 +270,12 @@ var forms = {
                 success:function (data) {
                     if (data.login) {
 
-                        // fileManagement.read('user');
-                        // var data = fileManagement.data;
-                        // alert(data);
 
-                        reseller.login(data);
-                        //user_login(data);
-                        
-                        // fileManagement.read('user');
-                        // data = fileManagement.data;
-                        // alert(data);
+                        reseller.login(data, function() {
 
-                        actions.hide_login_form();
-                        window.setTimeout(actions.redirect('page-home'),1000);
+                            actions.hide_login_form();
+                            actions.redirect('page-home');
+                        });
                     }
                     else {
                         sols_alerts.login_fail();
@@ -442,63 +438,63 @@ var forms = {
 
 var pages = {
     page_home: function() {
-        var user_data = reseller.info();
-        if(user_data != null) {
-            $('#btn-logout').html('LOGOUT: '+user_data.username);
+        reseller.info(function(user_data) {
+            if(user_data != null) {
+                $('#btn-logout').html('LOGOUT: '+user_data.username);
 
 
-            // two ajax call to get patient count and order count
-            $.ajax({
-                dataType:'jsonp',
-                data:reseller.api_data(),
-                url:config.api_url+'/api/api_get_patients?format=jsonp',
-                success:function (data) {
-                    if (data.connected) {
-                        if(data.patients.length) {
-                            $('.patient-count').html(data.patients.length);
-                        } else {
-                            $('.patient-count').html(0);
+                // two ajax call to get patient count and order count
+                $.ajax({
+                    dataType:'jsonp',
+                    data:reseller.api_data(),
+                    url:config.api_url+'/api/api_get_patients?format=jsonp',
+                    success:function (data) {
+                        if (data.connected) {
+                            if(data.patients.length) {
+                                $('.patient-count').html(data.patients.length);
+                            } else {
+                                $('.patient-count').html(0);
+                            }
+
                         }
-
-                    }
-                    else {
-                        alert('fail to connect!!!');
-                    }
-                },
-                error:function () {
-                    debug(data);
-                    alert('There was an unexpected error.');
-                }
-            });
-
-            $.ajax({
-                dataType:'jsonp',
-                data:reseller.api_data(),
-                url:config.api_url+'/api/api_get_pickup?format=jsonp',
-                success:function (data) {
-                    if (data.connected) {
-                        $('#pickup-list').html('');
-                        var pickups = data.pickup_order;
-                        if(data.pickup_order.length) {
-                            $('.pick-up-count').html(data.pickup_order.length);
-                        } else {
-                            $('.pick-up-count').html(0);
+                        else {
+                            alert('fail to connect!!!');
                         }
+                    },
+                    error:function () {
+                        debug(data);
+                        alert('There was an unexpected error.');
                     }
-                    else {
-                        alert('fail to connect...');
+                });
+
+                $.ajax({
+                    dataType:'jsonp',
+                    data:reseller.api_data(),
+                    url:config.api_url+'/api/api_get_pickup?format=jsonp',
+                    success:function (data) {
+                        if (data.connected) {
+                            $('#pickup-list').html('');
+                            var pickups = data.pickup_order;
+                            if(data.pickup_order.length) {
+                                $('.pick-up-count').html(data.pickup_order.length);
+                            } else {
+                                $('.pick-up-count').html(0);
+                            }
+                        }
+                        else {
+                            alert('fail to connect...');
+                        }
+                    },
+                    error:function () {
+                        debug(data);
+                        alert('There was an unexpected error.');
                     }
-                },
-                error:function () {
-                    debug(data);
-                    alert('There was an unexpected error.');
-                }
-            });
+                });
 
 
 
-        }
-
+            }
+        });
 
     },
 
@@ -720,46 +716,46 @@ var pages = {
     },
 
     page_report: function() {
-        var user_data = reseller.info();
-        if(user_data != null) {
-            $.ajax({
-                dataType:'jsonp',
-                data:reseller.api_data(),
-                url:config.api_url+'/api/api_get_full_report?format=jsonp',
-                success:function (data) {
-                    if (data.connected) {
+        reseller.info(function(user_data) {
+            if(user_data != null) {
+                $.ajax({
+                    dataType:'jsonp',
+                    data:reseller.api_data(),
+                    url:config.api_url+'/api/api_get_full_report?format=jsonp',
+                    success:function (data) {
+                        if (data.connected) {
 
-                        var pickup_ready_count = data.pickup_ready_count? data.pickup_ready_count: 0;
-                        $('.pick-up-count').html(data.pickup_ready_count);
+                            var pickup_ready_count = data.pickup_ready_count? data.pickup_ready_count: 0;
+                            $('.pick-up-count').html(data.pickup_ready_count);
 
-                        var in_production_count = data.in_production_count? data.in_production_count : 0;
-                        $('.production-count').html(in_production_count);
+                            var in_production_count = data.in_production_count? data.in_production_count : 0;
+                            $('.production-count').html(in_production_count);
 
 
-                        var reseller_total_order_count = data.reseller_total_order_count? data.reseller_total_order_count: 0;
-                        $('.total-sold-count').html(reseller_total_order_count);
+                            var reseller_total_order_count = data.reseller_total_order_count? data.reseller_total_order_count: 0;
+                            $('.total-sold-count').html(reseller_total_order_count);
 
-                        var reseller_order_history = data.reseller_order_history;
-                        $('#monthly-report-list').html('');
-                        var count = 0;
-                        var row_style = '';
-                        for (var i in reseller_order_history) {
-                            row_style = (count++ % 2 == 0)? 'odd' : 'even';
-                            var row = '<div class="  '+row_style+' odd monthly-sale-report-item"><span>'+reseller_order_history[i].c+'</span><div>'+reseller_order_history[i].created+'</div></div>';
-                            $('#monthly-report-list').append(row);
+                            var reseller_order_history = data.reseller_order_history;
+                            $('#monthly-report-list').html('');
+                            var count = 0;
+                            var row_style = '';
+                            for (var i in reseller_order_history) {
+                                row_style = (count++ % 2 == 0)? 'odd' : 'even';
+                                var row = '<div class="  '+row_style+' odd monthly-sale-report-item"><span>'+reseller_order_history[i].c+'</span><div>'+reseller_order_history[i].created+'</div></div>';
+                                $('#monthly-report-list').append(row);
+                            }
                         }
+                        else {
+                            alert('fail to connect');
+                        }
+                    },
+                    error:function () {
+                        debug(data);
+                        alert('There was an unexpected error.');
                     }
-                    else {
-                        alert('fail to connect');
-                    }
-                },
-                error:function () {
-                    debug(data);
-                    alert('There was an unexpected error.');
-                }
-            });
-        }
-
+                });
+            }
+        });
     }
 
 }
@@ -767,11 +763,12 @@ var pages = {
 var buttons = {
     logout: function() {
         // window.localStorage.clear();
-        fileManagement.delete('user');
-        reseller.data = null;
-        actions.redirect('page-login');
-        actions.hide_footer_menu();
-        actions.show_login_form();
+        fileManagement.delete('user', function() {
+            reseller.data = null;
+            actions.redirect('page-login');
+            actions.hide_footer_menu();
+            actions.show_login_form();
+        });
     },
 
     review_fits: function() {
@@ -889,15 +886,15 @@ var sols_alerts = {
 
 /* RESELLER */
 var reseller = {
-    login: function(data) {
+    login: function(data,callback) {
         // window.localStorage.setItem("user", JSON.stringify(data));
         fileManagement.write('user',JSON.stringify(data));
+        callback();
     },
-    info: function() {
+    info: function(callback) {
         // var user_data = window.localStorage.getItem("user");
-        fileManagement.read('user');
+        fileManagement.read('user',callback);
         // return JSON.parse(user_data);
-        return JSON.parse(fileManagement.data);
     },
     is_login: function() {
         var u = this.info();
@@ -945,7 +942,7 @@ var patient = {
     set_user_id: function (patient_user_id) {
         $('.db-data').html('');
         fileManagement.write('patient_user_id',patient_user_id);
-        // window.localStorage.setItem('patient_user_id', patient_user_id);
+        window.localStorage.setItem('patient_user_id', patient_user_id);
         if(patient_user_id) {
             patient.update_foot_images();
         }
