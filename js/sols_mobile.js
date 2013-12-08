@@ -86,6 +86,7 @@ var fileManagement = {
                             fileEntry.createWriter(
                                 function(writer) {
                                     writer.onwriteend = function(evt) {
+                                        alert('done write!');
                                         reseller.info();
                                     };
                                     writer.write(data);
@@ -168,6 +169,7 @@ var fileManagement = {
         var doAfterRead = function() {
             var reader = new FileReader();
             reader.onload = function() {
+                alert('read done');
                 fileManagement.data = reader.result;
                 return data;
             }

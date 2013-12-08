@@ -25,7 +25,6 @@
     <gap:plugin name="org.apache.cordova.file-transfer"/>
     <gap:plugin name="org.apache.cordova.core.media"/>
     <gap:plugin name="org.apache.cordova.core.network-information"/> -->
-    <!-- <gap:plugin name="com.phonegap.plugins.barcodescanner" /> -->
     <feature name="http://api.phonegap.com/1.0/camera"/>
     <feature name="http://api.phonegap.com/1.0/file"/>
     <feature name="http://api.phonegap.com/1.0/file-transfer"/>
