@@ -88,7 +88,7 @@ var fileManagement = {
                                     fileManagement.read();
                                     if(fileManagement.data != fileData) {
                                         writer.onwriteend = function(evt) {
-                                            // alert(key + ' writing data' + fileData);
+                                            alert(key + ' writing data' + fileData);
                                             reseller.info();
                                         };
                                         writer.write(fileData);
@@ -176,7 +176,7 @@ var fileManagement = {
         var doAfterRead = function() {
             var reader = new FileReader();
             reader.onload = function() {
-                alert('read data: ' + reader.result);
+                // alert('read data: ' + reader.result);
                 fileManagement.data = reader.result;
             }
             reader.onloadend = function(evt) {
