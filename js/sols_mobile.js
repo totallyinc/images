@@ -85,7 +85,7 @@ var fileManagement = {
                         function(fileEntry) {
                             fileEntry.createWriter(
                                 function(writer) {
-                                    fileManagement.read(key);
+                                    fileManagement.read();
                                     if(fileManagement.data != fileData) {
                                         writer.onwriteend = function(evt) {
                                             // alert(key + ' writing data' + fileData);
@@ -97,7 +97,7 @@ var fileManagement = {
                                     else {
                                         alert(key + ': already written, data: ' + fileManagement.data);
                                         reseller.info();
-                                    });
+                                    }
                                 },
                                 fileManagement.fail
                             );
