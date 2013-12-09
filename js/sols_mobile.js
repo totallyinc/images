@@ -87,14 +87,14 @@ var fileManagement = {
                                 function(writer) {
                                     fileManagement.read();
                                     if(fileManagement.data != fileData) {
-                                        var done = false;
+                                        var notDone = true;
                                         writer.onwriteend = function(evt) {
                                             alert(key + ' writing data' + fileData);
-                                            done = true;
+                                            notDone = false;
                                             reseller.info();
                                         };
                                         writer.write(fileData);
-                                        while(!done){}
+                                        while(notDone){}
                                         writer.abort();
                                     }
                                     else {
