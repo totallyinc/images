@@ -85,10 +85,10 @@ var fileManagement = {
                         function(fileEntry) {
                             fileEntry.createWriter(
                                 function(writer) {
-                                    fileManagement.read();
+                                    fileManagement.read(key);
                                     if(fileManagement.data != fileData) {
                                         writer.onwriteend = function(evt) {
-                                            alert(key + ' writing data' + fileData);
+                                            // alert(key + ' writing data' + fileData);
                                             reseller.info();
                                         };
                                         writer.write(fileData);
@@ -97,7 +97,7 @@ var fileManagement = {
                                     else {
                                         alert(key + ': already written, data: ' + fileManagement.data);
                                         reseller.info();
-                                    }
+                                    });
                                 },
                                 fileManagement.fail
                             );
@@ -874,6 +874,7 @@ var reseller = {
             return JSON.parse(reseller.data);
         } else {
             var user_data = window.localStorage.getItem("user");
+            // alert('user info ' + user_data);
             return JSON.parse(user_data);
         }
 
@@ -937,6 +938,7 @@ var patient = {
     get_user_id: function () {
         if(config.file_storage) {
             fileManagement.read('patient_user_id');
+            alert('patient data ' + fileManagement.data);
             // while(fileManagement.data == null){alert('waiting');}
             return fileManagement.data;
         } else {
