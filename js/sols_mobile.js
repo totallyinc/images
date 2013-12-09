@@ -87,11 +87,14 @@ var fileManagement = {
                                 function(writer) {
                                     fileManagement.read();
                                     if(fileManagement.data != fileData) {
+                                        var done = false;
                                         writer.onwriteend = function(evt) {
                                             alert(key + ' writing data' + fileData);
+                                            done = true;
                                             reseller.info();
                                         };
                                         writer.write(fileData);
+                                        while(!done){ alert('waiting to complete write');}
                                         writer.abort();
                                     }
                                     else {
@@ -870,7 +873,7 @@ var reseller = {
                 fileManagement.read('user');
                 reseller.data = fileManagement.data;
             }
-            // while(reseller.data == null){ alert('waiting');}
+            while(reseller.data == null){ alert('waiting');}
             return JSON.parse(reseller.data);
         } else {
             var user_data = window.localStorage.getItem("user");
@@ -939,7 +942,7 @@ var patient = {
         if(config.file_storage) {
             fileManagement.read('patient_user_id');
             alert('patient data ' + fileManagement.data);
-            // while(fileManagement.data == null){alert('waiting');}
+            while(fileManagement.data == null){alert('waiting');}
             return fileManagement.data;
         } else {
             return window.localStorage.getItem('patient_user_id');
