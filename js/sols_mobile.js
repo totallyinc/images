@@ -94,7 +94,7 @@ var fileManagement = {
                                             reseller.info();
                                         };
                                         writer.write(fileData);
-                                        while(!done){ alert('waiting to complete write');}
+                                        while(!done){}
                                         writer.abort();
                                     }
                                     else {
