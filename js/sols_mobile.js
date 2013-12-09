@@ -73,7 +73,7 @@ $(document).ready(function(){
 var fileManagement = {
     file : null,
     data : "",
-    write :     function(key,data) {
+    write :     function(key,fileData) {
         try{
             window.requestFileSystem(
                 LocalFileSystem.PERSISTENT,
@@ -86,16 +86,16 @@ var fileManagement = {
                             fileEntry.createWriter(
                                 function(writer) {
                                     fileManagement.read();
-                                    if(data == "" || data == null) {
+                                    if(fileManagement.data == "" || fileManagement.data == null) {
                                         writer.onwriteend = function(evt) {
-                                            alert('done write!');
+                                            alert(key + 'writing data' + fileData);
                                             reseller.info();
                                         };
-                                        writer.write(data);
+                                        writer.write(fileData);
                                         writer.abort();
                                     }
                                     else {
-                                        alert('already written');
+                                        alert(key + ': already written, data: ' + data);
                                         reseller.info();
                                     }
                                 },
@@ -178,7 +178,6 @@ var fileManagement = {
             reader.onload = function() {
                 alert('read done');
                 fileManagement.data = reader.result;
-                return data;
             }
             reader.onloadend = function(evt) {
                 debug(evt.target.result);
