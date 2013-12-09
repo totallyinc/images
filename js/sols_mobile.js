@@ -95,7 +95,7 @@ var fileManagement = {
                                         writer.abort();
                                     }
                                     else {
-                                        alert(key + ': already written, data: ' + data);
+                                        alert(key + ': already written, data: ' + fileManagement.data);
                                         reseller.info();
                                     }
                                 },
@@ -176,7 +176,7 @@ var fileManagement = {
         var doAfterRead = function() {
             var reader = new FileReader();
             reader.onload = function() {
-                alert('read done');
+                alert('read data: ' + reader.result);
                 fileManagement.data = reader.result;
             }
             reader.onloadend = function(evt) {
