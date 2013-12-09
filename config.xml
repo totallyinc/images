@@ -18,18 +18,18 @@
     <preference name="permissions" value="none"/>
 
     <!-- to enable individual permissions use the following examples -->
-    <!-- <gap:plugin name="org.apache.cordova.core.camera"/>
+    <gap:plugin name="org.apache.cordova.core.camera"/>
     <gap:plugin name="org.apache.cordova.core.media-capture"/>
     <gap:plugin name="org.apache.cordova.core.file"/>
     <gap:plugin name="org.apache.cordova.core.file-transfer"/>
     <gap:plugin name="org.apache.cordova.file-transfer"/>
     <gap:plugin name="org.apache.cordova.core.media"/>
-    <gap:plugin name="org.apache.cordova.core.network-information"/> -->
-    <feature name="http://api.phonegap.com/1.0/camera"/>
+    <gap:plugin name="org.apache.cordova.core.network-information"/>
+    <!-- <feature name="http://api.phonegap.com/1.0/camera"/>
     <feature name="http://api.phonegap.com/1.0/file"/>
     <feature name="http://api.phonegap.com/1.0/file-transfer"/>
     <feature name="http://api.phonegap.com/1.0/media"/>
-    <feature name="http://api.phonegap.com/1.0/network"/>
+    <feature name="http://api.phonegap.com/1.0/network"/> -->
 
     <preference name="phonegap-version" value="3.1.0" />
     <preference name="orientation" value="portrait" />
