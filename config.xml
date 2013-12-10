@@ -24,9 +24,9 @@
     <gap:plugin name="org.apache.cordova.file-transfer"/>
     <gap:plugin name="org.apache.cordova.core.media"/>
     <gap:plugin name="org.apache.cordova.core.network-information"/> -->
+    <plugin name="File" value="org.apache.cordova.FileUtils" />
+    <plugin name="FileTransfer" value="org.apache.cordova.FileTransfer" />
     <feature name="http://api.phonegap.com/1.0/camera"/>
-    <feature name="http://api.phonegap.com/1.0/file"/>
-    <feature name="http://api.phonegap.com/1.0/file-transfer"/>
     <feature name="http://api.phonegap.com/1.0/media"/>
     <feature name="http://api.phonegap.com/1.0/network"/>
 
