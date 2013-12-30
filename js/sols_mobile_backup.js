@@ -1,74 +1,67 @@
 function debug(msg) {
     //console.log(msg);
 }
-
-var images = [];
 // Only put handing image upload on this doc ready
 $(document).ready(function(){
-
-    // Now safe to use the PhoneGap API
-    $('.camera_image, .camera_video').click(function(e){
-
-        function captureSuccess(mediaFiles) {
-            function uploadFiles() {
-                var url = config.api_url+"/api/api_update_patient_foot_images?format=jsonp&image_id="+originalCaller.attr('id')+'&'+patient.api_data()+'&'+reseller.api_data();
-                try {
-                    var ft = new FileTransfer();
-                    var path = images[id][0].fullPath;
-                    var name = images[id][0].name;
-                    ft.upload(
-                        path,
-                        url,
-                        function(result) {
-                            originalCaller.attr("src",path);
-                        },
-                        function(error) {
-                            window.setTimeout(
-                                ft.upload(path,
-                                    url,
-                                    function(result){
-                                        originalCaller.attr("src",path);
-                                    },
-                                    function(error){
-                                        navigator.notification.alert('Error uploading image, please try again');
-                                        originalCaller.attr("src","img/broken-link-image.jpg");
-                                    },
-                                    {
-                                        fileKey : originalCaller.attr('id'),
-                                    }),
-                                1000);
-                        },
-                        {   fileKey : originalCaller.attr('id'),
-                        });
-                }
-                catch(err){
-                    navigator.notification.alert("Exception: " + err);
-                }
-            }
-
-            try {
-                originalCaller.attr("src", "img/loading.gif");
-                images[id] = mediaFiles;
-                uploadFiles();
-            }
-            catch (err) {
-                navigator.notification.alert("success Error: " + err);
-            }
-        }
-
-        try{
-            var originalCaller = $(this);
-            var id = originalCaller.attr('id');
-            if($(this).attr('class').indexOf('camera_image') >= 0)
-              navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
-            if($(this).attr('class').indexOf('camera_video') >= 0)
-              navigator.device.capture.captureVideo(captureSuccess, captureError, {limit: 1, duration:10});
-        }
-        catch (err) {
-            alert("An error occurred during capture: " + err + "\nMake sure your mobile device is supported.", null, "Uh oh!");
-        }
-    });
+  $('.camera_video, .camera_image').click(function(e) {
+    try {
+      var manager = new media_management();
+      manager.originalCaller = $(this);
+      manager.id = $(this).attr('id');
+      if($(this).attr('class').indexOf('camera_image') >= 0)
+        navigator.device.capture.captureImage(manager.capture_success, manager.capture_error, {limit: 1});
+      if($(this).attr('class').indexOf('camera_video') >= 0)
+        navigator.device.capture.captureVideo(manager.capture_success, manager.capture_error, {limit: 1, duration:10});
+    }
+    catch(err) {
+      sols_alerts.notify('error '+err);
+    }
+  });
 });
+
+function clone(obj) {
+    if (null == obj || "object" != typeof obj) return obj;
+    var copy = obj.constructor();
+    for (var attr in obj) {
+        if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+    }
+    return copy;
+}
+
+var media_management = {
+  originalCaller : null,
+  id : null,
+  capture_success : function(mediaFiles) {
+    alert(this.id);
+    var url = config.api_url+"/api/api_update_patient_foot_images?format=jsonp&image_id="+this.originalCaller.attr('id')+'&'+patient.api_data()+'&'+reseller.api_data();
+    this.originalCaller.attr("src", "img/loading.gif");
+    this.upload_file(mediaFiles[0],url); 
+  },
+  capture_error : function(err) {
+    sols_alerts.notify('error '+err);
+  },
+  upload_file : function(mediaFile,url) {
+    sols_alerts.notify('uploading');
+    var ft = new FileTransfer();
+    var path = mediaFile.fullPath;
+    var name = mediaFile.name;
+    alert(name);
+    ft.upload(path,
+      url,
+      function(result) {
+        this.originalCaller.attr("src",path);
+        this.originalCaller = null;
+        this.id = null;
+      },
+      function(error) {
+        sols_alerts.notify('Error uploading file ' + path + ': ' + error.code);
+      },
+      { 
+        fileName: name,
+        fileKey : this.originalCaller.attr('id')
+      });   
+  }
+}
 
 var file_management = {
     file : null,
