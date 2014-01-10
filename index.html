@@ -21,7 +21,7 @@
 
 
 <body>
-<div class="page" data-role="page" data-control-title="Login" id="page-login">
+<div data-role="page" data-control-title="Login" id="page-login" class="page">
   <div data-role="panel" id="panel3" data-position="left" data-display="reveal"
        data-theme="a">
     <ul data-role="listview" data-divider-theme="h" data-inset="false">
@@ -38,6 +38,8 @@
   <div data-role="content" style="padding: 0px">
     <div data-controltype="htmlblock">
       <br>
+      <br>
+      <br>
     </div>
     <div style=" text-align:center" data-controltype="image">
       <img style="width: 100px; height: px" src="img/sols_logo.png">
@@ -51,24 +53,26 @@
       </div>
     </div>
     <form id="form_login" action="" method="POST">
-      <div class="require_input full_width" data-role="fieldcontain" data-controltype="textinput">
-        <input name="user[username]" id="textinput19" placeholder="USERNAME" value=""
-               type="text">
+      <div data-controltype="htmlblock">
+        <div class="text_field require_input full_width" data-role="fieldcontain"
+             data-controltype="textinput">
+          <input name="user[username]" id="textinput19" placeholder="USERNAME" value=""
+                 type="text">
+        </div>
+        <div class="text_field require_input full_width" data-role="fieldcontain"
+             data-controltype="textinput">
+          <input name="user[password]" id="textinput20" placeholder="PASSWORD" value=""
+                 type="password">
+        </div>
       </div>
-      <div class="require_input full_width" data-role="fieldcontain" data-controltype="textinput">
-        <input name="user[password]" id="textinput20" placeholder="PASSWORD" value=""
-               type="password">
-      </div>
-      <input id="submit_login" data-theme="d" data-icon="arrow-r" data-iconpos="right"
-             value="SUBMIT" type="submit">
+      <input id="submit_login" type="submit" data-theme="d" value="SUBMIT">
       <div data-controltype="htmlblock">
         <br>
         <div class="container">
           <div class="half">
             <div class="circle">
               <a class="home-icon-image" href="mailto:kyle@sols.co" data-transition="none">
-                <img style="margin-top: 20px;" src="img/home_icon_email.png"
-                     width="100%">
+                <img style="margin-top: 20px;" width="100%" src="img/home_icon_email.png">
               </a>
               <p style="margin: 0;">
                 EMAIL US
@@ -78,8 +82,7 @@
           <div class="half">
             <div class="circle">
               <a class="home-icon-image" href="tel:+12166502815" data-transition="none">
-                <img src="img/home_icon_phone.png"
-                     height="100%">
+                <img height="100%" src="img/home_icon_phone.png">
               </a>
               <p style="margin: 0;">
                 CALL US
@@ -95,7 +98,7 @@
     </form>
   </div>
 </div>
-<div class="page" data-role="page" data-control-title="Home" id="page-home">
+<div data-role="page" data-control-title="Home" id="page-home" class="page">
   <div data-role="panel" id="panel5" data-position="left" data-display="reveal"
        data-theme="a">
     <ul data-role="listview" data-divider-theme="h" data-inset="false">
@@ -112,38 +115,66 @@
   <div data-role="content" style="padding: 0px">
     <div data-controltype="textblock">
     </div>
-    <div data-controltype="textblock">
-      <p>
-      </p>
-      <p>
-        <br>
-      </p>
+    <div data-controltype="htmlblock">
+      <br>
+      <div style=" text-align:center" data-controltype="image">
+        <img style="width: 100px; height: px" src="img/sols_logo.png">
+      </div>
+      <br>
+      <br>
     </div>
     <div data-controltype="htmlblock">
       <div class="container">
         <div class="half">
-          <a href="#page-add-new-patient" class="circle circle_main_color block btn-goto-add-new-patient"
-             data-transition="none">
-            <img style="margin-top: 25px;" src="img/home_icon_add.png"
-                 height="40">
+          <div class="half center">
+            <a href="#page-add-new-patient" class="circle circle_main_color block btn-goto-add-new-patient"
+               data-transition="none">
+                              <span>
+                                  &nbsp;
+                                  <img height="40" src="img/home_icon_add.png">
+                              </span>
+            </a>
                           <span class="label">
-                              ADD NEW
-                              <br>
-                              PATIENT
+                              Add new patient
                           </span>
-          </a>
+          </div>
+          <div class="half center">
+            <a class="circle circle_main_color big-text" id="link-patients" href="#page-patients"
+               data-transition="none">
+                              <span class="link patient-count">
+                                  &nbsp;
+                              </span>
+            </a>
+            <br>
+                          <span class="label">
+                              View all patients
+                          </span>
+          </div>
         </div>
         <div class="half">
-          <a href="#page-pickup" class="big-text circle circle_main_color block"
-             data-transition="none">
-                          <span class="link pick-up-count">
-                          </span>
+          <div class="half center">
+            <a href="#page-pickup" class="big-text circle circle_main_color block"
+               data-transition="none">
+                              <span class="link pick-up-count">
+                                  &nbsp;
+                              </span>
+            </a>
+            <br>
                           <span class="label">
-                              PICK UP
-                              <br>
-                              READY
+                              Pick-ups ready
                           </span>
-          </a>
+          </div>
+          <div class="half center">
+            <a class="circle circle_main_color" href="#page-report" data-transition="none">
+                              <span>
+                                  &nbsp;
+                                  <img height="33" src="img/home_icon_reports.png">
+                              </span>
+            </a>
+                          <span class="label">
+                              Reports
+                          </span>
+          </div>
         </div>
         <div style="clear:both;">
         </div>
@@ -151,56 +182,29 @@
     </div>
     <div data-controltype="htmlblock">
       <br>
-      <div class="container">
-        <div class="half">
-          <a class="circle circle_main_color big-text" id="link-patients" href="#page-patients"
-             data-transition="none">
-                          <span class="link patient-count">
-                          </span>
-                          <span class="label">
-                              PATIENTS
-                          </span>
-          </a>
-        </div>
-        <div class="half">
-          <a class="circle circle_main_color" href="#page-report" data-transition="none">
-            <img style="margin-top: 31px;" src="img/home_icon_reports.png"
-                 height="33">
-                          <span class="label">
-                              REPORTS
-                          </span>
-          </a>
-        </div>
-        <div style="clear:both;">
-        </div>
-      </div>
-    </div>
-    <div data-controltype="htmlblock">
       <br>
-      <div class="container">
-        <div class="half">
+      <div class="container" style="width: 50%; margin: 0 auto;">
+        <div class="half center">
           <div class="circle light-grey">
             <br>
             <a class="home-icon-image" href="mailto:kyle@sols.co" data-transition="none">
-              <img style="margin-top: 20px;" src="img/home_icon_email.png"
-                   width="100%">
+              <img style="margin-top: 20px;" width="100%" src="img/home_icon_email.png">
             </a>
-            <p style="margin: 0;">
-              EMAIL US
-            </p>
           </div>
+                      <span class="label">
+                          EMAIL US
+                      </span>
         </div>
-        <div class="half">
+        <div class="half center">
           <div class="circle light-grey">
             <br>
             <a class="home-icon-image" href="tel:+12166502815" data-transition="none">
-              <img src="img/home_icon_phone.png"
-                   height="100%">
+              <img height="100%" src="img/home_icon_phone.png">
             </a>
-            <p style="margin: 0;">
-              CALL US
-            </p>
           </div>
+                      <span class="label">
+                          CALL US
+                      </span>
         </div>
         <div style="clear:both;">
         </div>
@@ -215,29 +219,29 @@
     </a>
   </div>
 </div>
-<div class="page" data-role="page" data-control-title="Add New Patient - basic information"
-     id="page-add-new-patient">
+<div data-role="page" data-control-title="Add New Patient - basic information"
+     id="page-add-new-patient" class="page">
 <div data-role="content" style="padding: 0px">
-<form id="form_patient_basic" action="" method="POST">
 <div data-controltype="htmlblock">
-  <div>
-                      <span class="step">
-                          1/6
-                      </span>
-    <a href="#" data-rel="back" class="back-button" data-transition="none">
-    </a>
-    <div class="header-sec">
-      <p class="title">
-        ADD PATIENT
-      </p>
-      <p class="sub-title">
-        BASIC INFORMATION
-      </p>
-    </div>
-    <div style="clear: both;">
-    </div>
+<div class="one-third">
+                  <span class="step">
+                      1/6
+                  </span>
+  <a href="#" data-rel="back" class="back-button" data-transition="none">
+  </a>
+  <div class="header-sec">
+    <p class="title">
+      ADD PATIENT
+    </p>
+    <p class="sub-title">
+      BASIC INFORMATION
+    </p>
+  </div>
+  <div style="clear: both;">
   </div>
 </div>
+<div class="two-third">
+<form id="form_patient_basic" action="" method="POST">
 <div class="require_input" data-role="fieldcontain" data-controltype="textinput">
   <label for="textinput3">
     LAST NAME
@@ -258,7 +262,6 @@
   </label>
   <input name="user[email]" id="textinput4" placeholder="" value="" type="email">
 </div>
-<div data-controltype="htmlblock">
 <div id="birth-date-input-group">
 <label style="display: block;">
   DATE OF BIRTH
@@ -711,7 +714,6 @@
 </option>
 </select>
 </div>
-</div>
 <div class="require_input" data-role="fieldcontain" data-controltype="selectmenu">
   <label for="selectmenu6">
     GENDER
@@ -737,7 +739,11 @@
 </div>
 <input class="btn_create_patient" data-theme="d" value="Create Patient"
        type="submit">
-<div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
+</form>
+</div>
+</div>
+</div>
+<div data-role="tabbar" data-iconpos="top" data-theme="a" class="footer_buttons">
   <ul>
     <li>
       <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
@@ -757,17 +763,16 @@
     </li>
   </ul>
 </div>
-</form>
 </div>
-</div>
-<div class="page" data-role="page" data-control-title="Patient Form - about"
-     id="page-patient-form-about">
+<div data-role="page" data-control-title="Patient Form - about" id="page-patient-form-about"
+     class="page">
 <div data-role="content" style="padding: 0px">
 <div data-controltype="htmlblock">
+<div class="one-third">
   <div>
-                  <span class="step">
-                      2/6
-                  </span>
+                      <span class="step">
+                          2/6
+                      </span>
     <a href="#" data-rel="back" class="back-button" data-transition="none">
     </a>
     <div class="header-sec">
@@ -784,8 +789,9 @@
   <div class="region-header center target_patient_name">
     &nbsp;
   </div>
-  <br>
 </div>
+<br>
+<div class="two-third">
 <form id="form_patient_about" action="" method="POST">
 <div data-controltype="htmlblock">
   <div class="option_ethnicity require_input" data-role="fieldcontain" data-controltype="selectmenu">
@@ -988,11 +994,12 @@
     </option>
   </select>
 </div>
-<input data-theme="d" data-icon="arrow-r" data-iconpos="right" value="SAVE &amp; CONTINUE"
-       type="submit">
+<input data-theme="d" value="SAVE &amp; CONTINUE" type="submit">
 </form>
 </div>
-<div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
+</div>
+</div>
+<div data-role="tabbar" data-iconpos="top" data-theme="a" class="footer_buttons">
   <ul>
     <li>
       <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
@@ -1013,156 +1020,169 @@
   </ul>
 </div>
 </div>
-<div class="page" data-role="page" data-control-title="Patient Form - foot measurements"
-     id="page-patient-form-foot-measurements">
+<div data-role="page" data-control-title="Patient Form - foot measurements"
+     id="page-patient-form-foot-measurements" class="page">
   <div data-role="content" style="padding: 0px">
     <div data-controltype="htmlblock">
-      <div>
-                  <span class="step">
-                      3/6
-                  </span>
-        <a href="#" data-rel="back" class="back-button" data-transition="none">
-        </a>
-        <div class="header-sec">
-          <p class="title">
-            ADD PATIENT
-          </p>
-          <p class="sub-title">
-            MEASURMENTS
-          </p>
+      <div class="one-third">
+        <div>
+                      <span class="step">
+                          3/6
+                      </span>
+          <a href="#" data-rel="back" class="back-button" data-transition="none">
+          </a>
+          <div class="header-sec">
+            <p class="title">
+              ADD PATIENT
+            </p>
+            <p class="sub-title">
+              MEASURMENTS
+            </p>
+          </div>
+          <div style="clear: both;">
+          </div>
         </div>
-        <div style="clear: both;">
+        <div class="region-header center target_patient_name">
+          &nbsp;
         </div>
+        <br>
       </div>
-      <div class="region-header center target_patient_name">
-        &nbsp;
+      <div class="two-third">
+        <form id="form_patient_measurements" action="" method="POST">
+          <div data-role="fieldcontain" data-controltype="textarea">
+            <textarea name="customer_info[prescription_note]" id="patient-note" placeholder="Exmaple: Recent fracture in left metarsal. Please reduce size of metatarsal pad."></textarea>
+          </div>
+          <div class="half">
+            <h4>
+              LEFT FOOT
+            </h4>
+            <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="textinput15">
+                FOOT LENGTH (in.)
+              </label>
+              <input name="customer_info[foot_length_left]" id="textinput15" placeholder=""
+                     value="" type="text">
+            </div>
+            <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="textinput17">
+                ARCH LEGNTH (in.)
+              </label>
+              <input name="customer_info[arch_length_left]" id="textinput17" placeholder=""
+                     value="" type="text">
+            </div>
+            <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="textinput22">
+                BALL LENGTH (in.)
+              </label>
+              <input name="customer_info[ball_length_left]" id="textinput22" placeholder=""
+                     value="" type="text">
+            </div>
+            <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="textinput25">
+                ARCH HEIGHT (in.)
+              </label>
+              <input name="customer_info[arch_height_left]" id="textinput25" placeholder=""
+                     value="" type="text">
+            </div>
+            <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="textinput29">
+                BALL WIDTH (in.)
+              </label>
+              <input name="customer_info[ball_width_left]" id="textinput29" placeholder=""
+                     value="" type="text">
+            </div>
+            <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="textinput31">
+                ARCH WIDTH (in.)
+              </label>
+              <input name="customer_info[arch_width_left]" id="textinput31" placeholder=""
+                     value="" type="text">
+            </div>
+            <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="textinput33">
+                HEEL WIDTH (in.)
+              </label>
+              <input name="customer_info[heel_width_left]" id="textinput33" placeholder=""
+                     value="" type="text">
+            </div>
+            <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="textinput35">
+                PRESCRIPTION ARCH DEGREE ( ° )
+              </label>
+              <input name="customer_info[prescription_arch_degree_left]" id="textinput35"
+                     placeholder="" value="" type="text">
+            </div>
+          </div>
+          <div class="half">
+            <h4>
+              RIGHT FOOT
+            </h4>
+            <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="textinput16">
+                FOOT LENGTH (in.)
+              </label>
+              <input name="customer_info[foot_length_right]" id="textinput16" placeholder=""
+                     value="" type="text">
+            </div>
+            <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="textinput18">
+                ARCH LENGTH (in.)
+              </label>
+              <input name="customer_info[arch_length_right]" id="textinput18" placeholder=""
+                     value="" type="text">
+            </div>
+            <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="textinput24">
+                BALL LENGTH (in.)
+              </label>
+              <input name="customer_info[ball_length_right]" id="textinput24" placeholder=""
+                     value="" type="text">
+            </div>
+            <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="textinput27">
+                ARCH HEIGHT (in.)
+              </label>
+              <input name="customer_info[arch_height_right]" id="textinput27" placeholder=""
+                     value="" type="text">
+            </div>
+            <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="textinput30">
+                BALL WIDTH (in.)
+              </label>
+              <input name="customer_info[ball_width_right]" id="textinput30" placeholder=""
+                     value="" type="text">
+            </div>
+            <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="textinput32">
+                ARCH WIDTH (in.)
+              </label>
+              <input name="customer_info[arch_width_right]" id="textinput32" placeholder=""
+                     value="" type="text">
+            </div>
+            <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="textinput34">
+                HEEL WIDTH (in.)
+              </label>
+              <input name="customer_info[heel_width_right]" id="textinput34" placeholder=""
+                     value="" type="text">
+            </div>
+            <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="textinput26">
+                PRESCRIPTION ARCH DEGREE ( ° )
+              </label>
+              <input name="customer_info[prescription_arch_degree_right]" id="textinput26"
+                     placeholder="" value="" type="text">
+            </div>
+          </div>
+          <div style="clear: both;">
+          </div>
+          <input data-theme="d" data-icon="" data-iconpos="right" value="SAVE &amp; CONTINUE"
+                 type="submit">
+        </form>
       </div>
-      <br>
     </div>
-    <form id="form_patient_measurements" action="" method="POST">
-      <h4>
-        LEFT FOOT
-      </h4>
-      <div data-role="fieldcontain" data-controltype="textinput">
-        <label for="textinput15">
-          FOOT LENGTH (in.)
-        </label>
-        <input name="customer_info[foot_length_left]" id="textinput15" placeholder=""
-               value="" type="text">
-      </div>
-      <div data-role="fieldcontain" data-controltype="textinput">
-        <label for="textinput17">
-          ARCH LEGNTH (in.)
-        </label>
-        <input name="customer_info[arch_length_left]" id="textinput17" placeholder=""
-               value="" type="text">
-      </div>
-      <div data-role="fieldcontain" data-controltype="textinput">
-        <label for="textinput22">
-          BALL LENGTH (in.)
-        </label>
-        <input name="customer_info[ball_length_left]" id="textinput22" placeholder=""
-               value="" type="text">
-      </div>
-      <div data-role="fieldcontain" data-controltype="textinput">
-        <label for="textinput25">
-          ARCH HEIGHT (in.)
-        </label>
-        <input name="customer_info[arch_height_left]" id="textinput25" placeholder=""
-               value="" type="text">
-      </div>
-      <div data-role="fieldcontain" data-controltype="textinput">
-        <label for="textinput29">
-          BALL WIDTH (in.)
-        </label>
-        <input name="customer_info[ball_width_left]" id="textinput29" placeholder=""
-               value="" type="text">
-      </div>
-      <div data-role="fieldcontain" data-controltype="textinput">
-        <label for="textinput31">
-          ARCH WIDTH (in.)
-        </label>
-        <input name="customer_info[arch_width_left]" id="textinput31" placeholder=""
-               value="" type="text">
-      </div>
-      <div data-role="fieldcontain" data-controltype="textinput">
-        <label for="textinput33">
-          HEEL WIDTH (in.)
-        </label>
-        <input name="customer_info[heel_width_left]" id="textinput33" placeholder=""
-               value="" type="text">
-      </div>
-      <div data-role="fieldcontain" data-controltype="textinput">
-        <label for="textinput35">
-          PRESCRIPTION ARCH DEGREE ( ° )
-        </label>
-        <input name="customer_info[prescription_arch_degree_left]" id="textinput35"
-               placeholder="" value="" type="text">
-      </div>
-      <h4>
-        RIGHT FOOT
-      </h4>
-      <div data-role="fieldcontain" data-controltype="textinput">
-        <label for="textinput16">
-          FOOT LENGTH (in.)
-        </label>
-        <input name="customer_info[foot_length_right]" id="textinput16" placeholder=""
-               value="" type="text">
-      </div>
-      <div data-role="fieldcontain" data-controltype="textinput">
-        <label for="textinput18">
-          ARCH LENGTH (in.)
-        </label>
-        <input name="customer_info[arch_length_right]" id="textinput18" placeholder=""
-               value="" type="text">
-      </div>
-      <div data-role="fieldcontain" data-controltype="textinput">
-        <label for="textinput24">
-          BALL LENGTH (in.)
-        </label>
-        <input name="customer_info[ball_length_right]" id="textinput24" placeholder=""
-               value="" type="text">
-      </div>
-      <div data-role="fieldcontain" data-controltype="textinput">
-        <label for="textinput27">
-          ARCH HEIGHT (in.)
-        </label>
-        <input name="customer_info[arch_height_right]" id="textinput27" placeholder=""
-               value="" type="text">
-      </div>
-      <div data-role="fieldcontain" data-controltype="textinput">
-        <label for="textinput30">
-          BALL WIDTH (in.)
-        </label>
-        <input name="customer_info[ball_width_right]" id="textinput30" placeholder=""
-               value="" type="text">
-      </div>
-      <div data-role="fieldcontain" data-controltype="textinput">
-        <label for="textinput32">
-          ARCH WIDTH (in.)
-        </label>
-        <input name="customer_info[arch_width_right]" id="textinput32" placeholder=""
-               value="" type="text">
-      </div>
-      <div data-role="fieldcontain" data-controltype="textinput">
-        <label for="textinput34">
-          HEEL WIDTH (in.)
-        </label>
-        <input name="customer_info[heel_width_right]" id="textinput34" placeholder=""
-               value="" type="text">
-      </div>
-      <div data-role="fieldcontain" data-controltype="textinput">
-        <label for="textinput26">
-          PRESCRIPTION ARCH DEGREE ( ° )
-        </label>
-        <input name="customer_info[prescription_arch_degree_right]" id="textinput26"
-               placeholder="" value="" type="text">
-      </div>
-      <input data-theme="d" data-icon="arrow-r" data-iconpos="right" value="SAVE &amp; CONTINUE"
-             type="submit">
-    </form>
   </div>
-  <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
+  <div data-role="tabbar" data-iconpos="top" data-theme="a" class="footer_buttons">
     <ul>
       <li>
         <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
@@ -1183,8 +1203,8 @@
     </ul>
   </div>
 </div>
-<div class="page" data-role="page" data-control-title="Patient Form - note"
-     id="page-patient-form-note">
+<div data-role="page" data-control-title="Patient Form - note" id="page-patient-form-note"
+     class="page">
   <div data-role="content" style="padding: 0px">
     <div data-controltype="htmlblock">
       <div>
@@ -1209,15 +1229,21 @@
       </div>
       <br>
     </div>
-    <form class="form" id="form_patient_note" action="" method="POST">
+    <form id="form_patient_note" action="" method="POST" class="form">
       <div data-role="fieldcontain" data-controltype="textarea">
         <textarea name="customer_info[prescription_note]" id="patient-note" placeholder="Exmaple: Recent fracture in left metarsal. Please reduce size of metatarsal pad."></textarea>
       </div>
-      <input data-theme="d" data-icon="arrow-r" data-iconpos="right" value="SAVE &amp; SCAN FEET"
-             type="submit">
+      <input type="submit" data-theme="d" data-icon="arrow-r" data-iconpos="right"
+             value="SAVE &amp; SCAN FEET">
+      <div style="" data-controltype="image">
+        <img style="width: 120px; height: 67px" src="img/home_icon_email.png">
+      </div>
+      <div style="" data-controltype="image">
+        <img style="width: 97px; height: 111px" src="img/home_icon_phone.png">
+      </div>
     </form>
   </div>
-  <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
+  <div data-role="tabbar" data-iconpos="top" data-theme="a" class="footer_buttons">
     <ul>
       <li>
         <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
@@ -1238,142 +1264,132 @@
     </ul>
   </div>
 </div>
-<div class="page" data-role="page" data-control-title="Patient Form - scan foot"
-     id="page-patient-form-scan-foot">
+<div data-role="page" data-control-title="Patient Form - scan foot" id="page-patient-form-scan-foot"
+     class="page">
   <div data-role="content" style="padding: 0px">
     <div data-controltype="htmlblock">
-      <div>
-                  <span class="step">
-                      5/6
-                  </span>
-        <a href="#" data-rel="back" class="back-button" data-transition="none">
-        </a>
-        <div class="header-sec">
-          <p class="title">
-            ADD PATIENT
-          </p>
-          <p class="sub-title">
-            PHOTOGRAPHS
-          </p>
+    </div>
+    <div data-controltype="htmlblock">
+      <div class="one-third">
+        <div>
+                      <span class="step">
+                          5/6
+                      </span>
+          <a href="#" data-rel="back" class="back-button" data-transition="none">
+          </a>
+          <div class="header-sec">
+            <p class="title">
+              ADD PATIENT
+            </p>
+            <p class="sub-title">
+              PHOTOGRAPHS
+            </p>
+          </div>
+          <div style="clear: both;">
+          </div>
+        </div>
+        <div class="region-header center target_patient_name">
+          &nbsp;
+        </div>
+      </div>
+      <div class="two-third">
+        <div class="section-header">
+          VIDEO
+        </div>
+        <br>
+        <div class="camera_video_container container">
+          <div style=" text-align: center; float: left; width:50%;">
+            <img id="video_left" onerror="image_error('video_left');" class="foot-video_left camera_video"
+                 src="https://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/video-icon.png"
+                 width="75">
+            <p style="margin: 0;">
+              Left
+            </p>
+          </div>
+          <div style=" text-align: center; float: left; width:50%;">
+            <img id="video_right" onerror="image_error('video_right');" class="foot-video_right camera_video"
+                 src="https://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/video-icon.png"
+                 width="75">
+            <p style="margin: 0;">
+              Right
+            </p>
+          </div>
+          <div style="clear: both; margin-bottom: 20px;">
+          </div>
+        </div>
+        <div>
+          <div class="half">
+            <div class="section-header">
+              LEFT FOOT
+            </div>
+            <br>
+            <div class="camera_image_container  container">
+              <!-- <div style=" text-align: center; float: left; width:33%;">
+                      <img  onerror="image_error('l1');"  class="foot-l1 camera_image" id="l1" width="75" src="img/foot.jpg" />
+                      <p style="margin: 0;">Bottom</p>
+                  </div>
+                  <div style=" text-align: center; float: left; width:33%;">
+                      <img onerror="image_error('l2');"  class="foot-l2 camera_image"  id="l2" width="75" src="img/foot.jpg" />
+                      <p style="margin: 0;">Medial</p>
+                  </div>
+              -->
+              <div style=" text-align: center; float: left; width:33%;">
+                <img onerror="image_error('l3');" class="foot-l3 camera_image" id="l3"
+                     width="75" src="img/foot.jpg">
+                <p style="margin: 0;">
+                  Back
+                </p>
+              </div>
+              <div style="clear: both; margin-bottom: 20px;">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="half">
+            <div class=" section-header">
+              RIGHT FOOT
+            </div>
+            <br>
+            <div class="camera_image_container container">
+              <!-- <div style=" text-align: center; float: left; width:33%;">
+                      <img onerror="image_error('r1');"  class="foot-r1 camera_image" id="r1" width="75" src="img/foot.jpg" />
+                      <p style="margin: 0;">Bottom</p>
+                  </div>
+                  <div style=" text-align: center; float: left; width:33%;">
+                      <img onerror="image_error('r2');"  class="foot-r2 camera_image" id="r2" width="75" src="img/foot.jpg" />
+                      <p style="margin: 0;">Medial</p>
+                  </div>
+              -->
+              <div style=" text-align: center; float: left; width:33%;">
+                <img onerror="image_error('r3');" class="foot-r3 camera_image" id="r3"
+                     width="75" src="img/foot.jpg">
+                <p style="margin: 0;">
+                  Back
+                </p>
+              </div>
+              <div style="clear: both; margin-bottom: 20px;">
+              </div>
+            </div>
+          </div>
         </div>
         <div style="clear: both;">
         </div>
+        <a class="container" id="btn-goto-patient-form-foot-measurements" data-role="button"
+           data-transition="none" data-theme="d" href="#page-patient-info-review">
+          SAVE &amp; CONTINUE
+        </a>
       </div>
-      <div class="region-header center target_patient_name">
-        &nbsp;
-      </div>
-      <br>
-      
-      <div class="section-header">
-        VIDEO
-      </div>
-      <br>
-    </div>
-    <div data-controltype="htmlblock">
-      <div class="camera_video_container container">
-        <div style=" text-align: center; float: left; width:50%;">
-          <img id="video_left" onerror="image_error('video_left');" class="foot-video_left camera_video" src="img/foot.jpg"
-               width="75">
-          <p style="margin: 0;">
-            Left
-          </p>
-        </div>
-        <div style=" text-align: center; float: left; width:50%;">
-          <img id="video_right" onerror="image_error('video_right');" class="foot-video_right camera_video" src="img/foot.jpg"
-               width="75">
-          <p style="margin: 0;">
-            Right
-          </p>
-        </div>
-        <div style="clear: both; margin-bottom: 20px;">
-        </div>
-      </div>
-    </div>
-
-    <div data-controltype="htmlblock">
-      <div class="section-header">
-        LEFT FOOT
-      </div>
-      <br>
-    </div>
-    <div data-controltype="htmlblock">
-      <div class="camera_image_container container">
-        <div style=" text-align: center; float: left; width:33%;">
-          <img onerror="image_error('l1');" class="foot-l1 camera_image" id="l1"
-               src="img/foot.jpg"
-               width="75">
-          <p style="margin: 0;">
-            Bottom
-          </p>
-        </div>
-        <div style=" text-align: center; float: left; width:33%;">
-          <img onerror="image_error('l2');" class="foot-l2 camera_image" id="l2"
-               src="img/foot.jpg"
-               width="75">
-          <p style="margin: 0;">
-            Medial
-          </p>
-        </div>
-        <div style=" text-align: center; float: left; width:33%;">
-          <img onerror="image_error('l3');" class="foot-l3 camera_image" id="l3"
-               src="img/foot.jpg"
-               width="75">
-          <p style="margin: 0;">
-            Back
-          </p>
-        </div>
-        <div style="clear: both; margin-bottom: 20px;">
-        </div>
-      </div>
-    </div>
-    <div data-controltype="htmlblock">
-      <div class=" section-header">
-        RIGHT FOOT
-      </div>
-      <br>
-    </div>
-    <div data-controltype="htmlblock">
-      <div class="camera_image_container container">
-        <div style=" text-align: center; float: left; width:33%;">
-          <img onerror="image_error('r1');" class="foot-r1 camera_image" id="r1"
-               src="img/foot.jpg"
-               width="75">
-          <p style="margin: 0;">
-            Bottom
-          </p>
-        </div>
-        <div style=" text-align: center; float: left; width:33%;">
-          <img onerror="image_error('r2');" class="foot-r2 camera_image" id="r2"
-               src="img/foot.jpg"
-               width="75">
-          <p style="margin: 0;">
-            Medial
-          </p>
-        </div>
-        <div style=" text-align: center; float: left; width:33%;">
-          <img onerror="image_error('r3');" class="foot-r3 camera_image" id="r3"
-               src="img/foot.jpg"
-               width="75">
-          <p style="margin: 0;">
-            Back
-          </p>
-        </div>
-        <div style="clear: both; margin-bottom: 20px;">
-        </div>
+      <div style="clear: both;">
       </div>
     </div>
     <div data-controltype="htmlblock">
       <p class="container" style="font-size: 12px;">
-        ALL 6 PHOTOS MUST BE TAKEN BEFORE CONTINUING.
+        &nbsp;
       </p>
     </div>
-    <a class="container" id="btn-goto-patient-info-review" data-role="button"
-       data-transition="none" data-theme="d" href="#page-patient-info-review"
-       data-icon="arrow-r" data-iconpos="right">
-      SAVE &amp; CONTINUE
-    </a>
   </div>
-  <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
+  <div data-role="tabbar" data-iconpos="top" data-theme="a" class="footer_buttons">
     <ul>
       <li>
         <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
@@ -1394,14 +1410,15 @@
     </ul>
   </div>
 </div>
-<div class="page" data-role="page" data-control-title="Patient Info Review"
-     id="page-patient-info-review">
+<div data-role="page" data-control-title="Patient Info Review" id="page-patient-info-review"
+     class="page">
 <div data-role="content" style="padding: 0px">
 <div data-controltype="htmlblock">
+<div class="one-third">
   <div>
-                  <span class="step">
-                      6/6
-                  </span>
+                      <span class="step">
+                          6/6
+                      </span>
     <a href="#" data-rel="back" class="back-button" data-transition="none">
     </a>
     <div class="header-sec">
@@ -1418,9 +1435,10 @@
   <div class="region-header center target_patient_name">
     &nbsp;
   </div>
-  <br>
+  <iframe src="http://api.sols.co/3d/vtk.php" width="100%" height="400">
+  </iframe>
 </div>
-<div data-controltype="htmlblock">
+<div class="two-third">
 <div class="section-header">
   <a class="section-header-edit" href="#page-add-new-patient" data-transition="none">
     Edit
@@ -1431,15 +1449,15 @@
 </div>
 <div class="container">
   <div class="odd">
-                      <span class="db-data patient-info-last_name">
-                      </span>
+                          <span class="db-data patient-info-last_name">
+                          </span>
     ,
-                      <span class="db-data patient-info-first_name">
-                      </span>
+                          <span class="db-data patient-info-first_name">
+                          </span>
   </div>
   <div class="even">
-                      <span class="db-data patient-info-email">
-                      </span>
+                          <span class="db-data patient-info-email">
+                          </span>
   </div>
 </div>
 <div class="patient-info container">
@@ -1447,15 +1465,15 @@
     <label>
       DATE OF BIRTH
     </label>
-                      <span class="db-data patient-info-dob">
-                      </span>
+                          <span class="db-data patient-info-dob">
+                          </span>
   </div>
   <div class="even">
     <label>
       GENDER
     </label>
-                      <span class="db-data patient-info-ref_gender_id">
-                      </span>
+                          <span class="db-data patient-info-ref_gender_id">
+                          </span>
   </div>
   <div class="odd">
     <label>
@@ -1463,8 +1481,8 @@
       <br>
       SS#
     </label>
-                      <span class="db-data patient-info-ss_num_last_four">
-                      </span>
+                          <span class="db-data patient-info-ss_num_last_four">
+                          </span>
   </div>
 </div>
 <br>
@@ -1481,8 +1499,8 @@
     <label>
       ETHNICITY
     </label>
-                      <span class="db-data patient-info-ref_ethnicity_id">
-                      </span>
+                          <span class="db-data patient-info-ref_ethnicity_id">
+                          </span>
   </div>
   <div class="even">
     <b>
@@ -1491,8 +1509,8 @@
     <label>
       HEIGHT
     </label>
-                      <span class="db-data patient-info-height">
-                      </span>
+                          <span class="db-data patient-info-height">
+                          </span>
   </div>
   <div class="odd">
     <b>
@@ -1501,29 +1519,29 @@
     <label>
       WEIGHT
     </label>
-                      <span class="db-data patient-info-weight">
-                      </span>
+                          <span class="db-data patient-info-weight">
+                          </span>
   </div>
   <div class="even">
     <label>
       LEFT SHOE SIZE
     </label>
-                      <span class="db-data patient-info-shoe_size_raw_left">
-                      </span>
+                          <span class="db-data patient-info-shoe_size_raw_left">
+                          </span>
   </div>
   <div class="odd">
     <label>
       RIGHT SHOE SIZE
     </label>
-                      <span class="db-data patient-info-shoe_size_raw_right">
-                      </span>
+                          <span class="db-data patient-info-shoe_size_raw_right">
+                          </span>
   </div>
   <div class="even">
     <label>
       ACTIVITY LEVEL
     </label>
-                      <span class="db-data patient-info-ref_activity_level_id">
-                      </span>
+                          <span class="db-data patient-info-ref_activity_level_id">
+                          </span>
   </div>
 </div>
 <br>
@@ -1540,50 +1558,50 @@
     <label>
       FOOT LENGTH
     </label>
-                      <span class="db-data patient-info-foot_length_left">
-                      </span>
+                          <span class="db-data patient-info-foot_length_left">
+                          </span>
   </div>
   <div class="even">
     <label>
       ARCH LENGTH
     </label>
-                      <span class="db-data patient-info-arch_length_left">
-                      </span>
+                          <span class="db-data patient-info-arch_length_left">
+                          </span>
   </div>
   <div class="odd">
     <label>
       ARCH HEIGHT
     </label>
-                      <span class="db-data patient-info-arch_height_left">
-                      </span>
+                          <span class="db-data patient-info-arch_height_left">
+                          </span>
   </div>
   <div class="even">
     <label>
       ARCH WIDTH
     </label>
-                      <span class="db-data patient-info-arch_width_left">
-                      </span>
+                          <span class="db-data patient-info-arch_width_left">
+                          </span>
   </div>
   <div class="odd">
     <label>
       BALL LENGTH
     </label>
-                      <span class="db-data patient-info-ball_length_left">
-                      </span>
+                          <span class="db-data patient-info-ball_length_left">
+                          </span>
   </div>
   <div class="even">
     <label>
       BALL WIDTH
     </label>
-                      <span class="db-data patient-info-ball_width_left">
-                      </span>
+                          <span class="db-data patient-info-ball_width_left">
+                          </span>
   </div>
   <div class="odd">
     <label>
       HEEL WIDTH
     </label>
-                      <span class="db-data patient-info-heel_width_left">
-                      </span>
+                          <span class="db-data patient-info-heel_width_left">
+                          </span>
   </div>
   <div class="even">
     <label>
@@ -1591,8 +1609,8 @@
       <br>
       ARCH DEGREE
     </label>
-                      <span class="db-data patient-info-prescription_degree_left">
-                      </span>
+                          <span class="db-data patient-info-prescription_degree_left">
+                          </span>
   </div>
 </div>
 <br>
@@ -1609,50 +1627,50 @@
     <label>
       FOOT LENGTH
     </label>
-                      <span class="db-data patient-info-foot_length_right">
-                      </span>
+                          <span class="db-data patient-info-foot_length_right">
+                          </span>
   </div>
   <div class="even">
     <label>
       ARCH LEGNTH
     </label>
-                      <span class="db-data patient-info-arch_length_right">
-                      </span>
+                          <span class="db-data patient-info-arch_length_right">
+                          </span>
   </div>
   <div class="odd">
     <label>
       ARCH HEIGHT
     </label>
-                      <span class="db-data patient-info-arch_height_right">
-                      </span>
+                          <span class="db-data patient-info-arch_height_right">
+                          </span>
   </div>
   <div class="even">
     <label>
       ARCH WIDTH
     </label>
-                      <span class="db-data patient-info-arch_width_right">
-                      </span>
+                          <span class="db-data patient-info-arch_width_right">
+                          </span>
   </div>
   <div class="odd">
     <label>
       BALL LENGTH
     </label>
-                      <span class="db-data patient-info-ball_length_right">
-                      </span>
+                          <span class="db-data patient-info-ball_length_right">
+                          </span>
   </div>
   <div class="even">
     <label>
       BALL WIDTH
     </label>
-                      <span class="db-data patient-info-ball_width_right">
-                      </span>
+                          <span class="db-data patient-info-ball_width_right">
+                          </span>
   </div>
   <div class="odd">
     <label>
       HEEL WIDTH
     </label>
-                      <span class="db-data patient-info-heel_width_right">
-                      </span>
+                          <span class="db-data patient-info-heel_width_right">
+                          </span>
   </div>
   <div class="even">
     <label>
@@ -1660,8 +1678,8 @@
       <br>
       ARCH DEGREE
     </label>
-                      <span class="db-data patient-info-prescription_degree_right">
-                      </span>
+                          <span class="db-data patient-info-prescription_degree_right">
+                          </span>
   </div>
 </div>
 <br>
@@ -1676,75 +1694,87 @@
 <div class="db-data patient-info-prescription_note container">
 </div>
 <br>
+<div class="section-header">
+  <a class="section-header-edit" href="#page-patient-form-scan-foot">
+    Edit
+  </a>
+  <div class="section-header-label">
+    VIDEO
+  </div>
 </div>
-<div data-controltype="htmlblock">
-  <div class="section-header">
-    <a class="section-header-edit" href="#page-patient-form-scan-foot">
-      Edit
-    </a>
-    <div class="section-header-label">
-      LEFT
-    </div>
+<br>
+<div class="container">
+  <div style=" text-align: center; float: left; width:50%;">
+    <img onerror="image_error('video_left');" class="foot-video_left" width="75"
+         src="https://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/video-icon.png">
+    <p style="margin: 0;">
+      Left
+    </p>
   </div>
-  <br>
-  <div class="container">
-    <div style=" text-align: center; float: left; width:33%;">
-      <img onerror="image_error('l1');" class="foot-l1" src="img/foot.jpg"
-           width="75">
-      <p style="margin: 0;">
-        Bottom
-      </p>
-    </div>
-    <div style=" text-align: center; float: left; width:33%;">
-      <img onerror="image_error('l2');" class="foot-l2" src="img/foot.jpg"
-           width="75">
-      <p style="margin: 0;">
-        Medial
-      </p>
-    </div>
-    <div style=" text-align: center; float: left; width:33%;">
-      <img onerror="image_error('l3');" class="foot-l3" src="img/foot.jpg"
-           width="75">
-      <p style="margin: 0;">
-        Back
-      </p>
-    </div>
-    <div style="clear:both;">
-    </div>
+  <div style=" text-align: center; float: left; width:50%;">
+    <img onerror="image_error('video_right');" class="foot-video_right" width="75"
+         src="https://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/video-icon.png">
+    <p style="margin: 0;">
+      Right
+    </p>
   </div>
-  <div class="section-header">
-    <a class="section-header-edit" href="#page-patient-form-scan-foot">
-      Edit
-    </a>
-    <div class="section-header-label">
-      RIGHT
-    </div>
+  <div style="clear:both;">
   </div>
-  <br>
-  <div class="container">
-    <div style=" text-align: center; float: left; width:33%;">
-      <img onerror="image_error('r1');" class="foot-r1" src="img/foot.jpg"
-           width="75">
-      <p style="margin: 0;">
-        Bottom
-      </p>
+</div>
+<div class="section-header">
+  <a class="section-header-edit" href="#page-patient-form-scan-foot">
+    Edit
+  </a>
+  <div class="section-header-label">
+    LEFT
+  </div>
+</div>
+<br>
+<div class="container">
+  <!-- <div style=" text-align: center; float: left; width:33%;">
+        <img onerror="image_error('l1');" class="foot-l1" width="75" src="img/foot.jpg" />
+        <p style="margin: 0;">Bottom</p>
     </div>
     <div style=" text-align: center; float: left; width:33%;">
-      <img onerror="image_error('r2');" class="foot-r2" src="img/foot.jpg"
-           width="75">
-      <p style="margin: 0;">
-        Medial
-      </p>
+        <img onerror="image_error('l2');"  class="foot-l2"  width="75" src="img/foot.jpg" />
+        <p style="margin: 0;">Medial</p>
+    </div>
+  -->
+  <div style=" text-align: center; float: left; width:33%;">
+    <img onerror="image_error('l3');" class="foot-l3" width="75" src="img/foot.jpg">
+    <p style="margin: 0;">
+      Back
+    </p>
+  </div>
+  <div style="clear:both;">
+  </div>
+</div>
+<div class="section-header">
+  <a class="section-header-edit" href="#page-patient-form-scan-foot">
+    Edit
+  </a>
+  <div class="section-header-label">
+    RIGHT
+  </div>
+</div>
+<br>
+<div class="container">
+  <!-- <div style=" text-align: center; float: left; width:33%;">
+        <img onerror="image_error('r1');"  class="foot-r1"  width="75" src="img/foot.jpg" />
+        <p style="margin: 0;">Bottom</p>
     </div>
     <div style=" text-align: center; float: left; width:33%;">
-      <img onerror="image_error('r3');" class="foot-r3" src="img/foot.jpg"
-           width="75">
-      <p style="margin: 0;">
-        Back
-      </p>
+        <img onerror="image_error('r2');"  class="foot-r2"  width="75" src="img/foot.jpg" />
+        <p style="margin: 0;">Medial</p>
     </div>
-    <div style="clear:both;">
-    </div>
+  -->
+  <div style=" text-align: center; float: left; width:33%;">
+    <img onerror="image_error('r3');" class="foot-r3" width="75" src="img/foot.jpg">
+    <p style="margin: 0;">
+      Back
+    </p>
+  </div>
+  <div style="clear:both;">
   </div>
 </div>
 <form class="form_submit_order_class" id="form_submit_order" action=""
@@ -1771,11 +1801,12 @@
       </option>
     </select>
   </div>
-  <input data-theme="d" data-icon="arrow-r" data-iconpos="right" value="SUBMIT ORDER"
-         type="submit">
+  <input data-theme="d" value="SUBMIT ORDER" type="submit">
 </form>
 </div>
-<div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
+</div>
+</div>
+<div data-role="tabbar" data-iconpos="top" data-theme="a" class="footer_buttons">
   <ul>
     <li>
       <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
@@ -1796,70 +1827,24 @@
   </ul>
 </div>
 </div>
-<div class="page" data-role="page" data-control-title="Report" id="page-report">
+<div data-role="page" data-control-title="patients" id="page-patients"
+     class="page">
   <div data-role="content" style="padding: 0px">
     <div data-controltype="htmlblock">
-      <div>
-                  <span class="step">
-                  </span>
-        <a href="#" data-rel="back" class="back-button">
-        </a>
-        <div class="header-sec">
-          <p class="page-title">
-            REPORTS
-          </p>
-        </div>
-        <div style="clear: both;">
+      <div class="one-third">
+        <div class="search-sec" data-role="fieldcontain" data-controltype="searchinput">
+          <input name="" id="searchinput3" placeholder="SEARCH" value="" type="search">
         </div>
       </div>
-      <div class="container">
-        <div class="half">
-          <div class="circle light-grey">
-                          <span class="link pick-up-count">
-                          </span>
-          </div>
-          <p style="font-weight: bold;">
-            READY FOR
-            <br>
-            PICKUP
-          </p>
+      <div class="two-third">
+        <br>
+        <div id="patients_list" class="search-result">
         </div>
-        <div class="half">
-          <div class="circle light-grey">
-                          <span class="link production-count">
-                          </span>
-          </div>
-          <p style="font-weight: bold;">
-            IN
-            <br>
-            PRODUCTION
-          </p>
-        </div>
-        <div style="clear:both;">
-        </div>
-      </div>
-      <br>
-      <div class="light-grey">
-        <div class="container">
-          <div id="total-sold">
-            <div class="count float-right total-sold-count">
-            </div>
-            <div class="label">
-              TOTAL SOLD
-            </div>
-          </div>
-          <br>
-          <div id="monthly-report-list">
-          </div>
-        </div>
+        <br>
       </div>
     </div>
-    <a class="container" id="btn-email-full-report" data-role="button" data-theme="d"
-       href="#page-report" data-icon="arrow-r" data-iconpos="right">
-      EMAIL FULL REPORT
-    </a>
   </div>
-  <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
+  <div data-role="tabbar" data-iconpos="top" data-theme="a" class="footer_buttons">
     <ul>
       <li>
         <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
@@ -1880,43 +1865,10 @@
     </ul>
   </div>
 </div>
-<div class="page" data-role="page" data-control-title="patients" id="page-patients">
-  <div data-role="content" style="padding: 0px">
-    <div class="search-sec" data-role="fieldcontain" data-controltype="searchinput">
-      <input name="" id="searchinput3" placeholder="SEARCH" value="" type="search">
-    </div>
-    <div data-controltype="htmlblock">
-      <br>
-      <div id="patients_list" class="search-result">
-      </div>
-      <br>
-    </div>
-  </div>
-  <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
-    <ul>
-      <li>
-        <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
-        </a>
-      </li>
-      <li>
-        <a href="#page-pickup" data-transition="none" data-theme="" data-icon="grid">
-        </a>
-      </li>
-      <li>
-        <a href="#page-add-new-patient" data-transition="none" data-theme="" data-icon="plus">
-        </a>
-      </li>
-      <li>
-        <a href="#page-patients" data-transition="none" data-theme="" data-icon="info">
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
-<div class="page" data-role="page" data-control-title="Profile" id="page-profile">
+<div data-role="page" data-control-title="Profile" id="page-profile" class="page">
   <div data-role="content" style="padding: 0px">
     <div data-controltype="htmlblock">
-      <div>
+      <div class="one-third">
                   <span class="step">
                   </span>
         <a href="#" data-rel="back" class="back-button" data-transition="none">
@@ -1928,66 +1880,65 @@
         <div style="clear: both;">
         </div>
       </div>
-      <!-- open orders -->
-      <div class="light-grey">
-        <div class="container">
-          <div id="open-order">
-            <div class="count float-right">
-              1
-            </div>
-            <div class="label">
-              OPEN ORDERS
-            </div>
-            <br>
-            <div class="memo" id="open-orders-status">
+      <div class="two-third">
+        <!-- open orders -->
+        <div class="light-grey">
+          <div class="container">
+            <div id="open-order">
+              <div class="count float-right">
+                1
+              </div>
+              <div class="label">
+                OPEN ORDERS
+              </div>
+              <br>
+              <div class="memo" id="open-orders-status">
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <hr>
-      <!-- place order -->
-      <div class="light-grey">
-        <div class="btn-row-container container">
-          <a href="#page-patient-info-review" class="btn-circle" data-transition="none">
-            <img class="float-right" src="img/arrow_icon_forward.png"
-                 height="35">
-            PLACE ORDER
-          </a>
-          <div style="clear: both;">
+        <hr>
+        <!-- place order -->
+        <div class="light-grey">
+          <div class="btn-row-container container">
+            <a href="#page-patient-info-review" class="btn-circle" data-transition="none">
+              <img height="35" class="float-right" src="img/arrow_icon_forward.png">
+              PLACE ORDER
+            </a>
+            <div style="clear: both;">
+            </div>
           </div>
         </div>
-      </div>
-      <hr>
-      <!-- order hisotry -->
-      <div class="light-grey">
-        <div class="btn-row-container container">
-          <a id="btn_order_history" href="#" class="btn-circle" data-transition="none">
-            <img class="float-right" src="img/profile_icon_expand.png"
-                 height="35">
-            ORDER HISTORY
-          </a>
-          <div style="clear: both;">
+        <hr>
+        <!-- order hisotry -->
+        <div class="light-grey">
+          <div class="btn-row-container container">
+            <a id="btn_order_history" href="#" class="btn-circle" data-transition="none">
+              <img height="35" class="float-right" src="img/profile_icon_expand.png">
+              ORDER HISTORY
+            </a>
+            <div style="clear: both;">
+            </div>
           </div>
         </div>
-      </div>
-      <div id="order_history" class="memo container">
-      </div>
-      <hr>
-      <!-- patient info -->
-      <div class="light-grey">
-        <div class="btn-row-container container">
-          <a href="#page-patient-info-review" class="btn-circle" data-transition="none">
-            <img class="float-right" src="img/arrow_icon_forward.png"
-                 height="35">
-            PATIENT INFO
-          </a>
-          <div style="clear: both;">
+        <div id="order_history" class="memo container">
+        </div>
+        <hr>
+        <!-- patient info -->
+        <div class="light-grey">
+          <div class="btn-row-container container">
+            <a href="#page-patient-info-review" class="btn-circle" data-transition="none">
+              <img height="35" class="float-right" src="img/arrow_icon_forward.png">
+              PATIENT INFO
+            </a>
+            <div style="clear: both;">
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
+  <div data-role="tabbar" data-iconpos="top" data-theme="a" class="footer_buttons">
     <ul>
       <li>
         <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
@@ -2008,8 +1959,8 @@
     </ul>
   </div>
 </div>
-<div class="page" data-role="page" data-control-title="Pick Up Ready"
-     id="page-pickup">
+<div data-role="page" data-control-title="Pick Up Ready" id="page-pickup"
+     class="page">
   <div data-role="content" style="padding: 0px">
     <div data-controltype="htmlblock">
       <div>
@@ -2032,12 +1983,12 @@
       <div id="pickup-list">
       </div>
     </div>
-    <a class="container" id="btn-pick-up" data-role="button" data-transition="none"
-       data-theme="d" href="#page-pickup">
+    <a id="btn-pick-up" data-role="button" data-transition="none" data-theme="d"
+       href="#page-pickup" class="container">
       PICK UP
     </a>
   </div>
-  <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
+  <div data-role="tabbar" data-iconpos="top" data-theme="a" class="footer_buttons">
     <ul>
       <li>
         <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
@@ -2079,16 +2030,16 @@
       </div>
       <br>
     </div>
-    <a class="btn-review_fits container" data-role="button" data-transition="none"
-       data-theme="d" href="#page-pickup-review" data-icon="arrow-r" data-iconpos="right">
+    <a data-role="button" data-transition="none" data-theme="d" href="#page-pickup-review"
+       data-icon="arrow-r" data-iconpos="right" class="btn-review_fits container">
       ORTHOPEDIC FITS
     </a>
-    <a class="btn-review_remake_needed container" data-role="button" data-transition="none"
-       data-theme="d" href="#page-pickup-review" data-icon="arrow-r" data-iconpos="right">
+    <a data-role="button" data-transition="none" data-theme="d" href="#page-pickup-review"
+       data-icon="arrow-r" data-iconpos="right" class="btn-review_remake_needed container">
       REMAKE NEEDED
     </a>
   </div>
-  <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
+  <div data-role="tabbar" data-iconpos="top" data-theme="a" class="footer_buttons">
     <ul>
       <li>
         <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
@@ -2109,7 +2060,8 @@
     </ul>
   </div>
 </div>
-<div class="page" data-role="page" data-control-title="Thank You" id="page-thank-you">
+<div data-role="page" data-control-title="Thank You" id="page-thank-you"
+     class="page">
   <div data-role="content" style="padding: 0px">
     <div data-controltype="htmlblock">
       <div style="text-align: center;">
@@ -2125,7 +2077,7 @@
       </div>
     </div>
   </div>
-  <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
+  <div data-role="tabbar" data-iconpos="top" data-theme="a" class="footer_buttons">
     <ul>
       <li>
         <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
@@ -2146,7 +2098,98 @@
     </ul>
   </div>
 </div>
-<div class="page" data-role="page" data-control-title="Remake" id="page-remake">
+<div data-role="page" data-control-title="Report" id="page-report" class="page">
+  <div data-role="content" style="padding: 0px">
+    <div data-controltype="htmlblock">
+      <div class="half">
+        <div class="container">
+          <div class="half">
+            <div>
+                              <span class="step">
+                              </span>
+              <a href="#" data-rel="back" class="back-button">
+              </a>
+              <div class="header-sec">
+                <p class="page-title">
+                  REPORTS
+                </p>
+              </div>
+              <div style="clear: both;">
+              </div>
+            </div>
+          </div>
+          <div class="half">
+            <div class="circle light-grey">
+                              <span class="link pick-up-count">
+                              </span>
+            </div>
+            <p style="font-weight: bold;">
+              READY FOR
+              <br>
+              PICKUP
+            </p>
+            <div class="circle light-grey">
+                              <span class="link production-count">
+                              </span>
+            </div>
+            <p style="font-weight: bold;">
+              IN
+              <br>
+              PRODUCTION
+            </p>
+          </div>
+          <div style="clear:both;">
+          </div>
+        </div>
+      </div>
+      <div class="half">
+        <div class="" style="border-left: 1px solid #999;">
+          <div class="container">
+            <div id="total-sold">
+              <div class="count float-right total-sold-count">
+              </div>
+              <div class="label">
+                TOTAL SOLD
+              </div>
+            </div>
+            <br>
+            <div id="monthly-report-list">
+            </div>
+          </div>
+          <div style="clear: both;">
+          </div>
+          <a class="container" id="btn-email-full-report" data-role="button" data-theme="d"
+             href="#page-report">
+            EMAIL FULL REPORT
+          </a>
+        </div>
+      </div>
+      <div style="clear: both;">
+      </div>
+    </div>
+  </div>
+  <div data-role="tabbar" data-iconpos="top" data-theme="a" class="footer_buttons">
+    <ul>
+      <li>
+        <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
+        </a>
+      </li>
+      <li>
+        <a href="#page-pickup" data-transition="none" data-theme="" data-icon="grid">
+        </a>
+      </li>
+      <li>
+        <a href="#page-add-new-patient" data-transition="none" data-theme="" data-icon="plus">
+        </a>
+      </li>
+      <li>
+        <a href="#page-patients" data-transition="none" data-theme="" data-icon="info">
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div data-role="page" data-control-title="Remake" id="page-remake" class="page">
   <div data-role="content" style="padding: 0px">
     <div data-controltype="htmlblock">
       <div>
@@ -2178,17 +2221,17 @@
         </p>
       </div>
     </div>
-    <a class="container" data-role="button" data-theme="d" href="#page-remake">
+    <a data-role="button" data-theme="d" href="#page-remake" class="container">
       Remake Left Only
     </a>
-    <a class="container" data-role="button" data-theme="d" href="#page-remake">
+    <a data-role="button" data-theme="d" href="#page-remake" class="container">
       Remake Right Only
     </a>
-    <a class="container" data-role="button" data-theme="d" href="#page-remake">
+    <a data-role="button" data-theme="d" href="#page-remake" class="container">
       Remake Both
     </a>
   </div>
-  <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
+  <div data-role="tabbar" data-iconpos="top" data-theme="a" class="footer_buttons">
     <ul>
       <li>
         <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
@@ -2209,8 +2252,8 @@
     </ul>
   </div>
 </div>
-<div class="page" data-role="page" data-control-title="Remake - order left"
-     id="page-remake-order">
+<div data-role="page" data-control-title="Remake - order left" id="page-remake-order"
+     class="page">
   <div data-role="content" style="padding: 0px">
     <div data-controltype="htmlblock">
       <div>
@@ -2252,7 +2295,7 @@
         </div>
       </div>
     </div>
-    <div class="container center" data-role="fieldcontain" data-controltype="toggleswitch">
+    <div data-role="fieldcontain" data-controltype="toggleswitch" class="container center">
       <label for="toggleswitch2">
         Change arch degree?
       </label>
@@ -2270,19 +2313,19 @@
         FIT
       </div>
     </div>
-    <div class="container" data-role="fieldcontain" data-controltype="textinput">
+    <div data-role="fieldcontain" data-controltype="textinput" class="container">
       <label for="textinput12">
         Heel Width (in.)
       </label>
       <input name="" id="textinput12" placeholder="" value="" type="text">
     </div>
-    <div class="container" data-role="fieldcontain" data-controltype="textinput">
+    <div data-role="fieldcontain" data-controltype="textinput" class="container">
       <label for="textinput13">
         Arch Width (in.)
       </label>
       <input name="" id="textinput13" placeholder="" value="" type="text">
     </div>
-    <div class="container" data-role="fieldcontain" data-controltype="textinput">
+    <div data-role="fieldcontain" data-controltype="textinput" class="container">
       <label for="textinput14">
         Arch Placement (in)
       </label>
@@ -2293,7 +2336,7 @@
         TREATMENT ZONES
       </div>
     </div>
-    <div class="container center" data-role="fieldcontain" data-controltype="toggleswitch">
+    <div data-role="fieldcontain" data-controltype="toggleswitch" class="container center">
       <label for="toggleswitch1">
         Does heel treatment zone depress fully?
       </label>
@@ -2306,7 +2349,7 @@
         </option>
       </select>
     </div>
-    <div class="container center" data-role="fieldcontain" data-controltype="toggleswitch">
+    <div data-role="fieldcontain" data-controltype="toggleswitch" class="container center">
       <label for="toggleswitch3">
         Is ball of foot in met zone?
       </label>
@@ -2324,7 +2367,7 @@
         NOTES
       </div>
     </div>
-    <div class="container" data-role="fieldcontain" data-controltype="textarea">
+    <div data-role="fieldcontain" data-controltype="textarea" class="container">
       <textarea name="" id="textarea3" placeholder=""></textarea>
     </div>
     <div data-controltype="htmlblock">
@@ -2338,7 +2381,7 @@
       </div>
     </div>
   </div>
-  <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
+  <div data-role="tabbar" data-iconpos="top" data-theme="a" class="footer_buttons">
     <ul>
       <li>
         <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
@@ -2359,8 +2402,8 @@
     </ul>
   </div>
 </div>
-<div class="page" data-role="page" data-control-title="Remake - order comfirm"
-     id="page-remake-order-comfirm">
+<div data-role="page" data-control-title="Remake - order comfirm" id="page-remake-order-comfirm"
+     class="page">
   <div data-role="content" style="padding: 0px">
     <div data-controltype="htmlblock">
       <div>
@@ -2510,11 +2553,12 @@
         </div>
       </div>
     </div>
-    <a class="container" data-role="button" data-theme="d" href="#page-remake-order-comfirm">
+    <a data-role="button" data-theme="d" href="#page-remake-order-comfirm"
+       class="container">
       Submit &amp; Remake
     </a>
   </div>
-  <div class="footer_buttons" data-role="tabbar" data-iconpos="top" data-theme="a">
+  <div data-role="tabbar" data-iconpos="top" data-theme="a" class="footer_buttons">
     <ul>
       <li>
         <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
@@ -2536,4 +2580,5 @@
   </div>
 </div>
 </body>
+
 </html>
