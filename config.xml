@@ -60,10 +60,6 @@
   <gap:splash gap:platform="ios" height="768" src="res/screen/ios/screen-ipad-landscape.png" width="1024" />
 
   <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
-<<<<<<< HEAD
   <access origin="*" />
-=======
-  <!-- <access origin="*" /> -->
->>>>>>> 6f5719acfffa8aea6b795381e1d0e9c06229d4df
   <content src="index.html" />
 </widget>
