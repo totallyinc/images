@@ -71,27 +71,6 @@ $(document).ready(function(){
 });
 
 var fileManagement = {
-<<<<<<< HEAD
-  file : null,
-  data : "",
-  write : function(key,data) {
-    try{
-      window.requestFileSystem(
-        LocalFileSystem.PERSISTENT,
-        0,
-        function(fileSystem) {
-          fileSystem.root.getFile(
-            key+".txt",
-            {create: true},
-            function(fileEntry) {
-              fileEntry.createWriter(
-                function(writer) {
-                  writer.onwriteend = function(evt) {
-                    reseller.info();
-                  };
-                  writer.write(data);
-                  writer.abort();
-=======
     file : null,
     data : "",
     write :     function(key,data) {
@@ -117,70 +96,9 @@ var fileManagement = {
                         },
                         fileManagement.fail
                     );
->>>>>>> 8f7739beec056c60299cc124a9f32d3e14b32705
                 },
                 fileManagement.fail
             );
-<<<<<<< HEAD
-          },
-          fileManagement.fail
-        );
-      },
-      fileManagement.fail
-    );
-  },
-
-  file_delete : function(key) {
-    try{
-      window.requestFileSystem(
-        LocalFileSystem.PERSISTENT,
-        0,
-        function(fileSystem) {
-          fileSystem.root.getFile(
-            key+".txt",
-            {create: true},
-            function(fileEntry) {
-              fileEntry.remove(deleteSuccess,deleteFail);
-            },
-            fileManagement.fail
-          );
-        },
-        fileManagement.fail
-      );
-    }
-    catch(err){
-      alert(err);
-    }
-  },
-
-  deleteSuccess : function() {
-    alert('Succesfully deleted');
-  },
-
-  deleteFail : function() {
-    alert('Unable to delete file');
-  },
-
-  fail : function(error) {
-    alert("error : "+error);
-  },
-
-  read : function(key) {
-    var doAfterRead = function() {
-      var reader = new FileReader();
-      reader.onload = function() {
-        fileManagement.data = reader.result;
-        return data;
-      };
-      reader.onloadend = function(evt) {
-        debug(evt.target.result);
-      };
-      reader.readAsText(fileManagement.file);
-    };
-    fileManagement.startRead(key,doAfterRead);
-  }
-};
-=======
         }
         catch(err){
             alert(err);
@@ -211,7 +129,7 @@ var fileManagement = {
         );
     },
 
-    delete : function(key) {
+    file_delete : function(key) {
         try{
             window.requestFileSystem(
                 LocalFileSystem.PERSISTENT,
@@ -252,16 +170,15 @@ var fileManagement = {
             reader.onload = function() {
                 fileManagement.data = reader.result;
                 return data;
-            }
+            };
             reader.onloadend = function(evt) {
                 debug(evt.target.result);
             };
             reader.readAsText(fileManagement.file);
-        }
+        };
         fileManagement.startRead(key,doAfterRead);
     }
-}
->>>>>>> 8f7739beec056c60299cc124a9f32d3e14b32705
+};
 
 function captureError(error) {
     var msg = "An error occurred during capture: " + error;
@@ -270,19 +187,6 @@ function captureError(error) {
 
 // bind scrolling and focus on form fields
 $(document).bind('pageinit', function () {
-<<<<<<< HEAD
-  $('input,select').keypress(function(event) {
-    if(event.keyCode == 13) {
-      $('html, body').animate({
-        scrollTop:      $(this).offset().top
-      }, 1000);
-      $(this).blur(); /* just incase next field didn't get selected. */
-      $(this).parent().parent().next().children().children('.ui-input-text').focus();
-      event.preventDefault();
-    }
-    return event.keyCode != 13;
-  });
-=======
     $('input,select').keypress(function(event) {
         if(event.keyCode == 13) {
             $('html, body').animate({
@@ -292,42 +196,17 @@ $(document).bind('pageinit', function () {
             $(this).parent().parent().next().children().children('.ui-input-text').focus();
             event.preventDefault();
         }
-        return event.keyCode != 13
+        return event.keyCode != 13;
     });
->>>>>>> 8f7739beec056c60299cc124a9f32d3e14b32705
 });
 
 /* CONFIG */
 var config = {
-<<<<<<< HEAD
-  'api_url' : 'http://api.sols.co',
-  'api_type': 'mvp',
-  'api_version' : '0.9.1',
-  'file_storage' : 0
-};
-
-var translate = {
-  ref_gender: function(key){
-    var ref = { 1: 'Female', 2: 'Male' };
-    if(key in ref)
-      return ref[key];
-    else
-      return 'N/A';
-  },
-  ref_order_item_status: function(key){
-    var ref = { 6: 'Picked Up'  };
-    if(key in ref)
-      return ref[key];
-    else
-      return 'N/A';
-  }
-};
-=======
     'api_url' : 'http://api.sols.co',
     'api_type': 'mvp',
     'api_version' : '0.9.1',
     'file_storage' : 0
-}
+};
 
 var translate = {
     ref_gender: function(key){
@@ -344,8 +223,7 @@ var translate = {
         else
             return 'N/A';
     }
-}
->>>>>>> 8f7739beec056c60299cc124a9f32d3e14b32705
+};
 
 //var data_pickup_order_id = 0;
 var foot_images = {
@@ -388,155 +266,6 @@ var forms = {
     form_patient_basic: function() {
         $('#form_patient_basic').submit(function () {
 
-<<<<<<< HEAD
-      if($("#form_patient_basic input[name='user[last_name]']").val().length < 1) {
-        sols_alerts.notify("Please enter patient's first name!");
-        return false;
-      }
-      if($("#form_patient_basic select[name='dob_month']").val().length < 1) {
-        sols_alerts.notify("Month is required!");
-        return false;
-      }
-
-      var postData = $(this).serialize();
-      $.ajax({
-        dataType:'jsonp',
-        data:postData + '&' + reseller.api_data(),
-        url:config.api_url+'/api/api_patient_form_basic?format=jsonp',
-        success:function (data) {
-          debug(data);
-          if (data.connected) {
-            if (data.new_customer_id) { // new customer id created.
-              var patient_user_id = data.new_customer_id;
-              patient.set_user_id(patient_user_id);
-              actions.redirect('page-patient-form-about');
-            } else {
-            }
-          }
-          else {
-            sols_error_handler(data.error);
-          }
-        },
-        error:function () {
-          debug(data);
-          sols_alerts.network_error();
-        }
-      });
-      return false;
-    });
-  },
-
-  form_patient_about: function() {
-    $('#form_patient_about').submit(function () {
-      var postData = $(this).serialize();
-      $.ajax({
-        dataType:'jsonp',
-        data:postData + '&patient_user_id=' + patient.get_user_id() + '&' + reseller.api_data(),
-        url:config.api_url+'/api/api_patient_form_about?format=jsonp',
-        success:function (data) {
-          debug(data);
-          if (data.connected) {
-            actions.redirect('page-patient-form-scan-foot');
-            //actions.redirect('page-patient-form-foot-measurements');
-          }
-          else {
-            sols_error_handler(data.error);
-          }
-        },
-        error:function () {
-          debug(data);
-          sols_alerts.network_error();
-        }
-      });
-      return false;
-    });
-  },
-
-
-  form_patient_measurements: function(){
-    $('#form_patient_measurements').submit(function () {
-      var postData = $(this).serialize();
-      $.ajax({
-        dataType:'jsonp',
-        data:postData + '&patient_user_id=' + patient.get_user_id() + '&' + reseller.api_data(),
-        url:config.api_url+'/api/api_patient_form_measurements?format=jsonp',
-        success:function (data) {
-          debug(data);
-          if (data.connected) {
-            actions.redirect('page-patient-info-review');
-
-            //actions.redirect('page-patient-form-note');
-          }
-          else {
-            sols_error_handler(data.error);
-          }
-        },
-        error:function () {
-          debug(data);
-          sols_alerts.network_error();
-        }
-      });
-      return false;
-    });
-  },
-
-  /*  no longer needed
-   form_patient_note: function(){
-   $('#form_patient_note').submit(function () {
-   var postData = $(this).serialize();
-   $.ajax({
-   dataType:'jsonp',
-   data:postData + '&patient_user_id=' + patient.get_user_id() + '&' + reseller.api_data(),
-   url:config.api_url+'/api/api_patient_form_note?format=jsonp',
-   success:function (data) {
-   debug(data);
-   if (data.connected) {
-   actions.redirect('page-patient-form-scan-foot');
-   }
-   else {
-   sols_error_handler(data.error);
-   }
-   },
-   error:function () {
-   debug(data);
-   sols_alerts.network_error();
-   }
-   });
-   return false;
-   });
-   },
-   */
-
-  form_submit_order: function(){
-    $('#form_submit_order').submit(function(){
-      var postData = $(this).serialize();
-      postData = postData + '&' + patient.api_data();
-      postData = postData + '&' + 'product_set_id=1';
-      postData = postData + '&' + reseller.api_data();
-      $.ajax({
-        dataType:'jsonp',
-        data:postData,
-        url:config.api_url+'/api/api_form_submit_order?format=jsonp',
-        success:function (data) {
-          if (data.connected) {
-            debug(data);
-            sols_alerts.notify('Thank for your order.');
-            actions.redirect('page-home');
-          }
-          else {
-            sols_error_handler(data.error);
-          }
-        },
-        error:function () {
-          debug(data);
-          sols_alerts.network_error();
-        }
-      });
-      return false;
-    });
-  }
-};
-=======
             if($("#form_patient_basic input[name='user[last_name]']").val().length < 1) {
                 sols_alerts.notify("Please enter patient's first name!");
                 return false;
@@ -556,7 +285,7 @@ var forms = {
                     if (data.connected) {
                         if (data.new_customer_id) { // new customer id created.
                             var patient_user_id = data.new_customer_id;
-                            patient.set_user_id(patient_user_id)
+                            patient.set_user_id(patient_user_id);
                             actions.redirect('page-patient-form-about');
                         } else {
                         }
@@ -683,8 +412,7 @@ var forms = {
             return false;
         });
     }
-}
->>>>>>> 8f7739beec056c60299cc124a9f32d3e14b32705
+};
 
 var pages = {
     page_home: function() {
@@ -739,32 +467,6 @@ var pages = {
                 }
             });
         }
-<<<<<<< HEAD
-      });
-    }
-  },
-
-  page_add_new_patient: function() {
-    populate_form_values('page_add_new_patient');
-  },
-
-  update_patients_list: function($params) {
-    $('#patients_list').html('Loading');
-    $.ajax({
-      dataType:'jsonp',
-      data:reseller.api_data(),
-      url:config.api_url+'/api/api_get_patients?format=jsonp',
-      success:function (data) {
-        if (data.connected) {
-          var patients = data.patients;
-          $('#patients_list').html('');
-          var first_letter = '';
-          for (var i in patients) {
-            if(first_letter != patients[i].last_name.substr(0,1)) {
-              first_letter = patients[i].last_name.substr(0,1);
-              var row = '<div class="patient_list_abbr">'+patients[i].last_name.substr(0,1)+'</div>';
-              $('#patients_list').append(row);
-=======
     },
 
     page_add_new_patient: function() {
@@ -779,7 +481,7 @@ var pages = {
             url:config.api_url+'/api/api_get_patients?format=jsonp',
             success:function (data) {
                 if (data.connected) {
-                    var patients = data.patients
+                    var patients = data.patients;
                     $('#patients_list').html('');
                     var first_letter = '';
                     for (var i in patients) {
@@ -799,7 +501,6 @@ var pages = {
             error:function () {
                 debug(data);
                 sols_alerts.network_error();
->>>>>>> 8f7739beec056c60299cc124a9f32d3e14b32705
             }
         });
         $('#searchinput3').keyup(function(){
@@ -1021,88 +722,8 @@ var pages = {
 var buttons = {
     logout: function() {
 
-<<<<<<< HEAD
-    if(config.file_storage) {
-      fileManagement.file_delete('user');
-      reseller.data = null;
-    } else {
-      window.localStorage.clear();
-    }
-
-    actions.redirect('page-login');
-    actions.hide_footer_menu();
-    actions.show_login_form();
-  },
-
-  review_fits: function() {
-    $('.patient-pickup.active').attr('data-pickup-order-id');
-    $.ajax({
-      dataType:'jsonp',
-      data:reseller.api_data()+'&review=fits&order_id='+$('.patient-pickup.active').attr('data-pickup-order-id'),
-      url:config.api_url+'/api/api_get_pickup_review?format=jsonp',
-      success:function (data) {
-        debug(data);
-        if (data.connected) {
-          sols_alerts.notify('I am glad it fits.');
-          actions.redirect('page-home');
-        }
-        else {
-          sols_error_handler(data.error);
-        }
-      },
-      error:function () {
-        debug(data);
-        sols_alerts.network_error();
-      }
-    });
-  },
-
-  review_remake_needed: function() {
-    $('.patient-pickup.active').attr('data-pickup-order-id');
-    $.ajax({
-      dataType:'jsonp',
-      data:reseller.api_data()+'&review=remake_needed&order_id='+$('.patient-pickup.active').attr('data-pickup-order-id'),
-      url:config.api_url+'/api/api_get_pickup_review?format=jsonp',
-      success:function (data) {
-        debug(data);
-        if (data.connected) {
-          sols_alerts.notify('Sorry to hear that, we will contact you for the remake.');
-          actions.redirect('page-home');
-        }
-        else {
-          sols_error_handler(data.error);
-        }
-      },
-      error:function () {
-        debug(data);
-        sols_alerts.network_error();
-      }
-    });
-  },
-
-  email_full_report: function() {
-    $.ajax({
-      dataType: 'jsonp',
-      data: reseller.api_data(),
-      url: config.api_url+'/api/api_email_full_report?format=jsonp',
-      success:function (data) {
-        if (data.connected) {
-          sols_alerts.notify('Report has been mailed to your email address.');
-        }
-        else {
-          sols_error_handler(data.error);
-        }
-      },
-      error:function () {
-        debug(data);
-        sols_alerts.network_error();
-      }
-    });
-  }
-};
-=======
         if(config.file_storage) {
-            fileManagement.delete('user');
+            fileManagement.file_delete('user');
             reseller.data = null;
         } else {
             window.localStorage.clear();
@@ -1178,8 +799,7 @@ var buttons = {
             }
         });
     }
-}
->>>>>>> 8f7739beec056c60299cc124a9f32d3e14b32705
+};
 
 // ignore case on searching
 $.extend($.expr[":"], {
@@ -1254,20 +874,7 @@ var actions = {
                 break;
         }
     }
-<<<<<<< HEAD
-  }
 };
-
-function showLink(url){
-  alert(url);
-  var divEl = document.getElementById("ready");
-  var aElem = document.createElement("a");
-  aElem.setAttribute("target", "_blank");
-  aElem.setAttribute("href", url);
-  aElem.appendChild(document.createTextNode("Ready! Click To Open."));
-  divEl.appendChild(aElem);
-=======
-}
 
 function showLink(url){
     alert(url);
@@ -1275,9 +882,8 @@ function showLink(url){
     var aElem = document.createElement("a");
     aElem.setAttribute("target", "_blank");
     aElem.setAttribute("href", url);
-    aElem.appendChild(document.createTextNode("Ready! Click To Open."))
+    aElem.appendChild(document.createTextNode("Ready! Click To Open."));
     divEl.appendChild(aElem);
->>>>>>> 8f7739beec056c60299cc124a9f32d3e14b32705
 }
 
 function fail(evt) {
@@ -1300,21 +906,8 @@ function sols_error_handler(error) {
 }
 
 var sols_alerts = {
-<<<<<<< HEAD
-  login_fail: function() { sols_alerts.notify("User login failed"); },
-  network_error: function() { sols_alerts.notify('There was an unexpected error when you try to login.');},
-  notify: function(msg) {
-    //combine if array or object
-    if(typeof msg == 'object') {
-      if(msg instanceof Array) {
-        msg = msg.join('\n');
-      }
-      else {
-        try{
-          JSON.stringify(msg,null,' ');
-=======
     login_fail: function() { sols_alerts.notify("User login failed"); },
-    network_error: function() { sols_alerts.notify('There was an unexpected error when you try to login.')},
+    network_error: function() { sols_alerts.notify('There was an unexpected error when you try to login.');},
     notify: function(msg) {
         //combine if array or object
         if(typeof msg == 'object') {
@@ -1329,7 +922,6 @@ var sols_alerts = {
                     alert('JSON error');
                 }
             }
->>>>>>> 8f7739beec056c60299cc124a9f32d3e14b32705
         }
         var display = '';
         if(navigator.notification !== undefined) {
@@ -1339,13 +931,7 @@ var sols_alerts = {
         }
         display(msg);
     }
-<<<<<<< HEAD
-    display(msg);
-  }
 };
-=======
-}
->>>>>>> 8f7739beec056c60299cc124a9f32d3e14b32705
 
 /* RESELLER */
 var reseller = {
@@ -1386,18 +972,7 @@ var reseller = {
         userApiData.api_version = config.api_version;
         return $.param(userApiData, true);
     }
-<<<<<<< HEAD
-  },
-  api_data: function(){
-    var userApiData = this.info();
-    userApiData.api_type = config.api_type;
-    userApiData.api_version = config.api_version;
-    return $.param(userApiData, true);
-  }
 };
-=======
-}
->>>>>>> 8f7739beec056c60299cc124a9f32d3e14b32705
 
 /* Patient */
 var patient = {
@@ -1447,15 +1022,6 @@ var patient = {
         } else {
             return window.localStorage.getItem('patient_user_id');
         }
-<<<<<<< HEAD
-      },
-      error:function () {
-        sols_alerts.network_error();
-      }
-    });
-  }
-};
-=======
     },
     api_data: function () {
         return 'patient_user_id='+this.get_user_id();
@@ -1488,8 +1054,7 @@ var patient = {
             }
         });
     }
-}
->>>>>>> 8f7739beec056c60299cc124a9f32d3e14b32705
+};
 
 
 //starter
@@ -1612,86 +1177,6 @@ function on_page_change() {
 
 // method for populate form values
 function populate_form_values(form_name) {
-<<<<<<< HEAD
-  switch (form_name) {
-
-    case 'page_add_new_patient':
-      var editing = (patient.get_user_id() > 0);
-      if(editing) {
-        $.ajax({
-          dataType:'jsonp',
-          data:patient.api_data() + '&' + reseller.api_data(),
-          url:config.api_url+'/api/api_get_patient_info?format=jsonp',
-          success:function (data) {
-            if (data.connected) {
-              $('input[name="user[first_name]"]').val(data.patient['first_name']);
-              $('input[name="user[last_name]"]').val(data.patient['last_name']);
-              $('input[name="user[email]"]').val(data.patient['email']);
-              $('input[name="user[dob]"]').val(data.patient['dob']);
-              $('input[name="user[ss_num_last_four]"]').val(data.patient['ss_num_last_four']);
-              $('select[name="user[ref_gender_id]"]').val(data.patient['ref_gender_id']).selectmenu("refresh", true);
-              actions.update_submit_btn_label('.btn_create_patient', "UPDATE PATIENT INFO");
-            }
-            else {
-              sols_error_handler(data.error);
-            }
-          },
-          error:function () {
-            sols_alerts.network_error();
-          }
-        });
-      } else {
-        actions.reset_form_value('form_patient_basic');
-        $('.btn_create_patient').val('Create Patient');
-      }
-      break;
-
-    case 'form_patient_about':
-      var editing = (patient.get_user_id() > 0);
-      if(editing) {
-        $.ajax({
-          dataType:'jsonp',
-          data:patient.api_data() + '&' + reseller.api_data(),
-          url:config.api_url+'/api/api_get_patient_info_for_order?format=jsonp',
-          success:function (data) {
-            if (data.connected) {
-              $('input[name="customer_info[height]"]').val(data.patient['height']);
-              $('input[name="customer_info[weight]"]').val(data.patient['weight']);
-              $('select[name="user[ref_ethnicity_id]"]').val(data.patient['ref_ethnicity_id']).selectmenu("refresh", true);
-              $('select[name="customer_info[shoe_size_raw_left]"]').val(data.patient['shoe_size_raw_left']).selectmenu("refresh", true);
-              $('select[name="customer_info[shoe_size_raw_right]"]').val(data.patient['shoe_size_raw_right']).selectmenu("refresh", true);
-              if(data.patient['ref_activity_level_id'])
-                $('input[name="customer_info[ref_activity_level_id]"]').filter('[value="'+data.patient['ref_activity_level_id']+'"]').next().click();
-              //$('input[name="customer_info[ref_activity_level_id]"]').filter('[value="1"]').parent().find("label[for].ui-btn").click();
-            }
-            else {
-              sols_error_handler(data.error);
-            }
-          },
-          error:function () {
-            sols_alerts.network_error();
-          }
-        });
-      }
-
-      break;
-    case 'form_patient_measurements':
-      var editing = (patient.get_user_id() > 0);
-      if(editing) {
-        $.ajax({
-          dataType:'jsonp',
-          data:patient.api_data() + '&' + reseller.api_data(),
-          url:config.api_url+'/api/api_get_patient_info_for_order?format=jsonp',
-          success:function (data) {
-            if (data.connected) {
-              $('#form_patient_measurements input[type="text"]').each(function(){
-                var field_name = $(this).attr('name');
-                if( field_name.substring(0, field_name.lastIndexOf("[")) == 'customer_info' ) {
-                  var column_name = field_name.substring(field_name.lastIndexOf("[")+1,field_name.lastIndexOf("]"));
-                  $(this).val(data.patient[column_name]);
-                }
-              });
-=======
     switch (form_name) {
 
         case 'page_add_new_patient':
@@ -1722,7 +1207,6 @@ function populate_form_values(form_name) {
             } else {
                 actions.reset_form_value('form_patient_basic');
                 $('.btn_create_patient').val('Create Patient');
->>>>>>> 8f7739beec056c60299cc124a9f32d3e14b32705
             }
             break;
 
@@ -1767,10 +1251,10 @@ function populate_form_values(form_name) {
                             $('#form_patient_measurements input[type="text"]').each(function(){
                                 var field_name = $(this).attr('name');
                                 if( field_name.substring(0, field_name.lastIndexOf("[")) == 'customer_info' ) {
-                                    var column_name = field_name.substring(field_name.lastIndexOf("[")+1,field_name.lastIndexOf("]"))
+                                    var column_name = field_name.substring(field_name.lastIndexOf("[")+1,field_name.lastIndexOf("]"));
                                     $(this).val(data.patient[column_name]);
                                 }
-                            })
+                            });
                         }
                         else {
                             sols_error_handler(data.error);
