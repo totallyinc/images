@@ -4,28 +4,28 @@
 :-ms-input-placeholder {     font-weight: normal;      color: #aaa; }
 
 a:active, a:focus {
-  outline: 0;
+    outline: 0;
 }
 
 .page {
-  background-color: #ededed;
+    background-color: #ededed;
 }
 
 .page.ui-mobile [data-role="page"], .page.ui-mobile [data-role="dialog"], .page.ui-page {
-  /*max-width: 400px; */
-  border-right: 0px solid #ccc;
+    /*max-width: 400px; */
+    border-right: 0px solid #ccc;
 }
 
 
 #page-login{
-  background: url(http://s3.amazonaws.com/assets.codiqa.com/GWQreLWmSByoFOWZW34R_welcome_image.jpg) center center;
+    background: url(http://s3.amazonaws.com/assets.codiqa.com/GWQreLWmSByoFOWZW34R_welcome_image.jpg) center center;
 }
 #page-login .text_field {
-  background: #eee;
+    background: #eee;
 }
 
 #page-login .ui-body-c, .page-login .ui-overlay-c {
-  background: none;
+    background: none;
 }
 
 
@@ -36,38 +36,44 @@ a:active, a:focus {
 {    color: #393939; font-weight: normal; }
 
 .back-button {
-  display: inline-block;
-  float: left;
-  height: 64px; width: 64px;
-  background: url(http://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/arrow_icon_back.png) 8px 8px no-repeat;
-  background-size: 32px;
+    display: inline-block;
+    height: 64px;
+    width: 64px;
+    background: url(http://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/arrow_icon_back.png) 8px 8px no-repeat;
+    background-size: 32px;
 }
+.skip-button {
+    display: inline-block;
+    height: 64px;
+    width: 64px;
+    background: url(http://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/arrow_icon_back.png) 8px 8px no-repeat;
+    background-size: 32px;
+}
+
 .header-sec {
-  display: inline-block;
+    /*display: inline-block;*/
+    padding-left: 3%;
 }
 .header-sec p{
-  margin: 0;
+    margin: 0;
 }
 .header-sec p.title{
-  font-weight: bold;
-  margin: 5px 0 0;
+    font-weight: bold;
+    margin: 5px 0 0;
 }
 .header-sec p.sub-title{
-  font-size: 0.9em;
-  font-weight: lighter;
-  color: #696969;
-  margin: 0;
+    font-size: 0.9em;
+    font-weight: lighter;
+    color: #696969;
+    margin: 0;
 }
 span.step {
-  margin-right: 10px;
-  padding-top: 25px;
-  float: right;
 }
 .header-sec .page-title {
-  text-align: center;
-  margin-left: 40px;
-  line-height: 3em;
-  font-weight: bold;
+    text-align: center;
+    margin-left: 40px;
+    line-height: 3em;
+    font-weight: bold;
 }
 
 
@@ -99,9 +105,9 @@ span.step {
 /*.region-header {      background: #333;     color: #fff; }*/
 .target_patient_name { text-transform:capitalize; }
 
-.section-header {   background-color: #e7e7e7; height: 2.5em; margin: 0.5em 0;  line-height: 2.5em; padding-left: 5%; font-weight: bold; }
-.section-header-edit { line-height: 2.5em; text-align: center; height: 100%; width: 40%; float: right; background: orange; text-decoration: none; }
-.section-header-label { line-height: 2.5em; padding-left: 5%; height: 100%; width: 60%; font-weight: bold; }
+.section-header { border-top: 2px solid #78CBC5;  height: 2.5em; margin: 0.5em 0;  line-height: 2.5em; padding-left: 5%; font-weight: bold; }
+.section-header-edit { text-decoration: underline !important; color: blue !important; line-height: 2.5em; text-align: center; height: 100%; width: 40%; float: right; text-decoration: none; }
+.section-header-label { color: #78CBC5; line-height: 2.5em; padding-left: 5%; height: 100%; width: 60%; font-weight: bold; }
 
 .float-right {    float: right; }
 
@@ -154,88 +160,88 @@ span.step {
 
 
 input:required {
-  box-shadow:none;
+    box-shadow:none;
 }
 input:invalid {
-  box-shadow:0 0 0px red;
+    box-shadow:0 0 0px red;
 }
 
 
 div.ui-input-text input.ui-input-text, div.ui-input-text textarea.ui-input-text, .ui-input-search input.ui-input-text {
-  padding: 0;
+    padding: 0;
 }
 input {
-  height: 2em;
+    height: 2em;
 }
 input.ui-input-text, textarea.ui-input-text {
-  font-size: 1em;
+    font-size: 1em;
 }
 .ui-submit .ui-btn-inner {
-  font-size: 1.5em;
+    font-size: 1.5em;
 }
 .ui-btn-inner {
-  font-size: 1em;
+    font-size: 1em;
 }
 
 .half {
-  float: left; width:50%;
+    float: left; width:50%;
 }
 
 .one-third {
-  float: left;
-  width: 33%;
+    float: left;
+    width: 33%;
 }
 .two-third {
-  float: left;
-  width: 66%;
+    float: left;
+    width: 66%;
 }
 
 .circle {
-  -moz-border-radius:50%;
-  -webkit-border-radius: 50%;
-  border-radius:50%;
-  display: inline-block;
-  text-align: center;
-  line-height: 1;
-  width: 90%;
-  margin-left: 5%;
+    -moz-border-radius:50%;
+    -webkit-border-radius: 50%;
+    border-radius:50%;
+    display: inline-block;
+    text-align: center;
+    line-height: 1;
+    width: 90%;
+    margin-left: 5%;
 }
 .circle span {
-  display: block;
-  /*padding: 50%;*/
-  /*margin: -3em -60% 0;*/
-  /*top: 1.5em;*/
-  position: relative;
-  border: 1em solid transparent;
-  white-space: nowrap;
-  font-size: 3em;
-  color: white;
+    display: block;
+    /*padding: 50%;*/
+    /*margin: -3em -60% 0;*/
+    /*top: 1.5em;*/
+    position: relative;
+    border: 1em solid transparent;
+    white-space: nowrap;
+    font-size: 3em;
+    color: white;
 }
 .circle span img {
-  position: absolute;
-  margin-left: -25px;
+    position: absolute;
+    margin-left: -25px;
 }
 
 .half .label {
-  display: block;
-  margin-top: 1em;
+    display: block;
+    margin-top: 1em;
 }
 
 
 .circle_main_color {
-  background: #78CBC5;
+    background: #78CBC5;
 }
 
 .half a {
-  text-decoration: none;
+    text-decoration: none;
 }
 .ui-body-c .ui-link.big-text span.link{
-  /*font-size: 2.5em; color: #fff; display: block;*/
+    /*font-size: 2.5em; color: #fff; display: block;*/
 }
 
 
 .half .circle span.label{
-  color: #000; font-size: 0.8em; margin: 0; display: block;
+    color: #000; font-size: 0.8em; margin: 0; display: block;
 }
 
 .ui-field-contain { width: 98%; margin-left: 1%; }
@@ -245,112 +251,125 @@ input.ui-input-text, textarea.ui-input-text {
 #form_login .ui-submit {  }
 #form_login .ui-field-contain input.ui-input-text,
 #form_login .ui-field-contain div.ui-input-text {
-  width: 100%;
-  text-align: center;
+    width: 100%;
+    text-align: center;
 }
 .ui-field-contain label {   width: 50%; float: left; margin: 0; color: #666;}
 .ui-field-contain label.ui-input-text, .ui-field-contain label.ui-select {
-  float: left;
-  font-size: 1em;
-  /*line-height: 2em;*/
-  padding-top: 5px;
-  margin: 0 0 0 3%;
-  width: 45%;
+    float: left;
+    font-size: 1em;
+    /*line-height: 2em;*/
+    padding-top: 5px;
+    margin: 0 0 0 3%;
+    width: 45%;
 
 }
 .ui-field-contain input.ui-input-text, .ui-field-contain div.ui-input-text, .ui-field-contain .ui-select {
-  border: 0;
-  float: right;
-  width: 40%;
+    border: 0;
+    float: right;
+    width: 40%;
 }
 .ui-field-contain textarea.ui-input-text { border: 0; width: 100%; }
 
 .ui-field-contain, .ui-mobile fieldset.ui-field-contain {
-  margin: 0.5em 1%;
+    margin: 0.5em 1%;
 }
 form .ui-field-contain{
-  background: #fff;
-  overflow: auto;
-  padding-top: 8px;
-  padding-bottom: 4px;
+    background: #fff;
+    overflow: auto;
+    padding-top: 8px;
+    padding-bottom: 4px;
 }
 .ui-shadow-inset {
-  box-shadow: 0 0 0 rgba(0, 0, 0, 00) inset;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 00) inset;
 }
 
 .ui-select .ui-btn {
-  border: 0;
+    border: 0;
 }
 
 .light-grey {
-  background: #e7e7e7;
+    background: #e7e7e7;
 }
 .grey {
-  background: #cecece;
+    background: #cecece;
 }
 
 .odd {
-  color: #393939;
+    color: #393939;
 }
 .even {
-  color: #e7e7e7;
+    color: #393939;
+
+    /*color: #e7e7e7;*/
 }
 #monthly-report-list .even {
-  color: #999;
+    color: #999;
 }
 
 hr {
-  margin: 0;
-  width: 100%;
-  border: 1px solid #cecece;
+    margin: 0;
+    width: 100%;
+    border: 1px solid #cecece;
 }
 
 .btn-circle {
-  padding-top: 10px;
-  display: block;
-  height: 50px;
-  background-size: 36px 36px;
-  text-decoration: none;
-  font-size: 1.2em;
-  line-height: 2em;
+    padding-top: 10px;
+    display: block;
+    height: 50px;
+    background-size: 36px 36px;
+    text-decoration: none;
+    font-size: 1.2em;
+    line-height: 2em;
 }
 .btn-row-container .label {
-  padding-top: 15px;
+    padding-top: 15px;
 }
 
 
 .home-icon-image {
-  display: block;
-  height: 55px;
-  margin: 0 auto 7px;
-  text-align: center;
-  width: 55px;
+    display: block;
+    height: 55px;
+    margin: 0 auto 7px;
+    text-align: center;
+    width: 55px;
 }
 
 .odd, .even {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 .patient-info b {
-  float: right;
-  font-weight: normal;
+    float: right;
+    font-weight: normal;
 }
 .patient-info label {
-  width: 60%;
-  display: inline-block;
+    color: #666;
+    width: 60%;
+    text-transform: capitalize;
+    display: inline-block;
 }
 
 .patient_row {
-  text-transform: uppercase;
-  padding-left: 3%;
-  margin-bottom: 1px;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+    text-transform: uppercase;
+
+    margin-bottom: 1px;
+    padding-left: 3%;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    background: #fff;
 }
 .patient_list_abbr {
-  padding: 0.5em 0;
-  text-align: center;
-  font-weight: bold;
-  text-transform: capitalize;
+    margin-top: 3px;
+    margin-bottom: 1px;
+
+    background: #fff;
+    padding-left: 3%;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+
+    /*text-align: center;*/
+    font-weight: bold;
+    text-transform: capitalize;
 }
 
 .search-sec.ui-field-contain {     margin: 0 auto;     padding: 3px 0; width: 94%; }
@@ -358,114 +377,134 @@ hr {
 .search-sec .ui-shadow-inset {     box-shadow: 0 0 0; }
 
 .next_arrow {
-  display: inline-block;
-  width: 20px;
-  float: right;
-  margin-right: 3%;
-  height: 20px;
-  background-image: url(http://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/arrow_icon_action.png);
-  background-size: 20px 20px;;
+    display: inline-block;
+    width: 20px;
+    float: right;
+    margin-right: 3%;
+    height: 20px;
+    background-image: url(http://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/arrow_icon_action.png);
+    background-size: 20px 20px;;
 }
 
 #open-order .count {
-  font-size: 2.5em;
-  margin-right: 0.5em;
+    font-size: 2.5em;
+    margin-right: 0.5em;
 }
 #open-order .label {
-  font-weight: bold;
-  padding-top: 15px;
+    font-weight: bold;
+    padding-top: 15px;
 }
 
 .ui-btn-icon-top .ui-btn-inner .ui-icon, .ui-btn-icon-bottom .ui-btn-inner .ui-icon {
-  margin-left: -27px;
+    margin-left: -27px;
 }
 .ui-icon.ui-icon-home.ui-icon-shadow {
-  width: 110px;
-  height: 30px;
-  background-position: 0;
-  background-image: url(http://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/footer_icon_home.png);
-  background-size: 55px;
+    width: 110px;
+    height: 30px;
+    background-position: 0;
+    background-image: url(http://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/footer_icon_home.png);
+    background-size: 55px;
 }
 .ui-icon.ui-icon-plus.ui-icon-shadow {
-  width: 110px;
-  height: 30px;
-  background-position: 0;
-  background-image: url(http://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/footer_icon_addpatients.png);
-  background-size: 55px;
+    width: 110px;
+    height: 30px;
+    background-position: 0;
+    background-image: url(http://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/footer_icon_addpatients.png);
+    background-size: 55px;
 }
 .ui-icon.ui-icon-info.ui-icon-shadow {
-  width: 110px;
-  height: 30px;
-  background-position: 0;
-  background-image: url(http://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/footer_icon_users.png);
-  background-size: 55px;
+    width: 110px;
+    height: 30px;
+    background-position: 0;
+    background-image: url(http://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/footer_icon_users.png);
+    background-size: 55px;
 }
 .ui-icon.ui-icon-grid.ui-icon-shadow {
-  width: 110px;
-  height: 30px;
-  background-position: 0;
-  background-image: url(http://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/footer_icon_pickups.png);
-  background-size: 55px;
+    width: 110px;
+    height: 30px;
+    background-position: 0;
+    background-image: url(http://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/footer_icon_pickups.png);
+    background-size: 55px;
 }
 
 
 #total-sold .count {
-  font-size: 2.5em;
-  /*margin-right: 0.5em;*/
+    font-size: 2.5em;
+    /*margin-right: 0.5em;*/
 }
 #total-sold .label {
-  font-weight: bold;
-  padding-top: 15px;
+    font-weight: bold;
+    padding-top: 15px;
 }
 
 .link.pick-up-count {
-  /*font-size: 3em;*/
-  /*display: inline-block;*/
+    /*font-size: 3em;*/
+    /*display: inline-block;*/
 }
 .link.production-count {
-  /*font-size: 3em;*/
-  /*padding-top: 0.75em;*/
-  /*display: inline-block;*/
+    /*font-size: 3em;*/
+    /*padding-top: 0.75em;*/
+    /*display: inline-block;*/
 }
 
 #searchinput3 {
-  float: none;
-  width: 80%;
+    float: none;
+    width: 80%;
 }
 
 
 #logged-in {
-  display: none;
+    display: none;
 }
 #logged-in a.ui-link,
 #logged-in a.ui-link:active,
 #logged-in a.ui-link:visited {
-  background: #78CBC5;
-  text-align: center;
-  width: 90%;
-  margin: 10px auto;
-  padding: 10px;
-  display: block;
-  color: #fff;
-  text-decoration: none;
-  height: 3em;
-  line-height: 3em;
-  font-size: 2em;
-  font-weight: bold;
+    background: #78CBC5;
+    text-align: center;
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    height: 3em;
+    line-height: 3em;
+    font-size: 2em;
+    font-weight: bold;
 }
 
 #birth-date-input-group {
-  margin-left: 1%;
-  width: 98%;
-  overflow: auto;
+    margin-left: 1%;
+    width: 98%;
+    overflow: auto;
 }
 #birth-date-input-group .ui-select {
-  width: 33.3%;
-  float: left;
+    width: 33.3%;
+    float: left;
 }
 
 .version {
-  margin-top: 1em;
-  text-align: center;
-  color: #777;
+    margin-top: 1em;
+    text-align: center;
+    color: #777;
+}
+
+
+.color-light {
+    color: #78CBC5;
+}
+.color-strong {
+    color: #2CB1BE;
+}
+
+.white {
+    background-color: #fff;
+}
+
+#order_color_container .ui-select {
+    width: 100%;
+}
+
+a[href="#page-home"] {
+    text-decoration: none;
 }

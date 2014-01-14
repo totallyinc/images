@@ -18,6 +18,7 @@
     <preference name="permissions" value="none"/>
 
     <!-- to enable individual permissions use the following examples -->
+    <gap:plugin name="org.apache.cordova.core.inappbrowser"/>
     <gap:plugin name="org.apache.cordova.core.camera"/>
     <gap:plugin name="org.apache.cordova.core.media-capture"/>
     <gap:plugin name="org.apache.cordova.core.file"/>
