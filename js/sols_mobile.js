@@ -545,7 +545,8 @@ var pages = {
                     }
                     patient.update_foot_images();
                     var three_d_file_path = config.api_url+'/3d/?user_id';
-                    $('#3d_viewer').attr('src', three_d_file_path);
+                    if($('#3d_viewer').attr('src') === '')
+                        $('#3d_viewer').attr('src', three_d_file_path);
                 }
                 else {
                     sols_error_handler(data.error);
@@ -1148,6 +1149,7 @@ function on_page_change() {
 
         debug('pagechange: ' + $.mobile.activePage.attr("id"));
         var current_page = $.mobile.activePage.attr("id");
+
         if (current_page != 'page-login') { // if on login page, hide the footer. if user logged in, forward to home page.
             actions.show_footer_menu();
             if (reseller.is_login() === false) {
