@@ -528,6 +528,7 @@ var pages = {
     },
 
     page_patient_info_review: function () {
+
         patient.show_target_patient_name();
 
         $.ajax({
@@ -543,6 +544,8 @@ var pages = {
                         $('.patient-info-'+i).html(patient_info[i]);
                     }
                     patient.update_foot_images();
+                    var three_d_file_path = config.api_url+'/3d/?user_id';
+                    $('#3d_viewer').attr('src', three_d_file_path);
                 }
                 else {
                     sols_error_handler(data.error);
