@@ -37,10 +37,11 @@ a:active, a:focus {
 
 .back-button {
     display: inline-block;
-    height: 64px;
-    width: 64px;
-    background: url(http://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/arrow_icon_back.png) 8px 8px no-repeat;
-    background-size: 32px;
+    height: 90px;
+    width: 90px;
+    background: url(http://static.sols.co/mobile/images/icons/back.png) 8px 8px no-repeat;
+    background-size: 76px;
+    background-position-y: 42px;
 }
 .skip-button {
     display: inline-block;
@@ -83,7 +84,7 @@ span.step {
 
 .ui-input-text {     background: #fff; }
 
-.form, .container, hr {     margin-left: 5%;      width: 90%;}
+.form, .container, hr {     margin-left:5%; width: 90%;}
 
 .form .ui-body-c {     border: 0; }
 
@@ -105,9 +106,9 @@ span.step {
 /*.region-header {      background: #333;     color: #fff; }*/
 .target_patient_name { text-transform:capitalize; }
 
-.section-header { border-top: 2px solid #78CBC5;  height: 2.5em; margin: 0.5em 0;  line-height: 2.5em; padding-left: 5%; font-weight: bold; }
-.section-header-edit { text-decoration: underline !important; color: blue !important; line-height: 2.5em; text-align: center; height: 100%; width: 40%; float: right; text-decoration: none; }
-.section-header-label { color: #78CBC5; line-height: 2.5em; padding-left: 5%; height: 100%; width: 60%; font-weight: bold; }
+.section-header { border-top: 2px solid #78CBC5;  height: 2.5em; margin: 0.5em 0;  line-height: 2.5em; font-weight: bold; }
+.section-header-edit { text-decoration: underline !important; color: #666 !important; line-height: 2.5em; text-align: center; height: 100%; width: 40%; float: right; text-decoration: none; }
+.section-header-label { color: #78CBC5; line-height: 2.5em; height: 100%; width: 60%; font-weight: bold; }
 
 .float-right {    float: right; }
 
@@ -133,7 +134,7 @@ span.step {
 
 .ui-shadow { box-shadow: none;}
 .ui-input-search { background-color: #fff;}
-.ui-input-search.ui-btn-corner-all {  border-radius: 25px; border: 1px solid #999 !important;  }
+.ui-input-search.ui-btn-corner-all { border: 1px solid #999 !important;  }
 .ui-btn-corner-all { border-radius: 0px; }
 .ui-btn-up-d, .ui-btn-hover {     background: #78CBC5;     border: 0px solid #78CBC5; }
 .ui-btn-hover-d {    border: 0;    background: #2CB1BE; }
@@ -382,7 +383,7 @@ hr {
     float: right;
     margin-right: 3%;
     height: 20px;
-    background-image: url(http://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/arrow_icon_action.png);
+    background-image: url(http://static.sols.co/mobile/images/icons/arrow-right-blue.png);
     background-size: 20px 20px;;
 }
 
@@ -507,4 +508,8 @@ hr {
 
 a[href="#page-home"] {
     text-decoration: none;
+}
+
+#page-patient-form-scan-foot .ui-btn-up-d, #page-patient-form-scan-foot .ui-btn-hover-d:hover{
+    width: 95%;
 }
