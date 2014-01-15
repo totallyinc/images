@@ -41,24 +41,29 @@ a:active, a:focus {
     width: 90px;
     background: url(http://static.sols.co/mobile/images/icons/back.png) 8px 8px no-repeat;
     background-size: 76px;
+    background-position-x: 0px;
     background-position-y: 42px;
 }
 .skip-button {
     display: inline-block;
-    height: 64px;
-    width: 64px;
-    background: url(http://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/arrow_icon_back.png) 8px 8px no-repeat;
-    background-size: 32px;
+    height: 90px;
+    width: 90px;
+    background: url(http://static.sols.co/mobile/images/icons/skip.png) 8px 8px no-repeat;
+    background-size: 76px;
+    background-position-y: 42px;
 }
 
 .header-sec {
     /*display: inline-block;*/
     padding-left: 3%;
 }
+.two-third .header-sec {
+    padding-left: 1.5%;
+}
 .header-sec p{
     margin: 0;
 }
-.header-sec p.title{
+.header-sec h1.title{
     font-weight: bold;
     margin: 5px 0 0;
 }
@@ -126,7 +131,7 @@ span.step {
 
 .footer_buttons {      display: none; }
 
-/*.patient-info span {    color: red;}*/
+.patient-info {    margin-left : 0%;}
 
 .patient-pickup {    margin: 20px;     padding: 20px;     background: #fff; }
 .patient-pickup.active {     background: #2CB1BE; border: 0; }
@@ -340,7 +345,6 @@ hr {
     margin-top: 10px;
 }
 .patient-info b {
-    float: right;
     font-weight: normal;
 }
 .patient-info label {
@@ -512,4 +516,11 @@ a[href="#page-home"] {
 
 #page-patient-form-scan-foot .ui-btn-up-d, #page-patient-form-scan-foot .ui-btn-hover-d:hover{
     width: 95%;
+}
+
+.fixed-container {
+    height: 1px;
+}
+.fixed {
+    position:fixed;
 }

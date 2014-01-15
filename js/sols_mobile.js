@@ -1090,7 +1090,10 @@ function convert_date(msyql_data) {
 function btn_triggers() {
     $('#btn-logout').click(function () {    buttons.logout();    });
 
-
+    $('#additional_info_control').on('click', function() {
+        $('#addiontal_info').slideToggle();
+    });
+    
     $('#btn-goto-patient-form-foot-measurements').click(function (e) {
         actions.redirect('page-patient-form-foot-measurements');
         return false;
