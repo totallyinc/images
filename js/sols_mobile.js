@@ -21,7 +21,7 @@ $(document).ready(function(){
                         url,
                         function(result) {
                             if(originalCaller.attr('class').indexOf('camera_video') >= 0) {
-                                originalCaller.attr("src","img/upload-failed.jpg");
+                                originalCaller.attr("src","img/UploadSuccess.png");
                             }
                             else {
                                 originalCaller.attr("src",path);
@@ -36,7 +36,7 @@ $(document).ready(function(){
                                     },
                                     function(error){
                                         sols_alerts.notify('Error uploading image, please try again');
-                                        originalCaller.attr("src","img/upload-failed.jpg");
+                                        originalCaller.attr("src","img/upload-failed.png");
                                     },
                                     {
                                         fileKey : originalCaller.attr('id')
