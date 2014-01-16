@@ -39,7 +39,7 @@ a:active, a:focus {
     display: inline-block;
     height: 90px;
     width: 90px;
-    background: url(http://static.sols.co/mobile/images/icons/back.png) 8px 8px no-repeat;
+    background: url(../img/back.png) 8px 8px no-repeat;
     background-size: 76px;
     background-position-x: 0px;
     background-position-y: 42px;
@@ -48,7 +48,7 @@ a:active, a:focus {
     display: inline-block;
     height: 90px;
     width: 90px;
-    background: url(http://static.sols.co/mobile/images/icons/skip.png) 8px 8px no-repeat;
+    background: url(../img/skip.png) 8px 8px no-repeat;
     background-size: 76px;
     background-position-y: 42px;
 }
@@ -387,7 +387,7 @@ hr {
     float: right;
     margin-right: 3%;
     height: 20px;
-    background-image: url(http://static.sols.co/mobile/images/icons/arrow-right-blue.png);
+    background-image: url(../img/arrow-right-blue.png);
     background-size: 20px 20px;;
 }
 
