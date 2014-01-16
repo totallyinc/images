@@ -227,7 +227,7 @@
               <div class="one-third fixed-container">
                   <div class="one-third fixed">
                       <div class="header-sec">
-                          <a href="#page-home">
+                          <a data-transition="none" href="#page-home">
                               <img src="img/logo-icon.png">
                           </a>
                           <br>
@@ -783,7 +783,7 @@
               <div class="one-third fixed-container">
                   <div class="one-third fixed">
                       <div class="header-sec">
-                          <a href="#page-home">
+                          <a data-transition="none" href="#page-home">
                               <img src="img/logo-icon.png">
                           </a>
                           <br>
@@ -911,7 +911,7 @@
               <div class="one-third fixed-container">
                   <div class="one-third fixed">
                       <div class="header-sec">
-                          <a href="#page-home">
+                          <a data-transition="none" href="#page-home">
                               <img src="img/logo-icon.png">
                           </a>
                           <br>
@@ -1024,7 +1024,9 @@
               <div class="one-third fixed-container">
                   <div class="one-third fixed">
                       <div class="header-sec">
-                          <img src="img/logo-icon.png">
+                          <a data-transition="none" href="#page-home">
+                              <img src="img/logo-icon.png">
+                          </a>
                           <br>
                           <br>
                           <h1 class="title color-light">
@@ -1212,7 +1214,9 @@
               <div class="one-third fixed-container">
                   <div class="one-third fixed">
                       <div class="header-sec">
-                          <img src="img/logo-icon.png">
+                          <a data-transition="none" href="#page-home">
+                              <img src="img/logo-icon.png">
+                          </a>
                           <br>
                           <br>
                           <h1 class="title color-light">
@@ -1448,67 +1452,6 @@
           </ul>
       </div>
   </div>
-  <div data-role="page" data-control-title="Patient Form - note" id="page-patient-form-note"
-  class="page">
-      <div data-role="content" style="padding: 0px">
-          <div data-controltype="htmlblock">
-              <div>
-                  <span class="step">
-                      4/6
-                  </span>
-                  <a href="#" data-rel="back" class="back-button" data-transition="none">
-                  </a>
-                  <div class="header-sec">
-                      <p class="title">
-                          ADD PATIENT
-                      </p>
-                      <p class="sub-title">
-                          NOTES
-                      </p>
-                  </div>
-                  <div style="clear: both;">
-                  </div>
-                  <div class="region-header target_patient_name">
-                      &nbsp;
-                  </div>
-              </div>
-              <br>
-          </div>
-          <form id="form_patient_note" action="" method="POST" class="form">
-              <div data-role="fieldcontain" data-controltype="textarea">
-                  <textarea name="customer_info[prescription_note]" id="patient-note" placeholder="Exmaple: Recent fracture in left metarsal. Please reduce size of metatarsal pad."></textarea>
-              </div>
-              <input type="submit" data-theme="d" data-icon="arrow-r" data-iconpos="right"
-              value="SAVE &amp; SCAN FEET">
-              <div style="" data-controltype="image">
-                  <img style="width: 120px; height: 67px" src="img/home_icon_email.png">
-              </div>
-              <div style="" data-controltype="image">
-                  <img style="width: 97px; height: 111px" src="img/home_icon_phone.png">
-              </div>
-          </form>
-      </div>
-      <div data-role="tabbar" data-iconpos="top" data-theme="a" class="footer_buttons">
-          <ul>
-              <li>
-                  <a href="#page-home" data-transition="none" data-theme="" data-icon="home">
-                  </a>
-              </li>
-              <li>
-                  <a href="#page-pickup" data-transition="none" data-theme="" data-icon="grid">
-                  </a>
-              </li>
-              <li>
-                  <a href="#page-add-new-patient" data-transition="none" data-theme="" data-icon="plus">
-                  </a>
-              </li>
-              <li>
-                  <a href="#page-patients" data-transition="none" data-theme="" data-icon="info">
-                  </a>
-              </li>
-          </ul>
-      </div>
-  </div>
   <div data-role="page" data-control-title="Patient Info Review" id="page-patient-info-review"
   class="page">
       <div data-role="content" style="padding: 0px">
@@ -1517,7 +1460,7 @@
               <div class="two-third fixed-container">
                   <div class="two-third fixed">
                       <div class="header-sec">
-                          <a href="#page-home">
+                          <a data-transition="none" href="#page-home">
                               <img src="img/logo-icon.png">
                           </a>
                           <br>
@@ -1526,12 +1469,11 @@
                               Add Patient
                           </h1>
                           <br>
-                          <iframe id='3d_viewer' src="" width="100%" height="400" frameborder="0"
-                          scrolling="no">
-                          </iframe>
-                          <a href="javascript:void(0)" onclick="window.open(encodeURI('http://api.sols.co/3d/'), '_system')">
-                              Iframe
-                          </a>
+                          <!--<iframe id="3d_viewer" src="" width="100%" height="400" frameborder="0"
+                          scrolling="no"></iframe>
+          -->
+                          <img id="three_d_browser_viewer" height="400px" frameborder="0" src="img/home_three_d_placeholder.png"
+                          onclick="window.open(encodeURI('http://api.sols.co/3d/'), '_system')">
                           <p class="sub-title">
                           </p>
                           <div>
@@ -1968,7 +1910,7 @@
                   <div class="one-third fixed">
                       <br>
                       <div class="header-sec">
-                          <a href="#page-home">
+                          <a data-transition="none" href="#page-home">
                               <img src="img/logo-icon.png">
                           </a>
                           <br>
@@ -2024,7 +1966,7 @@
                   <div class="one-third fixed">
                       <br>
                       <div class="header-sec">
-                          <a href="#page-home">
+                          <a data-transition="none" href="#page-home">
                               <img src="img/logo-icon.png">
                           </a>
                           <br>
@@ -2127,7 +2069,7 @@
                   <div class="one-third fixed">
                       <br>
                       <div class="header-sec">
-                          <a href="#page-home">
+                          <a data-transition="none" href="#page-home">
                               <img src="img/logo-icon.png">
                           </a>
                           <br>
@@ -2137,8 +2079,12 @@
                           </h1>
                           <br>
                           <p class="sub-title">
-                              Select a name to ...
+                              Select a name to complete a pickup
                           </p>
+                          <a id="btn-pick-up" data-role="button" data-transition="none" data-theme="d"
+                          href="#page-pickup" class="container">
+                              PICK UP
+                          </a>
                       </div>
                       <div style="clear: both;">
                       </div>
@@ -2151,10 +2097,6 @@
                   <br>
               </div>
           </div>
-          <a id="btn-pick-up" data-role="button" data-transition="none" data-theme="d"
-          href="#page-pickup" class="container">
-              PICK UP
-          </a>
       </div>
       <div data-role="tabbar" data-iconpos="top" data-theme="a" class="footer_buttons">
           <ul>
@@ -2184,7 +2126,7 @@
                   <div class="one-third fixed">
                       <br>
                       <div class="header-sec">
-                          <a href="#page-home">
+                          <a data-transition="none" href="#page-home">
                               <img src="img/logo-icon.png">
                           </a>
                           <br>
@@ -2204,11 +2146,11 @@
               <div class="two-third">
                   <br>
                   <a class="btn-review_fits container" data-role="button" data-transition="none"
-                  data-theme="d" href="#page-pickup-review" data-icon="arrow-r" data-iconpos="right">
+                  data-theme="d" href="#page-pickup-review">
                       ORTHOPEDIC FITS
                   </a>
                   <a class="btn-review_remake_needed container" data-role="button" data-transition="none"
-                  data-theme="d" href="#page-pickup-review" data-icon="arrow-r" data-iconpos="right">
+                  data-theme="d" href="#page-pickup-review">
                       REMAKE NEEDED
                   </a>
               </div>
@@ -2279,7 +2221,7 @@
           <div data-controltype="htmlblock">
               <br>
               <div style="padding-left: 3%;">
-                  <a href="#page-home">
+                  <a data-transition="none" href="#page-home">
                       <img src="img/logo-icon.png">
                   </a>
               </div>

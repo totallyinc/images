@@ -524,3 +524,6 @@ a[href="#page-home"] {
 .fixed {
     position:fixed;
 }
+#three_d_browser_viewer {
+    width: 98%;
+}
