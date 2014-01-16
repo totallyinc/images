@@ -407,28 +407,28 @@ hr {
     width: 110px;
     height: 30px;
     background-position: 0;
-    background-image: url(http://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/footer_icon_home.png);
+    background-image: url(../img/footer_icon_home.png);
     background-size: 55px;
 }
 .ui-icon.ui-icon-plus.ui-icon-shadow {
     width: 110px;
     height: 30px;
     background-position: 0;
-    background-image: url(http://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/footer_icon_addpatients.png);
+    background-image: url(../img/footer_icon_addpatients.png);
     background-size: 55px;
 }
 .ui-icon.ui-icon-info.ui-icon-shadow {
     width: 110px;
     height: 30px;
     background-position: 0;
-    background-image: url(http://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/footer_icon_users.png);
+    background-image: url(../img/footer_icon_users.png);
     background-size: 55px;
 }
 .ui-icon.ui-icon-grid.ui-icon-shadow {
     width: 110px;
     height: 30px;
     background-position: 0;
-    background-image: url(http://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/footer_icon_pickups.png);
+    background-image: url(../img/footer_icon_pickups.png);
     background-size: 55px;
 }
 

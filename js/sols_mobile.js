@@ -233,11 +233,7 @@ var translate = {
 //var data_pickup_order_id = 0;
 var foot_images = {
     'l1':'img/picture-left.jpg',
-    'l2':'http://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/photo_icon_left_side.png',
-    'l3':'http://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/photo_icon_left_back.png',
-    'r1':'img/picture-right.png',
-    'r2':'http://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/photo_icon_right_side.png',
-    'r3':'http://dl.dropboxusercontent.com/u/10607473/www.sols.co/mobile_foot_images/photo_icon_right_back.png'
+    'r1':'img/picture-right.png'
 };
 
 var forms = {
