@@ -18,7 +18,7 @@ a:active, a:focus {
 
 
 #page-login{
-    background: url(http://s3.amazonaws.com/assets.codiqa.com/GWQreLWmSByoFOWZW34R_welcome_image.jpg) center center;
+    background: url(../img/welcome_image.jpg) center center;
 }
 #page-login .text_field {
     background: #eee;

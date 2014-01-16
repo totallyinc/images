@@ -20,7 +20,12 @@ $(document).ready(function(){
                         path,
                         url,
                         function(result) {
-                            originalCaller.attr("src",path);
+                            if(originalCaller.attr('class').indexOf('camera_video') >= 0) {
+                                originalCaller.attr("src","img/upload-failed.jpg");
+                            }
+                            else {
+                                originalCaller.attr("src",path);
+                            }
                         },
                         function(error) {
                             window.setTimeout(
@@ -30,15 +35,15 @@ $(document).ready(function(){
                                         originalCaller.attr("src",path);
                                     },
                                     function(error){
-                                        navigator.notification.alert('Error uploading image, please try again');
+                                        sols_alerts.notify('Error uploading image, please try again');
                                         originalCaller.attr("src","img/broken-link-image.jpg");
                                     },
                                     {
-                                        fileKey : originalCaller.attr('id'),
+                                        fileKey : originalCaller.attr('id')
                                     }),
                                 1000);
                         },
-                        {   fileKey : originalCaller.attr('id'),
+                        {   fileKey : originalCaller.attr('id')
                         });
                 }
                 catch(err){
