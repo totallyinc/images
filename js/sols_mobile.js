@@ -208,6 +208,7 @@ $(document).bind('pageinit', function () {
 /* CONFIG */
 var config = {
     'api_url' : 'http://api.sols.co',
+    'static_file_url' : 'http://api.sols.co',
     'api_type': 'mvp',
     'api_version' : '0.9.1',
     'file_storage' : 0
@@ -1000,7 +1001,7 @@ var patient = {
                                 console.log('video exist');
                                 $('.foot-'+i).attr('src', 'img/UploadSuccess.png');
                                 $('.foot-'+i+'-link').html('View Video');
-                                $('.foot-'+i+'-link').attr('href',data.videos[i]);
+                                $('.foot-'+i+'-link').attr('href',config.static_file_url+data.videos[i]);
                             }
                             else {
                                 console.log('video exist');
