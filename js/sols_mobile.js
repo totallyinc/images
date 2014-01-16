@@ -232,7 +232,7 @@ var translate = {
 
 //var data_pickup_order_id = 0;
 var foot_images = {
-    'l1':'img/picture-left.jpg',
+    'l1':'img/picture-left.png',
     'r1':'img/picture-right.png'
 };
 
@@ -994,6 +994,18 @@ var patient = {
                         for (var i in data.images) {
                             $('.foot-'+i).attr('src',  config.api_url+data.images[i]);
                         }
+                        for(var i in data.videos) {
+                            console.log('checking videos');
+                            if(file_exists(data.videos[i])) {
+                                console.log('video exist');
+                                $('.foot-'+i).attr('src', 'img/UploadSuccess.png');
+                                $('.foot-'+i+'-link').html('View Video');
+                                $('.foot-'+i+'-link').attr('href',data.videos[i]);
+                            }
+                            else {
+                                console.log('video exist');
+                            }
+                        }
                     }
                     else {
                         sols_error_handler(data.error);
@@ -1308,6 +1320,16 @@ function update_tab_menu() {
     $('.footer_buttons ul li.ui-block-a a').html('hi there');
 }
 
+
+function file_exists(file_url) {
+  if(file_url.length > 5) {
+    console.log(file_url + ' is good url.');
+    return true;
+  } else {
+        console.log(file_url + ' is NOT a  good url.');
+    return false;
+  }
+}
 /*
  shoe size: 5, 5.5, 6, ... 14 (for both left and right) US shoe size
  L/R foot size (inches): text input (4,2 decimal format) 00.00
