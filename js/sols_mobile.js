@@ -36,7 +36,7 @@ $(document).ready(function(){
                                     },
                                     function(error){
                                         sols_alerts.notify('Error uploading image, please try again');
-                                        originalCaller.attr("src","img/broken-link-image.jpg");
+                                        originalCaller.attr("src","img/upload-failed.jpg");
                                     },
                                     {
                                         fileKey : originalCaller.attr('id')
