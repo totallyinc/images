@@ -1,6 +1,6 @@
 
     //config
-    var stl_file = 'models/default.stl'; 
+    var stl_file = 'http://static.sols.co/www.sols.co/models/default.stl'; 
 
     // three.js 
     if (!Detector.webgl) {
