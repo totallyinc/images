@@ -5,7 +5,18 @@ function debug(msg) {
 var images = [];
 // Only put handing image upload on this doc ready
 $(document).ready(function(){
-
+    
+    
+    // $('.circle').each(function(){
+      // var w = $(this).css('width');
+      // var h = $(this).css('height', w);
+      // console.log(w);
+      // console.log(h);
+    // });
+    
+    
+    
+    
     // Now safe to use the PhoneGap API
     $('.camera_image, .camera_video').click(function(e){
 
@@ -532,8 +543,8 @@ var pages = {
     page_patient_info_review: function () {
 
         patient.show_target_patient_name();
-        init();
-        animate();
+        // init();
+        // animate();
         $.ajax({
             dataType:'jsonp',
             data: 'patient_user_id='+patient.get_user_id()+'&'+reseller.api_data(),

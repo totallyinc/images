@@ -53,7 +53,11 @@
           </div>
           <div data-controltype="htmlblock">
               <div style=" text-align:center" data-controltype="image">
-                  <img style="width: 100px; height: px" src="img/logo-white.png">
+                  <br>
+                  <br>
+                  <img style="width:137px" src="img/logo-white.png">
+                  <br>
+                  <br><br>
               </div>
           </div>
           <div data-controltype="htmlblock">
@@ -79,33 +83,27 @@
               </div>
               <input id="submit_login" type="submit" data-theme="d" value="SUBMIT">
               <div data-controltype="htmlblock">
-                  <br>
-                  <div class="container">
-                      <div class="half">
-                          <div class="circle">
-                              <a class="home-icon-image" href="mailto:kyle@sols.co" data-transition="none">
-                                  <img style="margin-top: 20px;" width="100%" src="img/home_icon_email.png">
-                              </a>
-                              <p style="margin: 0;">
-                                  EMAIL US
-                              </p>
+                  <br><br><br><br><br><br><br>
+                      <div class="container">
+                          <div class="half">
+                              <div class="circle">
+                                  <a class="home-icon-image" href="mailto:kyle@sols.co" data-transition="none">
+                                      <img width="100%" src="img/home_icon_email.png">
+                                  </a>
+                              </div>
+                          </div>
+                          <div class="half">
+                              <div class="circle">
+                                  <a class="home-icon-image" href="tel:+12166502815" data-transition="none">
+                                      <img height="100%" src="img/home_icon_phone.png">
+                                  </a>
+                              </div>
+                          </div>
+                          <div style="clear:both;">
                           </div>
                       </div>
-                      <div class="half">
-                          <div class="circle">
-                              <a class="home-icon-image" href="tel:+12166502815" data-transition="none">
-                                  <img height="100%" src="img/home_icon_phone.png">
-                              </a>
-                              <p style="margin: 0;">
-                                  CALL US
-                              </p>
-                          </div>
+                      <div class="version">
                       </div>
-                      <div style="clear:both;">
-                      </div>
-                  </div>
-                  <div class="version">
-                  </div>
               </div>
           </form>
       </div>
@@ -129,9 +127,11 @@
           </div>
           <div data-controltype="htmlblock">
               <br>
+              <br>
               <div style=" text-align:center" data-controltype="image">
-                  <img style="width: 100px; height: px" src="img/logo-gray.png">
+                  <img style="width: 100px;" src="img/logo-gray.png">
               </div>
+              <br>
               <br>
               <br>
               <br>
@@ -195,40 +195,42 @@
           </div>
           <div data-controltype="htmlblock">
               <br>
-              <div class="container" style="width: 50%; margin: 0 auto;">
-                  <div class="half center">
-                      <div class="circle">
-                          <br>
-                          <a class="home-icon-image" href="mailto:kyle@sols.co" data-transition="none">
-                              <img style="margin-top: 20px;" width="100%" src="img/home_icon_email.png">
-                          </a>
+              <br>
+              <br>
+              <div style=" width: 100%; position: fixed; bottom: 0;">
+                  <div class="container" style="width: 50%; margin: 0 auto;">
+                      <div class="half center">
+                          <div class="circle">
+                              <br>
+                              <a style="margin-right:5%" class="home-icon-image" href="mailto:kyle@sols.co"
+                              data-transition="none">
+                                  <img width="100%" src="img/home_icon_email.png">
+                              </a>
+                          </div>
                       </div>
-                      <span class="label">
-                          EMAIL US
-                      </span>
-                  </div>
-                  <div class="half center">
-                      <div class="circle">
-                          <br>
-                          <a class="home-icon-image" href="tel:+12166502815" data-transition="none">
-                              <img height="100%" src="img/home_icon_phone.png">
-                          </a>
+                      <div class="half center">
+                          <div class="circle">
+                              <br>
+                              <a style="margin-left:5%" class="home-icon-image" href="tel:+12166502815"
+                              data-transition="none">
+                                  <img height="100%" src="img/home_icon_phone.png">
+                              </a>
+                          </div>
                       </div>
-                      <span class="label">
-                          CALL US
-                      </span>
+                      <div style="clear:both;">
+                      </div>
                   </div>
-                  <div style="clear:both;">
+                  <div style="width:100%;">
+                      <div class="version">
+                      </div>
+                      <a id="btn-logout" data-role="button" href="#page-login" data-corners="true"
+                      data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c"
+                      class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c">
+                          LOGOUT: test
+                      </a>
                   </div>
               </div>
           </div>
-          <div data-controltype="htmlblock">
-              <div class="version">
-              </div>
-          </div>
-          <a id="btn-logout" data-role="button" href="#page-login">
-              Log out ()
-          </a>
       </div>
   </div>
   <div data-role="page" data-control-title="Add New Patient - basic information"
@@ -1481,11 +1483,11 @@
                               Add Patient
                           </h1>
                           <br>
-                          <!-- <iframe id="3d_viewer" src="" width="100%" height="400" frameborder="0"
-                          scrolling="no"></iframe> -->
-                          <div id="stage" width='500' height='300'></div>
-                          <!-- <img width="100%" height="400px" frameborder="0" src="img/home_three_d_placeholder.png"
-                          onclick="window.open(encodeURI('http://api.sols.co/3d/'), '_system')"> -->
+                          <!--<iframe id="3d_viewer" src="" width="100%" height="400" frameborder="0"
+                          scrolling="no">
+                          </iframe>
+                          <div id="stage" width='500' height='300'></div>-->
+          <img width='95%' height='400px' frameborder="0" src='http://static.sols.co/mobile/images/icons/home_three_d_placeholder.png' onclick="window.open(encodeURI('http://api.sols.co/3d/'), '_system')">
                           <p class="sub-title">
                           </p>
                           <div>

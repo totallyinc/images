@@ -66,7 +66,8 @@
         }
         renderer.setClearColor(0xeeeeee, 1);
         //renderer.setClearColor( 0x000000, 1 );
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        // renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setSize(500, 400);
 
         container = document.getElementById('stage');
         //container = document.createElement( 'div' )
