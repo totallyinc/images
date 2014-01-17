@@ -1004,6 +1004,7 @@ var patient = {
                             }
                             else {
                                 $('.foot-'+i).attr('src', 'img/placeholder-video.png');
+                                $('.foot-'+i+'-link').css('display','none');
                             }
                         }
                     }
