@@ -13,9 +13,7 @@ $(document).ready(function(){
       // console.log(w);
       // console.log(h);
     // });
-    
-    
-    
+
     
     // Now safe to use the PhoneGap API
     $('.camera_image, .camera_video').click(function(e){
@@ -226,20 +224,30 @@ var config = {
 };
 
 var translate = {
-    ref_gender: function(key){
-        var ref = { 1: 'Female', 2: 'Male' };
+    get_value: function(key, ref){
         if(key in ref)
             return ref[key];
         else
             return 'N/A';
     },
+
+    ref_gender: function(key){
+        var ref = { 1: 'Female', 2: 'Male' };
+        return translate.get_value(key, ref);
+    },
     ref_order_item_status: function(key){
         var ref = { 6: 'Picked Up'  };
-        if(key in ref)
-            return ref[key];
-        else
-            return 'N/A';
+        return translate.get_value(key, ref);
+    },
+    ref_activity_level: function(key) {
+        var ref = { 1: 'low', 2: 'mid', 3: 'high' };
+        return translate.get_value(key, ref);
+    },
+    ref_ethnicity: function(key) {
+        var ref = { 1: 'asian', 2: 'erour', 3: 'black' };
+        return translate.get_value(key, ref);
     }
+
 };
 
 //var data_pickup_order_id = 0;
@@ -342,6 +350,32 @@ var forms = {
         });
     },
 
+    form_patient_required_measurements: function() {
+        $('#form_patient_required_measurements').submit(function () {
+            var postData = $(this).serialize();
+            $.ajax({
+                dataType:'jsonp',
+                data:postData + '&patient_user_id=' + patient.get_user_id() + '&' + reseller.api_data(),
+                url:config.api_url+'/api/api_patient_form_measurements?format=jsonp',
+                success:function (data) {
+                    debug(data);
+                    if (data.connected) {
+                        actions.redirect('page-patient-form-foot-measurements');
+
+                        //actions.redirect('page-patient-form-note');
+                    }
+                    else {
+                        sols_error_handler(data.error);
+                    }
+                },
+                error:function () {
+                    debug(data);
+                    sols_alerts.network_error();
+                }
+            });
+            return false;
+        });
+    },
 
     form_patient_measurements: function(){
         $('#form_patient_measurements').submit(function () {
@@ -526,6 +560,11 @@ var pages = {
         populate_form_values('form_patient_about');
     },
 
+    page_patient_form_required_measurements: function() {
+        patient.show_target_patient_name();
+        populate_form_values('form_patient_required_measurements');
+    },
+
     page_patient_form_foot_measurements: function() {
         patient.show_target_patient_name();
         populate_form_values('form_patient_measurements');
@@ -554,6 +593,9 @@ var pages = {
                     debug(data['patient']);
                     var patient_info = data['patient'];
                     patient_info['ref_gender_id'] = translate.ref_gender(patient_info['ref_gender_id']);
+
+                    patient_info['ref_ethnicity_id'] = translate.ref_ethnicity(patient_info['ref_ethnicity_id']);
+                    patient_info['ref_activity_level_id'] = translate.ref_activity_level(patient_info['ref_activity_level_id']);
                     for (var i in patient_info) {
                         $('.patient-info-'+i).html(patient_info[i]);
                     }
@@ -1095,6 +1137,7 @@ $(function () {
     forms.form_login_submit(); // init form login
     forms.form_patient_basic(); // init form create patient.
     forms.form_patient_about(); // init form for patient about.
+    forms.form_patient_required_measurements(); // init form
     forms.form_patient_measurements();// init form patient measurement.
     //forms.form_patient_note(); // init form patient note.
     forms.form_submit_order(); // init form submit order.
@@ -1127,8 +1170,8 @@ function btn_triggers() {
         $('#addiontal_info').slideToggle();
     });
     
-    $('#btn-goto-patient-form-foot-measurements').click(function (e) {
-        actions.redirect('page-patient-form-foot-measurements');
+    $('#btn-goto-patient-form-foot-required-measurements').click(function (e) {
+        actions.redirect('page-patient-form-required-measurements');
         return false;
     });
 
@@ -1190,6 +1233,7 @@ function on_page_change() {
 
                 case 'page-add-new-patient':                pages.page_add_new_patient();                   break;
                 case 'page-patient-form-about':             pages.page_patient_form_about();                break;
+                case 'page-patient-form-required-measurements': pages.page_patient_form_required_measurements(); break;
                 case 'page-patient-form-foot-measurements': pages.page_patient_form_foot_measurements();    break;
                 case 'page-patient-form-note':              pages.page_patient_form_note();                 break;
                 case 'page-patient-form-scan-foot':         pages.page_patient_form_scan_foot();            break;
@@ -1259,8 +1303,6 @@ function populate_form_values(form_name) {
                             $('input[name="customer_info[height]"]').val(data.patient['height']);
                             $('input[name="customer_info[weight]"]').val(data.patient['weight']);
                             $('select[name="user[ref_ethnicity_id]"]').val(data.patient['ref_ethnicity_id']).selectmenu("refresh", true);
-                            $('select[name="customer_info[shoe_size_raw_left]"]').val(data.patient['shoe_size_raw_left']).selectmenu("refresh", true);
-                            $('select[name="customer_info[shoe_size_raw_right]"]').val(data.patient['shoe_size_raw_right']).selectmenu("refresh", true);
                             if(data.patient['ref_activity_level_id'])
                                 $('input[name="customer_info[ref_activity_level_id]"]').filter('[value="'+data.patient['ref_activity_level_id']+'"]').next().click();
                             //$('input[name="customer_info[ref_activity_level_id]"]').filter('[value="1"]').parent().find("label[for].ui-btn").click();
@@ -1276,6 +1318,40 @@ function populate_form_values(form_name) {
             }
 
             break;
+
+        case 'form_patient_required_measurements':
+            var editing = (patient.get_user_id() > 0);
+            if(editing) {
+                $.ajax({
+                    dataType:'jsonp',
+                    data:patient.api_data() + '&' + reseller.api_data(),
+                    url:config.api_url+'/api/api_get_patient_info_for_order?format=jsonp',
+                    success:function (data) {
+                        if (data.connected) {
+                            $('#form_patient_required_measurements input[type="text"]').each(function(){
+                                var field_name = $(this).attr('name');
+                                if( field_name.substring(0, field_name.lastIndexOf("[")) == 'customer_info' ) {
+                                    var column_name = field_name.substring(field_name.lastIndexOf("[")+1,field_name.lastIndexOf("]"));
+                                    $(this).val(data.patient[column_name]);
+                                }
+                            });
+                            $('select[name="customer_info[shoe_size_raw_left]"]').val(data.patient['shoe_size_raw_left']).selectmenu("refresh", true);
+                            $('select[name="customer_info[shoe_size_raw_right]"]').val(data.patient['shoe_size_raw_right']).selectmenu("refresh", true);
+
+
+                        }
+                        else {
+                            sols_error_handler(data.error);
+                        }
+                    },
+                    error:function () {
+                        sols_alerts.network_error();
+                    }
+                });
+            }
+            break;
+
+
         case 'form_patient_measurements':
             var editing = (patient.get_user_id() > 0);
             if(editing) {

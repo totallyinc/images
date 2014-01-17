@@ -20,13 +20,15 @@
 
 
 
-  <script src="js/contrib/save_as.js"></script>
-  <script src="js/three_js/three.min.js"></script>
-  <script src="js/three_js/controls/TrackballControls.js"></script>
-  <script src="js/three_js/loaders/STLLoader.js"></script>
-  <script src="js/three_js/Detector.js"></script>
-  <script src="js/three_js/libs/stats.min.js"></script>
-  <script src="js/sols_3d.js"></script>
+  <!--<script src="js/contrib/save_as.js"></script>-->
+  <!--<script src="js/three_js/three.min.js"></script>-->
+  <!--<script src="js/three_js/controls/TrackballControls.js"></script>-->
+  <!--<script src="js/three_js/loaders/STLLoader.js"></script>-->
+  <!--<script src="js/three_js/Detector.js"></script>-->
+  <!--<script src="js/three_js/libs/stats.min.js"></script>-->
+  <!--<script src="js/sols_3d.js"></script>-->
+    <!--<script src='js/threejs.js'></script>-->
+
 
 
 </head>
@@ -49,14 +51,12 @@
           <div data-controltype="htmlblock">
               <br>
               <br>
-              <br>
           </div>
           <div data-controltype="htmlblock">
               <div style=" text-align:center" data-controltype="image">
                   <br>
                   <br>
                   <img style="width:137px" src="img/logo-white.png">
-                  <br>
                   <br><br>
               </div>
           </div>
@@ -83,27 +83,28 @@
               </div>
               <input id="submit_login" type="submit" data-theme="d" value="SUBMIT">
               <div data-controltype="htmlblock">
-                  <br><br><br><br><br><br><br>
+                  <br><br><br><br>
                       <div class="container">
                           <div class="half">
                               <div class="circle">
                                   <a class="home-icon-image" href="mailto:kyle@sols.co" data-transition="none">
-                                      <img width="100%" src="img/home_icon_email.png">
+                                      <!-- <img width="100%" src="img/home_icon_email.png"> -->
+                                      <img style='width:40%' src="img/email-white.png">
                                   </a>
                               </div>
                           </div>
                           <div class="half">
                               <div class="circle">
                                   <a class="home-icon-image" href="tel:+12166502815" data-transition="none">
-                                      <img height="100%" src="img/home_icon_phone.png">
+                                      <!-- <img height="100%" src="img/home_icon_phone.png"> -->
+                                      <img style='width:40%' src="img/phone-white.png">
                                   </a>
                               </div>
                           </div>
                           <div style="clear:both;">
                           </div>
                       </div>
-                      <div class="version">
-                      </div>
+                      <!--<div class="version"></div>-->
               </div>
           </form>
       </div>
@@ -197,14 +198,15 @@
               <br>
               <br>
               <br>
-              <div style=" width: 100%; position: fixed; bottom: 0;">
+              <div style=" width: 100%; position: fixed; bottom: 0;z-index: 100">
                   <div class="container" style="width: 50%; margin: 0 auto;">
                       <div class="half center">
                           <div class="circle">
                               <br>
                               <a style="margin-right:5%" class="home-icon-image" href="mailto:kyle@sols.co"
                               data-transition="none">
-                                  <img width="100%" src="img/home_icon_email.png">
+                                  <img width="33%" style='padding-top:12%' src="img/home_icon_email.png">
+                                  <!-- <img style='width:40%' src="img/email-white.png"> -->
                               </a>
                           </div>
                       </div>
@@ -213,7 +215,8 @@
                               <br>
                               <a style="margin-left:5%" class="home-icon-image" href="tel:+12166502815"
                               data-transition="none">
-                                  <img height="100%" src="img/home_icon_phone.png">
+                                  <img width="33%" src="img/home_icon_phone.png">
+                                  <!-- <img style='width:40%' src="img/phone-white.png"> -->
                               </a>
                           </div>
                       </div>
@@ -221,8 +224,7 @@
                       </div>
                   </div>
                   <div style="width:100%;">
-                      <div class="version">
-                      </div>
+                      <!--<div class="version"></div>-->
                       <a id="btn-logout" data-role="button" href="#page-login" data-corners="true"
                       data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c"
                       class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c">
@@ -257,8 +259,7 @@
                               1/6
                           </span>
                           <div>
-                              <a href="#" data-rel="back" class="back-button" data-transition="none">
-                              </a>
+                              <a href="#" data-rel="back" class="back-button" data-transition="none"></a>
                           </div>
                       </div>
                       <div style="clear: both;">
@@ -288,7 +289,7 @@
                           <input name="user[email]" id="textinput4" placeholder="" value="" type="email">
                       </div>
                       <div id="birth-date-input-group">
-                          <label style="display: block;">
+                          <label class="label-full">
                               DATE OF BIRTH
                           </label>
                           <select name="dob_month" class="dob_month">
@@ -762,8 +763,7 @@
                           <input name="user[ss_num_last_four]" id="textinput11" placeholder="" value=""
                           type="number">
                       </div>
-                      <input class="btn_create_patient" data-theme="d" value="Create Patient"
-                      type="submit">
+                      <input class="btn_create_patient" data-theme="d" value="Create Patient"     type="submit">
                   </form>
               </div>
           </div>
@@ -958,7 +958,7 @@
                           <div class="camera_image_container  container">
                               <div style=" text-align: center; ">
                                   <img onerror="image_error('video_left');" class="foot-video_left camera_video"
-                                  id="video_left" width="100%" src="img/placeholder-video.png">
+                                  id="video_left" width="240" src="img/placeholder-video.png">
                                   <p style="margin: 0;">
                                       LEFT FOOT (BACK)
                                   </p>
@@ -971,7 +971,7 @@
                           <div class="camera_image_container container">
                               <div style=" text-align: center; ">
                                   <img onerror="image_error('video_right');" class="foot-video_right camera_video"
-                                  id="video_right" width="100%" src="img/placeholder-video.png">
+                                  id="video_right" width="240" src="img/placeholder-video.png">
                                   <p style="margin: 0;">
                                       RIGHT FOOT (BACK)
                                   </p>
@@ -990,7 +990,7 @@
                           <div class="camera_image_container  container">
                               <div style=" text-align: center; ">
                                   <img onerror="image_error('l1');" class="foot-l1 camera_image" id="l1"
-                                  width="100%" src="img/foot.jpg">
+                                  width="240" src="img/foot.jpg">
                                   <p style="margin: 0;">
                                       LEFT FOOT (BACK)
                                   </p>
@@ -1003,7 +1003,7 @@
                           <div class="camera_image_container container">
                               <div style=" text-align: center; ">
                                   <img onerror="image_error('r1');" class="foot-r1 camera_image" id="r1"
-                                  width="100%" src="img/foot.jpg">
+                                  width="240" src="img/foot.jpg">
                                   <p style="margin: 0;">
                                       RIGHT FOOT (BACK)
                                   </p>
@@ -1015,7 +1015,7 @@
                   </div>
                   <div style="clear: both;">
                   </div>
-                  <a class="container" id="btn-goto-patient-form-foot-measurements" data-role="button"
+                  <a class="container" id="btn-goto-patient-form-foot-required-measurements" data-role="button"
                   data-transition="none" data-theme="d" href="#page-patient-info-review">
                       SAVE &amp; CONTINUE
                   </a>
@@ -1053,7 +1053,7 @@
                               INFORMATION
                           </p>
                           <span class="step">
-                              4/6
+                              5/6
                           </span>
                           <div>
                               <a href="#" data-rel="back" class="back-button" data-transition="none">
@@ -1193,8 +1193,7 @@
                       </div>
                       <div style="clear: both;">
                       </div>
-                      <input data-theme="d" data-icon="" data-iconpos="right" value="SAVE &amp; CONTINUE"
-                      type="submit">
+                      <input data-theme="d" value="SAVE &amp; CONTINUE"                  type="submit">
                   </form>
               </div>
           </div>
@@ -1241,13 +1240,12 @@
                               MEASUREMENTS
                           </p>
                           <span class="step">
-                              5/6
+                              4/6
                           </span>
                           <div>
                               <a href="#" data-rel="back" class="back-button" data-transition="none">
                               </a>
-                              <a href="#page-patient-info-review" class="skip-button" data-transition="none">
-                              </a>
+                              <!--<a href="#page-patient-info-review" class="skip-button" data-transition="none"></a>-->
                           </div>
                           <div class="region-header target_patient_name">
                               &nbsp;
@@ -1258,7 +1256,7 @@
                   </div>
               </div>
               <div class="two-third">
-                  <form id="form_patient_measurements" action="" method="POST">
+                  <form id="form_patient_required_measurements" action="" method="POST">
                       <div class="half">
                           <h4>
                               <img src="img/foot-left.png">
@@ -1342,7 +1340,7 @@
                           </div>
                           <div data-role="fieldcontain" data-controltype="textinput">
                               <label for="textinput35">
-                                  PRESCRIPTION ARCH DEGREE ( ° )
+                                  PRESCRIPTION ARCH DEGREE
                               </label>
                               <input name="customer_info[prescription_arch_degree_left]" id="textinput35"
                               placeholder="" value="" type="text">
@@ -1431,7 +1429,7 @@
                           </div>
                           <div data-role="fieldcontain" data-controltype="textinput">
                               <label for="textinput26">
-                                  PRESCRIPTION ARCH DEGREE ( ° )
+                                  PRESCRIPTION ARCH DEGREE
                               </label>
                               <input name="customer_info[prescription_arch_degree_right]" id="textinput26"
                               placeholder="" value="" type="text">
@@ -1439,8 +1437,7 @@
                       </div>
                       <div style="clear: both;">
                       </div>
-                      <input data-theme="d" data-icon="" data-iconpos="right" value="SAVE &amp; CONTINUE"
-                      type="submit">
+                      <input data-theme="d" value="SAVE &amp; CONTINUE" type="submit">
                   </form>
               </div>
           </div>
@@ -1656,11 +1653,11 @@
                       </div>
                   </div>
                   <br>
-                  <div class="section-header">
+                  <div class="section-header"  id="additional_info_control" >
                       <div class="section-header-edit">
                           <img class="" src="img/plus.png">
                       </div>
-                      <div id="additional_info_control" class="section-header-label" style="width: 100%;">
+                      <div class="section-header-label" style="width: 100%;">
                           OPTIONAL INFORMATION
                       </div>
                   </div>
@@ -1780,12 +1777,14 @@
                               <label>
                                   TOE LENGTH
                               </label>
-                              <span class="db-data patient-info-heel_width_right">
+                              <span class="db-data patient-info-toe_length_right">
                               </span>
                           </div>
                       </div>
+
+                      <br>
                   </div>
-                  <br>
+
                   <div class="patient-info section-header">
                       <a class="section-header-edit" data-transition="none" href="#page-patient-form-foot-measurements">
                           Edit
@@ -1816,7 +1815,7 @@
                               <br>
                               ARCH DEGREE
                           </label>
-                          <span class="db-data patient-info-prescription_degree_left">
+                          <span class="db-data patient-info-prescription_arch_degree_left">
                           </span>
                       </div>
                       <div class="even">
@@ -1839,7 +1838,7 @@
                               <br>
                               ARCH DEGREE
                           </label>
-                          <span class="db-data patient-info-prescription_degree_right">
+                          <span class="db-data patient-info-prescription_arch_degree_right">
                           </span>
                       </div>
                       <div class="even">
@@ -1853,8 +1852,7 @@
                   <div class="db-data patient-info-prescription_note container">
                   </div>
                   <br>
-                  <form class="form_submit_order_class" id="form_submit_order" action=""
-                  method="POST">
+                  <form class="form_submit_order_class" id="form_submit_order" action=""             method="POST">
                       <div data-role="fieldcontain" data-controltype="selectmenu">
                           <label for="selectmenu9">
                               Order QTY
@@ -1991,12 +1989,8 @@
                           </a>
                           <br>
                           <br>
-                          <h1 class="target_patient_name color-light">
-                          </h1>
-                          <br>
-                          <br>
-                          <a href="#" data-rel="back" class="back-button" data-transition="none">
-                          </a>
+                          <h1 class="target_patient_name color-light"></h1>
+                          <a href="#" data-rel="back" class="back-button" data-transition="none"></a>
                       </div>
                       <div style="clear: both;">
                       </div>
@@ -2544,8 +2538,7 @@
               <div>
                   <span class="step">
                   </span>
-                  <a href="#" data-rel="back" class="back-button">
-                  </a>
+                  <a href="#" data-rel="back" class="back-button"></a>
                   <div class="header-sec">
                       <p class="title">
                       </p>
@@ -2715,5 +2708,4 @@
       </div>
   </div>
 </body>
-  <script src='js/threejs.js'></script>
 </html>

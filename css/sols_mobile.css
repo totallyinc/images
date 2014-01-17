@@ -1,3 +1,7 @@
+#btn-logout {
+    display: none;
+}
+
 ::-webkit-input-placeholder {  font-weight: normal;    color: #aaa; }
 :-moz-placeholder { /* Firefox 18- */     font-weight: normal;     color: #aaa; }
 ::-moz-placeholder {  /* Firefox 19+ */      font-weight: normal;     color: #aaa; }
@@ -8,6 +12,7 @@ a:active, a:focus {
 }
 
 .page {
+    font-size: 1.2em;
     background-color: #ededed;
 }
 
@@ -36,21 +41,18 @@ a:active, a:focus {
 {    color: #393939; font-weight: normal; }
 
 .back-button {
+    margin: 10px 0;
     display: inline-block;
-    height: 90px;
-    width: 90px;
-    background: url(../img/back.png) 8px 8px no-repeat;
-    background-size: 76px;
-    background-position-x: 0px;
-    background-position-y: 42px;
+    height: 42px;
+    width: 95px;
+    background: url(../img/back.png)no-repeat;
 }
 .skip-button {
+    margin: 10px 20px;
     display: inline-block;
-    height: 90px;
-    width: 90px;
-    background: url(../img/skip.png) 8px 8px no-repeat;
-    background-size: 76px;
-    background-position-y: 42px;
+    height: 42px;
+    width: 95px;
+    background: url(../img/skip.png)no-repeat;
 }
 
 .header-sec {
@@ -180,13 +182,20 @@ input {
     height: 2em;
 }
 input.ui-input-text, textarea.ui-input-text {
-    font-size: 1em;
+    font-size: 1.2em;
 }
 .ui-submit .ui-btn-inner {
-    font-size: 1.5em;
+    font-size: 2.5em;
 }
-.ui-btn-inner {
-    font-size: 1em;
+.ui-select .ui-btn .ui-btn-inner {
+    font-size: 1.2em;
+}
+.ui-btn .ui-btn-inner {
+    font-size: 2.0em;
+}
+
+.footer_buttons .ui-btn .ui-btn-inner {
+    font-size: 1.2em;
 }
 
 .half {
@@ -221,7 +230,7 @@ input.ui-input-text, textarea.ui-input-text {
     border: 1em solid transparent;
     white-space: nowrap;
     padding: 1em;
-    font-size: 3em;
+    font-size: 2.4em;
     color: white;
 }
 .circle span img {
@@ -248,7 +257,7 @@ input.ui-input-text, textarea.ui-input-text {
 
 
 .half .circle span.label{
-    color: #000; font-size: 0.8em; margin: 0; display: block;
+    color: #000; font-size: 0.9em; margin: 0; display: block;
 }
 
 .ui-field-contain { width: 98%; margin-left: 1%; }
@@ -264,7 +273,7 @@ input.ui-input-text, textarea.ui-input-text {
 .ui-field-contain label {   width: 50%; float: left; margin: 0; color: #666;}
 .ui-field-contain label.ui-input-text, .ui-field-contain label.ui-select {
     float: left;
-    font-size: 1em;
+    font-size: 1.5em;
     /*line-height: 2em;*/
     padding-top: 5px;
     margin: 0 0 0 3%;
@@ -336,10 +345,8 @@ hr {
 
 .home-icon-image {
     display: block;
-    height: 55px;
     margin: 0 auto 7px;
     text-align: center;
-    width: 55px;
 }
 
 .odd, .even {
@@ -358,20 +365,20 @@ hr {
 .patient_row {
     text-transform: uppercase;
 
-    margin-bottom: 1px;
+    margin-bottom: 3px;
     padding-left: 3%;
-    padding-top: 0.8em;
-    padding-bottom: 0.8em;
+    padding-top: 1em;
+    padding-bottom: 1em;
     background: #fff;
 }
 .patient_list_abbr {
-    margin-top: 3px;
-    margin-bottom: 1px;
+    margin-top: 6px;
+    margin-bottom: 3px;
 
     background: #fff;
     padding-left: 3%;
-    padding-top: 0.8em;
-    padding-bottom: 0.8em;
+    padding-top: 1em;
+    padding-bottom: 1em;
 
     /*text-align: center;*/
     font-weight: bold;
@@ -515,9 +522,9 @@ a[href="#page-home"] {
     text-decoration: none;
 }
 
-#page-patient-form-scan-foot .ui-btn-up-d, #page-patient-form-scan-foot .ui-btn-hover-d:hover{
-    width: 95%;
-}
+/*#page-patient-form-scan-foot .ui-btn-up-d, #page-patient-form-scan-foot .ui-btn-hover-d:hover{*/
+    /*width: 95%;*/
+/*}*/
 
 .fixed-container {
     height: 1px;
@@ -533,4 +540,13 @@ a[href="#page-home"] {
     display: inline-block;
     color: transparent;
     padding-bottom: 10px;
+}
+
+.label-full {
+    display: block;
+    font-size: 1.5em;
+}
+
+#addiontal_info .section-header {
+    border: 0;
 }

@@ -4,14 +4,20 @@
 
     // three.js 
     if (!Detector.webgl) {
-        Detector.addGetWebGLMessage();
+        // removed to prevent error. Should be moved into the page section if we want to show it.
+        //Detector.addGetWebGLMessage();
     }
     var container, stats;
     var camera, controls, scene, renderer;
     var cross;
-//    init();
-//    animate();
     var mesh = null;
+
+
+    // moved to page change file.
+    //    init();
+    //    animate();
+
+
     function init() {
 
         camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.01, 1e10);
