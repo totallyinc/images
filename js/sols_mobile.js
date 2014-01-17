@@ -997,14 +997,17 @@ var patient = {
                         }
                         for(var i in data.videos) {
                             if(file_exists(data.videos[i])) {
+                                console.log('.foot-'+i+' exist');
                                 $('.foot-'+i).attr('src', 'img/UploadSuccess.png');
                                 $('.foot-'+i+'-link').html('View Video');
                                 $('.foot-'+i+'-link').attr('href',config.static_file_url+data.videos[i]);
-                                $('.foot-'+i+'-link').css('display','inline-block');
+                                $('.foot-'+i+'-link').css('color','#393939');
                             }
                             else {
+                                console.log('.foot-'+i+' not exist');
                                 $('.foot-'+i).attr('src', 'img/placeholder-video.png');
-                                $('.foot-'+i+'-link').css('display','none');
+                                $('.foot-'+i+'-link').attr('href', '');
+                                $('.foot-'+i+'-link').css('color','transparent');
                             }
                         }
                     }

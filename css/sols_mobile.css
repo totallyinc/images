@@ -529,6 +529,7 @@ a[href="#page-home"] {
 }
 
 .video-link {
-    display: none;
+    display: inline-block;
+    color: transparent;
     padding-bottom: 10px;
 }
