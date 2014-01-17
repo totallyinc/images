@@ -9,8 +9,8 @@
     var container, stats;
     var camera, controls, scene, renderer;
     var cross;
-    init();
-    animate();
+//    init();
+//    animate();
     var mesh = null;
     function init() {
 

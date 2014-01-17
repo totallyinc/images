@@ -532,7 +532,8 @@ var pages = {
     page_patient_info_review: function () {
 
         patient.show_target_patient_name();
-
+        init();
+        animate();
         $.ajax({
             dataType:'jsonp',
             data: 'patient_user_id='+patient.get_user_id()+'&'+reseller.api_data(),
