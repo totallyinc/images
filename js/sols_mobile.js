@@ -996,15 +996,10 @@ var patient = {
                             $('.foot-'+i).attr('src',  config.api_url+data.images[i]);
                         }
                         for(var i in data.videos) {
-                            console.log('checking videos');
                             if(file_exists(data.videos[i])) {
-                                console.log('video exist');
                                 $('.foot-'+i).attr('src', 'img/UploadSuccess.png');
                                 $('.foot-'+i+'-link').html('View Video');
                                 $('.foot-'+i+'-link').attr('href',config.static_file_url+data.videos[i]);
-                            }
-                            else {
-                                console.log('video exist');
                             }
                         }
                     }
@@ -1324,10 +1319,8 @@ function update_tab_menu() {
 
 function file_exists(file_url) {
   if(file_url.length > 5) {
-    console.log(file_url + ' is good url.');
     return true;
   } else {
-        console.log(file_url + ' is NOT a  good url.');
     return false;
   }
 }
