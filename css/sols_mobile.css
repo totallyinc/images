@@ -529,6 +529,6 @@ a[href="#page-home"] {
 }
 
 .video-link {
-    display: inline-block;
+    display: none;
     padding-bottom: 10px;
 }

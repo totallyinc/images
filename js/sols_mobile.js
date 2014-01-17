@@ -1000,6 +1000,10 @@ var patient = {
                                 $('.foot-'+i).attr('src', 'img/UploadSuccess.png');
                                 $('.foot-'+i+'-link').html('View Video');
                                 $('.foot-'+i+'-link').attr('href',config.static_file_url+data.videos[i]);
+                                $('.foot-'+i+'-link').css('display','inline-block');
+                            }
+                            else {
+                                $('.foot-'+i).attr('src', 'img/placeholder-video.png');
                             }
                         }
                     }
